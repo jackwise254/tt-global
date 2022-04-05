@@ -277,24 +277,9 @@ $(document).ready(function() {
             <th class="text-center">Action</th>
           </tr>
         </thead>
-        <?php 
-        $cart =array ();
+        
 
-         if($masterlist): 
-           foreach($masterlist as $user):
-                  $dele = $user['del'];
-                  $cart[]= $dele;
-            $data2['single'] = array_unique($cart);
-        ?>
-        <?php endforeach; ?>
-        <?php endif; ?>
-
-        <?php foreach($data2['single'] as $d): ?>
-            <?php
-                echo '<pre>';
-                print_r($d);
-            ?>
-        <?php endforeach ?>
+        <tr><?= $data3 ?></tr>
         
                 
          </tbody> 

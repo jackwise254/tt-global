@@ -197,37 +197,37 @@ class ProductsCrud extends Controller
 
     public function load()
     {
-        $tempModel = new TempModel();
+        // $tempModel = new TempModel();
         $db      = \Config\Database::connect();
-        
-
-        $data['templist'] = $tempModel->orderBy('id', 'DESC')->findAll();
+        $builder = $db->table('templist');
+        $builder->select('templist.*');
+        $data['templist'] = $builder->get()->getResult();
+        // $data['templist'] = $tempModel->orderBy('id', 'DESC')->findAll();
 
         $cart = array();
+        $cart2 = array();
+
+
         foreach($data['templist'] as $p){
-            $m = $p['del'];
+            $m = $p->del;
             $cart[] = $m; 
         }
 
         $data2['single'] = array_unique($cart);
-        $i = 0;
+        
         foreach($data2['single'] as $s){
-        // $singles = $s;
+        $singles = $s;
 
         $builder = $db->table('templist');
         $builder->select('templist.*');
-        $builder->where('templist.del', $s);
-        $data3['list'][$i] = $builder->get()->getResult();
-        $i++;
-
-        echo "<pre>";
-        print_r($data3);
+        $builder->where('templist.del', $singles);
+        $data3 = $builder->get()->getResult();
+      
+        // echo "<pre>";
+        // print_r($data3[0]);
         }
-
         
-        
-
-        
+        return view('products/uploadCsv', $data3);
     }
 
 
