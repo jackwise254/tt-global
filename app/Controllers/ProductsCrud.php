@@ -226,8 +226,10 @@ class ProductsCrud extends Controller
         // echo "<pre>";
         // print_r($data3[0]);
         }
+        echo "<pre>";
+        print_r($data3[0]);
         
-        return view('products/uploadCsv', $data3);
+        // return view('products/uploadCsv', $data3);
     }
 
 
