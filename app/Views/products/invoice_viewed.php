@@ -4,7 +4,7 @@ require_once('fpdf.php');
 require_once APPPATH . "Config/Database.php";
 //SQL to get 10 records
 // $patient_Id = $presc->Patient_Id;
-// include_once("Output/connection.php");
+include_once("Output/connection.php");
 
 // foreach($invoicecreate as $patient) {
 $_SESSION['vendor'] = $invoicecreate['vendor'];
@@ -15,14 +15,14 @@ $_SESSION['ref'] = $invoicecreate['ref'];
 $_SESSION['address'] = $invoicecreate['address'];
 // }
 
-// $db = new dbObj();
-// $connString =  $db->getConnstring();
-// $result = mysqli_query($connString, "select * from temporaystorage WHERE hospitalnum = $hospitalnum") or die("database error:". mysqli_error($connString));
-// $patients2 = mysqli_fetch_array($result);
+$db = new dbObj();
+$connString =  $db->getConnstring();
+$result = mysqli_query($connString, "select * from masterlist") or die("database error:". mysqli_error($connString));
+$masterlist = mysqli_fetch_array($result);
 
 //$count="select * from temporaystorage WHERE hospitalnum = $hospitalnum";
 
-// print_r($bname);
+// print_r($masterlist);
 
 class PDF extends FPDF
 {
@@ -116,11 +116,11 @@ $pdf->Cell($width_cell3[2],10,'Date',1,0,'C',true);
 $pdf->Cell($width_cell4[3],10,'Quantity',1,0,'C',true);
 //Third header column//
 $pdf->Cell($width_cell5[1],10,'Amount',1,1,'C',true); 
-foreach ($invoicecreate as $d) {
-// // $pdf->Cell($width_cell1[0],10,$d->prescription_id,1,0,'C',$fill);
-// $pdf->Cell($width_cell2[4],10,$d->invoicecreate,1,0,'C',$fill);
-// $pdf->Cell($width_cell3[2],10,$d->invoicecreate,1,0,'C',$fill);
-// $pdf->Cell($width_cell4[3],10,$d->invoicecreate,1,0,'C',$fill);
+// foreach ($masterlist as $d) {
+$pdf->Cell($width_cell1[0],10,$masterlist['vendor'],1,0,'C',$fill);
+$pdf->Cell($width_cell2[4],10,$d->memo,1,0,'C',$fill);
+$pdf->Cell($width_cell3[2],10,$d->terms,1,0,'C',$fill);
+$pdf->Cell($width_cell4[3],10,$d->ref,1,0,'C',$fill);
 // $pdf->Cell($width_cell5[1],10,$d->invoicecreate,1,1,'C',$fill);
 // to give alternate background fill  color to rows
 
@@ -133,7 +133,7 @@ foreach ($invoicecreate as $d) {
 // // $date = $d->date;
 
 // // $fill = !$fill;
-}
+// }
 
 
 ob_clean();
@@ -142,24 +142,24 @@ ob_start();
 
 // $rand = uniqid();
 
-// $idd = $_SESSION['session'];
-// $namepdf = $idd.'.pdf';
-// $pdf->Output('uploads/invoices/' .$namepdf, "F");
+$idd = $_SESSION['session'];
+$namepdf = $idd.'.pdf';
+$pdf->Output('uploads/invoices/' .$namepdf, "F");
 $pdf->Output();
 
-// $db = new dbObj();
-// $connString =  $db->getConnstring();
-// date_default_timezone_set("Africa/Nairobi");
-// $date = date("Y/m/d");
+$db = new dbObj();
+$connString =  $db->getConnstring();
+date_default_timezone_set("Africa/Nairobi");
+$date = date("Y/m/d");
 
-// $link = mysqli_connect("localhost", "hra2517_users", "APTechKenya", "hra2517_hradatabase");
+$link = mysqli_connect("localhost", "users", "root", "");
         
-// $sql = "INSERT INTO `ivoice` (hospitalnum, date, document) 
-// VALUES ('$idd', '$date', '$namepdf')";
+$sql = "INSERT INTO `ivoice` (hospitalnum, date, document) 
+VALUES ('$idd', '$date', '$namepdf')";
 
-// $results = mysqli_query($link, $sql);
+$results = mysqli_query($link, $sql);
 
-// mysqli_close($link);
+mysqli_close($link);
 
 // $redirect = base_url('system/invoice/'. $idd);
 // header('Location: '.$redirect);

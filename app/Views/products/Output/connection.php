@@ -12,7 +12,7 @@ var $username = "root";
 
 var $password = "";
 
-var $dbname = "user";
+var $dbname = "users";
 
 var $conn;
 

@@ -2,6 +2,7 @@
 namespace App\Controllers;
 use App\Models\ProductModel;
 use App\Models\ProductM;
+use App\Models\TempModel;
 use CodeIgniter\Controller;
 use App\Libraries\Zend;
 use App\Libraries\fpdf;
@@ -53,7 +54,7 @@ class ProductsCrud extends Controller
     }
     public function Qty()
     {   
-        $productM = new ProductM();
+        $productModel = new ProductM();
      
         $data = array([ 'id' => $productModel['id'],
             'type'=> $productModel['type'],
@@ -62,7 +63,7 @@ class ProductsCrud extends Controller
             'gen' => $productModel['gen'],
             'conditions' => $productModel['conditions'],
             'price' => $productModel['price'],
-            'amount' => $price * $productModel['qty'],
+            'amount' => $productModel['price'] * $productModel['qty'],
             'qty' =>$productModel['qty']
         ]);
         $this->$productModel->update($data);
@@ -114,16 +115,7 @@ class ProductsCrud extends Controller
         return view('products/warranty', $data);
 
     }
-    public function saveBarcode()
-    {
-        $db = \Config\Database::connect();
-        $builder = $db->table('barcodes');  
-        if($this->request->getMethod()=='post'){
-          $barcodeM = new BarcodeM(); 
-          $barcodeM->save($_POST); 
-        }
-        return view('products/index');
-    }
+    
     
     public function barTest()
     {
@@ -165,11 +157,14 @@ class ProductsCrud extends Controller
     }
     // insert data
     public function store() {
-        $productModel = new ProductModel();
+        $rands = rand(10000, 99999);
+        
+        $tempModel = new TempModel();
         $data = [
             'conditions' => $this->request->getVar('conditions'),
             'type' => $this->request->getVar('type'),
-            'assetid' => $this->request->getVar('assetid'),
+            'del' => $rands,
+            // 'assetid' => $this->request->getVar('assetid'),
             'gen' => $this->request->getVar('gen'),
             'ram' => $this->request->getVar('ram'),
             'screen' => $this->request->getVar('screen'),
@@ -186,14 +181,56 @@ class ProductsCrud extends Controller
             'odd' => $this->request->getVar('odd'),
             'comment' => $this->request->getVar('comment'),
             'customer' => $this->request->getVar('customer'),
+            'qty' => $this->request->getVar('qty'),
         ];
-        $productModel->insert($data);
+        
+        for ($i=0; $i <$data['qty'] ; $i++) { 
+           $rand = rand(100000, 999999);
+            $data['assetid'] = $rand;
+
+            $tempModel->insert($data);
+           
+        }
         return $this->response->redirect(site_url('/products-form'));
 }
+
+
     public function load()
     {
-        return view('products/uploadCsv');
+        $tempModel = new TempModel();
+        $db      = \Config\Database::connect();
+        
+
+        $data['templist'] = $tempModel->orderBy('id', 'DESC')->findAll();
+
+        $cart = array();
+        foreach($data['templist'] as $p){
+            $m = $p['del'];
+            $cart[] = $m; 
+        }
+
+        $data2['single'] = array_unique($cart);
+        $i = 0;
+        foreach($data2['single'] as $s){
+        // $singles = $s;
+
+        $builder = $db->table('templist');
+        $builder->select('templist.*');
+        $builder->where('templist.del', $s);
+        $data3['list'][$i] = $builder->get()->getResult();
+        $i++;
+
+        echo "<pre>";
+        print_r($data3);
+        }
+
+        
+        
+
+        
     }
+
+
     public function storeie($value='')
     {
         return view('products/invoiceCreate');
@@ -268,6 +305,11 @@ class ProductsCrud extends Controller
         $productModel = new ProductModel();
         $data['masterlist'] = $productModel->where('id', $id)->delete($id);
         return $this->response->redirect(site_url('/products-list'));
+    } 
+     public function deletem($id = null){
+        $productModel = new ProductModel();
+        $data['masterlist'] = $productModel->where('id', $id)->delete($id);
+        return $this->response->redirect(site_url('/products-list'));
     }  
     // function Invoicev()
     // {
@@ -315,8 +357,8 @@ class ProductsCrud extends Controller
     }  
     public function multiples()
     {
-      // require_once('./Libraries/Zend/Barcode/Barcode.php');
-      $productModel = new ProductModel();
+      $rand = rand(10000, 99999);
+      $TempModel = new TempModel();
         $data = [
             'conditions' => $this->request->getVar('conditions'),
             'type' => $this->request->getVar('type'),
@@ -329,30 +371,31 @@ class ProductsCrud extends Controller
 
         for ($i=0; $i <$data['qty'] ; $i++) { 
            
-            $sku_number     = $this->request->getVar('assetid');
-            $zend= new Zend();
-
-            // $this->load->library('zend');
-            // $upload_image = $this->upload_image();
-            
-            $image_resource['Zend/Barcode'] = $zend;
-            $image_resource = Zend_Barcode::factory('code128', 'image', array('text'=>$sku_number), array())->draw();
-            $image_name     = $sku_number.'.jpg';
-            $image_dir      = './assets/images/';
-             imagejpeg($image_resource, $image_dir.$image_name);
-
-
+            $rand     = $this->request->$_POST('assetid');
+            $tempModel->insert($data);
+           
         }
-        $productModel->insert($data);
+        
         return $this->response->redirect(site_url('/products-form'));
     }
-    public function deletes($rand = null)
-    {
+    public function deletes($del = null){
         $productModel = new ProductModel();
-        $data['masterlist'] = $productModel->where('del', $rand)->delete($rand);
-        return view('products/uploadCsv');
+        $data['masterlist'] = $productModel->where('del', $del)->delete($del);
+//         
 
+        return view('products/deletei', $data);
     }
+ function delete_all()
+ {
+  if($this->input->post('checkbox_value'))
+  {
+   $id = $this->input->post('checkbox_value');
+   for($count = 0; $count < count($id); $count++)
+   {
+    $this->multiple_delete_model->delete($id[$count]);
+   }
+  }
+ }
     
 }
 

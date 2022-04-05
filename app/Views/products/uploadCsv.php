@@ -21,123 +21,118 @@ if (isset($_POST["import"])) {
         
         while (($column = fgetcsv($file, 10000, ",")) !== FALSE) {
             
-            $type = "";
+            $conditions = "";
             if (isset($column[0])) {
-                $type = mysqli_real_escape_string($conn, $column[0]);
+                $conditions = mysqli_real_escape_string($conn, $column[0]);
+            }
+            $type = "";
+            if (isset($column[1])) {
+                $type = mysqli_real_escape_string($conn, $column[1]);
             }
             $assetid = "";
-            if (isset($column[1])) {
-                $assetid = mysqli_real_escape_string($conn, $column[1]);
+            if (isset($column[2])) {
+                $assetid = mysqli_real_escape_string($conn, $column[2]);
             }
             $gen = "";
-            if (isset($column[2])) {
-                $gen = mysqli_real_escape_string($conn, $column[2]);
-            }
-            $ra = "";
             if (isset($column[3])) {
-                $ra = mysqli_real_escape_string($conn, $column[3]);
+                $gen = mysqli_real_escape_string($conn, $column[3]);
+            }
+            $ram = "";
+            if (isset($column[4])) {
+                $ram = mysqli_real_escape_string($conn, $column[4]);
             }
             $screen = "";
-            if (isset($column[4])) {
-                $screen = mysqli_real_escape_string($conn, $column[4]);
-            }
-            $conditions = "";
             if (isset($column[5])) {
-                $conditions = mysqli_real_escape_string($conn, $column[5]);
-            }
-            
-            $odd = "";
-            if (isset($column[6])) {
-                $odd = mysqli_real_escape_string($conn, $column[6]);
-            }
-            
-            $comment = "";
-            if (isset($column[7])) {
-                $comment = mysqli_real_escape_string($conn, $column[7]);
+                $screen = mysqli_real_escape_string($conn, $column[5]);
             }
             
             $part = "";
-            if (isset($column[8])) {
-                $part = mysqli_real_escape_string($conn, $column[8]);
-            }
-            
-            $status = "";
-            if (isset($column[9])) {
-                $status = mysqli_real_escape_string($conn, $column[9]);
-            }
-            
-            $qty = "";
-            if (isset($column[10])) {
-                $qty = mysqli_real_escape_string($conn, $column[10]);
+            if (isset($column[6])) {
+                $part = mysqli_real_escape_string($conn, $column[6]);
             }
             
             $serialno = "";
-            if (isset($column[11])) {
-                $serialno = mysqli_real_escape_string($conn, $column[11]);
+            if (isset($column[7])) {
+                $serialno = mysqli_real_escape_string($conn, $column[7]);
             }
+            
             $modelid = "";
-            if (isset($column[12])) {
-                $modelid = mysqli_real_escape_string($conn, $column[12]);
+            if (isset($column[8])) {
+                $modelid = mysqli_real_escape_string($conn, $column[8]);
             }
             
             $cpu = "";
+            if (isset($column[9])) {
+                $cpu = mysqli_real_escape_string($conn, $column[9]);
+            }
+            
+            $speed = "";
+            if (isset($column[10])) {
+                $speed = mysqli_real_escape_string($conn, $column[10]);
+            }
+            
+            $price = "";
+            if (isset($column[11])) {
+                $price = mysqli_real_escape_string($conn, $column[11]);
+            }
+            $odd = "";
+            if (isset($column[12])) {
+                $odd = mysqli_real_escape_string($conn, $column[12]);
+            }
+            
+            $comment = "";
             if (isset($column[13])) {
-                $cpu = mysqli_real_escape_string($conn, $column[13]);
+                $comment = mysqli_real_escape_string($conn, $column[13]);
             }
             
             $hdd = "";
             if (isset($column[14])) {
                 $hdd = mysqli_real_escape_string($conn, $column[14]);
             }
-            $speed = "";
-            if (isset($column[15])) {
-                $speed = mysqli_real_escape_string($conn, $column[15]);
-            }
+            // $speed = "";
+            // if (isset($column[15])) {
+            //     $speed = mysqli_real_escape_string($conn, $column[15]);
+            // }
             
-            $price = "";
+            $datedelivered = "";
             if (isset($column[16])) {
-                $price = mysqli_real_escape_string($conn, $column[16]);
+                $datedelivered = mysqli_real_escape_string($conn, $column[16]);
+            }
+           $customer = "";
+            if (isset($column[18])) {
+                $customer = mysqli_real_escape_string($conn, $column[18]);
             }
             $list = "";
-            if (isset($column[17])) {
-                $list = mysqli_real_escape_string($conn, $column[17]);
+            if (isset($column[19])) {
+                $list = mysqli_real_escape_string($conn, $column[19]);
             }
-            $del = "<?php echo $rand; ?>";
-            if (isset($column[18])) {
-                $del = mysqli_real_escape_string($conn, $column[18]);
+            $status = "";
+            if (isset($column[20])) {
+                $status = mysqli_real_escape_string($conn, $column[20]);
+            }
+            $del = "";
+            if (isset($column[26])) {
+                $del = mysqli_real_escape_string($conn, $column[26]);
             }
             
             
-            $sqlInsert = "INSERT into masterlist (conditions, type, assetid, gen, ram, screen, odd, comment, part, status, qty, serialno, modelid, cpu, hdd, speed, price, list, del)
-                   values (?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            $paramType = "ssssssssssisssssssi";
+            $sqlInsert = "INSERT into templist (conditions, type, assetid, gen, ram, screen, part, serialno, modelid, cpu, speed, price, odd, comment, hdd, datedelivered, customer, list, status, del)
+                   values (?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $paramType = "ssssssssssisssssssss";
             $paramArray = array(
-                            $conditions,
-                           $type,
-                            $assetid,
-                           $gen,
-                            $ra,
-                            $screen,
-                            $odd,
-                           $comment,
-                            $part,
-                            $status,
-                            $qty ,
-                            $serialno ,
-                            $modelid ,
-                            $cpu ,
-                            $hdd ,
-                            $speed ,
-                            $price ,
-                            $list,
-                            $del 
+            $conditions,$type,$assetid,$gen,$ram,$screen, $part , $serialno , $modelid, $cpu, $speed, $price, $odd, $comment, $hdd , $datedelivered, $customer, $list, $status, $del ,
+            
             );
             $insertId = $db->insert($sqlInsert, $paramType, $paramArray);
+            // $insertId = ($sqlInsert, $paramType, $paramArray);
+            
 
+        //  echo '<pre>';
+        //  print_r($param);
             
             if (! empty($insertId)) {
                 $type = "success";
-                $message = "success, use: " .$del. " to revert action";
+                $message = "success";
             } else {
                 $type = "error";
                 $message = "Problem in Importing CSV Data";
@@ -254,15 +249,12 @@ $(document).ready(function() {
                 name="frmCSVImport" id="frmCSVImport"
                 enctype="multipart/form-data">
                 <div class="input-row">
-                      <label>DELETE KEY:</label>
-                      <input class="col-2" type="text" name="del" class="col-2" placeholder="<?php echo $del; ?>">
+                      
                    <label class="col-12 control-label"></label> <input type="file" name="file"
                         id="file" accept=".csv">
                     <button type="submit" id="submit" name="import"
                         class="btn-submit btn btn-success bi bi-upload"></button>
-                        <a href="<?php echo site_url('ProductsCrud/updates'); ?>" class="btn btn-warning bi bi-pencil-square"></a>
-                        <a href="ProductsCrud/deletes/<?php echo $rand;?>" class="btn-submit bi bi-file-x-fill btn btn-danger"></a>
-              
+                        
                     <br />
 
                         </div>
@@ -270,10 +262,57 @@ $(document).ready(function() {
                </form>
            </div>
        </div>
+       <?php include('template/header.php');?>
+<div class="py-2 mt-2">
+  <div class="container">
+    <form method="post" action="<?php echo base_url("/ProductsCrud/inventory")?>">
+    <div id="table" class="table-editable">
+      <br/>
+      <table class="table table-striped" id="inventory-view mt-5">
+<table class="table table-bordered table-responsive-md table-striped text-center py-5 ">
+        <thead>
+          <tr>
+            <th class="text-center">Date Recieved</th>
+            <th class="text-center">Del ID</th>
+            <th class="text-center">Action</th>
+          </tr>
+        </thead>
+        <?php 
+        $cart =array ();
+
+         if($masterlist): 
+           foreach($masterlist as $user):
+                  $dele = $user['del'];
+                  $cart[]= $dele;
+            $data2['single'] = array_unique($cart);
+        ?>
+        <?php endforeach; ?>
+        <?php endif; ?>
+
+        <?php foreach($data2['single'] as $d): ?>
+            <?php
+                echo '<pre>';
+                print_r($d);
+            ?>
+        <?php endforeach ?>
+        
+                
+         </tbody> 
+      </table>
+    </div>
+  </div>
+</div>
+</table>
+</div>
+</form>
+</div>
+</div>
+
+
    </body>
    </html>
 
-<?php include('template/footer.php');?>
+<!-- <?php include('template/footer.php');?> -->
                 
 
 

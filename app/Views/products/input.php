@@ -20,7 +20,7 @@
           </div>
           </a>
           <div class="col-md-4">
-            <a href="<?php echo site_url('/multiple') ?>">
+            <a href="<?php echo site_url('/products-form') ?>">
             <div class="small-box bg-secondary p-2">
               <div class="inner">
                 <h3></h3>
@@ -30,7 +30,7 @@
               <div class="icon">
                 <i class="ion ion-speedometer"></i>
               </div>
-              <a href="<?php echo site_url('/multiple') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>enter</a>
+              <a href="<?php echo site_url('/products-form') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>enter</a>
             </div>
           </div>
           </a>

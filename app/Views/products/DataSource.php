@@ -92,7 +92,7 @@ class DataSource
             return $resultset;
         }
     }
-
+    
     /**
      * To insert
      *
@@ -110,6 +110,7 @@ class DataSource
         $insertId = $stmt->insert_id;
         return $insertId;
     }
+    
 
     /**
      * To execute query
