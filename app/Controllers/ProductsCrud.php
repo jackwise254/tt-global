@@ -224,9 +224,9 @@ class ProductsCrud extends Controller
         $data3 = $builder->get()->getResult();
         $cart2['all'] = $data3[0];
         
-        // echo "<pre>";
-        // print_r($cart2);
-        return view('products/uploadCsv', $cart2);
+        echo "<pre>";
+        print_r($cart2);
+        // return view('products/uploadCsv', $cart2);
         }        
     }
 

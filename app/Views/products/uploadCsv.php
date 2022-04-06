@@ -280,7 +280,7 @@ $(document).ready(function() {
         
             <?php foreach($all as $l): ?>
                 <tr>
-                    <td><?= $l['all']->type ?></td>             
+                                
                 </tr>
             <?php endforeach ?>
                 
