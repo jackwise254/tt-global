@@ -222,12 +222,12 @@ class ProductsCrud extends Controller
         $builder->select('templist.*');
         $builder->where('templist.del', $singles);
         $data3 = $builder->get()->getResult();
-      
-        // echo "<pre>";
-        // print_r($data3[0]);
-        }
+        $cart2['all'] = $data3[0];
         
-        return view('products/uploadCsv', $data3);
+        // echo "<pre>";
+        // print_r($cart2);
+        return view('products/uploadCsv', $cart2);
+        }        
     }
 
 

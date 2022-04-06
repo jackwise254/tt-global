@@ -65,7 +65,7 @@ $count_invoices = mysqli_num_rows($run_invoices);
           </a>
         
           <div class="col-md-4">
-            <div class="small-box bg-success p-2">
+            <div class="small-box bg-primary p-2">
               <div class="inner">
                 <h3><?php echo $count_invoices; ?></h3>
 

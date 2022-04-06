@@ -278,9 +278,11 @@ $(document).ready(function() {
           </tr>
         </thead>
         
-
-        <tr><?= $data3 ?></tr>
-        
+            <?php foreach($all as $l): ?>
+                <tr>
+                    <td><?= $l['all']->type ?></td>             
+                </tr>
+            <?php endforeach ?>
                 
          </tbody> 
       </table>
