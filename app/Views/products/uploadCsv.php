@@ -1,5 +1,5 @@
 <?php include('template/header.php');?>
-<br/><br/>
+
 <?php
 use Phppot\DataSource;
 
@@ -148,10 +148,7 @@ if (isset($_POST["import"])) {
 <script src="jquery-3.2.1.min.js"></script>
 
 <style>
-body {
-    font-family: Arial;
-    width: 550px;
-}
+
 
 /*.outer-scontainer {
     background: #F0F0F0;
@@ -236,70 +233,81 @@ $(document).ready(function() {
     
 <body>
     <br/><br/>
-    <h3 class="text-center">Import data</h3>
 
     <div id="response"
         class="<?php if(!empty($type)) { echo $type . " display-block"; } ?>">
         <?php if(!empty($message)) { echo $message; } ?>
-        </div>
-    <div class="outer-scontainer col-md-12">
-        <div class="row col-md-12">
+    </div>
+    <div class='container bg-light mt-5 p-4' style="border-radius: 1rem">
+    <div class="container col-md-12">
+    <h4> <u>Upload CSV</u> </h4>
 
-            <form class="" action="" method="post"
+        <div class="row col-md-12">
+            <form class="form-group" action="" method="post"
                 name="frmCSVImport" id="frmCSVImport"
                 enctype="multipart/form-data">
-                <div class="input-row">
-                      
-                   <label class="col-12 control-label"></label> <input type="file" name="file"
-                        id="file" accept=".csv">
-                    <button type="submit" id="submit" name="import"
-                        class="btn-submit btn btn-success bi bi-upload"></button>
-                        
-                    <br />
-
-                        </div>
-
+        
+                <input class="form-control w-25 d-inline" required type="file" name="file"id="file" accept=".csv">
+                <button type="submit" id="submit" name="import"
+                    class="btn-submit btn btn-success bi bi-upload">
+                </button>
                </form>
-           </div>
+              
+            </div>
        </div>
-       <?php include('template/header.php');?>
-<div class="py-2 mt-2">
+       <div class='ms-3'>
+       <p>OR</p>
+        <a href="<?= site_url('products-form') ?>" class="btn btn-danger w-25">Add Multiple</a> 
+       </div> 
+      
+<div class="mt-2">
   <div class="container">
+      <h6><u>Uploaded CSV's/Many</u> </h6>
     <form method="post" action="<?php echo base_url("/ProductsCrud/inventory")?>">
     <div id="table" class="table-editable">
-      <br/>
-      <table class="table table-striped" id="inventory-view mt-5">
-<table class="table table-bordered table-responsive-md table-striped text-center py-5 ">
+      <table class="table" id="inventory-view mt-5">
         <thead>
           <tr>
-            <th class="text-center">Date Recieved</th>
-            <th class="text-center">Del ID</th>
-            <th class="text-center">Action</th>
+            <th class="text-center">Date</th>
+            <th class="text-center">Type</th>
+            <th class="text-center">Condition</th>
+            <th class="text-center">Quantity</th>
+            <th class="text-center">Unique ID</th>
+            <th class="text-center"></th>
           </tr>
         </thead>
         
             <?php foreach($all as $l): ?>
                 <tr>
-                                
+                    <td class="text-center"><?= $l['daterecieved'] ?></td>
+                    <td class="text-center"><?= $l['type'] ?></td> 
+                    <td class="text-center"><?= $l['conditions'] ?></td> 
+                    <td class="text-center"><?= $l['qty'] ?></td> 
+                    <td class="text-center"><?= $l['del'] ?></td>            
+                    <td><button class='btn btn-danger'>
+                    <a href="<?= base_url('ProductsCrud/deleteCSV/'. $l['del']) ?>" class="btn btn-danger btn-sm">Delete</a> 
+                    </button></td>            
+
                 </tr>
             <?php endforeach ?>
                 
          </tbody> 
       </table>
+
+      <a href="<?= base_url('ProductsCrud/sendtomasterlist') ?>" class="btn btn-success btn-sm">Push to masterlist</a> 
+      
     </div>
   </div>
 </div>
-</table>
 </div>
 </form>
 </div>
 </div>
+</div>
 
+</body>
+</html>
 
-   </body>
-   </html>
-
-<!-- <?php include('template/footer.php');?> -->
                 
 
 

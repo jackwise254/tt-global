@@ -8,7 +8,7 @@ class UserCrud extends Controller
     public function index(){
         helper(['form', 'url']);
         $userModel = new UserModel();
-        $data['users'] = $userModel->orderBy('id', 'DESC')->findAll();
+        $data['users'] = $userModel->orderBy('user_id', 'DESC')->findAll();
         return view('user/user_view', $data);
     }
     // add user form
@@ -20,35 +20,43 @@ class UserCrud extends Controller
     public function store() {
         $userModel = new UserModel();
         $data = [
-            'name' => $this->request->getVar('name'),
-            'email'  => $this->request->getVar('email'),
-            'password' => $this->request->getVar('password'),
+            'fname' => $this->request->getVar('fname'),
+            'lname' => $this->request->getVar('lname'),
+            'designation' => $this->request->getVar('designation'),
+            'user_name' => $this->request->getVar('user_name'),
+            'user_email'  => $this->request->getVar('user_email'),
+            'user_password' => $this->request->getVar('user_password'),
         ];
         $userModel->insert($data);
         return $this->response->redirect(site_url('/users-list'));
     }
     // show single user
-    public function singleUser($id = null){
+    public function singleUser($id){
         $userModel = new UserModel();
-        $data['user_obj'] = $userModel->where('id', $id)->first();
+        $data['user_obj'] = $userModel->where('user_id', $id)->first();
         return view('user/edit_user', $data);
     }
     // update user data
     public function update(){
         $userModel = new UserModel();
-        $id = $this->request->getVar('id');
+        $user_id = $this->request->getVar('user_id');
         $data = [
-            'name' => $this->request->getVar('name'),
-            'email'  => $this->request->getVar('email'),
+            'user_name' => $this->request->getVar('user_name'),
+            'fname' => $this->request->getVar('fname'),
+            'lname' => $this->request->getVar('lname'),
+            'designation' => $this->request->getVar('designation'),
+            'user_name' => $this->request->getVar('user_name'),
+            'user_email'  => $this->request->getVar('user_email'),
+            'user_password' => $this->request->getVar('user_password'),
         ];
-        $userModel->update($id, $data);
+        $userModel->update($user_id, $data);
         return $this->response->redirect(site_url('/users-list'));
     }
  
     // delete user
-    public function delete($id = null){
+    public function delete($id){
         $userModel = new UserModel();
-        $data['user'] = $userModel->where('id', $id)->delete($id);
+        $data['user'] = $userModel->where('user_id', $id)->delete();
         return $this->response->redirect(site_url('/users-list'));
     }    
 }

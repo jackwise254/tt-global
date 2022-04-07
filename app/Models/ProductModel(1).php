@@ -2,8 +2,8 @@
 namespace App\Models;  
 use CodeIgniter\Model;
   
-class TempModel extends Model{
-    protected $table = 'templist';
+class ProductModel extends Model{
+    protected $table = 'masterlist';
     
     protected $allowedFields = [
         'conditions',
@@ -30,14 +30,14 @@ class TempModel extends Model{
         'del'
     ];
     function insert_csv($data) {
-        $this->db->insert('templist', $data);
+        $this->db->insert('massterlist', $data);
     }
     function posts()
     {
     $query = $this
     ->db
     ->limit(10)
-    ->get('templist');
+    ->get('masterlist');
      
     if($query->num_rows()>0)
     {
@@ -55,7 +55,7 @@ class TempModel extends Model{
     {
     $this ->db
     ->where('id',$id)
-    ->update('templist',$fields_val);
+    ->update('masterlist',$fields_val);
     }
      
     }

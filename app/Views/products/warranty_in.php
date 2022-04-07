@@ -1,75 +1,49 @@
 <?php include('template/header.php');?>
-<!--  -->
-<!DOCTYPE html>
-<html>
-<head>
-  <title></title>
-<script src="https://ajax.googleapis.com/ajax/libbootstraps/jquery/2.1.3/jquery.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com//3.3.5/css/bootstrap.min.css">
-<script type="text/javascript" src="https://cdn.jsdelivr.net/jsbarcode/3.6.0/JsBarcode.all.min.js"></script>
-<script type="text/javascript" src="customBarcodeGenerate.js"></script>
-</head>   
-        
- <div class="container mt-5 py-5">
-  	
-     <table class="table table-striped" id="warranty">
-     <h4 class="text-center "><u>Goods on Warranty In</u></h4>
-       <thead>
+   <?php
+    $session = session();
+    $names = $session->get('user_name');
+?>
+<div class='container mt-5'>
+<h5 style="margin-top: 5rem; border-radius: 1rem"><strong><u>Stock on Warranty<ul></strong> </h5>
+<div class="">
+<a href="<?php echo site_url('ProductsCrud/wload'); ?>" class="btn btn-success mb-4 bi bi-file-plus-fill"></a>
+<table class="table">
+        <thead>
           <tr>
-             <th  scope="col">Id </th>
-             <th  scope="col">Type</th>
-             <th  scope="col">Asset Id</th>
-             <th  scope="col">Generation</th>
-             <th  scope="col">Ram</th>
-             <th  scope="col">Screen</th>
-             <th  scope="col">Action</th>
+            <th class="text-center">Condition</th>
+            <th class="text-center">Type</th>
+            <th class="text-center">Generation</th>
+            <th class="text-center">Ram</th>
+            <th class="text-center">Screen</th>
+            <th class="text-center">Part</th>
+            <th class="text-center">Comment</th>
+            <th class="text-center">Date Recieved</th>
+            <th class="text-center">Customer</th>
+            <th class="text-center">Status</th>
           </tr>
-       </thead>
-       <tbody>
-          <?php if($masterlist): ?>
+        </thead>
+        <?php if($masterlist): ?>
           <?php foreach($masterlist as $user):?>
+        <tbody>
           <tr>
-             <td scope="row"><?=  $user['id']; ?></td>
-             <td scope="row"><?php echo $user['type']; ?></td>
-             <td scope="row"><?php echo $user['assetid']; ?></td>
-             <td scope="row"><?php echo $user['gen']; ?></td>
-             <td scope="row"><?php echo $user['ram']; ?></td>
-             <td scope="row"><?php echo $user['screen']; ?></td>
-             <td>
-
-               
-             </td>
+            <td class="pt-3-half" contenteditable="true"><?=  $user['conditions']; ?></td>
+            <td class="pt-3-half" contenteditable="true"><?=  $user['type']; ?></td>
+            <td class="pt-3-half" contenteditable="true"><?=  $user['gen']; ?></td>
+            <td class="pt-3-half" contenteditable="true"><?=  $user['ram']; ?></td>
+            <td class="pt-3-half" contenteditable="true"><?=  $user['screen']; ?></td>
+            <td class="pt-3-half" contenteditable="true"><?=  $user['part']; ?></td>
+            <td class="pt-3-half" contenteditable="true"><?=  $user['comment']; ?></td>
+            <td class="pt-3-half" contenteditable="true"><?=  $user['daterecieved']; ?></td>
+            <td class="pt-3-half" contenteditable="true"><?=  $user['customer']; ?></td>
+            <td class="pt-3-half" contenteditable="true"><?=  $user['status']; ?></td>
+            <td class="pt-3-half">
+              
+            <a href="<?php echo site_url('ProductsCrud/deletes'); ?>" class="btn-submit mb-4 bi bi-file-x-fill btn btn-danger"></a>
+            <a href="<?php echo site_url('ProductsCrud/updates'); ?>" class="btn btn-warning mb-4 bi bi-pencil-square"></a>
+            </td>
           </tr>
-         <?php endforeach; ?>
+          <?php endforeach; ?>
          <?php endif; ?>
-
-       </tbody>
-	</table>
-
-     <div class="d-flex justify-content-end">
-        <a href="<?php echo site_url('/products-form') ?>" class="btn btn-success bi-plus mb-4">Add Item</a>
-        <a href="ProductsCrud/barcode/<?php echo $user['id'];?>" class="btn btn-secondary  mb-4"> Barcode</a>
-      </tr>
-  </div>
-</div> 
-<script type="text/javascript">
-  $('document').ready(function() {
-  $('#generateBarcode').on('click', function() {  
-    var barcodeValue = $("#barcodeValue").val();
-    var barcodeType = $("#barcodeType").val();  
-    var showText = $("#showText").val();      
-    JsBarcode("#barcode", barcodeValue, {
-      format: barcodeType,
-      displayValue: showText,
-      lineColor: "#24292e",
-      width:2,
-      height:40,  
-      fontSize: 20          
-    });   
-    
-  });
-});
-
-</script>
-<?php include('template/footer.php');?>
+        </tbody>
+      </table>
+</div>

@@ -37,4 +37,3 @@
             </tr>
   </div>
 </div> 
-<?php include('template/footer.php');?>

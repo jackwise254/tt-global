@@ -1,9 +1,9 @@
 <?php include('template/header.php');?>
 <form class="container mt-5 py-5" method="post" id="invoice_create" name="invoice_create" 
     action="<?php echo base_url('ProductsCrud/multiples'); ?>">
-  <div class="form-row mt-2 p-3 m-2 bg-light">
+  <div class="form-row mt-5 p-3 m-2 bg-light">
     <div class="col-12">
-     <div class="container mt-7">
+     <div class="container mt-5">
   <form>
     <div class="form-row">
   <!-- <div class="form-group"> -->
