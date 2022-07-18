@@ -72,7 +72,11 @@ $count_invoices = mysqli_num_rows($run_invoices);
     <div class="container">
       <h4> <u>Welcome <?= $names ?></u>  </h4>
     <div class="row">
+<<<<<<< HEAD
           <div class="col-md-3">
+=======
+          <div class="col-md-4">
+>>>>>>> 6b2c70d285653be485394b23d050774804d395e0
             <a href="<?php echo site_url('/stock-view') ?>">
             <div class="small-box bg-light p-2">
               <div class="inner">
@@ -87,6 +91,14 @@ $count_invoices = mysqli_num_rows($run_invoices);
             </div>
           </div>
           </a>
+<<<<<<< HEAD
+=======
+       <div class="col-md-4">
+            <a href="<?php echo site_url('/stockt-view') ?>">
+            <div class="small-box bg-light p-2">
+              <div class="inner">
+                <h3 style='visibility:hidden' >150</h3>
+>>>>>>> 6b2c70d285653be485394b23d050774804d395e0
 
           <!-- second card -->
        <div class="col-md-3">
@@ -105,8 +117,13 @@ $count_invoices = mysqli_num_rows($run_invoices);
           </div>
           </a>
         
+<<<<<<< HEAD
           <div class="col-md-3">
             <a href="<?php echo site_url('/invoice-page') ?>">
+=======
+          <div class="col-md-4">
+            <a href="<?php echo site_url('/invoice-view') ?>">
+>>>>>>> 6b2c70d285653be485394b23d050774804d395e0
             <div class="small-box bg-light p-2">
               <div class="inner">
                 <h3 style='visibility:hidden'>150</h3>
@@ -119,11 +136,54 @@ $count_invoices = mysqli_num_rows($run_invoices);
               <a href="<?php echo site_url('/invoice-page') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Invoices</a>
             </div>
           </div>
+<<<<<<< HEAD
 
           </a>
 
  <!-- trial -->
  <div class="col-md-3">
+=======
+          </a>
+         </div>
+         <div>
+         </div>
+       </div>
+     </section>
+     <section class="content">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <a href="<?php echo site_url('/inventory-view') ?>">
+            <div class="small-box bg-light p-2">
+              <div class="inner">
+                <h3 style='visibility:hidden'>Technician</h3>
+
+                <p>Masterlist</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-ionic"></i>
+              </div>
+              <a href="<?php echo site_url('/inventory-view') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Masterlist</a>
+            </div>
+          </div>
+          </a>
+         <div class="col-md-4">
+            <a href="<?php echo base_url('ProductsCrud/regular') ?>">
+            <div class="small-box bg-light p-2">
+              <div class="inner">
+                <h3 style='visibility:hidden'>Technician</h3>
+
+                <p >Technician</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-speedometer"></i>
+              </div>
+              <a href="<?php echo base_url('ProductsCrud/regular') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Technician</a>
+            </div>
+          </div>
+          </a>
+          <div class="col-md-4">
+>>>>>>> 6b2c70d285653be485394b23d050774804d395e0
             <a href="<?php echo site_url('/users-list') ?>">
             <div class="small-box bg-light p-2">
               <div class="inner">
@@ -217,6 +277,7 @@ $count_invoices = mysqli_num_rows($run_invoices);
           </a>
       <!--  -->
     </section>
+<<<<<<< HEAD
 
 
     <section class="content">
@@ -259,3 +320,5 @@ $count_invoices = mysqli_num_rows($run_invoices);
       
 
     </section>
+=======
+>>>>>>> 6b2c70d285653be485394b23d050774804d395e0

@@ -20,7 +20,7 @@ endif;
       }
      ?>
   <div class="mt-3">
-     <table class="table table-striped " id="product-list">
+     <table class="table table-striped bg-light" id="product-list">
        <thead>
           <tr>
              <th class="table-dark">Id</th>

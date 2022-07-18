@@ -25,6 +25,11 @@ class TempModel extends Model{
         'hdd',
         'speed',
         'price',
+<<<<<<< HEAD
+=======
+        'daterecieved',
+        'datedelivered',
+>>>>>>> 6b2c70d285653be485394b23d050774804d395e0
         'customer',
         'list',
         'del'

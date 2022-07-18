@@ -1,5 +1,6 @@
 <?php if($user_data == 'admin'): 
 
+<<<<<<< HEAD
 include('template/header.php');
 
 else:
@@ -602,3 +603,12 @@ endif;
     </div>
   
      
+=======
+       </tbody>
+	</table>
+     <div class="d-flex justify-content-end">
+        <a href="<?php echo site_url('/products-form') ?>" class="btn btn-success bi-plus mb-4">Add Item</a>
+            </tr>
+  </div>
+</div> 
+>>>>>>> 6b2c70d285653be485394b23d050774804d395e0

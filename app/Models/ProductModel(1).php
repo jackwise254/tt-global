@@ -27,7 +27,11 @@ class ProductModel extends Model{
         'datedelivered',
         'customer',
         'list',
+<<<<<<< HEAD
         'del',
+=======
+        'del'
+>>>>>>> 6b2c70d285653be485394b23d050774804d395e0
     ];
     function insert_csv($data) {
         $this->db->insert('massterlist', $data);

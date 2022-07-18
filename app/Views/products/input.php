@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php if($user_data == 'admin'): 
 
 include('template/header.php');
@@ -8,6 +9,9 @@ else:
 endif;
 
 ?>
+=======
+<?php include('template/header.php'); ?>
+>>>>>>> 6b2c70d285653be485394b23d050774804d395e0
 
       <div class="container mt-5">
         <h5 class="mb-3"><u>Purchases</u></h5>

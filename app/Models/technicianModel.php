@@ -9,7 +9,10 @@ class technicianModel extends Model{
         'conditions',
         'type',
         'assetid',
+<<<<<<< HEAD
         'brand',
+=======
+>>>>>>> 6b2c70d285653be485394b23d050774804d395e0
         'gen',
         'ram',
         'screen',
@@ -19,7 +22,10 @@ class technicianModel extends Model{
         'status',
         'qty',
         'serialno',
+<<<<<<< HEAD
         'model',
+=======
+>>>>>>> 6b2c70d285653be485394b23d050774804d395e0
         'modelid',
         'cpu',
         'hdd',

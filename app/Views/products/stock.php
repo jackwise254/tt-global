@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php if($user_data == 'admin'): 
 
 include('template/header.php');
@@ -8,13 +9,34 @@ else:
 endif;
 
 ?>
+=======
+<?php include('template/header.php');?>
+>>>>>>> 6b2c70d285653be485394b23d050774804d395e0
 
    <?php
    include('inc/db_connect.php');
     $session = session();
     $names = $session->get('user_name');
     ?> 
+<<<<<<< HEAD
 <section class="content">
+=======
+<section class="content mt-4">
+
+<div class=" px-5 float end">
+
+<div class='container' style="margin-top: 5rem; border-radius: 1rem">
+
+
+<a href="<?php echo base_url('ProductsCrud/load') ?>" class="btn btn-success btn-sm">Recieve Goods</a>
+<a href="<?php echo site_url('/warranty-in') ?>" class="btn btn-warning btn-sm flex m-2">Warranty</a>
+<a href="<?php echo base_url('ProductsCrud/previousRCVD') ?>" class="btn btn-info btn-sm flex m-2">Previous Recieved</a>
+
+<h4> <u>Remaining Stock </u> </h4>
+
+<?php
+$con = mysqli_connect("localhost","root","","users");
+>>>>>>> 6b2c70d285653be485394b23d050774804d395e0
 
 <div class=" px-5 float end">
 
@@ -22,6 +44,7 @@ endif;
 <h4 class="text-center mt-3 pt-4"> <u>Remaining Stock </u> </h4>
 <div class="container">
 
+<<<<<<< HEAD
 <a href="<?php echo base_url('ProductsCrud/load') ?>" class="btn btn-outline-success btn-sm bi bi-upload">Recieve Goods</a>
 <a href="<?php echo base_url('ProductsCrud/previousRCVD') ?>" class="btn btn-outline-info btn--sm flex m-2">Previous Recieved</a>
 <a href="<?php echo site_url('/stockt-view') ?>" class="btn btn-outline-secondary btn-sm flex m-2">Stock Out</a>
@@ -29,6 +52,34 @@ endif;
     <div class="row">
 <!-- another  -->
 <?php if($count_products > 0): ?> 
+=======
+$get_products = "SELECT * FROM templist WHERE('type ' = 'desktop')";
+$run_products = mysqli_query($con,$get_products);
+$count_products = mysqli_num_rows($run_products);
+
+$get_laptop = "SELECT * FROM templist WHERE('type ' = 'laptop')";
+$run_laptop = mysqli_query($con,$get_laptop);
+$count_laptop = mysqli_num_rows($run_laptop);
+
+$get_users = "SELECT * FROM users";
+$run_users = mysqli_query($con,$get_users);
+$count_users = mysqli_num_rows($run_users);
+
+$get_invoices = "SELECT * FROM invoicecreate";
+$run_invoices = mysqli_query($con,$get_invoices);
+$count_invoices = mysqli_num_rows($run_invoices);
+
+?>
+    
+    
+    <div class="container">
+    <div class="row">
+      
+          <div class="col-md-3">
+            <div class="small-box bg-light p-2">
+              <div class="inner">
+                <h3 class="text-center"><?php echo $count_products; ?></h3>
+>>>>>>> 6b2c70d285653be485394b23d050774804d395e0
 
         <?php if($count_products > 0): ?> 
 
@@ -92,7 +143,75 @@ endif;
               <a href="<?php echo site_url('/Ndesktop') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
             </div>
           </div>
+<<<<<<< HEAD
                 </a>
+=======
+
+          <div class="col-md-3">
+            <div class="small-box bg-light p-2">
+              <div class="inner">
+                <h3><?php echo $count_laptop; ?></h3>
+
+                <p>Laptops</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-laptop"></i>
+              </div>
+            </div>
+          </div>
+          
+        
+          <div class="col-md-3">
+            <div class="small-box bg-light p-2">
+              <div class="inner">
+                <h3><?php echo $count_invoices; ?></h3>
+
+                <p>HDDS</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-speedometer"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="small-box bg-light p-2">
+              <div class="inner">
+                <h3><?php echo $count_invoices; ?></h3>
+
+                <p>HDDS</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-speedometer"></i>
+              </div>
+            </div>
+          </div>
+          
+
+         </div>
+         <div>
+         </div>
+
+         <div class="row">
+      
+          <div class="col-md-3">
+            <div class="small-box bg-light p-2">
+              <div class="inner">
+                <h3 class="text-center"><?php echo $count_products; ?></h3>
+
+                <p class="text-center">Desktops</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-desktop"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="small-box bg-success p-2">
+              <div class="inner">
+                <h3><?php echo $count_laptop; ?></h3>
+>>>>>>> 6b2c70d285653be485394b23d050774804d395e0
 
                 <?php elseif($count_Ndesktop < 1): ?>
                         <div class="col-md-3 d-none">
@@ -406,6 +525,7 @@ endif;
 
             </div>
           </div>
+<<<<<<< HEAD
                 </a>
                 <?php endif ?>
 
@@ -414,6 +534,14 @@ endif;
         
           <div class="col-md-3">
           <a href="<?php echo site_url('/ssd') ?>">
+=======
+          
+        
+          <div class="col-md-3">
+            <div class="small-box bg-light p-2">
+              <div class="inner">
+                <h3><?php echo $count_invoices; ?></h3>
+>>>>>>> 6b2c70d285653be485394b23d050774804d395e0
 
             <div class="small-box bg-light p-2">
               <div class="inner">
@@ -428,6 +556,7 @@ endif;
 
             </div>
           </div>
+<<<<<<< HEAD
                 </a>
                 <?php endif ?>
 
@@ -441,10 +570,20 @@ endif;
                 <h3><?php echo $count_ram; ?></h3>
 
                 <p>RAM</p>
+=======
+
+          <div class="col-md-3">
+            <div class="small-box bg-light p-2">
+              <div class="inner">
+                <h3><?php echo $count_invoices; ?></h3>
+
+                <p>HDDS</p>
+>>>>>>> 6b2c70d285653be485394b23d050774804d395e0
               </div>
               <div class="icon">
                 <i class="ion ion-speedometer"></i>
               </div>
+<<<<<<< HEAD
             <a href="<?php echo site_url('/ram') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
 
             </div>
@@ -625,3 +764,13 @@ endif;
   
      
 
+=======
+            </div>
+          </div>
+         </div>
+    </div>
+  </div>
+</div>
+  
+     
+>>>>>>> 6b2c70d285653be485394b23d050774804d395e0
