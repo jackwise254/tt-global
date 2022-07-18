@@ -1,183 +1,96 @@
-<?php include('template/header.php');?>
+<?php
+ $session = \Config\Services::session();
 
-<form class="container mt-5 py-5" method="post" id="delivery_create" name="delivery_create" 
-    action="<?php echo base_url('/ProductsCrud/deliveryCreate'); ?>">
-    <br/><br/>
-      <h4><u>Create a delivery note </u></h4>
-  <div class="form-row mt-2 p-2 m-2 bg-light">
+//  $man = session()->get('datsss');
+// echo '<pre>';
+// print_r($man);
+// exit;
 
-   	<div class="col-8">
-   	<div class="col-7 mb-4">
-  
-<?php if($invoicecreate): ?>
-  <label for="vendor">CUSTOMER</label>
-    <input type="text" name="vendor" class="form-control" list="vendor"/>
-    <datalist id="vendor">
-      <?php if(isset($_GET['customer'])): ?>
-      <option value="<?=  $invoicecreate['customer']; ?>">
-        <?php endif; ?>
-      </datalist>
+if($user_data == 'admin'): 
+
+include('template/header.php');
+
+else:
+    include('template/head.php');
+
+endif;
+
+?>
+
+<div class='container mt-5 pt-3'>
+
+<!-- *******************************************************************************  -->
+
+<div class='container  '>
+<div class="d-flex justify-content-end">
   </div>
-  <div class="form-group col-7 mb-4 ">
-    <label for="address"> ADDRESS</label>
-    <textarea class="form-control" id="address" rows="5" name="address"></textarea>
-   	</div>
-   	<div class="col-7 mb-4">
-    <label for="vendor">TERMS</label>
-    <input type="text" name="terms" class="form-control" list="terms"/>
-    <datalist id="terms">
-      <?php if(isset($_GET['terms'])): ?>
-      <option value="<?=  $invoicecreate['terms']; ?>">
-        <option value="<?=  $invoicecreate['terms']; ?>">
-          <?php endif; ?>
-      </datalist>
-  </div>
-   </div>
-   <div class="col-4">
-   	<div class="col-12">
-    	<label for="date">DATE</label>
-    	<input type="date" class="form-control ui-select" id="date" placeholder="date" name="date">
-    </div>
-    <div class="col-12">
-    <label for="date">REF No.</label>
-     <input type="text" class="form-control ui-select" placeholder="Ref No" name="ref">
-    </div>
-    <div class="col-12">
-    <label for="date">AMOUNT DUE.</label>
-     <input type="text" class="form-control ui-select" placeholder="amountdue" name="amountdue">
-    </div>
-    <div class="col-12">
-    <label for="date">BILL DUE</label>
-     <input type="date" class="form-control ui-select" placeholder="billdue" name="billdue">
-    </div>
-    <div class="col-12">
-      <label>Account</label>
-      <input type="text" name="account" class="form-control">
-   
- </div>
-    <?php endif; ?>
-    
-</div>
-  <button type="submit" class="btn btn-primary float-end">Create</button>
-  	<table class="table table-bordered table-responsive-md table-striped text-center py-3">
-        <thead>
-          <tr>
-            <th class="text-center">Name</th>
-            <th class="text-center">Account</th>
-            <th class="text-center">Customerjob</th>
-            <th class="text-center">Bill Amount</th>
-            <th class="text-center">Bill due</th>
-          </tr>
-        </thead>
-        <?php if($invoicecreate): ?>
-          <?php foreach($invoicecreate as $user):?>
-        <tbody>
-          <tr>
-            <td class="pt-4-half" contenteditable="true"><?=  $user['customer']; ?></td>
-            <td class="pt-3-half" contenteditable="true"><?=  $user['account']; ?></td>
-            <td class="pt-3-half" contenteditable="true"><?=  $user['customerjob']; ?></td>
-            <td class="pt-3-half" contenteditable="true"><?=  $user['billamount']; ?></td>
-            <td class="pt-3-half" contenteditable="true"><?=  $user['billdue']; ?></td>
-            <td class="pt-3-half">
-              <a href="ProductsCrud/moreList/<?php echo $user['id'];?>" class="btn btn-danger btn-sm">View</a>
-            </td>
-          </tr>
-          <?php endforeach; ?>
-         <?php endif; ?>
-        </tbody>
-      </table>
+  <?php
+    if(session()->getFlashdata('status')) {
+        echo "<h4 class=' alert alert-success d-flex align-items-center bi flex-shrink-0 me-2' width='24' height='24' role='alert' style='font-family:'Airal', Arial, Arial; font-size:60%'>" . session()->getFlashdata('status') . "</h4>";
 
-  </div>
-</form>
-<?php include('template/footer.php');?>
-<div class="form-row">
-    
-    <script type="text/javascript">
-      
-    if ($("invoice_create").length > 0) {
-      $("#invoice_create").validate({
-        rules: {
-          vendor: {
-            required: true,
-          },
-          address: {
-            required: true,
-            maxlength: 60,,
-          },
-          terms:{
-            required: true,
-          }
-          ref:{
-            required: true,
-          }
-          amountdue:{
-            required: true,
-          }
-          billdue:{
-            required: true,
-          }
-          memo:{
-            required: true,
-          }
-          account:{
-            required: true,
-          }
-          customerjob:{
-            required: true,
-          }
-          billamount:{
-            required: true,
-          }
-
-        },
-        messages: {
-          vendor: {
-            required: "vendor is required.",
-          },
-          address: {
-            required: "address is required.",
-          },
-          terms: {
-            required: "terms is required.",
-          },
-          date: {
-            required: "date is required.",
-          },
-          ref: {
-            required: "ref is required.",
-          },
-          amountdue: {
-            required: "amountdue is required.",
-          },
-          billdue: {
-            required: "billdue is required.",
-          },
-          memo: {
-            required: "memo is required.",
-          },
-          account: {
-            required: "account is required.",
-          },
-          customerjob: {
-            required: "customerjob is required.",
-          },
-          billamount: {
-            required: "billamount is required.",
-          },
-
-        },
-      })
     }
-  
+?> 
  
-$(function(){
- 
-$('select').editableSelect();
- 
-});
- 
-</script>
-    
-  
-    
+<h5 class="text-center"><u>Delivery Notes</u></h5>
+<div class="">
+<a href="<?php echo site_url('stockt-view') ?>" class="btn btn-outline-dark btn-sm bi bi-chevron-left">back</a>
+
+<?php if($user_data == 'admin'): ?>
+<a href="<?php echo site_url('home-view') ?>" class="btn btn-outline-warning btn-sm ">Home</a>
+  <?php endif; ?>
+<a href="<?php echo base_url('/ProductsCrud/delv') ?>" class="btn btn-outline-success btn-sm ">Create new</a>
+            <form class="d-flex float-end">
+                <input class="form-control me-2" name="q" placeholder="Search" aria-label="Search">
+                <button class="btn btn-light" type="submit">Search </button>
+            </form>
+        </div>
+        <table class="table table-fixed table-striped " style='font-family:"Airal", Arial, Arial; font-size:60%'>
+
+  <thead>
+    <tr>
+      <th>User Name</th>
+      <th>Note no.</th>
+      <th>Served by</th>
+      <th>Date</th>
+      <th>Document</th>
+      <th></th>
+    </tr>
+  </thead>
+  <?php if($invoicecreate): ?>
+    <?php foreach($invoicecreate as $user):
+      $datereceived = substr($user->date,0,10);
+        ?>
+  <tbody>
+    <tr>
+
+          <td class="pt-2-half" ><?=  $user->username; ?></td>
+            <td class="pt-2-half" ><?=  $user->delvnote; ?></td>
+            <td class="pt-2-half" ><?=  $user->user_name; ?></td>
+            <td class="pt-3-half" ><?=  $datereceived; ?></td>
+            <td class="pt-3-half" ><?=  $user->document; ?></td>
+            <td class="pt-3-half">
+
+            <div class="input-group col-sm-12 col-lg-6 col-md-10">
+            <a href="<?= base_url('Settings/fetchdeliveryspre/'. $user->ref) ?>" class=" btn btn-outline-success me-2 bi bi-file-earmark-spreadsheet btn-sm"></a>
+              <a href="<?= base_url('ProductsCrud/fetchdelivery/'. $user->document) ?>" class="btn btn-outline-light me-2 btn-sm bi bi-eye"></a>
+                <?php if($user_data == 'manager' && $datereceived == date("Y-m-d")): ?>
+                <a href="<?= base_url('ProductsCrud/editdelivery/'. $user->ref) ?>" class="btn btn-outline-warning me-2 btn-sm bi bi-pencil-square"></a>
+                <?php elseif($user_data != 'manager'): ?>
+                <a href="<?= base_url('ProductsCrud/editdelivery/'. $user->ref) ?>" class="btn btn-outline-warning me-2 btn-sm bi bi-pencil-square"></a>
+                <?php else:  ?>
+              <?php endif; ?>
+              <?php if($user_data == 'admin'): ?>
+              <a href="<?= base_url('ProductsCrud/deleteDeliverynote/'.$user->ref) ?>" class=" btn btn-outline-danger me-2 bi bi-trash-fill btn-sm"  ></a>
+              <?php endif; ?>
+            </div>
+
+            </td>
+       </tr>
+  </tbody>
+  <?php endforeach; ?>
+    <?php endif; ?>
+</table>
 </div>
+
+
+  

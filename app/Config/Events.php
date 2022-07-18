@@ -48,3 +48,6 @@ Events::on('pre_system', static function () {
         Services::toolbar()->respond();
     }
 });
+
+Events::on('DBQuery', 'CodeIgniter\Debug\Toolbar\Collectors\Database::collect'); 
+

@@ -1,4 +1,13 @@
-<?php include('template/header.php');?>
+<?php if($user_data == 'admin'): 
+
+include('template/header.php');
+
+else:
+    include('template/head.php');
+
+endif;
+
+?>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 <style type="text/css">
 	body{

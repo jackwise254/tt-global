@@ -26,13 +26,14 @@
         <div class="row justify-content-md-center">
             <div class="col-5 bg-ligt ">
                 
-                <h2  class="text-center">Login in</h2>
+                <h2  class="text-center">Login Page</h2>
                 
                 <?php if(session()->getFlashdata('msg')):?>
                     <div class="alert alert-warning">
                        <?= session()->getFlashdata('msg') ?>
                     </div>
                 <?php endif;?>
+                <!-- /Login/auth -->
                 <form  action="<?php echo base_url(); ?>/Login/auth" method="post">
                     <div class="form-group mb-3">
                         <input type="email" name="email" placeholder="Email" value="" class="form-control" >
@@ -42,7 +43,7 @@
                     </div>
                     
                     <div class="d-grid">
-                         <button type="submit" class="btn btn-success">Signin</button>
+                         <button type="submit" class="btn btn-success">Sign in</button>
                     </div>     
                 </form>
             </div>

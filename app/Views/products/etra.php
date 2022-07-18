@@ -1,6 +1,15 @@
 <?php 
 include_once("inc/db_connect.php");
-include("template/header.php"); 
+ if($user_data == 'admin'): 
+
+  include('template/header.php');
+  
+ else:
+      include('template/head.php');
+ 
+ endif;
+ 
+   
 ?>
 
 <script type="text/javascript" src="dist/jquery.tabledit.js"></script>

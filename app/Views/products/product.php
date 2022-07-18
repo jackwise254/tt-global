@@ -1,4 +1,13 @@
-<?php include("template/header.php"); ?>
+<?php if($user_data == 'admin'): 
+
+include('template/header.php');
+
+else:
+    include('template/head.php');
+
+endif;
+
+?>
 <div class="container-xxl">
 <?= $this->renderSection('content') ?>
 <div class="container mt-7">

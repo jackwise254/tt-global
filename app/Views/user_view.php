@@ -19,80 +19,25 @@
    </head>
    <body>
 
-     <table width='100%' style='border-collapse: collapse;'>
-       <thead>
-         <tr>
-           <th width='50%'>Name</th>
+     
+       <table class="table table-bordered table-responsive-md table-striped text-center">
+        <thead>
+          <tr>
+          <th width='50%'>ID</th>
+          <th width='50%'>Name</th>
            <th width='50%'>Email</th>
-         </tr>
-       </thead>
-       <tbody>
-       <?php 
-       // User List
-       foreach($users as $user){
-         $id = $user['user_id'];
-         $name = $user['user_name'];
-         $email = $user['user_email'];
-
-         echo "<tr>";
-         echo "<td>
-         <span class='edit' >".$name."</span>
-         <input type='text' class='txtedit' data-id='".$id."' data-field='user_name' id='nametxt_".$id."' value='".$name."' >
-         </td>";
-         echo "<td>
-         <span class='edit' >".$email."</span>
-         <input type='text' class='txtedit' data-id='".$id."' data-field='user_email' id='emailtxt_".$id."' value='".$email."' >
-         </td>";
-         echo "</tr>";
-       }
-       ?>
-       </tbody>
-     </table>
-
-     <!-- Script -->
-     <script type="text/javascript">
-     $(document).ready(function(){
-
-       // On text click
-       $('.edit').click(function(){
-          // Hide input element
-          $('.txtedit').hide();
-
-          // Show next input element
-          $(this).next('.txtedit').show().focus();
-
-          // Hide clicked element
-          $(this).hide();
-       });
-
-       // Focus out from a textbox
-       $('.txtedit').focusout(function(){
-          // Get edit id, field name and value
-          var edit_id = $(this).data('user_id');
-          var fieldname = $(this).data('field');
-          var value = $(this).val();
-
-          // assign instance to element variable
-          var element = this;
-
-          // Send AJAX request
-          $.ajax({
-            url: '<?= base_url() ?>index.php/users/updateuser',
-            type: 'post',
-            data: { field:fieldname, value:value, id:edit_id },
-            success:function(response){
-
-              // Hide Input element
-              $(element).hide();
-
-              // Update viewing value and display it
-              $(element).prev('.edit').show();
-              $(element).prev('.edit').text(value);
-            }
-          });
-        });
-      });
-      </script>
-
-   </body>
-</html>
+          </tr>
+        </thead>
+        <?php if($users): ?>
+          <?php foreach($users as $user):?>
+        <tbody>
+          <tr>
+            <td class="pt-3-half" contenteditable="true"><?=  $user['user_id']; ?></td>
+            <td class="pt-3-half" contenteditable="true"><?=  $user['user_name']; ?></td>
+            <td class="pt-3-half" contenteditable="true"><?=  $user['user_email']; ?></td>
+          </tr>
+          <?php endforeach; ?>
+         <?php endif; ?>
+        </tbody>
+      </table>
+     

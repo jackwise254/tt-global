@@ -1,298 +1,350 @@
-<?php include('template/header.php');?>
-<script type="text/javascript">
-    $('#printInvoice').click(function(){
-            Popup($('.invoice')[0].outerHTML);
-            function Popup(data) 
-            {
-                window.print();
-                return true;
-            }
-        });
-</script>
-<style type="text/css">
-    #invoice{
-    padding: 30px;
-}
+<?php if($user_data == 'admin'): 
 
-.invoice {
-    position: relative;
-    background-color: #FFF;
-    min-height: 680px;
-    padding: 15px
-}
+include('template/header.php');
 
-.invoice header {
-    padding: 10px 0;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #3989c6
-}
+else:
+    include('template/head.php');
 
-.invoice .company-details {
-    text-align: right
-}
+endif;
 
-.invoice .company-details .name {
-    margin-top: 0;
-    margin-bottom: 0
-}
+?>
+<?php include('inc/db_connect.php'); ?>
 
-.invoice .contacts {
-    margin-bottom: 20px
-}
+<?php  $random = rand(10000, 99999); ?>
 
-.invoice .invoice-to {
-    text-align: left
-}
+<br/>
+<br/>
+    <div class="row mx-3 mt-5">
+  <h4 class="text-center mb-1"> <u>Delivery Note</u></h4>
+    <div class="col-6">
+          <form name="test" class="col-10 " action="<?php echo  base_url('ProductsCrud/dsub'); ?>" method="POST">
+            <a href="<?php echo site_url('delivery-create') ?>" class="btn btn-dark btn-sm bi bi-chevron-left">back</a>
+            <label >Customer</label>
+            <select class="form-select form-control w-25 d-inline"  name="username" >
+                <option selected></option>
+                    <?php foreach($customers as $user): ?>
+                    <option value="<?php echo $user->username; ?>"><?php echo $user->username; ?></option>
+                    <?php endforeach; ?>
+                </select>
+                <div class="w-25 d-inline">
+            <label class=""></label>
+                <input type="text" class=" w-25 d-inline " name="deliver" placeholder="Invoice No:" required>
+            </div>
+            <button type ="submit" class="btn btn-light" id="myBtn1" onchange="this.form.submit()">Submit</button>
+        </form>
+        </div>
+        <div class="col-md-6">
+        <form name="test" class="col-7 " action="<?php echo  base_url('ProductsCrud/delvsub'); ?>" method="POST">
+        <!-- <button type="button" class="btn btn-primary px-2 float-end btn-sm" data-toggle="modal" data-target="#myModal">Manual</button> -->
+        <a href="<?php echo base_url('ProductsCrud/manual') ?>" class="btn btn-success btn-sm d-none float-end">Manual</a>
+        <a href="<?php echo  base_url('ProductsCrud/delvclear'); ?>" class=" btn btn-danger bi bi-trash-fill float-end btn-sm">Clear</a>
+            <label class="label">Serial no.</label>
+            <input type="text" class="col-4 " id="serialno" name="serialno" autofocus required>
+            <button type ="submit" class="d-none" id="myBtn" onchange="this.form.submit()"></button>
+            </form>
+        </div>
+    </div>
 
-.invoice .invoice-to .to {
-    margin-top: 0;
-    margin-bottom: 0
-}
-
-.invoice .invoice-details {
-    text-align: right
-}
-
-.invoice .invoice-details .invoice-id {
-    margin-top: 0;
-    color: #3989c6
-}
-
-.invoice main {
-    padding-bottom: 50px
-}
-
-.invoice main .thanks {
-    margin-top: -100px;
-    font-size: 2em;
-    margin-bottom: 50px
-}
-
-.invoice main .notices {
-    padding-left: 6px;
-    border-left: 6px solid #3989c6
-}
-
-.invoice main .notices .notice {
-    font-size: 1.2em
-}
-
-.invoice table {
-    width: 100%;
-    border-collapse: collapse;
-    border-spacing: 0;
-    margin-bottom: 20px
-}
-
-.invoice table td,.invoice table th {
-    padding: 15px;
-    background: #eee;
-    border-bottom: 1px solid #fff
-}
-
-.invoice table th {
-    white-space: nowrap;
-    font-weight: 400;
-    font-size: 16px
-}
-
-.invoice table td h3 {
-    margin: 0;
-    font-weight: 400;
-    color: #3989c6;
-    font-size: 1.2em
-}
-
-.invoice table .qty,.invoice table .total,.invoice table .unit {
-    text-align: right;
-    font-size: 1.2em
-}
-
-.invoice table .no {
-    color: #fff;
-    font-size: 1.6em;
-    background: #3989c6
-}
-
-.invoice table .unit {
-    background: #ddd
-}
-
-.invoice table .total {
-    background: #3989c6;
-    color: #fff
-}
-
-.invoice table tbody tr:last-child td {
-    border: none
-}
-
-.invoice table tfoot td {
-    background: 0 0;
-    border-bottom: none;
-    white-space: nowrap;
-    text-align: right;
-    padding: 10px 20px;
-    font-size: 1.2em;
-    border-top: 1px solid #aaa
-}
-
-.invoice table tfoot tr:first-child td {
-    border-top: none
-}
-
-.invoice table tfoot tr:last-child td {
-    color: #3989c6;
-    font-size: 1.4em;
-    border-top: 1px solid #3989c6
-}
-
-.invoice table tfoot tr td:first-child {
-    border: none
-}
-
-.invoice footer {
-    width: 100%;
-    text-align: center;
-    color: #777;
-    border-top: 1px solid #aaa;
-    padding: 8px 0
-}
-
-@media print {
-    .invoice {
-        font-size: 7px!important;
-        overflow: hidden!important
-    }
 
     
 
-    .invoice>div:last-child {
-        page-break-before: always
+<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+<script>
+  $('#serialno').keyup(function(){
+      if(this.value.length >= 6){
+      $('#myBtn').click();
+      }
+  });
+</script> 
+<?php
+    if(session()->getFlashdata('status')) {
+        echo "<h4 class=' alert alert-success d-flex align-items-center bi flex-shrink-0 me-2' width='24' height='24' role='alert' style='font-family:'Airal', Arial, Arial; font-size:60%'>" . session()->getFlashdata('status') . "</h4>"; 
     }
-}
-</style>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+?>  
 
-<div id="invoice">
+<hr/>
 
-    <div class="toolbar hidden-print">
-        <div class="text-right">
-            <button id="printInvoice" class="btn btn-info"><i class="fa fa-print"></i> Print</button>
-            <button class="btn btn-info"><i class="fa fa-file-pdf-o"></i> Export as PDF</button>
-        </div>
-        <hr>
-    </div>
-    <div class="invoice overflow-auto">
-        <div style="min-width: 600px">
-          <?php if($masterlist): ?>
-          <?php foreach($masterlist as $user):?>
-            <header>
-                <div class="row">
-                    <div class="col">
-                        <a target="_blank" href="https://lobianijs.com">
-                            <img src="http://lobianijs.com/lobiadmin/version/1.0/ajax/img/logo/lobiadmin-logo-text-64.png" data-holder-rendered="true" />
-                            </a>
+<h5 class="d-flex justify-content-end" style='font-family:"Airal", Arial, Arial; font-size:60%'><?php echo $count_produ; ?> Item(s) added </h5>
+<form method="post" id="invoice_create" name="invoice_create" action="<?php echo base_url('ProductsCrud/delvout'); ?>">
+
+<div class="row">
+
+<div class="col-3">
+<div class="container">
+        <div class=" form-row">
+            <div class="col-sm-12 mx-auto bg-light rounded shadow">
+                <h4 class="text-center" style="font-family: arial, arial, arial; font-size: 14px ">Customer details </h4>
+
+
+
+
+                    <?php foreach($customer as $user): ?>
+                    <div class="row px-3">
+                    
+                        <div class="col">
+                        <label  class="col-sm-6 col-form-label" style="font-family: arial, arial, arial; font-size: 13px ">cuctomer:</label>
+                        <input type="text" class="form-control" name="username" style="font-family: arial, arial, arial; font-size: 13px " placeholder="<?=  $user->username; ?> "readonly>
+                        </div>
+                      
+                        <div class="col">
+                        <label  class="col-sm-6 col-form-label" style="font-family: arial, arial, arial; font-size: 13px ">F.name:</label>
+                        <input type="text" class="form-control" name="fname" style="font-family: arial, arial, arial; font-size: 13px " placeholder="<?=  $user->fname; ?> "readonly>
+                        </div>
+                        
+
                     </div>
-                    <div class="col company-details">
-                        <h2 class="name">
-                            <a target="_blank" href="https://lobianijs.com">
-                            TT GLOBAL
-                            </a>
-                        </h2>
-                        <div>455 Ngong road, Nairobi, Kenya</div>
-                        <div>(254) xxx xx xxx</div>
-                        <div>finalnce@ttglobal.com</div>
+                    <div class="row px-3">
+                        <div class="col">
+                        <label for="inputPassword3" class="col-sm-2 col-form-label" style="font-family: arial, arial, arial; font-size: 13px ">Phone</label>
+                        <input type="text" class="form-control" name="phone" style="font-family: arial, arial, arial; font-size: 13px " placeholder="<?=  $user->phone; ?>" readonly>
+                        </div>
+                        
+                        <div class="col">
+                        <label for="inputPassword3" class="col-sm-6 col-form-label" style="font-family: arial, arial, arial; font-size: 13px ">L.name:</label>
+                        <input type="text" class="form-control" name="lname" style="font-family: arial, arial, arial; font-size: 13px " placeholder="<?=  $user->lname; ?>" readonly>
+                        </div>
+
                     </div>
-                </div>
-            </header>
-            <main>
-                <div class="row contacts">
-                    <div class="col invoice-to">
-                        <div class="text-gray-light">INVOICE TO:</div>
-                        <h2 class="to"><?= $user['customer'];?></h2>
-                        <div class="address"></div>
-                        <div class="email"></div>
+                    <div class="row px-3 ">
+                        <div class="col">
+                        <label  class="col-sm-2 col-form-label " style="font-family: arial, arial, arial; font-size: 13px ">Email</label>
+                        <input type="text" class="form-control " style="font-family: arial, arial, arial; font-size: 13px " name="email" placeholder="<?=  $user->email; ?>" readonly>
+                        </div>
+                        <div class="col">
+                        <label for="inputPassword3" class="col-sm-2 col-form-label" style="font-family: arial, arial, arial; font-size: 13px " >Location</label>
+                        <input type="text" class="form-control" name="location" style="font-family: arial, arial, arial; font-size: 13px " placeholder="<?=  $user->location; ?> " readonly>
+                        </div>
+                        
+                        </div>
+                    <div class="row px-3 ">
+                        
+                        <div class="col">
+                        <label  class="col-sm-2 col-form-label " style="font-family: arial, arial, arial; font-size: 13px ">Delivery_no:</label>
+                        <input type="text" class="form-control mb-4" style="font-family: arial, arial, arial; font-size: 13px " name="invoice" placeholder="<?=  $user->deliver; ?>" readonly>
+                        </div>
+
+                        <div class="col">
+                        <label  class="col-sm-7 col-form-label " style="font-family: arial, arial, arial; font-size: 13px ">ID_No.</label>
+                        <input type="text" class="form-control mb-4" style="font-family: arial, arial, arial; font-size: 13px " name="id_no" placeholder="<?=  $user->id_no; ?>" readonly>
+                        </div>
                     </div>
-                    <div class="col invoice-details">
-                        <h1 class="invoice-id">INVOICE: <?= $user['assetid'];?></h1>
-                        <div class="date">Date of Invoice: <?= $user['daterecieved'];?></div>
-                        <div class="date">Due Date: <?= $user['datedelivered'];?></div>
-                    </div>
-                </div>
-                <table border="0" cellspacing="0" cellpadding="0">
-                    <thead>
-                        <tr >
-                        <tr class="">
-                            <th>#</th>
-                            <th class="text-left">ITEM</th>
-                            <th class="text-right">PRICE</th>
-                            <th class="text-right">QUANTITY</th>
-                            <th class="text-right">TOTAL</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            
-                            <tr >
-                            <td>02</th>
-                            <td class="text-left"><?=  $user['type']; ?></td>
-                            <td class="text-right"><?=  $user['price']; ?> </td>
-                            <td class="text-right"><?=  $user['qty']; ?></td>
-                            <td class="text-right"><?=  $user['total']; ?></td>
-                        </tr>
-                            >
-                        <tr>
-                            <td>03</th>
-                            <td class="text-left"><?=  $user['type']; ?></td>
-                            <td class="text-right"><?=  $user['price']; ?> </td>
-                            <td class="text-right"><?=  $user['qty']; ?></td>
-                            <td class="text-right"><?=  $user['total']; ?></td>
-                        </tr>
-                        <tr>
-                            <td>04</th>
-                            <td class="text-left"><?=  $user['type']; ?></td>
-                            <td class="text-right"><?=  $user['price']; ?> </td>
-                            <td class="text-right"><?=  $user['qty']; ?></td>
-                            <td class="text-right"><?=  $user['total']; ?></td>
-                        </tr>
-                       <tr>
-                            <td>05</th>
-                            <td class="text-left"><?=  $user['type']; ?></td>
-                            <td class="text-right"><?=  $user['price']; ?> </td>
-                            <td class="text-right"><?=  $user['qty']; ?></td>
-                            <td class="text-right"><?=  $user['total']; ?></td>
-                        </tr>>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="2"></td>
-                            <td colspan="2">SUBTOTAL</td>
-                            <td><?= $user['total'] ?></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2"></td>
-                            <td colspan="2">TAX 25%</td>
-                            <td><?= $user['total'] ?></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2"></td>
-                            <td colspan="2">GRAND TOTAL</td>
-                            <td><?= $user['total'] ?></td>>
-                        </tr>
-                    </tfoot>
                     <?php endforeach; ?>
-                   <?php endif; ?>
-                 </td>
-               </tr>
-             </tr>
-           </tbody>
-         </table>
-       </main>
-     </div>
-   </div></div>
+                          
+                        
+            </div>
+        </div>
+    </div>
+</div>
 
-                 
-<?php include('template/footer.php');
+<div class="col-9">
+
+<div class="container">
+        <div class=" form-row">
+            <div class="col-sm-12 mx-auto bg-light rounded shadow">
+                <h4 class="text-center" style="font-family: arial, arial, arial; font-size: 14px ">Products details </h4>
+                <input type="date" class=" px-2  " name="datedelivered" style="font-family: arial, arial, arial; font-size: 14px" >
+               
+                <div class="table-responsive">
+                <?php if($masterlist): ?>
+                    <table class="table table-fixed table-striped " style='font-family:"Airal", Arial, Arial; font-size:60%'>
+                        <thead >
+                            <tr>
+                            <th scope="col" class="col-3"></th>
+                            <th scope="col" class="col-3">Asset_Id</th>
+                            <th scope="col" class="col-3">Type</th>
+                            <th scope="col" class="col-3">Condition</th>
+                            <th scope="col" class="col-3">Generation</th>
+                            <th scope="col" class="col-3">Ram</th>
+                            <th scope="col" class="col-3">Screen</th>
+                            <th scope="col" class="col-3">Part</th>
+                            <th scope="col" class="col-3">Serial_No.</th>
+                            <th scope="col" class="col-3">Model_Id</th>
+                            <th scope="col" class="col-3 px-5">Model</th>
+                            <th scope="col" class="col-3 px-5">CPU</th>
+                            <th scope="col" class="col-3">Speed</th>
+                            <th scope="col" class="col-3">Price</th>
+                            <th scope="col" class="col-3">Odd</th>
+                            <th scope="col" class="col-3">Comment</th>
+                            <th scope="col" class="col-3">HDD</th>
+                            <th scope="col" class="col-3">Date_Recieved</th>
+                            <th scope="col" class="col-3">Customer</th>
+                            <th scope="col" class="col-3">List</th>
+                            <th scope="col" class="col-3">Status</th>
+                            </tr>
+                        </thead>
+                        <?php foreach($masterlist as $user):
+                            $datereceived = substr($user->daterecieved,0,10);
+                            $datedelivered = substr($user->datedelivered,0,10);
+                            ?>
+                        <tbody>
+                            <tr>
+                            <td class="">  
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                            <a href="<?php echo base_url('ProductsCrud/ddelete/'.$user->assetid);?>" class="pr-2">[del]</a>
+                        </div>
+                            <td class="col-5"><?=  $user->assetid; ?></td>
+                            <td class="col-5"><?=  $user->type; ?></td>
+                            <td class="col-5"><?=  $user->conditions; ?></td>
+                            <td class="col-5"><?=  $user->gen; ?></td>
+                            <td class="col-5"><?=  $user->ram; ?></td>
+                            <td class="col-5"><?=  $user->screen; ?></td>
+                            <td class="col-5"><?=  $user->part; ?></td>
+                            <td class="col-5"><?=  $user->serialno; ?></td>
+                            <td class="col-5"><?=  $user->modelid; ?></td>
+                            <td class="col-5"><?=  $user->model; ?></td>
+                            <td class="col-5"><?=  $user->cpu; ?></td>
+                            <td class="col-5"><?=  $user->speed; ?></td>
+                            <td class="col-5"><?=  $user->price; ?></td>
+                            <td class="col-5"><?=  $user->odd; ?></td>
+                            <td class="col-5"><?=  $user->comment; ?></td>
+                            <td class="col-5"><?=  $user->hdd; ?></td>
+                            <td class="col-5"><?=  $datereceived; ?></td>
+                            <td class="col-5"><?=  $user->customer; ?></td>
+                            <td class="col-5"><?=  $user->list; ?></td>
+                            <td class="col-5"><?=  $user->status; ?></td>
+                            </tr>
+                        </tbody>
+                     
+                                
+                        <input class="form-control my-3 d-none" id="barcodeValue" value="<?=  $random; ?>" name="random">
+
+                        <?php endforeach; ?>
+                    </table>
+                    <?php endif; ?>
+                </div>
+                <?php if($masterlist): ?>
+
+                <div class="row col-sm-12">
+                    <div class= "col-sm-12 p-2">
+                    <input type="text" class=" px-2 col-sm-4  " name="desc1" style="font-family: arial, arial, arial; font-size: 14px" placeholder="decription 1" >
+                    <input type="text" class=" px-2  col-sm-1" name="qty1" style="font-family: arial, arial, arial; font-size: 14px" placeholder="Qty 1">
+                    </div>
+                    <div class="col-sm-12 ">
+                    <input type="text" class=" px-2  col-sm-4" name="desc2" style="font-family: arial, arial, arial; font-size: 14px" placeholder="decription 2">
+                   <input type="text" class=" px-2  col-sm-1" name="qty2" style="font-family: arial, arial, arial; font-size: 14px" placeholder="Qty 2">
+        
+                    </div>
+                </div>
+                <?php endif; ?>
+
+                
+            </div>
+        </div>
+    </div>
+</div>
+<div class="py-4 px-5">
+<button type="submit" class="btn btn-primary  col-12">Create</button>
+</div>
+
+</div>
+
+ 
+</div>
+</form>
+
+
+
+
+<!-- Trigger the modal with a button -->
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body center">
+      <form name="test" class="col-10 " action="<?php echo  base_url('ProductsCrud/dsubm'); ?>" method="POST">
+
+                  <div class="col-7">
+                  <label class="form-label" style="font-family: arial, arial, arial; font-size: 13px " >Description</label>
+                    <input type="text" class="form-control" style="font-family: arial, arial, arial; font-size: 13px " name="description" placeholder="Description" required>
+                  </div>
+                  <div class="col-7">
+
+                  <label class="form-label" style="font-family: arial, arial, arial; font-size: 13px ">Quantity</label>
+
+                    <input type="number" style="font-family: arial, arial, arial; font-size: 13px " class="form-control" name="qty" placeholder="" required>
+                  </div>
+                  
+                  <div class="col-7">
+
+                  <label class="form-label" style="font-family: arial, arial, arial; font-size: 13px " >Unit price</label>
+
+                    <input type="number"  style="font-family: arial, arial, arial; font-size: 13px " class="form-control" name="unitprice" placeholder="" required>
+                  </div>
+                  <div class="col-7">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary px-2 btn-sm">Summary</button>
+      </div>
+    </div>
+</form>
+  </div>
+</div>
+
+
+
+    </div>
+    </div>
+
+    
+
+
+
+    
+ <script type="text/javascript">
+
+/// Onclick scrpt
+
+   var input = document.getElementById("serialno");
+          function selectText() {
+          const input = document.getElementById('serialno');
+          input.focus();
+          input.select();
+        }
+        input.addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById("myBtn").click();
+        }
+        });
+    
+    </script>
+
+<script type="text/javascript">
+
+/// Onclick scrpt
+
+   var input = document.getElementById("serialno");
+          function selectText() {
+          const input = document.getElementById('fname');
+          input.focus();
+          input.select();
+        }
+        input.addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById("myBtn").click();
+        }
+        });
+    
+    </script>
+  
+    
+
+
+
+
+ 
+
+
+
+
+
+

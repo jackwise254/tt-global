@@ -33,7 +33,7 @@
                        <?= session()->getFlashdata('msg') ?>
                     </div>
                 <?php endif;?>
-                <form  action="<?php echo base_url(); ?>/SigninController/loginAuth" method="post">
+                <form  action="<?php echo base_url(); ?>/UserController/login" method="post">
                     <div class="form-group mb-3">
                         <input type="email" name="email" placeholder="Email" value="" class="form-control" >
                     </div>

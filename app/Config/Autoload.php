@@ -45,6 +45,8 @@ class Autoload extends AutoloadConfig
         'Config'      => APPPATH . 'Config',
         'fpdf'      => APPPATH . '\Libraries\fpdf.php',
         'Zend'      => APPPATH . '\Libraries\Zend.php',
+        'Barcode39'      => APPPATH . '\Libraries\Barcode39.php',
+
     ];
 
     /**

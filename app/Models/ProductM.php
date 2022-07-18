@@ -18,7 +18,8 @@ class ProductM extends Model{
         'billdue',
         'customerjob',
         'billamount',
-        'customer'
+        'customer',
+        'account'
 
     ];
 }
