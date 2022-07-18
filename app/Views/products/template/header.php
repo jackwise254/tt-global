@@ -2,7 +2,6 @@
 <html>
 <head>
   <title>TT GLOBAL</title>
-<<<<<<< HEAD
   <link rel="stylesheet" href="links\bootstrap\css\bootstrap.min.css">
   <link rel="stylesheet" href="links\cdnjs\fontawesome.min.css">
   <link rel="stylesheet" href="links\Lato\Lato-Regular.ttf">
@@ -23,8 +22,6 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
   <!-- end -->
 
-=======
->>>>>>> 6b2c70d285653be485394b23d050774804d395e0
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
@@ -85,24 +82,17 @@
 </head>
 <body class="bg-ligt">
 
-<<<<<<< HEAD
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
   <div class="container">
 
   <a class="navbar-brand" href="<?php echo site_url('/home-view') ?>"> <span><img src="dist/img/logo.png" width="85" height="40" alt=""></span> </a>
 
-=======
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-  <div class="container">
-    <a class="navbar-brand" href="<?php echo site_url('/home-view') ?>"> <span><img src="dist/img/logo.jpeg" width="60" height="35" alt=""></span> TT Global</a>
->>>>>>> 6b2c70d285653be485394b23d050774804d395e0
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav ms-auto">
-<<<<<<< HEAD
         
       <a class="nav-link text-dark " style="font-family: arial, arial, arial; font-size: 11px "  href="<?php echo site_url('/verify') ?>">Stock verification</a>
       <a class="nav-link text-dark" style="font-family: arial, arial, arial; font-size: 11px" href="<?php echo site_url('/fualty-stock') ?>">Faulty in</a>
@@ -118,14 +108,6 @@
         <a class="nav-link text-dark" style="font-family: arial, arial, arial; font-size: 11px" href="<?php echo site_url('/warrantyout') ?>">Warranty out</a>
         
         <a button class='btn btn-danger' style="font-family: arial, arial, arial; font-size: 11px" href="<?php echo base_url('Login/logout') ?>" class="fa fa-user text-light" > Logout</button></a>
-=======
-        <a class="nav-link text-dark" href="<?php echo site_url('/inventory-view') ?>">Masterlist</a>
-        <a class="nav-link text-dark" href="<?php echo site_url('/stock-view') ?>">Stock in</a>
-        <a class="nav-link text-dark" href="<?php echo site_url('/delivery-create') ?>">Stock out</a>
-        <a class="nav-link text-dark" href="<?php echo site_url('/invoice-page') ?>">Invoice</a>
-        <a class="nav-link text-dark" href="<?php echo site_url('/warranty') ?>">Warranty</a>
-        <button class='btn btn-danger'><a href="<?php echo base_url('Login/logout') ?>" class="fa fa-user text-light" > Logout</a></button>
->>>>>>> 6b2c70d285653be485394b23d050774804d395e0
       </div>
     </div>
   </div>

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php if($user_data == 'admin'): 
 
 include('template/header.php');
@@ -87,6 +86,7 @@ endif;
                             <th scope="col" class="col-3">Screen</th>
                             <th scope="col" class="col-3">Odd</th>
                             <th scope="col" class="col-3">Comment</th>
+                            <th scope="col" class="col-3">Problem</th>
                             <th scope="col" class="col-3">Price</th>
                             <th scope="col" class="col-3">Date_Recieved</th>
                             <th scope="col" class="col-3">Date_Delivered</th>
@@ -98,6 +98,10 @@ endif;
                         <?php if($masterlist): ?>
                         <?php foreach($masterlist as $user):
                           $datereceived = substr($user['daterecieved'],0,10);
+                          // $date2 = new DateTime(substr($product->created_at,0,10));
+                          // $date1 = new DateTime(date('Y-m-d '));
+                          // $interval = $date1->diff($date2);
+                          // $days =  $interval->format('%a');
                           $datedelivered = substr($user['datedelivered'],0,10);
                           ?>
                         <tbody>
@@ -130,12 +134,16 @@ endif;
                             <td class="col-3"><?=  $user['screen']; ?></td>
                             <td class="col-3"><?=  $user['odd']; ?></td>
                             <td class="col-3"><?=  $user['comment']; ?></td>
+                            <td class="col-3"><?=  $user['problem']; ?></td>
+
+                            
                             <td class="col-3"><?=  $user['price']; ?></td>
                             <td cclass="col-3"><?=  $datereceived; ?></td>
                             <td cclass="col-3"><?=  $datedelivered; ?></td>
                             <td class="col-3"><?=  $user['customer']; ?></td>
                             <td class="col-3"><?=  $user['vendor']; ?></td>
                             <td class="col-3"><?=  $user['status']; ?></td>
+
                             </tr>
                         </tbody>
 
@@ -148,68 +156,6 @@ endif;
                 
             </div>
         </div>
-=======
-<?php include('template/header.php');?>
-<div class="py-2 mt-5">
-<div class="container-fluid">
-<table style='font-family:"Airal", Arial, Arial; font-size:60%' class="table table-bordered table-responsive-md table-striped text-center ">
-        <thead class='stylehead'>
-          <tr>
-            <th class="text-center">Asset_Id</th>
-            <th class="text-center">Type</th>
-            <th class="text-center">Condition</th>
-            <th class="text-center">Generation</th>
-            <th class="text-center">Ram</th>
-            <th class="text-center">Screen</th>
-            <th class="text-center">Part</th>
-            <th class="text-center">Serial_No.</th>
-            <th class="text-center">Model_Id</th>
-            <th class="text-center">CPU</th>
-            <th class="text-center">Speed</th>
-            <th class="text-center">Price</th>
-            <th class="text-center">Odd</th>
-            <th class="text-center">Comment</th>
-            <th class="text-center">HDD</th>
-            <th class="text-center">Date_Recieved</th>
-            <th class="text-center">Date_Delivered</th>
-            <th class="text-center">Customer</th>
-            <th class="text-center">List</th>
-            <th class="text-center">Status</th>
-          </tr>
-        </thead>
-        <?php if($masterlist): ?>
-          <?php foreach($masterlist as $user):
-            $datereceived = substr($user['daterecieved'],0,10);
-            $datedelivered = substr($user['datedelivered'],0,10);
-            ?>
-        <tbody>
-          <tr class="stylerow">
-            <td class="pt-3-half "><?=  $user['assetid']; ?></td>
-            <td class="pt-3-half"><?=  $user['type']; ?></td>
-            <td class="pt-3-half"><?=  $user['conditions']; ?></td>
-            <td class="pt-3-half"><?=  $user['gen']; ?></td>
-            <td class="pt-3-half"><?=  $user['ram']; ?></td>
-            <td class="pt-3-half"><?=  $user['screen']; ?></td>
-            <td class="pt-3-half"><?=  $user['part']; ?></td>
-            <td class="pt-3-half"><?=  $user['serialno']; ?></td>
-            <td class="pt-3-half"><?=  $user['modelid']; ?></td>
-            <td class="pt-3-half"><?=  $user['cpu']; ?></td>
-            <td class="pt-3-half"><?=  $user['speed']; ?></td>
-            <td class="pt-3-half"><?=  $user['price']; ?></td>
-            <td class="pt-3-half"><?=  $user['odd']; ?></td>
-            <td class="pt-3-half"><?=  $user['comment']; ?></td>
-            <td class="pt-3-half"><?=  $user['hdd']; ?></td>
-            <td class="pt-3-half"><?=  $datereceived; ?></td>
-            <td class="pt-3-half"><?=  $datedelivered; ?></td>
-            <td class="pt-3-half"><?=  $user['customer']; ?></td>
-            <td class="pt-3-half"><?=  $user['list']; ?></td>
-            <td class="pt-3-half"><?=  $user['status']; ?></td>
-          </tr>
-          <?php endforeach; ?>
-         <?php endif; ?>
-        </tbody>
-      </table>
->>>>>>> 6b2c70d285653be485394b23d050774804d395e0
     </div>
 
     <!-- Modal -->
@@ -246,11 +192,10 @@ endif;
     </div>
 
   </div>
-<<<<<<< HEAD
 
 <script type='text/javascript'>
-    var tableOffset = $("#table").offset().top;
-    var $header = $("#table > thead").clone();
+    var tableOffset = $("#table-1").offset().top;
+    var $header = $("#table-1 > thead").clone();
     var $fixedHeader = $("#header-fixed").append($header);
     $(window).bind("scroll", function() {
     var offset = $(this).scrollTop();
@@ -265,18 +210,10 @@ endif;
 </body>
 
  <style type="text/css">
-=======
-</div>
-</table>
-</div>
-</div>
-<style type="text/css">
->>>>>>> 6b2c70d285653be485394b23d050774804d395e0
 .table th:first-child,
 .table td:first-child {
   position: sticky;
   left: 0;
-<<<<<<< HEAD
   background-color: #f2f2f2;
   color: #f2f2f2;
 }
@@ -300,24 +237,9 @@ endif;
     position: fixed;
     top: 20px; display:none;
     background-color:white;
-=======
-  background-color: #ADD8E6;
-  color: #373737;
->>>>>>> 6b2c70d285653be485394b23d050774804d395e0
-}
-.stylehead{
-  background-color: #ADD8E6;
-  color: #373737;
-}
-.stylerow:nth-child(even){
-  background-color: #f2f2f2;
 }
 
-<<<<<<< HEAD
 </style>
 
 
 
-=======
-</style>
->>>>>>> 6b2c70d285653be485394b23d050774804d395e0
