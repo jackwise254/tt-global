@@ -18,12 +18,9 @@ endif;
    <form name="test" class=" mt-4 pt-5" action="<?php echo  base_url('ProductsCrud/sverify'); ?>" method="POST">
       <div class="col-10">
          <input type="text" class="col-3 me-2 rounded-pill" id="serialno" name="serialno" placeholder="serial no." autofocus>
-         <select class="col-3 me-2 rounded-pill" id="exampleFormControlSelect1" name='table' type="text" placeholder="serial no." required>
-          <?php if($items): ?> 
-          <option value='<?php echo $items[0]['tbl']; ?>'><?php echo $items[0]['tbl']; ?></option>
-              <?php endif; ?>
+         <select class="col-3 me-2 rounded-pill" id="sort-item" name='table' type="text" placeholder="serial no." required>
               <option value='All'>All</option>
-              <option value='masterlist'>Stock in</option>
+              <option value='Stockin'>Stock in</option>
               <option value='stockout'>Stock out</option>
               <option value='faulty'>Faulty in</option>
               <option value='faultyout'>Faulty Out</option>
@@ -68,6 +65,16 @@ endif;
       $('#myBtn1').click();
       }
   });
+
+  window.onload = function() {
+    var selItem = sessionStorage.getItem("SelItem");  
+    $('#sort-item').val(selItem);
+    }
+    $('#sort-item').change(function() { 
+        var selVal = $(this).val();
+        sessionStorage.setItem("SelItem", selVal);
+    });
+
 </script>  
 
 <?php

@@ -142,7 +142,6 @@ class ProductsCrud extends Controller
         return view('products/report' ,$data );
     }
 
-<<<<<<< HEAD
     public function actions()
     {
         $session = \Config\Services::session();
@@ -536,8 +535,6 @@ class ProductsCrud extends Controller
 
     }
 
-=======
->>>>>>> 6b2c70d285653be485394b23d050774804d395e0
 
     public function invoiceCreate(){
         $session = \Config\Services::session();
@@ -717,7 +714,6 @@ class ProductsCrud extends Controller
     public function stock()
     {   
         $db      = \Config\Database::connect();
-<<<<<<< HEAD
         $session = \Config\Services::session();
 
         $db      = \Config\Database::connect();
@@ -729,47 +725,10 @@ class ProductsCrud extends Controller
         $session->set($sdata);
         $data['user_data'] = $session->get('designation');
         return view('products/stock' ,$data );
-=======
-        $builder = $db->table('templist');
-        $builder->select('templist.*');
-        $data['templist'] = $builder->get()->getResult();
-        // $data['templist'] = $tempModel->orderBy('id', 'DESC')->findAll();
-
-        $cart = array();
-        $cart2 = array();
-        $cart4 = array();
-
-
-        foreach($data['templist'] as $p){
-            $m = $p->del;
-            $cart[] = $m; 
-        }
-
-        $data2['single'] = array_unique($cart);
-        
-        foreach($data2['single'] as $s){
-        $singles = $s;
-
-        $builder = $db->table('templist');
-        $builder->select('templist.*');
-        $builder->where('templist.del', $singles);
-        $data3 = $builder->get()->getResult();
-        $cart2 = $data3;
-
-        $array = json_decode(json_encode($cart2[0]), true);
-        $cat[] = $array;
-        $cart4['all'] = $cat;
-        // echo'<pre>';
-        // print_r($cart4);
-
-        }
-        return view('products/stock', $cart4);
->>>>>>> 6b2c70d285653be485394b23d050774804d395e0
     }
 
     public function stockt()
     {
-<<<<<<< HEAD
         $session = \Config\Services::session();
 
         $db      = \Config\Database::connect();
@@ -859,50 +818,9 @@ class ProductsCrud extends Controller
         // $productModel = new ProductModel();
 
         // $data['masterlist'] = $productModel->orderBy('id', 'ASC')->findAll();
-=======
-        $db      = \Config\Database::connect();
-        $builder = $db->table('templist');
-        $builder->select('templist.*');
-        $data['templist'] = $builder->get()->getResult();
-        // $data['templist'] = $tempModel->orderBy('id', 'DESC')->findAll();
 
-        $cart = array();
-        $cart2 = array();
-        $cart4 = array();
-
-
-        foreach($data['templist'] as $p){
-            $m = $p->del;
-            $cart[] = $m; 
-        }
-
-        $data2['single'] = array_unique($cart);
-        
-        foreach($data2['single'] as $s){
-        $singles = $s;
-
-        $builder = $db->table('templist');
-        $builder->select('templist.*');
-        $builder->where('templist.del', $singles);
-        $data3 = $builder->get()->getResult();
-        $cart2 = $data3;
-
-        $array = json_decode(json_encode($cart2[0]), true);
-        $cat[] = $array;
-        $cart4['all'] = $cat;
-        }
-        return view('products/stock_out', $cart4);
-        
+        return view('products/invoice', $data);
     }
-    // public function invoice()
-    // {
-    //     $productModel = new ProductModel();
-
-    //     $data['masterlist'] = $productModel->orderBy('id', 'ASC')->findAll();
->>>>>>> 6b2c70d285653be485394b23d050774804d395e0
-
-    //     return view('products/invoice', $data);
-    // }
     public function warranty()
     {   
         $session = \Config\Services::session();
@@ -1393,19 +1311,12 @@ class ProductsCrud extends Controller
 
     // insert data
     public function store() {
-<<<<<<< HEAD
         helper('html');
         $del = rand(10000000, 99999999);
         $db      = \Config\Database::connect();
         $builder = $db->table('templist');
         require ('../vendor/autoload.php');
         $qty = $this->request->getVar('qty');
-=======
-        $rands = rand(10000, 99999);
-
-        $tempModel = new TempModel();
-
->>>>>>> 6b2c70d285653be485394b23d050774804d395e0
             $data = [
             'conditions' => $this->request->getVar('conditions'),
             'type' => $this->request->getVar('type'),
@@ -1436,12 +1347,7 @@ class ProductsCrud extends Controller
             $data['assetid'] = $assid;
             $builder->insert($data);
         }
-<<<<<<< HEAD
         return redirect()->to(base_url('ProductsCrud/load'))->with('status', $qty.' '.'Items Inserted succesfully');
-=======
-        // return $this->response->redirect(site_url('/load'));
-        return redirect()->to(base_url('ProductsCrud/load'))->with('status', 'Products Inserted succesfully');
->>>>>>> 6b2c70d285653be485394b23d050774804d395e0
 }
   
     public function load()
@@ -1464,7 +1370,6 @@ class ProductsCrud extends Controller
         $cart = array();
         $cart2 = array();
         $cart4 = array();
-<<<<<<< HEAD
         foreach($data['templist'] as $p){
             $m = $p->del;
             $cart[] = $m; 
@@ -1594,8 +1499,6 @@ class ProductsCrud extends Controller
         $cart = array();
         $cart2 = array();
         $cart4 = array();
-=======
->>>>>>> 6b2c70d285653be485394b23d050774804d395e0
 
 
         foreach($data['templist'] as $p){
@@ -1619,7 +1522,6 @@ class ProductsCrud extends Controller
         $cat[] = $array;
         $cart4['all'] = $cat;
         }
-<<<<<<< HEAD
         if($cart4 != []){
 
         //  $cart4['all'] = $cart;
@@ -1653,157 +1555,6 @@ class ProductsCrud extends Controller
 
         return view('products/previousf', $cart4);
     }
-=======
-        // echo "<pre>";
-        // print_r($cart4);
-        if($cart4 != []){
-            return view('products/uploadCsv', $cart4);
-        }else{
-            $cart4['all'] = $cart;
-            return view('products/uploadCsv', $cart4);
-        }
-        
-    }
-
-    public function previousRCVD(){
-        // $tempModel = new TempModel();
-        $db      = \Config\Database::connect();
-        $builder = $db->table('masterlist');
-        $builder->select('masterlist.*');
-        $data['templist'] = $builder->get()->getResult();
-        // $data['templist'] = $tempModel->orderBy('id', 'DESC')->findAll();
-
-        $cart = array();
-        $cart2 = array();
-        $cart4 = array();
-
-
-        foreach($data['templist'] as $p){
-            $m = $p->del;
-            $cart[] = $m; 
-        }
-
-        $data2['single'] = array_unique($cart);
-        
-        foreach($data2['single'] as $s){
-        $singles = $s;
-        $cart2 = 0;
-
-        $builder = $db->table('masterlist');
-        $builder->select('masterlist.*');
-        $builder->where('masterlist.del', $singles);
-        $data3 = $builder->get()->getResult();
-        $cart2 = $data3;
-
-        $array = json_decode(json_encode($cart2[0]), true);
-        $cat[] = $array;
-        $cart4['all'] = $cat;
-        }
-        // echo "<pre>";
-        // print_r($cart4);
-        if($cart4 != []){
-        return view('products/previous', $cart4);
-    }else{
-        $cart4['all'] = $cart;
-        return view('products/previous', $cart4);
-    }
-    }
-
-    // sending everything to the masterlist 
-    public function sendtomasterlist()
-    {
-        date_default_timezone_set("Africa/Nairobi");
-        $date = date("Y/m/d");
-        
-        $db = \Config\Database::connect();
-        
-        $builder = $db->table("templist");
-        $builder->select('templist.*');
-        $data = $builder->get()->getResultArray();
-
-        foreach($data as $r) { // loop over results
-            $db->table('masterlist')->insert($r);
-        }
-
-        $builder->where('del >=', 0);
-        $builder->delete();
-    
-        // return redirect('products/uploadCsv');
-        return redirect()->to(base_url('ProductsCrud/load'));
-    }
-
-    // deleting uploaded csv 
-    public function deleteCSV($l)
-    {
-        $db = \Config\Database::connect();
-        $builder = $db->table("templist");
-        $builder->select('templist.*');
-        $builder->where('templist.del', $l);
-        $builder->delete();
-        
-        return redirect()->to(base_url('ProductsCrud/load'))->with('status', 'CSV deleted succesfully');
-    }
-
-    public function deleteRCVD($l)
-    {
-        $db = \Config\Database::connect();
-        $builder = $db->table("masterlist");
-        $builder->select('masterlist.*');
-        $builder->where('masterlist.del', $l);
-        $builder->delete();
-        
-        return redirect()->to(base_url('ProductsCrud/previousRCVD'))->with('status', 'CSV deleted succesfully');
-    }
-    
-
-    public function deleteDeliverynote($id)
-    {
-        $db = \Config\Database::connect();
-        $builder = $db->table("invoicecreate");
-        $builder->select('invoicecreate.*');
-        $builder->where('invoicecreate.id', $id);
-        $builder->delete();
-        
-        return redirect()->to(base_url('ProductsCrud/deliveryCreate'))->with('status', 'Invoice deleted succesfully');
-    }
-
-
-    public function regular() 
-    {
-        // date_default_timezone_set("Africa/Nairobi");
-        // $date = date("Y/m/d");
-        // $data['newses'] = $this->session->get();
-        $tempModel = new TempModel();
-        $data['masterlist'] = $tempModel->orderBy('id', 'DESC')->findAll();
-        if($this->request->getGet('q')) {
-            $q=$this->request->getGet('q');
-            $data['masterlist'] = $tempModel->like('assetid', $q)->findAll();
-            helper(['url', 'form']);
-            // echo '<pre>';
-            // print_r($data);
-            return view('/user/techpanel', $data);
-        } elseif(!$this->request->getGet('q')) {
-            $data['masterlist'] = $tempModel->findAll();
-            // $data['masterlist'] = $tempModel->like('name', $q)->findAll();
-
-        //     helper(['url', 'form']);
-        return view('/user/techpanel',$data );
-        }
-    }
-
-    // displays the tech panel view 
-    public function techview($id = null){
-        $tempModel = new TempModel();
-        $data['masterlist'] = $tempModel->where('id', $id)->first();
-        return view('/user/techview', $data);
-    }
-
-
-
-    public function wload()
-    {
-        return view('products/warrantyadd');
->>>>>>> 6b2c70d285653be485394b23d050774804d395e0
     }
 
     public function deljobc($l)
@@ -1817,7 +1568,6 @@ class ProductsCrud extends Controller
     }
 
 
-<<<<<<< HEAD
     public function previousRCVD(){
         // $tempModel = new TempModel();
         $session = \Config\Services::session();
@@ -7812,16 +7562,6 @@ public function printbarcodwi($id)
 
     }
 
-=======
-    public function WarrantyAdd() {
-        
-        if($this->request->getMethod()=='post'){
-          $warrantymodel = new WarrantyModel(); 
-          $warrantymodel->insert($_POST); 
-        }
-        return $this->response->redirect(site_url('/invoice-page'));
-    }
->>>>>>> 6b2c70d285653be485394b23d050774804d395e0
     public function storei() {
         
         if($this->request->getMethod()=='post'){

@@ -4,7 +4,6 @@
      
      <div class="container p-5">
        <h4 class="text-center"><u >Staff List </u></h4>
-<<<<<<< HEAD
        <a href="<?php echo site_url('/home-view') ?>" class="btn btn-dark btn-sm bi bi-chevron-left">back</a>
 
         <a href="<?php echo site_url('/user-form') ?>" class="btn btn-success bi-plus btn-sm">Add Staff</a>
@@ -14,8 +13,6 @@
     }
 ?>
        
-=======
->>>>>>> 6b2c70d285653be485394b23d050774804d395e0
      <table class="table table-bordered table-responsive-md table-striped text-center py-5">
         <thead>
           <tr>
@@ -37,12 +34,8 @@
             <td class="pt-3-half" ><?=  $user['designation']; ?></td>
             <td class="pt-3-half" ><?=  $user['user_email']; ?></td>
             <td class="pt-3-half">
-<<<<<<< HEAD
             <a href="<?= base_url('UserCrud/singleUser/'.$user['user_id']) ?>" class="btn btn-warning bi bi-pencil-square"></a>
             
-=======
-            <a href="UserCrud/singleUser/<?php echo $user['user_id'];?>" class="btn btn-warning bi bi-pencil-square"></a>
->>>>>>> 6b2c70d285653be485394b23d050774804d395e0
               <a href="UserCrud/delete/<?php echo $user['user_id'];?>" class="btn-submit bi bi-file-x-fill btn btn-danger"></a>
             </td>
           </tr>
@@ -50,14 +43,7 @@
          <?php endif; ?>
         </tbody>
       </table>
-<<<<<<< HEAD
       
-=======
-      <div class="d-flex justify-content-end">
-        <a href="<?php echo site_url('/user-form') ?>" class="btn btn-success bi-plus mb-4">Add Stafff</a>
-       </tr>
-  </div>
->>>>>>> 6b2c70d285653be485394b23d050774804d395e0
               
      </div>
      
