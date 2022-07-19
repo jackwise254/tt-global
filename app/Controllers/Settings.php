@@ -2102,8 +2102,8 @@ class Settings extends BaseController
                           'odd' => $filedata[14],
                           'screen' => $filedata[15],
                           'comment'=> $filedata[16],
-                          'price' => $filedata[17],
-                          'problem' => $filedata[18],
+                          // 'price' => $filedata[17],
+                          // 'problem' => $filedata[18],
                           'del' => $del,   
                           'customer' => $this->request->getVar('customer'),
                         );
@@ -2111,6 +2111,9 @@ class Settings extends BaseController
                     $index++;
                 }
 
+                echo '<pre>';
+                print_r($stock);
+                exit;
 
                     
         $num = 0;
