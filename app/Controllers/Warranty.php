@@ -1065,7 +1065,7 @@ public function load()
             
             $builder = $db->table('masterlist');
             $builder->select('masterlist.*')->orderBy('time', 'DESC');
-            $builder->where('masterlist.type="smartphones"' );
+            $builder->where('masterlist.type="smartphone"' );
             if($this->request->getGet('q')) {
             $q=$this->request->getGet('q');
            $builder->like('assetid', $q);

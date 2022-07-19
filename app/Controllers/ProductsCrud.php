@@ -2611,18 +2611,14 @@ public function printbarcodwi($id)
         foreach($l as $al):
          $examples = '<h3>'.'<strong>'.$al['model'].'</strong>'.'</h3>';
          $example = '<h5>';
-         $example = '<h6>'.'<strong>'.$al['brand'].' - '.$al['model'].'</strong>'.'</br>';
-         $barcode = new \Com\Tecnick\Barcode\Barcode();
-         $bobj1 = $barcode->getBarcodeObj('C128',  $al['assetid'], -1, -17, 'black', array(0, 0, 0, 0));
-         $example .= $bobj1->getSvgCode().'<br/>'.'&nbsp;'.'A- '.$al['assetid'].'<br/> <hr>'.'Batch #. <strong>'.$date.$al['del'].'</strong>'. '<br/> '.' Processor: <strong>'.$al['cpu'].'</strong>'. '<br/> '.' Generation: <strong>'.$al['gen'].'</strong>'. '<br/> '.'Processor Speed: <strong>'.$al['speed'].'</strong>'.'<br/> '.'Memory: <strong>'.$al['ram'].'</strong>'.'<br/> '.'Hard Drive: <strong>'.$al['hdd'].'</strong>'.'<br/> '.'ODD: <strong>'.$al['odd'].'</strong>'.'<br/> '.'Screen Size: <strong>'.$al['screen'].'</strong>'.'<br/> '.'Comment: <strong>'.$al['comment'].'</strong> '.'<br/> <br/> '.'</h6>'.'</div>'; ?>
+        $barcode = new \Com\Tecnick\Barcode\Barcode();
+    
+         $bobj1 = $barcode->getBarcodeObj('C128', $al['assetid'], -2, -20, 'black', array(0, 0, 0, 0));
         
-
+         $example .= '<strong>'.$al['model'].'</strong>'.'<br/>'.'<strong>'.$al['cpu'].'/'.$al['gen'].'</strong>'.'/'.'<strong>'.$al['speed'].'</strong>'.'/'.'<strong>'.$al['ram'].'</strong>'.'/'.'<strong>'.$al['hdd'].'</strong>'.'<br/>'.$bobj1->getSvgCode().'<br/>'.'A- '.$al['assetid'] .'</h5>'.'<br/>'; ?>
         <form >
           <?php echo $example; ?>     
-          
-         
       </div>
-          
       </form>
    <?php endforeach; ?>
       <?php
@@ -3385,13 +3381,13 @@ public function printbarcodwi($id)
         $datam = [
             'random' => $this->request->getPost('random'),
             'time' => date("h:i:sa"),
-            'tbl' => 'masterlist'
+            'tbl' => 'Stockin'
         ];
 
         $dataso = [
             'random' => $this->request->getPost('random'),
             'time' => date("h:i:sa"),
-            'tbl' => 'stockout'
+            'tbl' => 'Stockout'
         ];
 
         $dataf = [
@@ -3415,7 +3411,7 @@ public function printbarcodwi($id)
         $datawo = [
             'random' => $this->request->getPost('random'),
             'time' => date("h:i:sa"),
-            'tbl' => 'warrantyout'
+            'tbl' => 'warranty out'
         ];
 
         $datac = [
@@ -3441,7 +3437,7 @@ public function printbarcodwi($id)
         $builder5->where('verify.assetid', $serialno);
         $data5 = $builder5->get()->getResultArray();
 
-        if($table == 'masterlist'){
+        if($table == 'Stockin'){
         $builder1 = $db->table("masterlist");
         $builder1->select('masterlist.*');
         $builder1->where('masterlist.assetid', $serialno);
@@ -3633,8 +3629,6 @@ public function printbarcodwi($id)
         $builder9->where('credit.assetid', $serialno);
         $data9 = $builder9->get()->getResultArray();
 
-        
-
     //    checking masterlist
         if($data1){
             foreach($data1 as $r) {
@@ -3662,8 +3656,6 @@ public function printbarcodwi($id)
                 $builder51->select('*');
                 $builder51->where('verify.assetid', $serialno);
                 $builder51->update($dataso);
-                // $builder5->update(['time'=> $date]);                            
-
     
             }
             return redirect()->to('ProductsCrud/verify');
@@ -7708,8 +7700,9 @@ public function printbarcodwi($id)
         return $this->response->redirect(site_url('/fualty-stock'));
     }
     public function update(){
-        $productModel = new ProductModel();
+        // $productModel = new ProductModel();
         $id = $this->request->getVar('id');
+        
         $data = [
             'conditions' => $this->request->getVar('conditions'),
             'type' => $this->request->getVar('type'),
@@ -7732,11 +7725,16 @@ public function printbarcodwi($id)
             'odd' => $this->request->getVar('odd'),
             'comment' => $this->request->getVar('comment'),
             'problem' => $this->request->getVar('problem'),
-
             'status' => $this->request->getVar('status'),
             'customer' => $this->request->getVar('customer'),
         ];
-        $productModel->update($id, $data);
+
+        $db      = \Config\Database::connect();
+        $builder = $db->table('masterlist');
+        $builder->select('masterlist.*');
+        $builder->where('id', $id);
+        $builder->update($data);
+        // $productModel->update($id, $data);
         return $this->response->redirect(site_url('/inventory-view'));
     }
     public function delete($id){
