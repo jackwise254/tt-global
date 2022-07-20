@@ -236,6 +236,7 @@ endif;
   <a href="<?= base_url('ProductsCrud/printbarcodver/') ?>" class="btn   btn-outline-secondary btn-sm mt-1">barcode</a> 
   <a href="<?= base_url('ProductsCrud/printbarcode2ver/' ) ?>" class="btn    btn-outline-success btn-sm mt-1">barcode2</a> 
   <a href="<?= site_url('/verify-create' ) ?>" class="btn  btn-outline-secondary  btn-sm mt-1">Previous Summary</a>
+  
   <a href="<?php echo site_url('clear') ?>" class=" btn btn-outline-danger bi bi-trash-fill  btn-sm mt-1">Clear</a>
 <?php endif; ?>
 
@@ -245,14 +246,9 @@ endif;
 
 
 
-<!-- Trigger the modal with a button -['
 
-
-<!-- Modal -['
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
-
-    <!-- Modal content-['
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
