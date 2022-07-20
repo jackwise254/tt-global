@@ -2606,7 +2606,7 @@ public function printbarcodwi($id)
         foreach($data as $l):
         endforeach;
         foreach($l as $al):
-         $examples = '<h3>'.'<strong>'.$al['model'].'</strong>'.'</h3>';
+         $examples = '<h3>'.'<strong>'.$al['brand'].'</strong>'.'</h3>';
          $example = '<h5>';
          $barcode = new \Com\Tecnick\Barcode\Barcode();
          $bobj1 = $barcode->getBarcodeObj('C128', $al['assetid'], -1, -17, 'black', array(0, 0, 0, 0));
