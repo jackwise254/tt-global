@@ -72,21 +72,21 @@ endif;
     		<td>
         <select class="form-select" name="type" value="<?php echo $user_obj['type']; ?>">
           <option selected value="<?php echo $user_obj['type']; ?>"> <?php echo $user_obj['type']; ?></option>
-          <option value="laptop">Laptop</option>
+          <!-- <option value="laptop">Laptop</option>
           <option value="desktop">Desktop</option>
           <option value="allinone">All in one</option>
           <option value="hdd">HDD</option>
           <option value="ssd">SSD</option>
-          <option value="printer">Printer</option>
+          <option value="printer">Printer</option> -->
         </select>
     		</td>
     		<td>
         <select class="form-select" name="gen" value="<?php echo $user_obj['gen']; ?>">
           <option selected value="<?php echo $user_obj['gen']; ?>"> <?php echo $user_obj['gen']; ?></option>
-          <option value="8th">8 th</option>
+          <!-- <option value="8th">8 th</option>
           <option value="9th">9 th</option>
           <option value="10th">10 th</option>
-          <option value="11th">11 th</option>
+          <option value="11th">11 th</option> -->
         </select>
     		</td>
         <td>
@@ -120,17 +120,17 @@ endif;
     		<td>
         <select class="form-select"  name="screen" value="<?php echo $user_obj['screen']; ?>">
           <option selected value="<?php echo $user_obj['screen']; ?>"><?php echo $user_obj['screen']; ?> </option>
-          <option value="10">10'</option>
+          <!-- <option value="10">10'</option>
           <option value="11">11'</option>
           <option value="14">14'</option>
-          <option value="15">15'</option>
+          <option value="15">15'</option> -->
         </select>
     		</td>
     		<td>
         <select class="form-select"  name="odd" value="<?php echo $user_obj['odd']; ?>">
           <option selected value="<?php echo $user_obj['odd']; ?>"> <?php echo $user_obj['odd']; ?> </option>
-          <option value="yes">No</option>
-          <option value="no">Yes</option>
+          <!-- <option value="yes">No</option>
+          <option value="no">Yes</option> -->
         </select>
     		</td>
         <td>
