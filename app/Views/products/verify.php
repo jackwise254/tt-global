@@ -15,7 +15,7 @@ endif;
 <?php echo $random = rand(1000000, 9999999); ?>
 
 <div class="row container col-12">
-   <form name="test" class=" mt-4 pt-5" action="<?php echo  base_url('ProductsCrud/sverify'); ?>" method="POST">
+      <form name="test" class=" mt-4 pt-5" action="<?php echo  base_url('ProductsCrud/sverify'); ?>" method="POST">
       <div class="col-10">
          <input type="text" class="col-3 me-2 rounded-pill" id="serialno" name="serialno" placeholder="serial no." autofocus>
          <select class="col-3 me-2 rounded-pill" id="sort-item" name='table' type="text" placeholder="serial no." required>
@@ -34,19 +34,25 @@ endif;
             <input class="form-control my-3 d-none" value="<?= $random; ?>" name="random">
        <div class="d-flex justify-content-end">
 
-       <button type="button" class="btn btn-outline-secondary rounded-pill btn-sm position-relative">
-        items
-                      <?php if($count_verify): ?>
-                      <span class="position-absolute d-flex justify-content-end top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                          <?php echo $count_verify; ?>
-                          <span class="visually-hidden">Items</span>
-                      </span>
-                      <?php endif; ?>
-              </button>
-
-            
+       
        </div>
         </form>
+            <form>
+              <div class="col-6 float-end">
+                <input type="text" class="col-3 me-2 rounded-pill" id="serialno" name="serialno" placeholder="serial no." autofocus>
+                <input type="text" class="col-3 me-2 rounded-pill" id="serialno" name="serialno" placeholder="serial no." autofocus>
+                <input type="text" class="col-3 me-2 rounded-pill" id="serialno" name="serialno" placeholder="serial no." autofocus>
+                <button type="button" class="btn btn-outline-secondary rounded-pill btn-sm position-relative">
+                 items
+                <?php if($count_verify): ?>
+                <span class="position-absolute d-flex justify-content-end top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    <?php echo $count_verify; ?>
+                    <span class="visually-hidden">Items</span>
+                </span>
+                      <?php endif; ?>
+              </button>
+             </div>
+            </form>
        
     </div>
     
@@ -82,17 +88,12 @@ endif;
         echo "<h6 class=' alert alert-success d-flex align-items-center bi flex-shrink-0 me-2' width='10' height='10' role='alert' style='font-family:'Airal', Arial, Arial; font-size:40%'>" . session()->getFlashdata('status') . "</h6>"; 
     }
 ?>
-<!-- <h5 class="d-flex justify-content-end" style='font-family:"Airal", Arial, Arial; font-size:60%'><?php echo $count_verify; ?> Item(s) added </h5> -->
-
-
-
 <form method="post" id="invoice_create" name="invoice_create" action="<?php echo base_url('ProductsCrud/verified'); ?>">
-
 <div class="container-fluid">
         <div class=" form-row">
             <div class="col-sm-12 mx-auto bg-light rounded shadow">
                 <div class="table-responsive">
-                    <table class="table table-fixed table-striped " style='font-family:"Airal", Arial, Arial; font-size:60%'>
+                    <table class="table table-fixed table-striped tableditable" style='font-family:"Airal", Arial, Arial; font-size:60%'>
                         <thead >
                             <tr>
                               <?php if($user_data == 'admin'): ?>
@@ -137,7 +138,7 @@ endif;
                           $datedelivered = substr($user['datedelivered'],0,10);
                           ?>
                         <tbody>
-                            <tr>
+                            <tr id='someElementID'>
                               <?php if($user_data == 'admin'): ?>
 
                             <td class="">  
@@ -153,31 +154,31 @@ endif;
                             </td>
                             <?php endif ?>
                             <td class="col-3"><?=  $user['tbl']; ?></td>
-                            <td class="col-3"><?=  $user['status']; ?></td>
+                            <td class="col-3" contenteditable="true"><?=  $user['status']; ?></td>
                             <td class="pt-3-half"><?=  $user['list']; ?></td>
-                            <td class="col-3"><?=  $user['conditions']; ?></td>
-                            <td class="col-3"><?=  $user['assetid']; ?></td>
-                            <td class="col-3"><?=  $user['type']; ?></td>
-                            <td class="col-3"><?=  $user['brand']; ?></td>
-                            <td class="col-3"><?=  $user['gen']; ?></td>
-                            <td class="col-3"><?=  $user['part']; ?></td>
+                            <td class="col-3" contenteditable="true"><?=  $user['conditions']; ?></td>
+                            <td class="col-3 " ><?=  $user['assetid']; ?></td>
+                            <td class="col-3" contenteditable="true"><?=  $user['type']; ?></td>
+                            <td class="col-3" contenteditable="true"><?=  $user['brand']; ?></td>
+                            <td class="col-3" contenteditable="true"><?=  $user['gen']; ?></td>
+                            <td class="col-3" contenteditable="true"><?=  $user['part']; ?></td>
                             <td class="col-3"><?=  $user['serialno']; ?></td>
                             <td class="col-3"><?=  $user['modelid']; ?></td>
-                            <td class="col-5"><?=  $user['model']; ?></td>
-                            <td class="col-4 "><?=  $user['cpu']; ?></td>
-                            <td class="col-3"><?=  $user['speed']; ?></td>
-                            <td class="col-3"><?=  $user['ram']; ?></td>
-                            <td class="col-3"><?=  $user['hdd']; ?></td>
-                            <td class="col-3"><?=  $user['screen']; ?></td>
-                            <td class="col-3"><?=  $user['odd']; ?></td>
-                            <td class="col-3"><?=  $user['comment']; ?></td>
-                            <td class="col-3"><?=  $user['problem']; ?></td>
+                            <td class="col-5" contenteditable="true"><?=  $user['model']; ?></td>
+                            <td class="col-4 " contenteditable="true"><?=  $user['cpu']; ?></td>
+                            <td class="col-3" contenteditable="true"><?=  $user['speed']; ?></td>
+                            <td class="col-3" contenteditable="true"><?=  $user['ram']; ?></td>
+                            <td class="col-3" contenteditable="true"><?=  $user['hdd']; ?></td>
+                            <td class="col-3" contenteditable="true"><?=  $user['screen']; ?></td>
+                            <td class="col-3" contenteditable="true"><?=  $user['odd']; ?></td>
+                            <td class="col-3" contenteditable="true"><?=  $user['comment']; ?></td>
+                            <td class="col-3" contenteditable="true"><?=  $user['problem']; ?></td>
                             <td class="col-3"><?=  $user['price']; ?></td>
                             <td cclass="col-3"><?=  $datereceived; ?></td>
                             <td cclass="col-3"><?=  $datedelivered; ?></td>
 
-                            <td class="col-3"><?=  $user['customer']; ?></td>
-                            <td class="col-3"><?=  $user['vendor']; ?></td>
+                            <td class="col-3" contenteditable="true"><?=  $user['customer']; ?></td>
+                            <td class="col-3" contenteditable="true"><?=  $user['vendor']; ?></td>
 
 
                             </tr>
@@ -195,7 +196,26 @@ endif;
         </div>
     </div>
 
-    <script type='text/javascript'></script>
+    <script type='text/javascript'>
+      var ignoreClickOnMeElement = document.getElementById('someElementID');
+        document.addEventListener('click', function(event) {
+            var isClickInsideElement = ignoreClickOnMeElement.contains(event.target);
+            if (!isClickInsideElement) {
+                //Do something click is outside specified element
+                console.log('hello, you clicked outsid');
+            }
+        });
+
+        window.onload = function() {
+    var someElementID = sessionStorage.getItem("someElementID");  
+    $('#sort-item').val(someElementID);
+    }
+    $('#sort-item').change(function() { 
+        var selVal = $(this).val();
+        sessionStorage.setItem("someElementID", selVal);
+    });
+
+    </script>
 </body>
 
  <style type="text/css">

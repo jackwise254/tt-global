@@ -43,17 +43,13 @@ endif;
             <th class="text-center px-5">Comment</th>
             <th class="text-center px-5">Problem</th>
             <th class="text-center px-5">Price</th>
-            
             <th class="text-center px-5">Customer</th>
             <th class="text-center px-5">Status</th>
         </tr>
     </thead>
     <tbody>
     	<tr>
-      
-   				  <input type="text" class="form-control w-5 d-none" name="assetid" value="<?php echo $user_obj['assetid']; ?>">
-   				 
-			
+   				<input type="text" class="form-control w-5 d-none" name="assetid" value="<?php echo $user_obj['assetid']; ?>">
     		<td>
         <select class="form-select"  name="conditions" value="<?php echo $user_obj['conditions']; ?>">
           <option selected value="<?php echo $user_obj['conditions']; ?>"> <?php echo $user_obj['conditions']; ?></option>
@@ -151,11 +147,6 @@ endif;
     		</td>
         <td>
     			<input type="text" class="form-control" name="status" value="<?php echo $user_obj['status']; ?>">
-    		<!-- </td>
-       
-    			<input type="text" class="form-control d-none" name="qty" value="<?php echo $user_obj['qty']; ?>">
-    		
-    	</tr> -->
 </tbody>
 </table>
 <div class="form-group mt-3 col-12">
