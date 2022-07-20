@@ -36,7 +36,7 @@ endif;
         <div class="col-md-6">
         <form name="test" class="col-7 " action="<?php echo  base_url('ProductsCrud/delvsub'); ?>" method="POST">
         <button type="button" class="btn btn-primary px-2 float-end btn-sm" data-toggle="modal" data-target="#myModal">Manual</button>
-        <a href="<?php echo base_url('ProductsCrud/manual') ?>" class="btn btn-success btn-sm d-none float-end">Manual</a>
+        <!-- <a href="<?php echo base_url('ProductsCrud/manual') ?>" class="btn btn-success btn-sm d-none float-end">Manual</a> -->
         <a href="<?php echo  base_url('ProductsCrud/delvclear'); ?>" class=" btn btn-danger bi bi-trash-fill float-end btn-sm">Clear</a>
             <label class="label">Serial no.</label>
             <input type="text" class="col-4 " id="serialno" name="serialno" autofocus required>

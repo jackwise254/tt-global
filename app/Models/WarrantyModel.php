@@ -9,10 +9,7 @@ class WarrantyModel extends Model{
         'conditions',
         'type',
         'assetid',
-<<<<<<< HEAD
         'brand',
-=======
->>>>>>> 6b2c70d285653be485394b23d050774804d395e0
         'gen',
         'ram',
         'screen',
@@ -20,11 +17,8 @@ class WarrantyModel extends Model{
         'comment',
         'part',
         'status',
-<<<<<<< HEAD
         'model',
         'modelid',
-=======
->>>>>>> 6b2c70d285653be485394b23d050774804d395e0
         'qty',
         'serialno',
         'cpu',
