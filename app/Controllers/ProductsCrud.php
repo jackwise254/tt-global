@@ -6661,6 +6661,16 @@ public function printbarcodwi($id)
             }
             
         }
+
+        $builder113 = $db->table('tempinsert');
+        $builder113->select('tempinsert.*');
+        $builder113->where('tempinsert.random', $id);
+        // $data113  = $builder113->get()->getResultArray();
+        $builder113->update(['customer'=> '']);
+        // echo '<pre>';
+        // print_r($data113);
+        // exit;
+
         foreach($data14 as $s) {
         if(!$data13){
         $db->table('masterlist')->insert($s);
@@ -6670,6 +6680,8 @@ public function printbarcodwi($id)
 
         }
         }
+
+        
 
         $builder10 = $db->table('product');
         $builder10->select('product.*');
