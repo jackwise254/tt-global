@@ -23,7 +23,7 @@ class App extends BaseConfig
      *
      * @var string
      */
-    public $baseURL = 'http://localhost/dev/public';
+    public $baseURL = 'http://172.16.1.3/tt-global/public';
 
     /**
      * --------------------------------------------------------------------------

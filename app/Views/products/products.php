@@ -1,4 +1,13 @@
-<?php include('template/header.php');?>
+<?php if($user_data == 'admin'): 
+
+include('template/header.php');
+
+else:
+    include('template/head.php');
+
+endif;
+
+?>
 <div class="card">
   
   <div class="card-body container">
@@ -42,4 +51,3 @@
 </form>
 </div>
 </div>
-<?php include('template/footer.php');?>

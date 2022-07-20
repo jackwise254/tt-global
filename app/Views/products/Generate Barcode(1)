@@ -1,0 +1,4 @@
+Generate Barcode
+
+1) form  for supplier details then table with details of the items
+2) on submit, for each item on the table, use a for loop with count as the quantity

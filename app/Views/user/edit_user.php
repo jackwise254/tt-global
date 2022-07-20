@@ -1,66 +1,56 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Codeigniter 4 CRUD - Edit User Demo</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-  <style>
-    .container {
-      max-width: 500px;
-    }
-    .error {
-      display: block;
-      padding-top: 5px;
-      font-size: 14px;
-      color: red;
-    }
-  </style>
-</head>
-<body>
-  <div class="container mt-5">
-    <form method="post" id="update_user" name="update_user" 
-    action="<?= site_url('/update') ?>">
-      <input type="hidden" name="id" id="id" value="<?php echo $user_obj['id']; ?>">
-      <div class="form-group">
-        <label>Name</label>
-        <input type="text" name="name" class="form-control" value="<?php echo $user_obj['name']; ?>">
-      </div>
-      <div class="form-group">
-        <label>Email</label>
-        <input type="email" name="email" class="form-control" value="<?php echo $user_obj['email']; ?>">
-      </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-danger btn-block">Save Data</button>
-      </div>
-    </form>
-  </div>
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/additional-methods.min.js"></script>
-  <script>
-    if ($("#update_user").length > 0) {
-      $("#update_user").validate({
-        rules: {
-          name: {
-            required: true,
-          },
-          email: {
-            required: true,
-            maxlength: 60,
-            email: true,
-          },
-        },
-        messages: {
-          name: {
-            required: "Name is required.",
-          },
-          email: {
-            required: "Email is required.",
-            email: "It does not seem to be a valid email.",
-            maxlength: "The email should be or equal to 60 chars.",
-          },
-        },
-      })
-    }
-  </script>
-</body>
-</html>
+<?php include('template/header.php'); ?>
+<br/><br/>
+<div class="container p-5">
+
+        <div class="row justify-content-md-center">
+            <div class="col-5">
+                <h2 class="text-center"> <u> Edit Staff </u></h2>
+                <?php if(isset($validation)):?>
+                <div class="alert alert-warning">
+                   <?= $validation->listErrors() ?>
+                </div>
+                <?php endif;?>
+                <form method="post" id="update_user" autocomplete="off" name="update_user" 
+                 action="<?= base_url('Register/update/'. $user_obj['user_id']) ?> ">
+                   <div class="form-group mb-3">
+                   <input type="hidden" name="user_id" id="user_id" value="<?php echo $user_obj['user_id']; ?>">
+                   <label class="py-2">First name:</label>
+                    <input type="text" name="fname"  value="<?php echo $user_obj['fname']; ?>" class="form-control">
+                    </div>
+                    <div class="form-group mb-3">
+                    <label >Last name:</label>
+                    <input type="text" name="lname"  value="<?php echo $user_obj['lname']; ?>" class="form-control">
+                    </div>
+                    <div class="form-group mb-3">
+                    <label >User name:</label>
+                    <input type="text" name="username"  value="<?php echo $user_obj['user_name']; ?>" class="form-control">
+                    </div>
+                    <div class="form-group mb-3">
+                    <label >Designation:</label>
+                        <select class="form-control"name="designation" value="<?php echo $user_obj['designation']; ?>" id="designation">
+                            <option value="admin">Admin</option>
+                            <option value="manager">Manager</option>
+                            <option value="sales">Sales</option>
+                            <option value="technician">Technician</option>
+                            <option value="warranty">Warranty</option>
+                            <option value="superadmin">Super Admin</option>
+                        </select>
+
+                    <!-- <input type="text" name="designation" placeholder="Role"  class="form-control"> -->
+                    </div>
+                    <div class="form-group mb-3">
+                    <label >Email:</label>
+                        <input type="email" name="email"   value="<?php echo $user_obj['user_email']; ?>" class="form-control" >
+                    </div>
+                    <div class="form-group mb-3">
+                    <label >Password:</label>
+                        <input type="password" name="password" autocomplete="off" class="form-control" >
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-warning">Edit user</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+ <?php include('template/header.php'); ?>

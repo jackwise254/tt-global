@@ -33,10 +33,9 @@
                     foreach($students as $index => $student){
                         ?>
                         <tr>
-                            <td><?= $student->id ?></td>
-                            <td><?= $student->name ?></td>
-                            <td><?= $student->email ?></td>
-                            <td><?= $student->mobile ?></td>
+                            <td><?= $student->user_id ?></td>
+                            <td><?= $student->user_ame ?></td>
+                            <td><?= $student->user_email ?></td>
                         </tr>
                         <?php
                     }

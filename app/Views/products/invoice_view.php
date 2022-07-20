@@ -1,13 +1,24 @@
-<?php include('template/header.php'); ?>
+<?php if($user_data == 'admin'): 
+
+include('template/header.php');
+
+else:
+    include('template/head.php');
+
+endif;
+
+?>
 <div class="card">
   
   <div class="card-body container">
     <form method="post" action="<?php echo base_url("invoice-page")?>">
-    <div id="table" class="table-editable">
-      <table class="table table-striped" id="invoice-view">
-        <h3 ><u>
+    <br/><br/>
+      <table class="table table-striped p-5" id="invoice-view">
+      
+        <h3 class="text-center"><u>
     Invoice List
   </u></h3>
+  <a href="<?php echo site_url('home-view') ?>" class="btn btn-light btn-sm bi bi-chevron-left"></a>
   <table class="table table-bordered table-responsive-md table-striped text-center">
         <thead>
           <tr>

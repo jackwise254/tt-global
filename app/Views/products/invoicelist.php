@@ -1,4 +1,13 @@
-<?php include('template/header.php');?>
+<?php if($user_data == 'admin'): 
+
+include('template/header.php');
+
+else:
+    include('template/head.php');
+
+endif;
+
+?>
 <script type="text/javascript">
     $('#printInvoice').click(function(){
             Popup($('.invoice')[0].outerHTML);
