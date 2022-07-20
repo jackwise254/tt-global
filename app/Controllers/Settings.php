@@ -2203,11 +2203,8 @@ class Settings extends BaseController
             $csv_data = array_map('str_getcsv', file($file_name));
 
             if (count($csv_data) > 0) {
-
                 $index = 0;
-
                 foreach ($csv_data as $filedata) {
-
                     if ($index > 0) {
                       if($filedata[3]){
                         $assetid1 =  $filedata[3];
@@ -2216,9 +2213,7 @@ class Settings extends BaseController
                       $rand = rand(100000, 999999);
                       $assetid1 = 'FP'.$rand; 
                       }
-
                         $stock[] = array(
-                          // 'id' => $filedata[0],
                           'conditions' => $filedata[1],
                           'type' => $filedata[2],
                           'assetid' => $assetid1,
@@ -2243,9 +2238,6 @@ class Settings extends BaseController
                     }
                     $index++;
                 }
-
-
-                    
         $num = 0;
 
         foreach($stock as $s){
@@ -2339,9 +2331,6 @@ class Settings extends BaseController
       date_default_timezone_set("Africa/Nairobi");
       $date = date("h:i:sa");
       $dbname = 'ttglobal';
-      // echo'<pre>';
-      // print_r($date);
-      // exit;
       $backup_file = $dbname . date("Y-m-d-H-i-s") . '.gz';
       $command = "mysqldump --opt -h $dbhost -u $dbuser -p $dbpass ". "test_db | gzip > $backup_file";
       if($date == '04:09:52pm' ){

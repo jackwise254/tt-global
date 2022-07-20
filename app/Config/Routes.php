@@ -48,9 +48,10 @@ $routes->get('delete/(:num)', 'UserCrud::delete/$1',['filter' => 'auth']);
 $routes->get('/', 'SignupController::index',['filter' => 'auth']);
 $routes->get('/signup', 'SignupController::index',['filter' => 'auth']);
 $routes->get('/signin', 'SigninController::index',['filter' => 'auth']);
+$routes->get('/scanning', 'SigninController::scanning',['filter' => 'auth']);
+$routes->post('/barcodesimport', 'SigninController::barcodesimport',['filter' => 'auth']);
 $routes->get('/dashboard', 'Dashboard::index',['filter' => 'auth']);
 $routes->get('products-list', 'ProductsCrud::index',['filter' => 'auth']);
-
 $routes->get('product-list', 'ProductsCrud::more',['filter' => 'auth']);
 $routes->get('products-form', 'ProductsCrud::create',['filter' => 'auth']);
 $routes->get('wproducts-form', 'Warranty::wcreate',['filter' => 'auth']);
