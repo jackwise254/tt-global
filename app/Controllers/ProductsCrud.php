@@ -3437,21 +3437,21 @@ public function printbarcodwi($id)
         $builder1->where('masterlist.assetid', $serialno);
         $data1 = $builder1->get()->getResultArray();
         
-        foreach($data1 as $r) {
-            if(!$data5){
-                $builder5->insert($r);
-            }
-            $builder51 = $db->table('verify');
-            $builder51->select('*');
-            $builder51->where('verify.assetid', $serialno);
-            $builder51->update($datam);
+            foreach($data1 as $r) {
+                if(!$data5){
+                    $builder5->insert($r);
+                }
+                $builder51 = $db->table('verify');
+                $builder51->select('*');
+                $builder51->where('verify.assetid', $serialno);
+                $builder51->update($datam);
             }
 
             return redirect()->to('ProductsCrud/verify');
 
         }
 
-        if($table =='stockout'){
+        elseif($table =='stockout'){
             $builder2 = $db->table("stockout");
             $builder2->select('stockout.*');
             $builder2->where('stockout.assetid', $serialno);
@@ -3469,7 +3469,7 @@ public function printbarcodwi($id)
             }
             return redirect()->to('ProductsCrud/verify');
         }
-        if($table == 'warrantyin'){
+        elseif($table == 'warrantyin'){
         $builder3 = $db->table("warrantyin");
         $builder3->select('warrantyin.*');
         $builder3->where('warrantyin.assetid', $serialno);
@@ -3488,7 +3488,7 @@ public function printbarcodwi($id)
         return redirect()->to('ProductsCrud/verify');
         }
 
-        if($table == 'faulty'){
+        elseif($table == 'faulty'){
             $builder3 = $db->table("faulty");
             $builder3->select('faulty.*');
             $builder3->where('faulty.assetid', $serialno);
@@ -3507,7 +3507,7 @@ public function printbarcodwi($id)
             return redirect()->to('ProductsCrud/verify');
             }
 
-        if($table == 'faultyout'){
+        elseif($table == 'faultyout'){
             $builder3 = $db->table("faultyout");
             $builder3->select('faultyout.*');
             $builder3->where('faultyout.assetid', $serialno);
@@ -3525,7 +3525,7 @@ public function printbarcodwi($id)
             }
             return redirect()->to('ProductsCrud/verify');
             } 
-        if($table == 'warrantyout'){
+        elseif($table == 'warrantyout'){
             $builder3 = $db->table("warrantyout");
             $builder3->select('warrantyout.*');
             $builder3->where('warrantyout.assetid', $serialno);
@@ -3544,7 +3544,7 @@ public function printbarcodwi($id)
             return redirect()->to('ProductsCrud/verify');
             } 
 
-        if($table == 'credit'){
+        elseif($table == 'credit'){
             $builder3 = $db->table("credit");
             $builder3->select('credit.*');
             $builder3->where('credit.assetid', $serialno);
@@ -3563,7 +3563,7 @@ public function printbarcodwi($id)
             return redirect()->to('ProductsCrud/verify');
             }
             
-        if($table == 'debit'){
+        elseif($table == 'debit'){
             $builder3 = $db->table("debit");
             $builder3->select('debit.*');
             $builder3->where('debit.assetid', $serialno);
@@ -3581,7 +3581,7 @@ public function printbarcodwi($id)
             }
             return redirect()->to('ProductsCrud/verify');
             }     
-        if($table == 'All'){
+        elseif($table == 'All'){
             
         $builder1 = $db->table("masterlist");
         $builder1->select('masterlist.*');
