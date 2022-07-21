@@ -3262,13 +3262,130 @@ public function printbarcodwi($id)
         $sdata['hello'] = $builder1->get()->getResultArray();
         $session->set($sdata);
 
+        if($this->request->getVar('find')){
+        $q =   $this->request->getVar('find');
+        $builder1 = $db->table('verify');
+        $builder1->select('verify.*')->orderBy('time', 'DESC');
+        $builder1->like('brand', '%'.$q.'%');
+        $builder1->orLike('assetid', '%'.$q.'%');
+        $builder1->orLike('conditions', '%'.$q.'%');
+        $builder1->orLike('random', '%'.$q.'%');
+        $builder1->orLike('modelid', '%'.$q.'%');
+        $builder1->orLike('gen', '%'.$q.'%');
+        $builder1->orLike('cpu', '%'.$q.'%');
+        $builder1->orLike('screen', '%'.$q.'%');
+        $builder1->orLike('price', '%'.$q.'%');
+        $builder1->orLike('customer', '%'.$q.'%');
+        $builder1->orLike('ram', '%'.$q.'%');
+        $builder1->orLike('odd', '%'.$q.'%');
+        $builder1->orLike('comment', '%'.$q.'%');
+        $builder1->orLike('type', '%'.$q.'%');
+        $data['items'] = $builder1->get()->getResultArray();
+        $data['true'] = 1;
+        $dara = [
+            'daara' => $q,
+        ];
+        session()->set($dara);
+        $data['user_data'] = $session->get('designation');
+        return view('products/verify', $data);
+        }
+        if($this->request->getVar('replace')){
+            $x = $this->request->getVar('replace');
+            $s = session()->get('daara');
+            $builder1 = $db->table('verify');
+            $builder1->select('verify.*')->orderBy('time', 'DESC');
+            switch ($builder1->select('verify.*')) {
+            case $builder1->like('brand', '%'.$s.'%'):
+                echo "brand";
+                break;
+            case $builder1->orLike('conditions', '%'.$s.'%'):
+                echo "conditions";
+                break;
+            case $builder1->orLike('random', '%'.$s.'%'):
+                echo "random";
+                break;
+            default:
+            echo "No result found!";    
+            }
+
+
+            // if($builder1->like('brand', '%'.$s.'%')){
+            //  $data = $builder1->get()->getResultArray();
+            //  $table = 'brand';
+            // }elseif($builder1->orLike('conditions', '%'.$s.'%')){
+            //  $data = $builder1->get()->getResultArray();
+            //  $table = 'conditions';
+            // }
+            // elseif($builder1->orLike('random', '%'.$s.'%')){
+            // $data = $builder1->get()->getResultArray();
+            //     $table = 'random';
+            //    }
+            // elseif($builder1->orLike('modelid', '%'.$s.'%')){
+            // $data = $builder1->get()->getResultArray();
+
+            // $table = 'modelid';
+            // }
+            // elseif($builder1->orLike('gen', '%'.$s.'%')){
+            // $data = $builder1->get()->getResultArray();
+
+            // $table = 'gen';
+            // }
+            // elseif($builder1->orLike('cpu', '%'.$s.'%')){
+            // $data = $builder1->get()->getResultArray();
+
+            // $table = 'cpu';
+            // }
+            // elseif($builder1->orLike('screen', '%'.$s.'%')){
+            // $data = $builder1->get()->getResultArray();
+
+            // $table = 'screen';
+            // }
+            // elseif($builder1->orLike('customer', '%'.$s.'%')){
+            // $data = $builder1->get()->getResultArray();
+
+            // $table = 'customer';
+            // }
+            // elseif($builder1->orLike('price', '%'.$s.'%')){
+            // $data = $builder1->get()->getResultArray();
+
+            // $table = 'price';
+            // }
+            // elseif($builder1->orLike('ram', '%'.$s.'%')){
+            // $data = $builder1->get()->getResultArray();
+
+            // $table = 'ram';
+            // }
+            // elseif($builder1->orLike('odd', '%'.$s.'%')){
+            // $data = $builder1->get()->getResultArray();
+
+            // $table = 'odd';
+            // }
+            // elseif($builder1->orLike('comment', '%'.$s.'%')){
+            // $data = $builder1->get()->getResultArray();
+
+            // $table = 'comment';
+            // }
+            // elseif($builder1->orLike('type', '%'.$s.'%')){
+            // $data = $builder1->get()->getResultArray();
+
+            // $table = 'type';
+            // }else{
+
+            // }
+            echo '<pre>';
+            print_r($data);
+            exit;
+            $builder1->update([$table => $x]);
+            $data['true'] = 0;
+            return redirect()->back()->with('status', 'replaced',$data);
+        }
 
         helper(['form', 'url']);
-        $db      = \Config\Database::connect();
         $builder = $db->table('verify');
         $builder->select('verify.*')->orderBy('time', 'DESC');
         $data['items'] = $builder->get()->getResultArray();
         $data['user_data'] = $session->get('designation');
+        $data['true'] = 0;
         return view('products/verify', $data);
     }
 

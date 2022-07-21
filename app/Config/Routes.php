@@ -208,7 +208,6 @@ $routes->get('/ramsp', 'Warranty::ramsp',['filter' => 'auth']);
 $routes->get('/debitsp', 'Warranty::debitsp',['filter' => 'auth']);
 $routes->get('/tloadsp', 'Warranty::tloadsp',['filter' => 'auth']);
 
-
 // spreadsheet for stockout
 $routes->get('/Ndesktopspot', 'Warranty::Ndesktopspot',['filter' => 'auth']);
 $routes->get('/Odesktopspot', 'Warranty::Odesktopspot',['filter' => 'auth']);
