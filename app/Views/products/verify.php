@@ -37,26 +37,38 @@ endif;
        
        </div>
         </form>
-            <form>
-              <div class="col-6 d-flex float-end">
+          <form>
+            <div class=" float-end">
               <?php if($true == 0): ?>
-                <input type="text" class="col-3 me-2 rounded-pill" id="serialno" name="find" placeholder="Find." autofocus>
-                <button type ="submit" class="btn btn-sm btn-outline-primary rounded-pill" id="myBtn" >Find</button>
+                <input type="text" class="col-3 me-2 rounded-pill" id="serialno" name="find" placeholder="search." autofocus>
+                <button type ="submit" class="btn btn-sm btn-outline-success rounded-pill bi bi-search" id="myBtn" >Search</button>
                 <?php elseif($true == 1): ?>
-                <input type="text" class="col-3 me-2 rounded-pill" id="serialno" name="replace" placeholder="Replace." autofocus>
-                <button type ="submit" class="btn btn-sm btn-outline-primary rounded-pill" id="myBtn" >Replace</button>
-                <?php endif; ?>
-                <button type="button" class="btn btn-outline-secondary rounded-pill btn-sm position-relative">
-                 items
-                <?php if($count_verify): ?>
-                <span class="position-absolute d-flex justify-content-end top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    <?php echo $count_verify; ?>
-                    <span class="visually-hidden">Items</span>
-                </span>
-                      <?php endif; ?>
-              </button>
-             </div>
-            </form>
+                  <select class="col-3 me-2 rounded-pill" id="sort-item" name='table' type="text" placeholder="." required>
+                    <option value='Conditions'>Conditions</option>
+                    <option value='Model'>Model</option>
+                    <option value='gen'>Generation</option>
+                    <option value='Brand'>Brand</option>
+                    <option value='Hdd'>Hdd</option>
+                    <option value='Speed'>speed</option>
+                    <option value='Price'>Price</option>
+                    <option value='Ram'>Ram</option>
+                    <option value='Odd'>Odd</option>
+                    <optionm value='Problem'>Problem</option>
+                  </select>
+                  <input type="text" class="col-3 me-2 rounded-pill" id="serialno" name="replace" placeholder="Replace." autofocus>
+                  <button type ="submit" class="btn btn-sm btn-outline-primary rounded-pill" id="myBtn" >Replace</button>
+                  <?php endif; ?>
+                  <button type="button" class="btn btn-outline-secondary rounded-pill btn-sm position-relative">
+                  items
+                  <?php if($count_verify): ?>
+                  <span class="position-absolute d-flex justify-content-end top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                      <?php echo $count_verify; ?>
+                      <span class="visually-hidden">Items</span>
+                  </span>
+                        <?php endif; ?>
+                  </button>
+            </div>
+         </form>
        
     </div>
     
@@ -158,31 +170,31 @@ endif;
                             </td>
                             <?php endif ?>
                             <td class="col-3"><?=  $user['tbl']; ?></td>
-                            <td class="col-3" contenteditable="true"><?=  $user['status']; ?></td>
+                            <td class="col-3" ><?=  $user['status']; ?></td>
                             <td class="pt-3-half"><?=  $user['list']; ?></td>
-                            <td class="col-3" contenteditable="true"><?=  $user['conditions']; ?></td>
+                            <td class="col-3" ><?=  $user['conditions']; ?></td>
                             <td class="col-3 " ><?=  $user['assetid']; ?></td>
-                            <td class="col-3" contenteditable="true"><?=  $user['type']; ?></td>
-                            <td class="col-3" contenteditable="true"><?=  $user['brand']; ?></td>
-                            <td class="col-3" contenteditable="true"><?=  $user['gen']; ?></td>
-                            <td class="col-3" contenteditable="true"><?=  $user['part']; ?></td>
+                            <td class="col-3" ><?=  $user['type']; ?></td>
+                            <td class="col-3" ><?=  $user['brand']; ?></td>
+                            <td class="col-3" ><?=  $user['gen']; ?></td>
+                            <td class="col-3" ><?=  $user['part']; ?></td>
                             <td class="col-3"><?=  $user['serialno']; ?></td>
                             <td class="col-3"><?=  $user['modelid']; ?></td>
-                            <td class="col-5" contenteditable="true"><?=  $user['model']; ?></td>
-                            <td class="col-4 " contenteditable="true"><?=  $user['cpu']; ?></td>
-                            <td class="col-3" contenteditable="true"><?=  $user['speed']; ?></td>
-                            <td class="col-3" contenteditable="true"><?=  $user['ram']; ?></td>
-                            <td class="col-3" contenteditable="true"><?=  $user['hdd']; ?></td>
-                            <td class="col-3" contenteditable="true"><?=  $user['screen']; ?></td>
-                            <td class="col-3" contenteditable="true"><?=  $user['odd']; ?></td>
-                            <td class="col-3" contenteditable="true"><?=  $user['comment']; ?></td>
-                            <td class="col-3" contenteditable="true"><?=  $user['problem']; ?></td>
+                            <td class="col-5" ><?=  $user['model']; ?></td>
+                            <td class="col-4 " ><?=  $user['cpu']; ?></td>
+                            <td class="col-3" ><?=  $user['speed']; ?></td>
+                            <td class="col-3" ><?=  $user['ram']; ?></td>
+                            <td class="col-3" ><?=  $user['hdd']; ?></td>
+                            <td class="col-3" ><?=  $user['screen']; ?></td>
+                            <td class="col-3" ><?=  $user['odd']; ?></td>
+                            <td class="col-3" ><?=  $user['comment']; ?></td>
+                            <td class="col-3" ><?=  $user['problem']; ?></td>
                             <td class="col-3"><?=  $user['price']; ?></td>
                             <td cclass="col-3"><?=  $datereceived; ?></td>
                             <td cclass="col-3"><?=  $datedelivered; ?></td>
 
-                            <td class="col-3" contenteditable="true"><?=  $user['customer']; ?></td>
-                            <td class="col-3" contenteditable="true"><?=  $user['vendor']; ?></td>
+                            <td class="col-3" ><?=  $user['customer']; ?></td>
+                            <td class="col-3" ><?=  $user['vendor']; ?></td>
 
 
                             </tr>
