@@ -38,10 +38,14 @@ endif;
        </div>
         </form>
             <form>
-              <div class="col-6 float-end">
-                <input type="text" class="col-3 me-2 rounded-pill" id="serialno" name="serialno" placeholder="serial no." autofocus>
-                <input type="text" class="col-3 me-2 rounded-pill" id="serialno" name="serialno" placeholder="serial no." autofocus>
-                <input type="text" class="col-3 me-2 rounded-pill" id="serialno" name="serialno" placeholder="serial no." autofocus>
+              <div class="col-6 d-flex float-end">
+              <?php if($true == 0): ?>
+                <input type="text" class="col-3 me-2 rounded-pill" id="serialno" name="find" placeholder="Find." autofocus>
+                <button type ="submit" class="btn btn-sm btn-outline-primary rounded-pill" id="myBtn" >Find</button>
+                <?php elseif($true == 1): ?>
+                <input type="text" class="col-3 me-2 rounded-pill" id="serialno" name="replace" placeholder="Replace." autofocus>
+                <button type ="submit" class="btn btn-sm btn-outline-primary rounded-pill" id="myBtn" >Replace</button>
+                <?php endif; ?>
                 <button type="button" class="btn btn-outline-secondary rounded-pill btn-sm position-relative">
                  items
                 <?php if($count_verify): ?>
