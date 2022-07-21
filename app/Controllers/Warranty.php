@@ -2549,9 +2549,9 @@ public function load()
         public function ssdspot()
         {
           $db      = \Config\Database::connect();
-          $builder = $db->table('masterlist');
-          $builder->select('masterlist.*')->orderBy('time', 'DESC');
-          $builder->where('masterlist.conditions = "New" AND type="desktop"' );
+          $builder = $db->table('stockout');
+          $builder->select('stockout.*')->orderBy('time', 'DESC');
+          $builder->where('type="ssd"' );
           
         $users = $builder->get()->getResult();
       
@@ -2632,9 +2632,9 @@ public function load()
         public function Rallinonespot()
         {
           $db      = \Config\Database::connect();
-          $builder = $db->table('masterlist');
-          $builder->select('masterlist.*')->orderBy('time', 'DESC');
-          $builder->where('masterlist.conditions = "New" AND type="desktop"' );
+          $builder = $db->table('stockout');
+          $builder->select('stockout.*')->orderBy('time', 'DESC');
+          $builder->where('stockout.conditions = "Refurb" AND type="allinone"' );
           
         $users = $builder->get()->getResult();
       
@@ -2715,9 +2715,9 @@ public function load()
         public function Oallinonespot()
         {
           $db      = \Config\Database::connect();
-          $builder = $db->table('masterlist');
-          $builder->select('masterlist.*')->orderBy('time', 'DESC');
-          $builder->where('masterlist.conditions = "New" AND type="desktop"' );
+          $builder = $db->table('stockout');
+          $builder->select('stockout.*')->orderBy('time', 'DESC');
+          $builder->where('stockout.conditions = "Used" AND type="allinone"' );
           
         $users = $builder->get()->getResult();
       
@@ -2799,7 +2799,7 @@ public function load()
           $db      = \Config\Database::connect();
           $builder = $db->table('stockout');
           $builder->select('stockout.*')->orderBy('time', 'DESC');
-          $builder->where('stockout.conditions = "New" AND type="desktop"' );
+          $builder->where('stockout.conditions = "New" AND type="allinone"' );
           
         $users = $builder->get()->getResult();
       
@@ -3537,8 +3537,8 @@ public function load()
         public function ramspot()
         {
           $db      = \Config\Database::connect();
-          $builder = $db->table('masterlist');
-          $builder->select('masterlist.*')->orderBy('time', 'DESC');
+          $builder = $db->table('stockout');
+          $builder->select('stockout.*')->orderBy('time', 'DESC');
           $builder->where(' type="ram"' );
           
         $users = $builder->get()->getResult();
