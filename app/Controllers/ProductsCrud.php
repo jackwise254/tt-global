@@ -3292,90 +3292,73 @@ public function printbarcodwi($id)
         if($this->request->getVar('replace')){
             $x = $this->request->getVar('replace');
             $s = session()->get('daara');
-            $builder1 = $db->table('verify');
-            $builder1->select('verify.*')->orderBy('time', 'DESC');
-            switch ($builder1->select('verify.*')) {
-            case $builder1->like('brand', '%'.$s.'%'):
-                echo "brand";
-                break;
-            case $builder1->orLike('conditions', '%'.$s.'%'):
-                echo "conditions";
-                break;
-            case $builder1->orLike('random', '%'.$s.'%'):
-                echo "random";
-                break;
-            default:
-            echo "No result found!";    
-            }
 
+            $builder11 = $db->table('verify');
+            $builder11->select('verify.*')->orderBy('time', 'DESC');
 
-            // if($builder1->like('brand', '%'.$s.'%')){
-            //  $data = $builder1->get()->getResultArray();
-            //  $table = 'brand';
-            // }elseif($builder1->orLike('conditions', '%'.$s.'%')){
-            //  $data = $builder1->get()->getResultArray();
-            //  $table = 'conditions';
-            // }
-            // elseif($builder1->orLike('random', '%'.$s.'%')){
-            // $data = $builder1->get()->getResultArray();
-            //     $table = 'random';
-            //    }
-            // elseif($builder1->orLike('modelid', '%'.$s.'%')){
-            // $data = $builder1->get()->getResultArray();
-
-            // $table = 'modelid';
-            // }
-            // elseif($builder1->orLike('gen', '%'.$s.'%')){
-            // $data = $builder1->get()->getResultArray();
-
-            // $table = 'gen';
-            // }
-            // elseif($builder1->orLike('cpu', '%'.$s.'%')){
-            // $data = $builder1->get()->getResultArray();
-
-            // $table = 'cpu';
-            // }
-            // elseif($builder1->orLike('screen', '%'.$s.'%')){
-            // $data = $builder1->get()->getResultArray();
-
-            // $table = 'screen';
-            // }
-            // elseif($builder1->orLike('customer', '%'.$s.'%')){
-            // $data = $builder1->get()->getResultArray();
-
-            // $table = 'customer';
-            // }
-            // elseif($builder1->orLike('price', '%'.$s.'%')){
-            // $data = $builder1->get()->getResultArray();
-
-            // $table = 'price';
-            // }
-            // elseif($builder1->orLike('ram', '%'.$s.'%')){
-            // $data = $builder1->get()->getResultArray();
-
-            // $table = 'ram';
-            // }
-            // elseif($builder1->orLike('odd', '%'.$s.'%')){
-            // $data = $builder1->get()->getResultArray();
-
-            // $table = 'odd';
-            // }
-            // elseif($builder1->orLike('comment', '%'.$s.'%')){
-            // $data = $builder1->get()->getResultArray();
-
-            // $table = 'comment';
-            // }
-            // elseif($builder1->orLike('type', '%'.$s.'%')){
-            // $data = $builder1->get()->getResultArray();
-
-            // $table = 'type';
-            // }else{
-
-            // }
-            echo '<pre>';
-            print_r($data);
-            exit;
-            $builder1->update([$table => $x]);
+             if($this->request->getVar('table') == 'Model'){
+                $builder = $db->table('verify');
+                $builder->select('*');
+                $builder->where('model' , $s);
+                $builder->update(['model' => $x]);
+             }      
+             elseif($this->request->getVar('table') == 'Brand'){
+                $builder = $db->table('verify');
+                $builder->select('*');
+                $builder->where('brand' , $s);
+                $builder->update(['brand' => $x]);
+             }      
+             elseif($this->request->getVar('table') == 'Hdd'){
+                $builder = $db->table('verify');
+                $builder->select('*');
+                $builder->where('hdd' , $s);
+                $builder->update(['hdd' => $x]);
+             }      
+             elseif($this->request->getVar('table') == 'Speed'){
+                $builder = $db->table('verify');
+                $builder->select('*');
+                $builder->where('speed' , $s);
+                $builder->update(['speed' => $x]);
+             }      
+             elseif($this->request->getVar('table') == 'Price'){
+                $builder = $db->table('verify');
+                $builder->select('*');
+                $builder->where('price' , $s);
+                $builder->update(['price' => $x]);
+             }      
+             elseif($this->request->getVar('table') == 'Ram'){
+                $builder = $db->table('verify');
+                $builder->select('*');
+                $builder->where('ram' , $s);
+                $builder->update(['ram' => $x]);
+             }      
+             elseif($this->request->getVar('table') == 'Odd'){
+                $builder = $db->table('verify');
+                $builder->select('*');
+                $builder->where('odd' , $s);
+                $builder->update(['odd' => $x]);
+             }      
+             elseif($this->request->getVar('table') == 'Problem'){
+                $builder = $db->table('verify');
+                $builder->select('*');
+                $builder->where('problem' , $s);
+                $builder->update(['problem' => $x]);
+             }      
+             elseif($this->request->getVar('table') == 'Conditions'){
+                $builder = $db->table('verify');
+                $builder->select('*');
+                $builder->where('conditions' , $s);
+                $builder->update(['conditions' => $x]);
+             }
+             elseif($this->request->getVar('table') == 'gen'){
+                $builder = $db->table('verify');
+                $builder->select('*');
+                $builder->where('gen' , $s);
+                $builder->update(['gen' => $x]);
+             }      
+             else{
+                return redirect->back()->with('status', 'No result found!');
+             }
             $data['true'] = 0;
             return redirect()->back()->with('status', 'replaced',$data);
         }
