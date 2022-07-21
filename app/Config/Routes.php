@@ -209,6 +209,24 @@ $routes->get('/debitsp', 'Warranty::debitsp',['filter' => 'auth']);
 $routes->get('/tloadsp', 'Warranty::tloadsp',['filter' => 'auth']);
 
 
+// spreadsheet for stockout
+$routes->get('/Ndesktopspot', 'Warranty::Ndesktopspot',['filter' => 'auth']);
+$routes->get('/Odesktopspot', 'Warranty::Odesktopspot',['filter' => 'auth']);
+$routes->get('/Rdesktopspot', 'Warranty::Rdesktopspot',['filter' => 'auth']);
+$routes->get('/Nlaptopspot', 'Warranty::Nlaptopspot',['filter' => 'auth']);
+$routes->get('/Olaptopspot', 'Warranty::Olaptopspot',['filter' => 'auth']);
+$routes->get('/Rlaptopspot', 'Warranty::Rlaptopspot',['filter' => 'auth']);
+$routes->get('/Nallinonespot', 'Warranty::Nallinonespot',['filter' => 'auth']);
+$routes->get('/Oallinonespot', 'Warranty::Oallinonespot',['filter' => 'auth']);
+$routes->get('/Rallinonespot', 'Warranty::Rallinonespot',['filter' => 'auth']);
+$routes->get('/ssdspot', 'Warranty::ssdspot',['filter' => 'auth']);
+$routes->get('/hddspot', 'Warranty::hddspot',['filter' => 'auth']);
+$routes->get('/ramspot', 'Warranty::ramspot',['filter' => 'auth']);
+$routes->get('/debitspot', 'Warranty::debitspot',['filter' => 'auth']);
+$routes->get('/tloadspot', 'Warranty::tloadspot',['filter' => 'auth']);
+// ---//
+
+
 $routes->get('/Ndesktopfo', 'Login::Ndesktop',['filter' => 'auth']);
 $routes->get('/test', 'Login::test',['filter' => 'auth']);
 
