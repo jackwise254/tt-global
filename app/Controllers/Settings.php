@@ -2111,9 +2111,9 @@ class Settings extends BaseController
                     $index++;
                 }
 
-                echo '<pre>';
-                print_r($stock);
-                exit;
+                // echo '<pre>';
+                // print_r($stock);
+                // exit;
 
                     
         $num = 0;

@@ -42,6 +42,7 @@ endif;
                             <th scope="col" class="col-3">Screen</th>
                             <th scope="col" class="col-3">Odd</th>
                             <th scope="col" class="col-3">Comment</th>
+                            <th scope="col" class="col-3">Problem</th>
                             <th scope="col" class="col-3">Price</th>
                             <th scope="col" class="col-3">Date_Recieved</th>
                             <th scope="col" class="col-3">Date_Delivered</th>
@@ -86,6 +87,7 @@ endif;
                             <td class="col-3"><?=  $l['screen']; ?></td>
                             <td class="col-3"><?=  $l['odd']; ?></td>
                             <td class="col-3"><?=  $l['comment']; ?></td>
+                            <td class="col-3"><?=  $l['problem']; ?></td>
                             <td class="col-3"><?=  $l['price']; ?></td>
                             <td cclass="col-3"><?=  $datereceived; ?></td>
                             <td cclass="col-3"><?=  $datedelivered; ?></td>

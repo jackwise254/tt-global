@@ -40,10 +40,20 @@ endif;
           <form>
             <div class=" float-end">
               <?php if($true == 0): ?>
-                <input type="text" class="col-3 me-2 rounded-pill" id="serialno" name="find" placeholder="search." autofocus>
-                <button type ="submit" class="btn btn-sm btn-outline-success rounded-pill bi bi-search" id="myBtn" >Search</button>
+                <input type="text" class="col-6 me-2 rounded-pill" id="serialno" name="find" placeholder="search." autofocus>
+                <select class="col-3 me-2 rounded-pill" id="sort-item" name='table' type="text" placeholder="" required>
+                  <option value='stockin'>Stock in</option>
+                  <option value='stockout'>Stock out</option>
+                  <option value='faulty'>Faulty in</option>
+                  <option value='faultyout'>Faulty Out</option>
+                  <option value='warranty'>Warranty in</option>
+                  <option value='warrantyout'>Warranty Out</option>
+                  <option value='credit'>Credit</option>
+                  <optionm value='debit'>Debit</option>
+               </select>
+                <button type ="submit" class="btn btn-sm btn-outline-success rounded-pill bi bi-search" id="myBtn" ></button>
                 <?php elseif($true == 1): ?>
-                  <select class="col-3 me-2 rounded-pill" id="sort-item" name='table' type="text" placeholder="." required>
+                  <select class="col-4 me-2 rounded-pill" id="sort-item" name='table' type="text" placeholder="." required>
                     <option value='Conditions'>Conditions</option>
                     <option value='Model'>Model</option>
                     <option value='gen'>Generation</option>
@@ -55,7 +65,7 @@ endif;
                     <option value='Odd'>Odd</option>
                     <optionm value='Problem'>Problem</option>
                   </select>
-                  <input type="text" class="col-3 me-2 rounded-pill" id="serialno" name="replace" placeholder="Replace." autofocus>
+                  <input type="text" class="col-4 me-2 rounded-pill" id="serialno" name="replace" placeholder="Replace." autofocus>
                   <button type ="submit" class="btn btn-sm btn-outline-primary rounded-pill" id="myBtn" >Replace</button>
                   <?php endif; ?>
                   <button type="button" class="btn btn-outline-secondary rounded-pill btn-sm position-relative">

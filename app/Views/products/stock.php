@@ -14,13 +14,14 @@ endif;
     $session = session();
     $names = $session->get('user_name');
     ?> 
-<section class="content">
+<!-- <section class="content col-mx-auto col-lg-12 px-4"> -->
 
-<div class=" px-5 float end">
+<!-- <div class=" col-mx-auto col-lg-12 "> -->
 
-<div class='container' style="">
-<h4 class="text-center mt-3 pt-4"> <u>Remaining Stock </u> </h4>
-<div class="container">
+<!-- <div class='container ' style=""> -->
+<div class="container col-mx-auto col-lg-12 px-5">
+<h4 class="text-center mt-5 pt-4"> <u>Remaining Stock </u> </h4>
+
 
 <a href="<?php echo base_url('ProductsCrud/load') ?>" class="btn btn-outline-success btn-sm bi bi-upload">Recieve Goods</a>
 <a href="<?php echo base_url('ProductsCrud/previousRCVD') ?>" class="btn btn-outline-info btn--sm flex m-2">Previous Recieved</a>
@@ -366,7 +367,7 @@ endif;
 
 
     </div>
-    <div class="row">
+    <div class="row col-lg-12 col-mx-auto  px-5">
     <?php if($count_Rallinone> 0): ?> 
       
           <div class="col-md-3">
