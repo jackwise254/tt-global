@@ -62,7 +62,7 @@ endif;
                         <?php if($user_data == 'admin'): ?>
                         <a href="<?= base_url('ProductsCrud/deleteRCVDw/'. $l['del']) ?>" class="trigger-btn  mx-2" >[del]</a>
                         <?php endif; ?>
-                              <a href="<?= base_url('ProductsCrud/multipleRCVDw/'. $l['del']) ?>" class="mx-2">[edit]</a>
+                              <a href="<?= base_url('ProductsCrud/multipleRCVDw/'. $l['del']) ?>" class="mx-2 d-none">[edit]</a>
                               <a href="<?= base_url('ProductsCrud/printbarcodef/'.$l['del']) ?>" class="mx-2">[barcode]</a> 
                               <a href="<?= base_url('ProductsCrud/printbarcode2wi/'.$l['del']) ?>" class="mx-2">[barcode2]</a> 
                               <a href="<?= base_url('ProductsCrud/printjobwi/'.$l['del']) ?>" class="pr-2">[Job_Card]</a> 

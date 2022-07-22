@@ -71,7 +71,7 @@ endif;
                               <a href="<?= base_url('ProductsCrud/printbarcode2/'.$l['del']) ?>" class="">[barcode2]</a>
                             <?php else:?>
                              <a href="<?= base_url('ProductsCrud/deleteRCVD/'. $l['del']) ?>" class="mx-2">[del]</a>
-                              <a href="<?= base_url('ProductsCrud/multipleRCVD/'. $l['del']) ?>" class="mx-2">[edit]</a>
+                              <a href="<?= base_url('ProductsCrud/multipleRCVD/'. $l['del']) ?>" class="mx-2 d-none">[edit]</a>
                               <a href="<?= base_url('ProductsCrud/printbarcode/'.$l['del']) ?>" class="mx-2">[barcode]</a> 
                               <a href="<?= base_url('ProductsCrud/printbarcode2/'.$l['del']) ?>" class="">[barcode2]</a> 
                             <?php endif; ?>
