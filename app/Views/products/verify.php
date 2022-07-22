@@ -175,7 +175,7 @@ endif;
                             <td class="col-3" ><?=  $user['conditions']; ?></td>
                             <td class="col-3 " ><?=  $user['assetid']; ?></td>
                             <td class="col-3" ><?=  $user['type']; ?></td>
-                            <td class="col-3" ><?=  $user['brand']; ?></td>
+                            <td class="col-3" \><?=  $user['brand']; ?></td>
                             <td class="col-3" ><?=  $user['gen']; ?></td>
                             <td class="col-3" ><?=  $user['part']; ?></td>
                             <td class="col-3"><?=  $user['serialno']; ?></td>
