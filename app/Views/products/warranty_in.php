@@ -21,7 +21,7 @@ endif;
 </div>
 
       <br/>
-      <div class="my-3">
+      <div class="my-3 ">
       <h5 class="text-center"><strong><u>Stock on Warranty in</u></strong> </h5>
       <a href="<?php echo site_url('home-view') ?>" class="btn btn-success btn-sm bi bi-chevron-left">back</a>
 
@@ -61,6 +61,7 @@ endif;
                             <th scope="col" class="col-3">Screen</th>
                             <th scope="col" class="col-3">Odd</th>
                             <th scope="col" class="col-3">Comment</th>
+                            <th scope="col" class="col-3">Problem</th>
                             <th scope="col" class="col-3">Price</th>
                             <th scope="col" class="col-3">Date_Recieved</th>
                             <th scope="col" class="col-3">Date_Delivered</th>
@@ -76,9 +77,11 @@ endif;
                             <tr>
                             <td class="">  
                               <div class="btn-group" role="group" aria-label="Basic example">
-                              <a href="<?php echo site_url('ProductsCrud/deletes'); ?>" class="pr-3 d-none ">[del]</a>
-                               <a href="<?php echo site_url('ProductsCrud/updates'); ?>" class="d-none">[edit]</a>
-                              <a href="<?= base_url('ProductsCrud/printwibarcod/'.$user['id']) ?>" class="px-2 d-none">[barcode]</a> 
+                               <a href="<?php echo site_url('ProductsCrud/deletes'); ?>" class="pr-3 d-none ">[del]</a>
+                              <?php if($user_data == 'admin'):  ?>
+                               <a href="<?php echo site_url('ProductsCrud/updates'); ?>" class="pr-3">[edit]</a>
+                               <?php endif; ?>
+                               <a href="<?= base_url('ProductsCrud/printwibarcod/'.$user['id']) ?>" class="px-2 d-none">[barcode]</a> 
                             </div>
                             </td>
                             <td class="pt-3-half"><?=  $user['list']; ?></td>
@@ -98,6 +101,7 @@ endif;
                             <td class="col-3"><?=  $user['screen']; ?></td>
                             <td class="col-3"><?=  $user['odd']; ?></td>
                             <td class="col-3"><?=  $user['comment']; ?></td>
+                            <td class="col-3"><?=  $user['problem']; ?></td>
                             <td class="col-3"><?=  $user['price']; ?></td>
                             <td cclass="col-3"><?=  $datereceived; ?></td>
                             <td cclass="col-3"><?=  $datedelivered; ?></td>

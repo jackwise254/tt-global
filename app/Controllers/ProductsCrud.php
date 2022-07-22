@@ -1794,28 +1794,24 @@ public function printbarcodwi($id)
     endforeach;
     foreach($l as $al):
         $date = date("d/m/y");
+        $gen = substr($al['gen'],0,7);
+
         $example = '<h6>'.'<strong>'.$al['brand'].' - '.$al['model'].'</strong>'.'</br>';
-         $barcode = new \Com\Tecnick\Barcode\Barcode();
-         $bobj1 = $barcode->getBarcodeObj('C128',  $al['assetid'], -1, -17, 'black', array(0, 0, 0, 0));
-         $example .= $bobj1->getSvgCode().'<br/>'.'&nbsp;'.'A- '.$al['assetid'].'<br/> <hr>'.'Batch #. <strong>'.$date.$al['del'].'</strong>'. '<br/> '.' Processor: <strong>'.$al['cpu'].'</strong>'. '<br/> '.' Generation: <strong>'.$al['gen'].'</strong>'. '<br/> '.'Processor Speed: <strong>'.$al['speed'].'</strong>'.'<br/> '.'Memory: <strong>'.$al['ram'].'</strong>'.'<br/> '.'Hard Drive: <strong>'.$al['hdd'].'</strong>'.'<br/> '.'ODD: <strong>'.$al['odd'].'</strong>'.'<br/> '.'Screen Size: <strong>'.$al['screen'].'</strong>'.'<br/> '.'Comment: <strong>'.$al['comment'].'</strong> '.'<br/> <br/> '.'</h6>'.'</div>'; ?>
-        
+        $barcode = new \Com\Tecnick\Barcode\Barcode();
+        $bobj1 = $barcode->getBarcodeObj('C128',  $al['assetid'], -1, -17, 'black', array(0, 0, 0, 0));
+        $example .= $bobj1->getSvgCode().'<br/>'.'&nbsp;'.'A- '.$al['assetid'].'<br/> <hr>'.'<strong>'.$al['customer'].'</strong> <br/>'.'Batch #. <strong>'.$date.$al['del'].'</strong>'. '<br/> '.' Processor: <strong>'.$al['cpu'].'</strong>'. '<br/> '.' Generation: <strong>'.$al['gen'].'</strong>'. '<br/> '.'Processor Speed: <strong>'.$al['speed'].'</strong>'.'<br/> '.'Memory: <strong>'.$al['ram'].'</strong>'.'<br/> '.'Hard Drive: <strong>'.$al['hdd'].'</strong>'.'<br/> '.'Problem: <strong>'.$al['problem'].'</strong>'.'<br/> '.'Screen Size: <strong>'.$al['screen'].'</strong>'.'<br/> '.'Comment: <strong>'.$al['comment'].'</strong> '.'<br/> <br/> '.'</h6>'.'</div>'; ?>
+       
+       <form >
+         <?php echo $example; ?>
+     </div>
+         
+     </form>
 
-    <form class="mb-5">
-   
-      <?php echo $example; ?>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      
-      <?php //echo $examples; ?>
-      
-  </form>
-<?php endforeach; ?>
-  <?php
+    <?php endforeach; ?>
+    </br>
+
+        <?php
 }
-
 
     public function printbarcodf($id)
     {
@@ -2128,18 +2124,18 @@ public function printbarcodwi($id)
             $example = '<h6>'.'<strong>'.$al['brand'].' - '.$al['model'].'</strong>'.'</br>';
             $barcode = new \Com\Tecnick\Barcode\Barcode();
             $bobj1 = $barcode->getBarcodeObj('C128',  $al['assetid'], -1, -17, 'black', array(0, 0, 0, 0));
-            $example .= $bobj1->getSvgCode().'<br/>'.'&nbsp;'.'A- '.$al['assetid'].'<br/> <hr>'.'Customer. <strong>'.$al['customer'].'</strong>'. '<br/> '.'Batch #. <strong>'.$date.$al['del'].'</strong>'. '<br/> '.' Processor: <strong>'.$al['cpu'].'</strong>'. '<br/> '.' Generation: <strong>'.$al['gen'].'</strong>'. '<br/> '.'Processor Speed: <strong>'.$al['speed'].'</strong>'.'<br/> '.'Memory: <strong>'.$al['ram'].'</strong>'.'<br/> '.'Hard Drive: <strong>'.$al['hdd'].'</strong>'.'<br/> '.'Problem: <strong>'.$al['problem'].'</strong>'.'<br/> '.'Screen Size: <strong>'.$al['screen'].'</strong>'.'<br/> '.'Comment: <strong>'.$al['comment'].'</strong> '.'<br/> <br/> '.'</h6>'.'</div>'; ?>
+            $example .= $bobj1->getSvgCode().'<br/>'.'&nbsp;'.'A- '.$al['assetid'].'<br/> <hr>'.'<strong>'.$al['customer'].'</strong> <br/>'.'Batch #. <strong>'.$date.$al['del'].'</strong>'. '<br/> '.' Processor: <strong>'.$al['cpu'].'</strong>'. '<br/> '.' Generation: <strong>'.$al['gen'].'</strong>'. '<br/> '.'Processor Speed: <strong>'.$al['speed'].'</strong>'.'<br/> '.'Memory: <strong>'.$al['ram'].'</strong>'.'<br/> '.'Hard Drive: <strong>'.$al['hdd'].'</strong>'.'<br/> '.'Problem: <strong>'.$al['problem'].'</strong>'.'<br/> '.'Screen Size: <strong>'.$al['screen'].'</strong>'.'<br/> '.'Comment: <strong>'.$al['comment'].'</strong> '.'<br/> <br/> '.'</h6>'.'</div>'; ?>
            
-      <form >
-          <?php echo $example; ?>
-      </div>
-          
-      </form>
-
-   <?php endforeach; ?>
-
-   </br>
-   <?php
+           <form >
+             <?php echo $example; ?>
+         </div>
+             
+         </form>
+    
+        <?php endforeach; ?>
+        </br>
+    
+            <?php
     }
 
     public function printbarcodver()
@@ -2179,39 +2175,29 @@ public function printbarcodwi($id)
     {
         date_default_timezone_set("Africa/Nairobi");
         $date = date("my - ");
-        
         require ('../vendor/autoload.php');
         $db = \Config\Database::connect();
-        
         $builder = $db->table("masterlist");
         $builder->select('masterlist.*');
         $builder->where('del', $l);
         $data['items'] = $builder->get()->getResultArray();
-
-        
         foreach($data as $l):
         endforeach;
         foreach($l as $al):
         $gen = substr($al['gen'],0,7);
-
          $example = '<h6>'.'<strong>'.$al['brand'].' - '.$al['model'].'</strong>'.'</br>';
          $barcode = new \Com\Tecnick\Barcode\Barcode();
          $bobj1 = $barcode->getBarcodeObj('C128',  $al['assetid'], -1, -17, 'black', array(0, 0, 0, 0));
          $example .= $bobj1->getSvgCode().'<br/>'.'&nbsp;'.'A- '.$al['assetid'].'<br/> <hr>'.'Batch #. <strong>'.$date.$al['del'].'</strong>'. '<br/> '.' Processor: <strong>'.$al['cpu'].'</strong>'. '<br/> '.' Generation: <strong>'.$al['gen'].'</strong>'. '<br/> '.'Processor Speed: <strong>'.$al['speed'].'</strong>'.'<br/> '.'Memory: <strong>'.$al['ram'].'</strong>'.'<br/> '.'Hard Drive: <strong>'.$al['hdd'].'</strong>'.'<br/> '.'ODD: <strong>'.$al['odd'].'</strong>'.'<br/> '.'Screen Size: <strong>'.$al['screen'].'</strong>'.'<br/> '.'Comment: <strong>'.$al['comment'].'</strong> '.'<br/> <br/> '.'</h6>'.'</div>'; ?>
-        
         <form >
           <?php echo $example; ?>
       </div>
           
       </form>
-
-   <?php endforeach; ?>
-</br>
-
-      <?php
-
-        // return view('products/barcodes');
-    }
+    <?php endforeach; ?>
+        </br>
+        <?php
+        }
 
     public function printbarcode2wo($l)
     {
@@ -3262,7 +3248,296 @@ public function printbarcodwi($id)
         $sdata['hello'] = $builder1->get()->getResultArray();
         $session->set($sdata);
 
+        
+        $datam = [
+            'random' => $this->request->getPost('random'),
+            'time' => date("h:i:sa"),
+            'tbl' => 'Stockin'
+        ];
+
+        $dataso = [
+            'random' => $this->request->getPost('random'),
+            'time' => date("h:i:sa"),
+            'tbl' => 'Stockout'
+        ];
+
+        $dataf = [
+            'random' => $this->request->getPost('random'),
+            'time' => date("h:i:sa"),
+            'tbl' => 'faulty'
+        ];
+
+        $datafo = [
+            'random' => $this->request->getPost('random'),
+            'time' => date("h:i:sa"),
+            'tbl' => 'faultyout'
+        ];
+
+        $dataw = [
+            'random' => $this->request->getPost('random'),
+            'time' => date("h:i:sa"),
+            'tbl' => 'warrantyin'
+        ];
+
+        $datawo = [
+            'random' => $this->request->getPost('random'),
+            'time' => date("h:i:sa"),
+            'tbl' => 'warranty out'
+        ];
+
+        $datac = [
+            'random' => $this->request->getPost('random'),
+            'time' => date("h:i:sa"),
+            'tbl' => 'credit'
+        ];
+
+        $datad = [
+            'random' => $this->request->getPost('random'),
+            'time' => date("h:i:sa"),
+            'tbl' => 'debit'
+        ];
+
         if($this->request->getVar('find')){
+        $m = $this->request->getVar('table');
+        $j = $this->request->getVar('find');
+
+        $builde = $db->table('verify');
+        $builde->select('*');
+        $builde->like('brand', $j); 
+        $builde->orLike('conditions', $j); 
+        $builde->orLike('modelid', $j); 
+        $builde->orLike('model', $j); 
+        $builde->orLike('customer', $j); 
+        $builde->orLike('cpu', $j); 
+        $builde->orLike('hdd', $j); 
+        $builde->orLike('screen', $j); 
+        $builde->orLike('ram', $j); 
+        $builde->orLike('odd', $j); 
+        $builde->orLike('type', $j); 
+        $dataa = $builde->get()->getresultArray();
+
+        if($m == 'stockin'){
+           $build = $db->table('masterlist');
+           $build->select('*');
+           $build->like('brand', $j); 
+           $build->orLike('conditions', $j); 
+           $build->orLike('modelid', $j); 
+           $build->orLike('model', $j); 
+           $build->orLike('customer', $j); 
+           $build->orLike('cpu', $j); 
+           $build->orLike('hdd', $j); 
+           $build->orLike('screen', $j); 
+           $build->orLike('ram', $j); 
+           $build->orLike('odd', $j); 
+           $build->orLike('type', $j); 
+           $data = $build->get()->getResultArray();
+
+           foreach($data as $d){
+            if(!$dataa){
+                $builde->insert($d);
+            }
+           }
+           $builde1 = $db->table('verify');
+           $builde1->select('*');
+           $builde1->like('brand', $j); 
+           $builde1->orLike('conditions', $j); 
+           $builde1->orLike('modelid', $j); 
+           $builde1->orLike('model', $j); 
+           $builde1->orLike('customer', $j); 
+           $builde1->orLike('cpu', $j); 
+           $builde1->orLike('hdd', $j); 
+           $builde1->orLike('screen', $j); 
+           $builde1->orLike('ram', $j); 
+           $builde1->orLike('odd', $j); 
+           $builde1->orLike('type', $j); 
+            $builde1->update($datam);
+           return redirect()->to(site_url('/verify'));
+        }
+
+        elseif($m == 'stockout'){
+            $build = $db->table('stockout');
+            $build->select('*');
+            $build->like('brand', $j); 
+            $build->orLike('conditions', $j); 
+            $build->orLike('modelid', $j); 
+            $build->orLike('model', $j); 
+            $build->orLike('customer', $j); 
+            $build->orLike('cpu', $j); 
+            $build->orLike('hdd', $j); 
+            $build->orLike('screen', $j); 
+            $build->orLike('ram', $j); 
+            $build->orLike('odd', $j); 
+            $build->orLike('type', $j); 
+            $data = $build->get()->getResultArray();
+            foreach($data as $d){
+             $dataa = $builde->get()->getresultArray();
+             if(!$dataa){
+                 $builde->insert($d);
+             }
+           }
+           return redirect()->to(site_url('/verify'));
+
+        }
+
+        elseif($m == 'warrantyin'){
+            $build = $db->table('warrantyin');
+            $build->select('*');
+            $build->like('brand', $j); 
+            $build->orLike('conditions', $j); 
+            $build->orLike('modelid', $j); 
+            $build->orLike('model', $j); 
+            $build->orLike('customer', $j); 
+            $build->orLike('cpu', $j); 
+            $build->orLike('hdd', $j); 
+            $build->orLike('screen', $j); 
+            $build->orLike('ram', $j); 
+            $build->orLike('odd', $j); 
+            $build->orLike('type', $j); 
+            $data = $build->get()->getResultArray();
+            foreach($data as $d){
+             if(!$dataa){
+                 $builde->insert($d);
+             }
+           }
+           return redirect()->to(site_url('/verify'));
+
+        }
+
+        elseif($m == 'warrantyout'){
+            $build = $db->table('warrantyout');
+            $build->select('*');
+            $build->like('brand', $j); 
+            $build->orLike('conditions', $j); 
+            $build->orLike('modelid', $j); 
+            $build->orLike('model', $j); 
+            $build->orLike('customer', $j); 
+            $build->orLike('cpu', $j); 
+            $build->orLike('hdd', $j); 
+            $build->orLike('screen', $j); 
+            $build->orLike('ram', $j); 
+            $build->orLike('odd', $j); 
+            $build->orLike('type', $j); 
+            $data = $build->get()->getResultArray();
+            foreach($data as $d){
+             if(!$dataa){
+                 $builde->insert($d);
+             }
+           }
+           return redirect()->to(site_url('/verify'));
+
+        }
+
+        elseif($m == 'debit'){
+            $build = $db->table('debit');
+            $build->select('*');
+            $build->like('brand', $j); 
+            $build->orLike('conditions', $j); 
+            $build->orLike('modelid', $j); 
+            $build->orLike('model', $j); 
+            $build->orLike('customer', $j); 
+            $build->orLike('cpu', $j); 
+            $build->orLike('hdd', $j); 
+            $build->orLike('screen', $j); 
+            $build->orLike('ram', $j); 
+            $build->orLike('odd', $j); 
+            $build->orLike('type', $j); 
+            $data = $build->get()->getResultArray();
+            foreach($data as $d){
+             $builde = $db->table('verify');
+             $builde->select('*');
+             $builde->like('brand', $j); 
+             $builde->orLike('conditions', $j); 
+             $builde->orLike('modelid', $j); 
+             $builde->orLike('model', $j); 
+             $builde->orLike('customer', $j); 
+             $builde->orLike('cpu', $j); 
+             $builde->orLike('hdd', $j); 
+             $builde->orLike('screen', $j); 
+             $builde->orLike('ram', $j); 
+             $builde->orLike('odd', $j); 
+             $builde->orLike('type', $j); 
+             $dataa = $builde->get()->getresultArray();
+             if(!$dataa){
+                 $builde->insert($d);
+             }
+           }
+        }
+
+        elseif($m == 'credit'){
+            $build = $db->table('credit');
+            $build->select('*');
+            $build->like('brand', $j); 
+            $build->orLike('conditions', $j); 
+            $build->orLike('modelid', $j); 
+            $build->orLike('model', $j); 
+            $build->orLike('customer', $j); 
+            $build->orLike('cpu', $j); 
+            $build->orLike('hdd', $j); 
+            $build->orLike('screen', $j); 
+            $build->orLike('ram', $j); 
+            $build->orLike('odd', $j); 
+            $build->orLike('type', $j); 
+            $data = $build->get()->getResultArray();
+            foreach($data as $d){
+             if(!$dataa){
+                 $builde->insert($d);
+             }
+           }
+           return redirect()->to(site_url('/verify'));
+
+        }
+
+        elseif($m == 'faultyin'){
+            $build = $db->table('faultyin');
+            $build->select('*');
+            $build->like('brand', $j); 
+            $build->orLike('conditions', $j); 
+            $build->orLike('modelid', $j); 
+            $build->orLike('model', $j); 
+            $build->orLike('customer', $j); 
+            $build->orLike('cpu', $j); 
+            $build->orLike('hdd', $j); 
+            $build->orLike('screen', $j); 
+            $build->orLike('ram', $j); 
+            $build->orLike('odd', $j); 
+            $build->orLike('type', $j); 
+            $data = $build->get()->getResultArray();
+            foreach($data as $d){
+             if(!$dataa){
+                 $builde->insert($d);
+             }
+           }
+           return redirect()->to(site_url('/verify'));
+
+        }
+
+        elseif($m == 'faultyout'){
+            $build = $db->table('faultyout');
+            $build->select('*');
+            $build->like('brand', $j); 
+            $build->orLike('conditions', $j); 
+            $build->orLike('modelid', $j); 
+            $build->orLike('model', $j); 
+            $build->orLike('customer', $j); 
+            $build->orLike('cpu', $j); 
+            $build->orLike('hdd', $j); 
+            $build->orLike('screen', $j); 
+            $build->orLike('ram', $j); 
+            $build->orLike('odd', $j); 
+            $build->orLike('type', $j); 
+            $data = $build->get()->getResultArray();
+            foreach($data as $d){
+             if(!$dataa){
+                 $builde->insert($d);
+             }
+           }
+           return redirect()->to(site_url('/verify'));
+
+        }
+        else{
+            return redirect()->back()->with('status', 'Result not found!');
+        }
+
         $q =   $this->request->getVar('find');
         $builder1 = $db->table('verify');
         $builder1->select('verify.*')->orderBy('time', 'DESC');
@@ -3538,6 +3813,7 @@ public function printbarcodwi($id)
         $builder1->where('masterlist.assetid', $serialno);
         $data1 = $builder1->get()->getResultArray();
         
+        
         foreach($data1 as $r) {
             if(!$data5){
                 $builder5->insert($r);
@@ -3550,6 +3826,7 @@ public function printbarcodwi($id)
 
             return redirect()->to('ProductsCrud/verify');
 
+           
         }
 
         if($table =='stockout'){

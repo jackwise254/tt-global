@@ -84,7 +84,7 @@ class Register extends Controller
             // return view('user/user_view');
         }else{
             $data['validation'] = $this->validator;
-            echo view('user/add_user', $data);
+            echo view('user/edit_user', $data);
         }
           
     }
