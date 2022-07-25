@@ -17,8 +17,8 @@ endif;
 <div class="row container col-12">
       <form name="test" class=" mt-4 pt-5" action="<?php echo  base_url('ProductsCrud/sverify'); ?>" method="POST">
       <div class="col-10">
-         <input type="text" class="col-3 me-2 rounded-pill" id="serialno" name="serialno" placeholder="serial no." autofocus>
-         <select class="col-3 me-2 rounded-pill" id="sort-item" name='table' type="text" placeholder="serial no." required>
+         <input type="text" class="col-2 me-2 rounded-pill" id="serialno" name="serialno" placeholder="serial no." autofocus>
+         <select class="col-2 me-2 rounded-pill" id="sort-item" name='table' type="text" placeholder="serial no." required>
               <option value='All'>All</option>
               <option value='Stockin'>Stock in</option>
               <option value='stockout'>Stock out</option>
@@ -33,14 +33,17 @@ endif;
             <button type ="submit" class="d-none" id="myBtn" onchange="this.form.submit()">Submit</button>
             <input class="form-control my-3 d-none" value="<?= $random; ?>" name="random">
        <div class="d-flex justify-content-end">
-
-       
        </div>
         </form>
           <form>
+
+          <!-- filter design -->
+          <!-- end -->
+
             <div class=" float-end">
               <?php if($true == 0): ?>
-                <input type="text" class="col-6 me-2 rounded-pill" id="serialno" name="find" placeholder="search." autofocus>
+                <input type="text" class="col-3 me-2 rounded-pill" id="serialno" name="find" placeholder="search." autofocus>
+                <input type="text" class="col-3 me-2 rounded-pill" id="model" name="model" placeholder="model." autofocus>
                 <select class="col-3 me-2 rounded-pill" id="sort-item" name='table' type="text" placeholder="" required>
                   <option value='stockin'>Stock in</option>
                   <option value='stockout'>Stock out</option>
