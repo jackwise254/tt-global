@@ -3952,7 +3952,7 @@ public function printbarcodwi($id)
            $builde1->orLike('ram', $j); 
            $builde1->orLike('odd', $j); 
            $builde1->orLike('type', $j); 
-           $builde1->update($datas);
+           $builde1->update($dataso);
            return redirect()->to(site_url('/verify'));
 
         }
@@ -5964,8 +5964,6 @@ public function printbarcodwi($id)
             if($this->request->getVar('qty2')){ $data5['qty2' ] =  $this->request->getVar('qty2');}else{
                 $data5['qty2' ] = 0;
             }
-           
-
        
         $db      = \Config\Database::connect();
             $increment = $db->table("product2");
@@ -5994,6 +5992,8 @@ public function printbarcodwi($id)
          
             for($i = 0; $i < 1; $i++) {
             $x = $x++;
+            // echo '<pre>';
+            // print_r($x);
             $incc = $db->table("dcustomer");
             $incc->select('dcustomer.*');
             $incc->where('dcustomer.delvnote');
