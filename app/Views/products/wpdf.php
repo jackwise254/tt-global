@@ -29,6 +29,8 @@ $_SESSION['comment']=$item->comment;
 $_SESSION['total']=$item->list;
 $_SESSION['random']=$item->random;
 $_SESSION['daterecieved']=$item->daterecieved;
+$_SESSION['datedelivered']=$item->datedelivered;
+
 $_SESSION['qty']=$item->qty;
 $_SESSION['tqty']=$item->tqty;
 $_SESSION['assetid']=$item->assetid;
@@ -45,6 +47,7 @@ $id_no = $item->id_no;
 $address = $item->location;
 $date = $item->date;
 $ref = $_SESSION['random'];
+$currentdate = substr($_SESSION['datedelivered'],0,10);
 
 }
 
@@ -57,10 +60,7 @@ function Header()
     //$this->Image('dist/img/logo.jpeg',10,6,20);
     
     // Arial bold 15
-
-
-
-    $currentdate = date("d-m-Y");
+    $currentdate = substr($_SESSION['daterecieved'],0,10);
     $number = 'W-'.$_SESSION['wnote'];
 
     $this->SetFont('Arial','',14);
@@ -179,7 +179,7 @@ $pdf->Output('uploads/warrantydocs/' .$namepdf, "F");
 $db = new dbObj();
 $connString =  $db->getConnstring();
 date_default_timezone_set("Africa/Nairobi");
-$date = date("Y/m/d");
+$date = $currentdate;
 $link = mysqli_connect("localhost", "root", "", "users");
 
 

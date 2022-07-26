@@ -2174,7 +2174,7 @@ public function printbarcodwi($id)
     public function printbarcode($l)
     {
         date_default_timezone_set("Africa/Nairobi");
-        $date = date("my - ");
+        $date = date("- my");
         require ('../vendor/autoload.php');
         $db = \Config\Database::connect();
         $builder = $db->table("masterlist");
@@ -2188,7 +2188,7 @@ public function printbarcodwi($id)
          $example = '<h6>'.'<strong>'.$al['brand'].' - '.$al['model'].'</strong>'.'</br>';
          $barcode = new \Com\Tecnick\Barcode\Barcode();
          $bobj1 = $barcode->getBarcodeObj('C128',  $al['assetid'], -1, -17, 'black', array(0, 0, 0, 0));
-         $example .= $bobj1->getSvgCode().'<br/>'.'&nbsp;'.'A- '.$al['assetid'].'<br/> <hr>'.'Batch #. <strong>'.$date.$al['del'].'</strong>'. '<br/> '.' Processor: <strong>'.$al['cpu'].'</strong>'. '<br/> '.' Generation: <strong>'.$al['gen'].'</strong>'. '<br/> '.'Processor Speed: <strong>'.$al['speed'].'</strong>'.'<br/> '.'Memory: <strong>'.$al['ram'].'</strong>'.'<br/> '.'Hard Drive: <strong>'.$al['hdd'].'</strong>'.'<br/> '.'ODD: <strong>'.$al['odd'].'</strong>'.'<br/> '.'Screen Size: <strong>'.$al['screen'].'</strong>'.'<br/> '.'Comment: <strong>'.$al['comment'].'</strong> '.'<br/> <br/> '.'</h6>'.'</div>'; ?>
+         $example .= $bobj1->getSvgCode().'<br/>'.'&nbsp;'.'A- '.$al['assetid'].'<br/> <hr>'.'Batch #. <strong>'.$al['del'].$date.'</strong>'. '<br/> '.' Processor: <strong>'.$al['cpu'].'</strong>'. '<br/> '.' Generation: <strong>'.$al['gen'].'</strong>'. '<br/> '.'Processor Speed: <strong>'.$al['speed'].'</strong>'.'<br/> '.'Memory: <strong>'.$al['ram'].'</strong>'.'<br/> '.'Hard Drive: <strong>'.$al['hdd'].'</strong>'.'<br/> '.'ODD: <strong>'.$al['odd'].'</strong>'.'<br/> '.'Screen Size: <strong>'.$al['screen'].'</strong>'.'<br/> '.'Comment: <strong>'.$al['comment'].'</strong> '.'<br/> <br/> '.'</h6>'.'</div>'; ?>
         <form >
           <?php echo $example; ?>
       </div>
@@ -3247,50 +3247,57 @@ public function printbarcodwi($id)
         $builder1->where('users.designation = "admin" ' );
         $sdata['hello'] = $builder1->get()->getResultArray();
         $session->set($sdata);
+        $random = rand(100000, 999999);
+        $rands = [
+            'random' =>$random,
+            'tbl' =>$this->request->getvar('table'),
+        ];
+
+        session()->set($rands);
         $datam = [
-            'random' => $this->request->getPost('random'),
+            'random' => $random,
             'time' => date("h:i:sa"),
-            'tbl' => 'Stockin'
+            'tbl' => 'Stockin',
         ];
 
         $dataso = [
-            'random' => $this->request->getPost('random'),
+            'random' => $random,
             'time' => date("h:i:sa"),
             'tbl' => 'Stockout'
         ];
 
         $dataf = [
-            'random' => $this->request->getPost('random'),
+            'random' => $random,
             'time' => date("h:i:sa"),
             'tbl' => 'faulty'
         ];
 
         $datafo = [
-            'random' => $this->request->getPost('random'),
+            'random' => $random,
             'time' => date("h:i:sa"),
             'tbl' => 'faultyout'
         ];
 
         $dataw = [
-            'random' => $this->request->getPost('random'),
+            'random' => $random,
             'time' => date("h:i:sa"),
             'tbl' => 'warrantyin'
         ];
 
         $datawo = [
-            'random' => $this->request->getPost('random'),
+            'random' => $random,
             'time' => date("h:i:sa"),
             'tbl' => 'warranty out'
         ];
 
         $datac = [
-            'random' => $this->request->getPost('random'),
+            'random' => $random,
             'time' => date("h:i:sa"),
             'tbl' => 'credit'
         ];
 
         $datad = [
-            'random' => $this->request->getPost('random'),
+            'random' => $random,
             'time' => date("h:i:sa"),
             'tbl' => 'debit'
         ];
@@ -3298,7 +3305,6 @@ public function printbarcodwi($id)
         if($this->request->getGet('find') && $this->request->getGet('model') ) {
             $m = $this->request->getVar('table');
             $j = $this->request->getVar('find');
-
             $builde = $db->table('verify');
             $builde->select('*');
             $builde->like('brand', $j); 
@@ -3318,7 +3324,7 @@ public function printbarcodwi($id)
             $q = $this->request->getVar('find');
             $model = $this->request->getVar('model');
 
-            if($m == 'stockin'){
+            if($m == 'Stockin'){
             $builder122 = $db->table('masterlist');
             $builder122->select('masterlist.*')->orderBy('daterecieved', 'DESC');
             $builder122->select('masterlist.*');
@@ -3877,7 +3883,7 @@ public function printbarcodwi($id)
         $builde->orLike('type', $j); 
         $dataa = $builde->get()->getresultArray();
 
-        if($m == 'stockin'){
+        if($m == 'Stockin'){
            $build = $db->table('masterlist');
            $build->select('*');
            $build->like('brand', $j); 
@@ -4199,17 +4205,19 @@ public function printbarcodwi($id)
         }
     }
         // model
-        elseif($this->request->getVar('model')){
+        if($this->request->getVar('model')){
             $m = $this->request->getVar('table');
             $j = $this->request->getVar('model');
             $builde = $db->table('verify');
             $builde->select('*');
-            $builde->where('model', $j); 
+            $builde->like('model', $j); 
             $dataa = $builde->get()->getresultArray();
-            if($m == 'stockin'){
+            if($m == 'Stockin'){
+                // echo 'true';
+                // exit;
                $build = $db->table('masterlist');
                $build->select('*');
-               $build->where('model', $j); 
+               $build->like('model', $j); 
                $data = $build->get()->getResultArray();
                foreach($data as $d){
                 if(!$dataa){
@@ -4218,14 +4226,14 @@ public function printbarcodwi($id)
                }
                $builde1 = $db->table('verify');
                $builde1->select('*');
-               $builde1->where('model', $j); 
+               $builde1->like('model', $j); 
                 $builde1->update($datam);
                return redirect()->to(site_url('/verify'));
             }
             elseif($m == 'stockout'){
                 $build = $db->table('stockout');
                 $build->select('*');
-                $build->where('model', $j); 
+                $build->like('model', $j); 
                 $data = $build->get()->getResultArray();
                 foreach($data as $d){
                  $dataa = $builde->get()->getresultArray();
@@ -4235,7 +4243,7 @@ public function printbarcodwi($id)
                }
                $builde1 = $db->table('verify');
                $builde1->select('*');
-               $builde1->where('model', $j); 
+               $builde1->like('model', $j); 
                $builde1->update($datas);
                return redirect()->to(site_url('/verify'));
     
@@ -4244,7 +4252,7 @@ public function printbarcodwi($id)
             elseif($m == 'warranty'){
                 $build = $db->table('warrantyin');
                 $build->select('*');
-                $build->where('model', $j); 
+                $build->like('model', $j); 
                 $data = $build->get()->getResultArray();
                 foreach($data as $d){
                  if(!$dataa){
@@ -4253,7 +4261,7 @@ public function printbarcodwi($id)
                }
                $builde1 = $db->table('verify');
                $builde1->select('*');
-               $builde1->where('model', $j); 
+               $builde1->like('model', $j); 
                $builde1->update($dataw);
                return redirect()->to(site_url('/verify'));
             }
@@ -4261,7 +4269,7 @@ public function printbarcodwi($id)
             elseif($m == 'warrantyout'){
                 $build = $db->table('warrantyout');
                 $build->select('*');
-                $build->where('model', $j); 
+                $build->like('model', $j); 
                 $data = $build->get()->getResultArray();
                 foreach($data as $d){
                  if(!$dataa){
@@ -4270,7 +4278,7 @@ public function printbarcodwi($id)
                }
                $builde1 = $db->table('verify');
                $builde1->select('*');
-               $builde1->where('model', $j); 
+               $builde1->like('model', $j); 
                $builde1->update($datawo);
                return redirect()->to(site_url('/verify'));
     
@@ -4279,12 +4287,12 @@ public function printbarcodwi($id)
             elseif($m == 'debit'){
                 $build = $db->table('debit');
                 $build->select('*');
-                $build->where('model', $j); 
+                $build->like('model', $j); 
                 $data = $build->get()->getResultArray();
                 foreach($data as $d){
                  $builde = $db->table('verify');
                  $builde->select('*');
-                 $builde->where('model', $j); 
+                 $builde->like('model', $j); 
                  $dataa = $builde->get()->getresultArray();
                  if(!$dataa){
                      $builde->insert($d);
@@ -4292,7 +4300,7 @@ public function printbarcodwi($id)
                }
                $builde1 = $db->table('verify');
                $builde1->select('*');
-               $builde1->where('model', $j); 
+               $builde1->like('model', $j); 
                $builde1->update($datad);
                return redirect()->to(site_url('/verify'));
             }
@@ -4300,7 +4308,7 @@ public function printbarcodwi($id)
             elseif($m == 'credit'){
                 $build = $db->table('credit');
                 $build->select('*');
-                $build->where('model', $j); 
+                $build->like('model', $j); 
                 $data = $build->get()->getResultArray();
                 foreach($data as $d){
                  if(!$dataa){
@@ -4309,7 +4317,7 @@ public function printbarcodwi($id)
                }
                $builde1 = $db->table('verify');
                $builde1->select('*');
-               $builde1->where('model', $j); 
+               $builde1->like('model', $j); 
                $builde1->update($datac);
                return redirect()->to(site_url('/verify'));
     
@@ -4318,7 +4326,7 @@ public function printbarcodwi($id)
             elseif($m == 'faultyin'){
                 $build = $db->table('faultyin');
                 $build->select('*');
-                $build->where('model', $j); 
+                $build->like('model', $j); 
                 $data = $build->get()->getResultArray();
                 foreach($data as $d){
                  if(!$dataa){
@@ -4327,7 +4335,7 @@ public function printbarcodwi($id)
                }
                $builde1 = $db->table('verify');
                $builde1->select('*');
-               $builde1->where('model', $j); 
+               $builde1->like('model', $j); 
                $builde1->update($dataf);
                return redirect()->to(site_url('/verify'));
     
@@ -4336,7 +4344,7 @@ public function printbarcodwi($id)
             elseif($m == 'faultyout'){
                 $build = $db->table('faultyout');
                 $build->select('*');
-                $build->where('model', $j); 
+                $build->like('model', $j); 
                 $data = $build->get()->getResultArray();
                 foreach($data as $d){
                  if(!$dataa){
@@ -4345,7 +4353,7 @@ public function printbarcodwi($id)
                }
                $builde1 = $db->table('verify');
                $builde1->select('*');
-               $builde1->where('model', $j); 
+               $builde1->like('model', $j); 
                $builde1->update($datafo);
                return redirect()->to(site_url('/verify'));
             }
@@ -4382,78 +4390,110 @@ public function printbarcodwi($id)
         $data['user_data'] = $session->get('designation');
         return view('products/verify', $data);
         }
+
         if($this->request->getVar('replace')){
             $x = $this->request->getVar('replace');
-            $s = session()->get('daara');
+            $s = session()->get('random');
+            
+            $builder111 = $db->table('verify');
+            $builder111->selectMax('id');
+            $datas = $builder111->get()->getResultArray();
+            foreach($datas as $ds):
+                endforeach;
 
-            $builder11 = $db->table('verify');
-            $builder11->select('verify.*')->orderBy('time', 'DESC');
+            $builde11 = $db->table('verify');
+            $builde11->select('random');
+            $builde11->where('id', $ds['id']);
+            $dat11 = $builde11->get()->getResultArray();
 
-             if($this->request->getVar('table') == 'Model'){
+            // echo '<pre>';
+            // print_r($dat11);
+            // exit;
+            $column = $this->request->getVar('column');
+             if($this->request->getVar('column') == 'Model'){
                 $builder = $db->table('verify');
                 $builder->select('*');
-                $builder->where('model' , $s);
+                $builder->where('random' , $s);
                 $builder->update(['model' => $x]);
+            return redirect()->back()->with('status', 'replaced successfully');
+
              }      
-             elseif($this->request->getVar('table') == 'Brand'){
+             elseif($this->request->getVar('column') == 'Brand'){
                 $builder = $db->table('verify');
                 $builder->select('*');
-                $builder->where('brand' , $s);
+                $builder->where('random' , $s);
                 $builder->update(['brand' => $x]);
+            return redirect()->back()->with('status', 'replaced successfully');
+
              }      
-             elseif($this->request->getVar('table') == 'Hdd'){
+             elseif($this->request->getVar('column') == 'Hdd'){
                 $builder = $db->table('verify');
                 $builder->select('*');
-                $builder->where('hdd' , $s);
+                $builder->where('random' , $s);
                 $builder->update(['hdd' => $x]);
+            return redirect()->back()->with('status', 'replaced successfully');
+
              }      
-             elseif($this->request->getVar('table') == 'Speed'){
+             elseif($this->request->getVar('column') == 'Speed'){
                 $builder = $db->table('verify');
                 $builder->select('*');
-                $builder->where('speed' , $s);
+                $builder->where('random' , $s);
                 $builder->update(['speed' => $x]);
+            return redirect()->back()->with('status', 'replaced successfully');
+
              }      
-             elseif($this->request->getVar('table') == 'Price'){
+             elseif($this->request->getVar('column') == 'Price'){
                 $builder = $db->table('verify');
                 $builder->select('*');
-                $builder->where('price' , $s);
+                $builder->where('random' , $s);
                 $builder->update(['price' => $x]);
+            return redirect()->back()->with('status', 'replaced successfully');
+
              }      
-             elseif($this->request->getVar('table') == 'Ram'){
+             elseif($this->request->getVar('column') == 'Ram'){
                 $builder = $db->table('verify');
                 $builder->select('*');
-                $builder->where('ram' , $s);
+                $builder->where('random' , $s);
                 $builder->update(['ram' => $x]);
+            return redirect()->back()->with('status', 'replaced successfully');
+
              }      
-             elseif($this->request->getVar('table') == 'Odd'){
+             elseif($this->request->getVar('column') == 'Odd'){
                 $builder = $db->table('verify');
                 $builder->select('*');
-                $builder->where('odd' , $s);
+                $builder->where('random' , $s);
                 $builder->update(['odd' => $x]);
+            return redirect()->back()->with('status', 'replaced successfully');
+
              }      
-             elseif($this->request->getVar('table') == 'Problem'){
+             elseif($this->request->getVar('column') == 'Problem'){
                 $builder = $db->table('verify');
                 $builder->select('*');
-                $builder->where('problem' , $s);
+                $builder->where('random' , $s);
                 $builder->update(['problem' => $x]);
+            return redirect()->back()->with('status', 'replaced successfully');
+
              }      
-             elseif($this->request->getVar('table') == 'Conditions'){
+             elseif($this->request->getVar('column') == 'Conditions'){
                 $builder = $db->table('verify');
                 $builder->select('*');
-                $builder->where('conditions' , $s);
+                $builder->where('random' , $s);
                 $builder->update(['conditions' => $x]);
+            return redirect()->back()->with('status', 'replaced successfully');
+
              }
-             elseif($this->request->getVar('table') == 'gen'){
+             elseif($this->request->getVar('column') == 'gen'){
                 $builder = $db->table('verify');
                 $builder->select('*');
-                $builder->where('gen' , $s);
+                $builder->where('random' , $s);
                 $builder->update(['gen' => $x]);
+            return redirect()->back()->with('status', 'replaced successfully');
+
              }      
              else{
-                return redirect->back()->with('status', 'No result found!');
+                return redirect()->back()->with('status', 'No result found!');
              }
-            $data['true'] = 0;
-            return redirect()->back()->with('status', 'replaced',$data);
+            return redirect()->back()->with('status', 'replaced successfully');
         }
 
         helper(['form', 'url']);
@@ -6343,9 +6383,9 @@ public function printbarcodwi($id)
        
         endforeach;
 
-        $builder11 = $db->table("masterlist");
-        $builder11->select('masterlist.*');
-        $builder11->where('masterlist.assetid', $d1['assetid']);
+        $builder11 = $db->table("warrantyin");
+        $builder11->select('warrantyin.*');
+        $builder11->where('warrantyin.assetid', $d1['assetid']);
         $data11 = $builder11->get()->getResult();
 
         $db      = \Config\Database::connect();
@@ -7605,8 +7645,6 @@ public function printbarcodwi($id)
             $x = 'AA000',
             'wnote' => 'AA000',
         ];
-
-        
 
          $db      = \Config\Database::connect();
             $increment = $db->table("customer3");
