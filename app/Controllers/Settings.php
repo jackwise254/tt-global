@@ -2901,12 +2901,16 @@ $builder->where('warrantyin.conditions = "New" AND type="Lcd"' );
  $builder->orLike('type', $q);
 
  $data['user_data'] = $session->get('designation');
- $data['Rlaptop'] = $builder->get()->getResult();
+ $data['Rdesktop'] = $builder->get()->getResult();
+
+ 
  return view('/warranty/nlcd', $data);
-    
+ 
  } elseif(!$this->request->getGet('q')) {
+  
   $data['user_data'] = $session->get('designation');
-  $data['Rlaptop'] = $builder->get()->getResult();
+  $data['Rdesktop'] = $builder->get()->getResult();
+ 
   return view('/warranty/nlcd', $data);
  }
 
@@ -3152,12 +3156,12 @@ public function ulcdw()
      $builder->orLike('type', $q);
 
      $data['user_data'] = $session->get('designation');
-     $data['Rlaptop'] = $builder->get()->getResult();
+     $data['Rdesktop'] = $builder->get()->getResult();
      return view('/warranty/rlcd', $data);
         
      } elseif(!$this->request->getGet('q')) {
       $data['user_data'] = $session->get('designation');
-      $data['Rlaptop'] = $builder->get()->getResult();
+      $data['Rdesktop'] = $builder->get()->getResult();
       return view('/warranty/rlcd', $data);
      }
 

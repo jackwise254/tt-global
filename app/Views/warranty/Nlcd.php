@@ -74,7 +74,9 @@ endif;
                             <tr>
                             <td class="">  
                               <div class="btn-group" role="group" aria-label="Basic example">
-                              <a href="<?php echo base_url('ProductsCrud/singleProduct/'.$user->id);?>" class='px-2'>[Edit]</a>
+                              <?php if($user_data == 'admin'):  ?>
+                                <a href="<?php echo base_url('ProductsCrud/singleProduct/'.$user->id);?>" class='px-2'>[Edit]</a>
+                               <?php endif; ?>
                               <a href="#myModal" class="trigger-btn" data-toggle="modal" class="pr-2">[del]</a>
                               <a href="<?= base_url('ProductsCrud/printbarcod/'.$user->assetid) ?>" class="px-2">[barcode]</a> 
                               <a href="<?= base_url('ProductsCrud/printbarcode2/'.$user->del ) ?>" class="px-2">[barcode2]</a> 

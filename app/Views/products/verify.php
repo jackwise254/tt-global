@@ -18,8 +18,8 @@ endif;
       <form name="test" class=" mt-4 pt-5" action="<?php echo  base_url('ProductsCrud/sverify'); ?>" method="POST">
       <div class="col-10">
          <input type="text" class="col-2 me-2 rounded-pill" id="serialno" name="serialno" placeholder="serial no." autofocus>
-         <select class="col-2 me-2 rounded-pill" id="sort-item" name='table' type="text" placeholder="serial no." required>
-              <option value='All'>All</option>
+         <select class="col-2 me-2 rounded-pill" id="sort-item" name='table' type="text"  required>
+              <option selected value='All'>All</option>
               <option value='Stockin'>Stock in</option>
               <option value='stockout'>Stock out</option>
               <option value='faulty'>Faulty in</option>
@@ -37,51 +37,32 @@ endif;
         </form>
           <form>
 
-        
-
-            <div class=" float-end">
-              <?php if($true == 0): ?>
+          <div class=" float-end">
+              <?php if(!$count_verify): ?>
                   <!-- filter design -->
               <div class="container">
                   <div class="row searchFilter" >
                     <div class="col-sm-12" >
                       <div class="input-group" >
                       <div class="input-group-btn" >
-                      <input type="text" class="col-3 me-2 rounded-pill" id="serialno" name="find" placeholder="search." autofocus>
                       <input type="text" class="col-3 me-2 rounded-pill" id="model" name="model" placeholder="model." autofocus>
-                        <button type="button" class="btn btn-outline-success col-3 dropdown-toggle btn-sm rounded-pill dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><span class="label-icon" >Table</span> <span class="caret" required>&nbsp;</span></button>
-                          <div class="dropdown-menu dropdown-menu-right" >
-                            <ul class="category_filters" >
-                            <li >
-                              <input class="cat_type category-input" data-label="All" id="all" value="stockin" name="table" type="radio" ><label for="all" >Stock IN</label>
-                              </li>
-                              <li >
-                              <input class="cat_type category-input" data-label="All" id="all" value="stockout" name="table" type="radio" ><label for="all" >Stock out</label>
-                              </li>
-                              <li >
-                              <input class="cat_type category-input" data-label="All" id="all" value="faulty" name="table" type="radio" ><label for="all" >Faulty In</label>
-                              </li>
-                              <li >
-                              <input type="radio" name="table" id="Design" value="faultyout" ><label class="category-label" for="Design" >Faulty out</label>
-                              </li>
-                              <li >
-                              <input type="radio" name="table" id="Marketing" value="warranty" ><label class="category-label" for="Marketing" >Warranty In</label>
-                              </li>
-                              <li >
-                              <input type="radio" name="table" id="Programming" value="warrantyout" ><label class="category-label" for="Programming" >Warranty Out</label>
-                              </li>
-                              <li >
-                              <input type="radio" name="table" id="Sales" value="credit" ><label class="category-label" for="Sales" >Credit</label>
-                              </li>
-                              <li >
-                              <input type="radio" name="table" id="Support" value="debit" ><label class="category-label" for="Support" >Debit</label>
-                              </li>
-                            </ul>
-                          </div>
+                      <input type="text" class="col-3 me-2 rounded-pill" id="serialno" name="find" placeholder="search." autofocus>
+                      <select class="col-2 me-2 rounded-pill" id="sort-item" name='table' type="text" placeholder="serial no." required>
 
-                          <button type ="submit" class="btn btn-sm btn-outline-success rounded-pill bi bi-search" id="myBtn" ></button>
-                          <?php elseif($true == 1): ?>
-                            <select class="col-4 me-2 rounded-pill" id="sort-item" name='table' type="text" placeholder="." required>
+                        <option  value='All'>All</option>
+                        <option selected value='Stockin'>Stock in</option>
+                        <option value='stockout'>Stock out</option>
+                        <option value='faulty'>Faulty in</option>
+                        <option value='faultyout'>Faulty Out</option>
+                        <option value='warranty'>Warranty in</option>
+                        <option value='warrantyout'>Warranty Out</option>
+                        <option value='credit'>Credit</option>
+                        <optionm value='debit'>Debit</option>
+                      </select>
+                          <button type ="submit" class="btn btn-sm btn-outline-success rounded-pill bi bi-search col-1" id="myBtn" ></button>
+                          <?php elseif($count_verify && $user_data == 'admin' ): ?>
+                            <input type="text" class="col-3 me-2 rounded-pill" id="serialno" name="replace" placeholder="Replace." autofocus>
+                            <select class="col-3 me-2 rounded-pill" id="sort-item" name='column' type="text" placeholder="." required>
                               <option value='Conditions'>Conditions</option>
                               <option value='Model'>Model</option>
                               <option value='gen'>Generation</option>
@@ -93,7 +74,6 @@ endif;
                               <option value='Odd'>Odd</option>
                               <optionm value='Problem'>Problem</option>
                             </select>
-                            <input type="text" class="col-4 me-2 rounded-pill" id="serialno" name="replace" placeholder="Replace." autofocus>
                             <button type ="submit" class="btn btn-sm btn-outline-primary rounded-pill" id="myBtn" >Replace</button>
                             <?php endif; ?>
                             <button type="button" class="btn btn-outline-secondary rounded-pill btn-sm position-relative">
@@ -105,6 +85,8 @@ endif;
                             </span>
                                   <?php endif; ?>
                             </button>
+                         <a href="<?php echo site_url('clear') ?>" class=" btn btn-outline-danger bi bi-trash-fill rounded-pill  btn-sm mt-1">Clear</a>
+
                       </div>
 
                         </div>
@@ -313,9 +295,7 @@ endif;
 </style>
   
    </div>
-
   </div>
-
 
         <?php foreach($items as $user): ?>
           <input class="form-control my-3 d-none" id="barcodeValue" value="<?= $user['random']; ?>" name="random">
@@ -332,16 +312,8 @@ endif;
   <a href="<?= base_url('ProductsCrud/printbarcodver/') ?>" class="btn   btn-outline-secondary btn-sm mt-1">barcode</a> 
   <a href="<?= base_url('ProductsCrud/printbarcode2ver/' ) ?>" class="btn    btn-outline-success btn-sm mt-1">barcode2</a> 
   <a href="<?= site_url('/verify-create' ) ?>" class="btn  btn-outline-secondary  btn-sm mt-1">Previous Summary</a>
-  
   <a href="<?php echo site_url('clear') ?>" class=" btn btn-outline-danger bi bi-trash-fill  btn-sm mt-1">Clear</a>
 <?php endif; ?>
-
-    
-
-    
-
-
-
 
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
