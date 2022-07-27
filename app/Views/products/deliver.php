@@ -18,28 +18,37 @@ endif;
   <h4 class="text-center mb-1"> <u>Delivery Note</u></h4>
     <div class="col-6">
           <form name="test" class="col-10 " action="<?php echo  base_url('ProductsCrud/dsub'); ?>" method="POST">
-            <a href="<?php echo site_url('delivery-create') ?>" class="btn btn-dark btn-sm bi bi-chevron-left">back</a>
-            <label >Customer</label>
-            <select class="form-select form-control w-25 d-inline"  name="username" >
-                <option selected></option>
+            <a href="<?php echo site_url('delivery-create') ?>" class="btn btn-outline-dark rounded-pill btn-sm bi bi-chevron-left">back</a>
+            <!-- <label >Customer</label> -->
+            <select class="p-1 rounded-pill col-3 "  name="username" >
+                <option selected>Customer</option>
                     <?php foreach($customers as $user): ?>
                     <option value="<?php echo $user->username; ?>"><?php echo $user->username; ?></option>
                     <?php endforeach; ?>
                 </select>
                 <div class="w-25 d-inline">
             <label class=""></label>
-                <input type="text" class=" w-25 d-inline " name="deliver" placeholder="Invoice No:" required>
+                <input type="text" class=" col-3 rounded-pill " name="deliver" placeholder="Invoice No:" required>
             </div>
-            <button type ="submit" class="btn btn-light" id="myBtn1" onchange="this.form.submit()">Submit</button>
+            <button type ="submit" class="btn btn-outline-success btn-sm rounded-pill" id="myBtn1" onchange="this.form.submit()">Submit</button>
         </form>
         </div>
         <div class="col-md-6">
         <form name="test" class="col-7 " action="<?php echo  base_url('ProductsCrud/delvsub'); ?>" method="POST">
-        <button type="button" class="btn btn-primary px-2 float-end btn-sm" data-toggle="modal" data-target="#myModal">Manual</button>
+        <button type="button" class="btn btn-primary px-2 float-end btn-sm d-none" data-toggle="modal" data-target="#myModal">Manual</button>
         <!-- <a href="<?php echo base_url('ProductsCrud/manual') ?>" class="btn btn-success btn-sm d-none float-end">Manual</a> -->
-        <a href="<?php echo  base_url('ProductsCrud/delvclear'); ?>" class=" btn btn-danger bi bi-trash-fill float-end btn-sm">Clear</a>
-            <label class="label">Serial no.</label>
-            <input type="text" class="col-4 " id="serialno" name="serialno" autofocus required>
+        <a href="<?php echo  base_url('ProductsCrud/delvclear'); ?>" class=" btn btn-outline-danger px-2 rounded-pill bi bi-trash-fill float-end btn-sm">Clear</a>
+            <!-- <label class="label">Serial no.</label> -->
+            <input type="text" class="col-6 rounded-pill " id="serialno" name="serialno" placeholder='scan here' autofocus required>
+            <button type="button" class="btn btn-outline-secondary rounded-pill btn-sm position-relative">
+                items
+                <?php if($count_produ): ?>
+                <span class="position-absolute d-flex justify-content-end top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    <?php echo $count_produ; ?>
+                    <span class="visually-hidden">Items</span>
+                </span>
+              <?php endif; ?>
+             </button>
             <button type ="submit" class="d-none" id="myBtn" onchange="this.form.submit()"></button>
             </form>
         </div>
@@ -64,7 +73,6 @@ endif;
 
 <hr/>
 
-<h5 class="d-flex justify-content-end" style='font-family:"Airal", Arial, Arial; font-size:60%'><?php echo $count_produ; ?> Item(s) added </h5>
 <form method="post" id="invoice_create" name="invoice_create" action="<?php echo base_url('ProductsCrud/delvout'); ?>">
 
 <div class="row">
@@ -142,8 +150,8 @@ endif;
         <div class=" form-row">
             <div class="col-sm-12 mx-auto bg-light rounded shadow">
                 <h4 class="text-center" style="font-family: arial, arial, arial; font-size: 14px ">Products details </h4>
-                <input type="date" class=" px-2  " name="datedelivered" style="font-family: arial, arial, arial; font-size: 14px" >
-               
+                
+                <input type="date" class=" col-sm-2  rounded-pill px-1" name="datedelivered" style="font-family: arial, rounded-pill arial, arial; font-size: 14px" >
                 <div class="table-responsive">
                 <?php if($masterlist): ?>
                     <table class="table table-fixed table-striped " style='font-family:"Airal", Arial, Arial; font-size:60%'>
@@ -212,22 +220,37 @@ endif;
                     </table>
                     <?php endif; ?>
                 </div>
-                <?php if($masterlist): ?>
 
                 <div class="row col-sm-12">
-                    <div class= "col-sm-12 p-2">
-                    <input type="text" class=" px-2 col-sm-4  " name="desc1" style="font-family: arial, arial, arial; font-size: 14px" placeholder="decription 1" >
-                    <input type="text" class=" px-2  col-sm-1" name="qty1" style="font-family: arial, arial, arial; font-size: 14px" placeholder="Qty 1">
+                    <div class= "col-sm-6 p-1">
+                    <input type="text" class=" px-2 col-sm-5  rounded-pill" name="desc1" style="font-family: arial, arial, arial; font-size: 14px" placeholder="decription 1" >
+                    <input type="text" class=" px-2  col-sm-2 rounded-pill" name="qty1" style="font-family: arial, arial, arial; font-size: 14px" placeholder="Qty 1">
                     </div>
-                    <div class="col-sm-12 ">
-                    <input type="text" class=" px-2  col-sm-4" name="desc2" style="font-family: arial, arial, arial; font-size: 14px" placeholder="decription 2">
-                   <input type="text" class=" px-2  col-sm-1" name="qty2" style="font-family: arial, arial, arial; font-size: 14px" placeholder="Qty 2">
-        
+                    <div class= "col-sm-6 p-1">
+                    <input type="text" class=" px-2 col-sm-5 rounded-pill " name="desc2" style="font-family: arial, arial, arial; font-size: 14px" placeholder="decription 2" >
+                    <input type="text" class=" px-2  col-sm-2 rounded-pill" name="qty2" style="font-family: arial, arial, arial; font-size: 14px" placeholder="Qty 2">
+                    </div>
+                </div> 
+                <div class="row col-sm-12">
+                    <div class= "col-sm-6 p-1">
+                    <input type="text" class=" px-2 col-sm-5  rounded-pill" name="desc3" style="font-family: arial, arial, arial; font-size: 14px" placeholder="decription 3" >
+                    <input type="text" class=" px-2  col-sm-2 rounded-pill" name="qty3" style="font-family: arial, arial, arial; font-size: 14px" placeholder="Qty 3">
+                    </div>
+                    <div class= "col-sm-6 p-1">
+                    <input type="text" class=" px-2 col-sm-5 rounded-pill " name="desc4" style="font-family: arial, arial, arial; font-size: 14px" placeholder="decription 4" >
+                    <input type="text" class=" px-2  col-sm-2 rounded-pill" name="qty4" style="font-family: arial, arial, arial; font-size: 14px" placeholder="Qty 4">
                     </div>
                 </div>
-                <?php endif; ?>
-
-                
+                <div class="row col-sm-12">
+                    <div class= "col-sm-6 p-1">
+                    <input type="text" class=" px-2 col-sm-5  rounded-pill" name="desc5" style="font-family: arial, arial, arial; font-size: 14px" placeholder="decription 5" >
+                    <input type="text" class="   col-sm-2 rounded-pill" name="qty5" style="font-family: arial, arial, arial; font-size: 14px" placeholder="Qty 5">
+                    </div>
+                    <div class= "col-sm-6 p-1">
+                    <input type="text" class=" px-2 col-sm-5 rounded-pill " name="desc6" style="font-family: arial, arial, arial; font-size: 14px" placeholder="decription 6" >
+                    <input type="text" class=" px-2  col-sm-2 rounded-pill" name="qty6" style="font-family: arial, arial, arial; font-size: 14px" placeholder="Qty 6">
+                    </div>
+                </div>
             </div>
         </div>
     </div>

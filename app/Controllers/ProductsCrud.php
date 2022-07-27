@@ -3195,7 +3195,6 @@ public function printbarcodwi($id)
             'odd' => $this->request->getVar('odd'),
             'comment' => $this->request->getVar('comment'),
             'problem' => $this->request->getVar('problem'),
-
             'status' => $this->request->getVar('status'),
             'customer' => $this->request->getVar('customer'),
         ];
@@ -6002,11 +6001,31 @@ public function printbarcodwi($id)
         ];
         
             $qty1 = 0;
-            $qty1 = 0;
+            $qty2 = 0;
+            $qty3 = 0;
+            $qty4 = 0;
+            $qty5 = 0;
+            $qty6 = 0;
             $desc1 = '';
             $desc2 = '';
+            $desc3 = '';
+            $desc4 = '';
+            $desc5 = '';
+            $desc6 = '';
             if($this->request->getVar('desc1')){$data5['desc1' ] =  $this->request->getVar('desc1');}else{
                 $data5['desc1' ] = 'null';
+            }
+            if($this->request->getVar('desc3')){$data5['desc3' ] =  $this->request->getVar('desc3');}else{
+                $data5['desc3' ] = 'null';
+            }
+            if($this->request->getVar('desc4')){$data5['desc4' ] =  $this->request->getVar('desc4');}else{
+                $data5['desc4' ] = 'null';
+            }
+            if($this->request->getVar('desc5')){$data5['desc5' ] =  $this->request->getVar('desc5');}else{
+                $data5['desc5' ] = 'null';
+            }
+            if($this->request->getVar('desc6')){$data5['desc6' ] =  $this->request->getVar('desc6');}else{
+                $data5['desc6' ] = 'null';
             }
             if($this->request->getVar('desc2')){$data5['desc2' ] =  $this->request->getVar('desc2');}else{
                 $data5['desc2' ] = 'null';
@@ -6016,6 +6035,15 @@ public function printbarcodwi($id)
             }
             if($this->request->getVar('qty2')){ $data5['qty2' ] =  $this->request->getVar('qty2');}else{
                 $data5['qty2' ] = 0;
+            }
+            if($this->request->getVar('qty3')){ $data5['qty3' ] =  $this->request->getVar('qty3');}else{
+                $data5['qty3' ] = 0;
+            }if($this->request->getVar('qty4')){ $data5['qty4' ] =  $this->request->getVar('qty4');}else{
+                $data5['qty4' ] = 0;
+            }if($this->request->getVar('qty5')){ $data5['qty5' ] =  $this->request->getVar('qty5');}else{
+                $data5['qty5' ] = 0;
+            }if($this->request->getVar('qty6')){ $data5['qty6' ] =  $this->request->getVar('qty6');}else{
+                $data5['qty6' ] = 0;
             }
        
         $db      = \Config\Database::connect();
@@ -6163,6 +6191,9 @@ public function printbarcodwi($id)
         $builder10->where('tempinsert.random', $data['random']);
         $builder10->groupBy(['type','odd','comment', 'conditions','gen','model','cpu','speed', 'ram', 'hdd']);
         $data5['items'] = $builder10->get()->getResult();
+        // echo '<pre>';
+        // print_r($data5['items']);
+        // exit;
         $num = $builder10->countAll();
 
         if($num < 1){
@@ -8914,6 +8945,30 @@ public function printbarcodwi($id)
         $data['user_obj'] = $productModel->where('id', $id)->first();
         return view('/products/edit_product', $data);
     }
+
+
+    public function singleProductw($id){
+        $session = \Config\Services::session();
+
+        $db      = \Config\Database::connect();
+
+        $builder1 = $db->table('users');
+        $builder1->select('users.*');
+        $builder1->where('users.designation = "admin" ' );
+        $sdata['hello'] = $builder1->get()->getResultArray();
+        $session->set($sdata);
+        $data['user_data'] = $session->get('designation');
+
+        $builder = $db->table('warrantyin');
+        $builder->select('*');
+        $builder->where('id', $id);
+        $data['user_obj'] = $builder->get()->getResultArray();
+        // echo '<pre>';
+        // print_r($data['user_obj']);
+        // exit;
+        return view('/products/edit_productw', $data);
+    }
+
     public function updatef()
     {
         $db      = \Config\Database::connect();
@@ -8988,8 +9043,49 @@ public function printbarcodwi($id)
         $builder->where('id', $id);
         $builder->update($data);
         // $productModel->update($id, $data);
-        return $this->response->redirect(site_url('/inventory-view'));
+        return $this->response->redirect(site_url('/stock-view'));
     }
+
+
+    public function updatew(){
+        // $productModel = new ProductModel();
+        $id = $this->request->getVar('id');
+        
+        $data = [
+            'conditions' => $this->request->getVar('conditions'),
+            'type' => $this->request->getVar('type'),
+            'assetid' => $this->request->getVar('assetid'),
+            'gen' => $this->request->getVar('gen'),
+            'ram' => $this->request->getVar('ram'),
+            'screen' => $this->request->getVar('screen'),
+            'part' => $this->request->getVar('part'),
+            'serialno' => $this->request->getVar('serialno'),
+            'modelid' => $this->request->getVar('modelid'),
+            'brand' => $this->request->getVar('brand'),
+            'model' => $this->request->getVar('model'),
+            'cpu' => $this->request->getVar('cpu'),
+            'speed' => $this->request->getVar('speed'),
+            'price' => $this->request->getVar('price'),
+            'hdd' => $this->request->getVar('hdd'),
+            'list' => $this->request->getVar('list'),
+            'daterecieved' => $this->request->getVar('daterecieved'),
+            'datedelivered' => $this->request->getVar('datedelivered'),
+            'odd' => $this->request->getVar('odd'),
+            'comment' => $this->request->getVar('comment'),
+            'problem' => $this->request->getVar('problem'),
+            'status' => $this->request->getVar('status'),
+            'customer' => $this->request->getVar('customer'),
+        ];
+
+        $db      = \Config\Database::connect();
+        $builder = $db->table('warrantyin');
+        $builder->select('warrantyin.*');
+        $builder->where('id', $id);
+        $builder->update($data);
+        // $productModel->update($id, $data);
+        return $this->response->redirect(site_url('/warranty'));
+    }
+
     public function delete($id){
         $productModel = new ProductModel();
 

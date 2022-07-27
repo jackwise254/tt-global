@@ -11,12 +11,13 @@ endif;
 
 <body class="bg-light container mt-5 p-5">
 
-   
-    
+    <form method="post" id="update_user" name="update_user" 
+     action="<?= site_url('/update-productsw') ?>">
+
+
+     <input type="hidden" name="id" id="id" value="<?php echo $user_obj[0]['id']; ?>">
+     <br/><br/>
    <div class="container py-3">
- <div class="container-fluid">
- <form method="post" id="update_user" autocomplete="off" name="update_user" 
-                 action="<?= base_url('ProductsCrud/editRCVD/'. $user_obj['del']) ?> ">
 
 <div class="form-row p-5 mt-5">
   	<table class="table table-striped bg-light" style='font-family:"Airal", Arial, Arial; font-size:50% table-layout:fixed cellspacing=1 cellpadding=2 width="25%" border="1"' id="inventory-create mt-6">
@@ -47,31 +48,26 @@ endif;
     </thead>
     <tbody>
     	<tr>
-      
-   				  <input type="text" class="form-control w-5 d-none" name="del" value="<?php echo $user_obj['del']; ?>">
-   				  <input type="text" class="form-control w-5 d-none" name="assetid" value="<?php echo $user_obj['assetid']; ?>">
-
-   				 
-			
+   				<input type="text" class="form-control w-5 d-none" name="assetid" value="<?php echo $user_obj[0]['assetid']; ?>">
     		<td>
-        <select class="form-select"  name="conditions" value="<?php echo $user_obj['conditions']; ?>">
-          <option selected value="<?php echo $user_obj['conditions']; ?>"> <?php echo $user_obj['conditions']; ?></option>
+        <select class="form-select"  name="conditions" value="<?php echo $user_obj[0]['conditions']; ?>">
+          <option selected value="<?php echo $user_obj[0]['conditions']; ?>"> <?php echo $user_obj[0]['conditions']; ?></option>
           <option value="New">New</option>
           <option value="Used">Used</option>
           <option value="Refurb">Refurb</option>
         </select>
     		</td>
     		<td>
-   				  <input type="text" class="form-control w-5" name="list" value="<?php echo $user_obj['list']; ?>">
+   				  <input type="text" class="form-control w-5" name="list" value="<?php echo $user_obj[0]['list']; ?>">
    				 
 			</td>
       <td>
-   				  <input type="text" class="form-control w-5" name="brand" value="<?php echo $user_obj['brand']; ?>">
+   				  <input type="text" class="form-control w-5" name="brand" value="<?php echo $user_obj[0]['brand']; ?>">
    				 
 			</td>
     		<td>
-        <select class="form-select" name="type" value="<?php echo $user_obj['type']; ?>">
-          <option selected value="<?php echo $user_obj['type']; ?>"> <?php echo $user_obj['type']; ?></option>
+        <select class="form-select" name="type" value="<?php echo $user_obj[0]['type']; ?>">
+          <option selected value="<?php echo $user_obj[0]['type']; ?>"><?php echo $user_obj[0]['type']; ?></option>
           <option value="laptop">Laptop</option>
           <option value="desktop">Desktop</option>
           <option value="allinone">All in one</option>
@@ -81,8 +77,8 @@ endif;
         </select>
     		</td>
     		<td>
-        <select class="form-select" name="gen" value="<?php echo $user_obj['gen']; ?>">
-          <option selected value="<?php echo $user_obj['gen']; ?>"> <?php echo $user_obj['gen']; ?></option>
+        <select class="form-select" name="gen" value="<?php echo $user_obj[0]['gen']; ?>">
+          <option selected value="<?php echo $user_obj[0]['gen']; ?>"><?php echo $user_obj[0]['gen']; ?></option>
           <option value="8th">8 th</option>
           <option value="9th">9 th</option>
           <option value="10th">10 th</option>
@@ -90,36 +86,36 @@ endif;
         </select>
     		</td>
         <td>
-   				  <input type="text" class="form-control" name="part" value="<?php echo $user_obj['part']; ?>">
+   				  <input type="text" class="form-control" name="part" value="<?php echo $user_obj[0]['part']; ?>">
    				 
 			</td>
     		<td>
-    			<input type="text" class="form-control" name="serialno" value="<?php echo $user_obj['serialno']; ?>">
+    			<input type="text" class="form-control" name="serialno" value="<?php echo $user_obj[0]['serialno']; ?>">
     		</td>
     		<td>
-   				  <input type="text" class="form-control" name="modelid" value="<?php echo $user_obj['modelid']; ?>">
+   				  <input type="text" class="form-control" name="modelid" value="<?php echo $user_obj[0]['modelid']; ?>">
    				 
 			</td>
     		<td>
-    			<input type="text" class="form-control" name="model" value="<?php echo $user_obj['model']; ?>">
+    			<input type="text" class="form-control" name="model" value="<?php echo $user_obj[0]['model']; ?>">
     		</td>
     		<td>
-    			<input type="text" class="form-control" name="cpu" value="<?php echo $user_obj['cpu']; ?>">
+    			<input type="text" class="form-control" name="cpu" value="<?php echo $user_obj[0]['cpu']; ?>">
     		</td>
         <td>
-   				  <input type="text" class="form-control" name="speed" value="<?php echo $user_obj['speed']; ?>">
+   				  <input type="text" class="form-control" name="speed" value="<?php echo $user_obj[0]['speed']; ?>">
    				 
 			</td>
     		<td>
-    			<input type="text" class="form-control" name="ram" value="<?php echo $user_obj['ram']; ?>">
+    			<input type="text" class="form-control" name="ram" value="<?php echo $user_obj[0]['ram']; ?>">
     		</td>
     		<td>
-   				  <input type="text" class="form-control" name="hdd" value="<?php echo $user_obj['hdd']; ?>">
+   				  <input type="text" class="form-control" name="hdd" value="<?php echo $user_obj[0]['hdd']; ?>">
    				 
 			</td>
     		<td>
-        <select class="form-select"  name="screen" value="<?php echo $user_obj['screen']; ?>">
-          <option selected value="<?php echo $user_obj['screen']; ?>"><?php echo $user_obj['screen']; ?> </option>
+        <select class="form-select"  name="screen" value="<?php echo $user_obj[0]['screen']; ?>">
+          <option selected value="<?php echo $user_obj[0]['screen']; ?>"><?php echo $user_obj[0]['screen']; ?> </option>
           <option value="10">10'</option>
           <option value="11">11'</option>
           <option value="14">14'</option>
@@ -127,31 +123,29 @@ endif;
         </select>
     		</td>
     		<td>
-        <select class="form-select"  name="odd" value="<?php echo $user_obj['odd']; ?>">
-          <option selected value="<?php echo $user_obj['odd']; ?>"> <?php echo $user_obj['odd']; ?> </option>
+        <select class="form-select"  name="odd" value="<?php echo $user_obj[0]['odd']; ?>">
+          <option selected value="<?php echo $user_obj[0]['odd']; ?>"> <?php echo $user_obj[0]['odd']; ?> </option>
           <option value="yes">No</option>
           <option value="no">Yes</option>
         </select>
     		</td>
         <td>
-   				  <input type="text" class="form-control" name="comment" value="<?php echo $user_obj['comment']; ?>">
+   				  <input type="text" class="form-control" name="comment" value="<?php echo $user_obj[0]['comment']; ?>">
+   				 
+			</td>
+      <td>
+   				  <input type="text" class="form-control" name="problem" value="<?php echo $user_obj[0]['problem']; ?>">
    				 
 			</td>
     		<td>
-    			<input type="text" class="form-control" name="price" value="<?php echo $user_obj['price']; ?>">
+    			<input type="number" class="form-control" name="price" value="<?php echo $user_obj[0]['price']; ?>">
     		</td>
     	
     		<td>
-    			<input type="text" class="form-control" name="customer" value="<?php echo $user_obj['customer']; ?>">
+    			<input type="text" class="form-control" name="customer" value="<?php echo $user_obj[0]['customer']; ?>">
     		</td>
         <td>
-    			<input type="text" class="form-control" name="problem" value="<?php echo $user_obj['problem']; ?>">
-    		</td>
-        <td>
-    			<input type="text" class="form-control" name="status" value="<?php echo $user_obj['status']; ?>">
-    		</td>
-      
-    	</tr>
+    			<input type="text" class="form-control" name="status" value="<?php echo $user_obj[0]['status']; ?>">
 </tbody>
 </table>
 <div class="form-group mt-3 col-12">
