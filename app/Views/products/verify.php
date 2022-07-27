@@ -18,16 +18,16 @@ endif;
       <form name="test" class=" mt-4 pt-5" action="<?php echo  base_url('ProductsCrud/sverify'); ?>" method="POST">
       <div class="col-10">
          <input type="text" class="col-2 me-2 rounded-pill" id="serialno" name="serialno" placeholder="serial no." autofocus>
-         <select class="col-2 me-2 rounded-pill" id="sort-item" name='table' type="text"  required>
-              <option selected value='All'>All</option>
-              <option value='Stockin'>Stock in</option>
-              <option value='stockout'>Stock out</option>
-              <option value='faulty'>Faulty in</option>
-              <option value='faultyout'>Faulty Out</option>
-              <option value='warranty'>Warranty in</option>
-              <option value='warrantyout'>Warranty Out</option>
-              <option value='credit'>Credit</option>
-              <optionm value='debit'>Debit</option>
+         <select class="col-2 p-1 rounded-pill" id="sort-item" name='table' type="text" placeholder="serial no." required>
+            <option selected value='All'>All</option>
+            <option  value='Stockin'>Stock in</option>
+            <option value='stockout'>Stock out</option>
+            <option value='faulty'>Faulty in</option>
+            <option value='faultyout'>Faulty Out</option>
+            <option value='warranty'>Warranty in</option>
+            <option value='warrantyout'>Warranty Out</option>
+            <option value='credit'>Credit</option>
+            <optionm value='debit'>Debit</option>
           </select>
        </div>
             <button type ="submit" class="d-none" id="myBtn" onchange="this.form.submit()">Submit</button>
@@ -35,8 +35,7 @@ endif;
        <div class="d-flex justify-content-end">
        </div>
         </form>
-          <form>
-
+        <form>
           <div class=" float-end">
               <?php if(!$count_verify): ?>
                   <!-- filter design -->
@@ -45,21 +44,26 @@ endif;
                     <div class="col-sm-12" >
                       <div class="input-group" >
                       <div class="input-group-btn" >
-                      <input type="text" class="col-3 me-2 rounded-pill" id="model" name="model" placeholder="model." autofocus>
-                      <input type="text" class="col-3 me-2 rounded-pill" id="serialno" name="find" placeholder="search." autofocus>
-                      <select class="col-2 me-2 rounded-pill" id="sort-item" name='table' type="text" placeholder="serial no." required>
-
-                        <option  value='All'>All</option>
-                        <option selected value='Stockin'>Stock in</option>
-                        <option value='stockout'>Stock out</option>
-                        <option value='faulty'>Faulty in</option>
-                        <option value='faultyout'>Faulty Out</option>
-                        <option value='warranty'>Warranty in</option>
-                        <option value='warrantyout'>Warranty Out</option>
-                        <option value='credit'>Credit</option>
-                        <optionm value='debit'>Debit</option>
+                      <select class="col-2 p-1 rounded-pill" id="sort-item" name='search' type="text"  required>
+                          <option selected >Category</option>
+                          <?php foreach($type as $t): ?>
+                          <option value='<?php echo $t->type; ?>'><?php echo $t->type; ?></option>
+                          <?php endforeach; ?>
                       </select>
-                          <button type ="submit" class="btn btn-sm btn-outline-success rounded-pill bi bi-search col-1" id="myBtn" ></button>
+                      <input type="text" class="col-2  rounded-pill" id="model" name="model" placeholder="model." autofocus>
+                      <input type="text" class="col-2  rounded-pill" id="serialno" name="find" placeholder="search." autofocus>
+                        <select class="col-2 p-1 rounded-pill" id="sort-item" name='table' type="text" placeholder="serial no." required>
+                          <option  value='All'>All</option>
+                          <option selected value='Stockin'>Stock in</option>
+                          <option value='stockout'>Stock out</option>
+                          <option value='faulty'>Faulty in</option>
+                          <option value='faultyout'>Faulty Out</option>
+                          <option value='warranty'>Warranty in</option>
+                          <option value='warrantyout'>Warranty Out</option>
+                          <option value='credit'>Credit</option>
+                          <optionm value='debit'>Debit</option>
+                        </select>
+                          <button type ="submit" class="btn btn-sm btn-outline-success rounded-pill bi bi-search px-3" id="myBtn" ></button>
                           <?php elseif($count_verify && $user_data == 'admin' ): ?>
                             <input type="text" class="col-3 me-2 rounded-pill" id="serialno" name="replace" placeholder="Replace." autofocus>
                             <select class="col-3 me-2 rounded-pill" id="sort-item" name='column' type="text" placeholder="." required>
