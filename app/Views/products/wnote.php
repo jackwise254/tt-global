@@ -21,10 +21,10 @@ endif;
 <h5 class="text-center mb-1"> <u>Warranty Note</u></h5>
     <div class="col-6">
     <form name="test" class="col-10 " action="<?php echo  base_url('ProductsCrud/warrantysub1'); ?>" method="POST">
-<a href="<?php echo site_url('/warranty-create') ?>" class="btn btn-dark btn-sm bi bi-chevron-left">back</a>
-            <label >Customer</label>
-            <select class="form-select form-control d-inline rounded-pill col-4"  name="username" >
-                <option selected></option>
+      <a href="<?php echo site_url('/warranty-create') ?>" class="btn btn-outline-dark btn-sm rounded-pill bi bi-chevron-left">back</a>
+            <!-- <label >Customer</label> -->
+            <select class="form-select form-control d-inline w-25 rounded-pill btn-sm col-4"  name="username" placeholder='Customer' >
+                <option selected>Customer</option>
                     <?php foreach($customers as $user): ?>
                     <option value="<?php echo $user->username; ?>"><?php echo $user->username; ?></option>
                     <?php endforeach; ?>
@@ -41,11 +41,8 @@ endif;
         <form name="test" class="col-12" action="<?php echo  base_url('ProductsCrud/warrantysub'); ?>" method="POST">
         <a href="<?php echo  base_url('ProductsCrud/warrantyclear'); ?>" class=" btn btn-success d-none  btn-sm">Manual</a>
 
-        <a href="<?php echo  base_url('ProductsCrud/warrantyclear'); ?>" class=" btn btn-danger bi bi-trash-fill float-end btn-sm">Clear</a>
-
-            <!-- <label class="label">Serial no.</label> -->
+        <a href="<?php echo  base_url('ProductsCrud/warrantyclear'); ?>" class=" btn btn-outline-danger rounded-pill col-2 bi bi-trash-fill float-end btn-sm">Clear</a>
             <input type="text" class="col-4 form-control rounded-pill" id="serialno" name="serialno" placeholder='serial no.' autofocus required>
-            
             <button type ="submit" class="d-none" id="myBtn" onchange="this.form.submit()">Submit</button>
         </form>
         </div>
