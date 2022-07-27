@@ -3318,6 +3318,16 @@ public function printbarcodwi($id)
             $builde->orLike('ram', $j); 
             $builde->orLike('odd', $j); 
             $builde->orLike('type', $j); 
+            $builde->orLike('assetid', $j); 
+            $builde->orLike('daterecieved', $j); 
+            $builde->orLike('datedelivered', $j); 
+            $builde->orLike('vendor', $j); 
+            $builde->orLike('customer', $j); 
+            $builde->orLike('price', $j); 
+            $builde->orLike('comment', $j); 
+            $builde->orLike('problem', $j); 
+            $builde->orLike('list', $j); 
+            $builde->orLike('status', $j); 
             $dataa = $builde->get()->getresultArray();
 
             $m = $this->request->getVar('table');
@@ -3354,6 +3364,12 @@ public function printbarcodwi($id)
             $builder122->like('comment', $q);
             $builder122->orLike('model', $model) &&
             $builder122->like('type', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('assetid', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('daterecieved', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('datedelivered', $q);
             $data = $builder122->get()->getResultArray();
             foreach($data as $d){
                 if(!$dataa){
@@ -4405,17 +4421,14 @@ public function printbarcodwi($id)
             $builde11->select('random');
             $builde11->where('id', $ds['id']);
             $dat11 = $builde11->get()->getResultArray();
-
-            // echo '<pre>';
-            // print_r($dat11);
-            // exit;
+            $s = $dat11[0]['random'];
             $column = $this->request->getVar('column');
              if($this->request->getVar('column') == 'Model'){
                 $builder = $db->table('verify');
                 $builder->select('*');
                 $builder->where('random' , $s);
                 $builder->update(['model' => $x]);
-            return redirect()->back()->with('status', 'replaced successfully');
+                return redirect()->back()->with('status', 'replaced successfully');
 
              }      
              elseif($this->request->getVar('column') == 'Brand'){
@@ -4423,7 +4436,7 @@ public function printbarcodwi($id)
                 $builder->select('*');
                 $builder->where('random' , $s);
                 $builder->update(['brand' => $x]);
-            return redirect()->back()->with('status', 'replaced successfully');
+                return redirect()->back()->with('status', 'replaced successfully');
 
              }      
              elseif($this->request->getVar('column') == 'Hdd'){
@@ -4431,7 +4444,7 @@ public function printbarcodwi($id)
                 $builder->select('*');
                 $builder->where('random' , $s);
                 $builder->update(['hdd' => $x]);
-            return redirect()->back()->with('status', 'replaced successfully');
+                return redirect()->back()->with('status', 'replaced successfully');
 
              }      
              elseif($this->request->getVar('column') == 'Speed'){
@@ -4439,7 +4452,7 @@ public function printbarcodwi($id)
                 $builder->select('*');
                 $builder->where('random' , $s);
                 $builder->update(['speed' => $x]);
-            return redirect()->back()->with('status', 'replaced successfully');
+                return redirect()->back()->with('status', 'replaced successfully');
 
              }      
              elseif($this->request->getVar('column') == 'Price'){
@@ -4447,7 +4460,7 @@ public function printbarcodwi($id)
                 $builder->select('*');
                 $builder->where('random' , $s);
                 $builder->update(['price' => $x]);
-            return redirect()->back()->with('status', 'replaced successfully');
+                return redirect()->back()->with('status', 'replaced successfully');
 
              }      
              elseif($this->request->getVar('column') == 'Ram'){
@@ -4455,7 +4468,7 @@ public function printbarcodwi($id)
                 $builder->select('*');
                 $builder->where('random' , $s);
                 $builder->update(['ram' => $x]);
-            return redirect()->back()->with('status', 'replaced successfully');
+                return redirect()->back()->with('status', 'replaced successfully');
 
              }      
              elseif($this->request->getVar('column') == 'Odd'){
@@ -4463,7 +4476,7 @@ public function printbarcodwi($id)
                 $builder->select('*');
                 $builder->where('random' , $s);
                 $builder->update(['odd' => $x]);
-            return redirect()->back()->with('status', 'replaced successfully');
+                return redirect()->back()->with('status', 'replaced successfully');
 
              }      
              elseif($this->request->getVar('column') == 'Problem'){
@@ -4471,7 +4484,7 @@ public function printbarcodwi($id)
                 $builder->select('*');
                 $builder->where('random' , $s);
                 $builder->update(['problem' => $x]);
-            return redirect()->back()->with('status', 'replaced successfully');
+                return redirect()->back()->with('status', 'replaced successfully');
 
              }      
              elseif($this->request->getVar('column') == 'Conditions'){
@@ -4479,7 +4492,7 @@ public function printbarcodwi($id)
                 $builder->select('*');
                 $builder->where('random' , $s);
                 $builder->update(['conditions' => $x]);
-            return redirect()->back()->with('status', 'replaced successfully');
+                return redirect()->back()->with('status', 'replaced successfully');
 
              }
              elseif($this->request->getVar('column') == 'gen'){
@@ -4487,7 +4500,7 @@ public function printbarcodwi($id)
                 $builder->select('*');
                 $builder->where('random' , $s);
                 $builder->update(['gen' => $x]);
-            return redirect()->back()->with('status', 'replaced successfully');
+                return redirect()->back()->with('status', 'replaced successfully');
 
              }      
              else{

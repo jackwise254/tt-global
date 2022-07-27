@@ -64,7 +64,12 @@ endif;
       <td class="pt-3-half">
 
       <a href="<?= base_url('Settings/fetchwarrantyspre/'. $user->ref) ?>" class=" btn btn-success bi bi-file-earmark-spreadsheet btn-sm"></a>
-        <a href="<?= base_url('ProductsCrud/fetchwarranty/'. $user->ref) ?>" class="btn btn-light btn-sm bi bi-eye"></a>
+          <?php if($user_data == 'warranty' && $datereceived == date("Y-m-d")): ?>
+            <a href="<?= base_url('ProductsCrud/fetchwarranty/'. $user->ref) ?>" class="btn btn-light btn-sm bi bi-eye"></a>
+             <?php elseif($user_data != 'warranty'): ?>
+                  <a href="<?= base_url('ProductsCrud/fetchwarranty/'. $user->ref) ?>" class="btn btn-light btn-sm bi bi-eye"></a>
+                <?php else:  ?>
+              <?php endif; ?>
         <a href="<?= base_url('ProductsCrud/editwarranty1/'. $user->ref) ?>" class="btn btn-warning btn-sm bi bi-pencil-square"></a>
         <?php if($user_data == 'admin'): ?>
     <a href="<?= base_url('ProductsCrud/deletewarranty/'. $user->ref) ?>" class="trigger-btn btn btn-danger bi bi-trash-fill btn-sm" ></a>

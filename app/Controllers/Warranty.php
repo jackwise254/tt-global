@@ -184,7 +184,7 @@ class Warranty extends Controller
             'list' => $this->request->getVar('list'),
             'odd' => $this->request->getVar('odd'),
             'comment' => $this->request->getVar('comment'),
-            'problem' => $this->request->getVar('comment'),
+            'problem' => $this->request->getVar('problem'),
             'customer' => $this->request->getVar('customer'),
         ];
 
