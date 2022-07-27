@@ -63,7 +63,7 @@ endif;
    				 
 			</td>
       <td>
-   				  <input type="text" class="form-control w-5" name="brand" value="<?php echo $user_obj['list']; ?>">
+   				  <input type="text" class="form-control w-5" name="brand" value="<?php echo $user_obj['brand']; ?>">
    				 
 			</td>
     		<td>
@@ -98,7 +98,7 @@ endif;
    				 
 			</td>
     		<td>
-    			<input type="text" class="form-control" name="model" value="<?php echo $user_obj['modelid']; ?>">
+    			<input type="text" class="form-control" name="model" value="<?php echo $user_obj['model']; ?>">
     		</td>
     		<td>
     			<input type="text" class="form-control" name="cpu" value="<?php echo $user_obj['cpu']; ?>">

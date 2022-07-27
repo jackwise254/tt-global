@@ -64,7 +64,7 @@ class Warranty extends Controller
             
             $db      = \Config\Database::connect();
             $builder = $db->table('customer');
-            $builder->select('customer.*');
+            $builder->select('customer.*')->orderBy('username', 'ASC');
              $cart4['user_data'] = $session->get('designation');
 
             $cart4['customer'] = $builder->get()->getResult();
@@ -83,7 +83,7 @@ class Warranty extends Controller
               $cart4['all'] = $cart;
               $db      = \Config\Database::connect();
                 $builder = $db->table('customer');
-                $builder->select('customer.*');
+                $builder->select('customer.*')->orderBy('username', 'ASC');
                  $cart4['user_data'] = $session->get('designation');
 
                 $cart4['customer'] = $builder->get()->getResult();
