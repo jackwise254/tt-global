@@ -73,10 +73,6 @@ class Login extends Controller
                         return redirect()->to('/warranty');
                     }
 
-                    elseif($user['designation'] == "verification"){
-                        return redirect()->to('/scanning');
-                    }
-
                     elseif($user['designation'] == "warranty"){
                         return redirect()->to('/warranty');
                     }

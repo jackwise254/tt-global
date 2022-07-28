@@ -30,7 +30,6 @@
                             <option value="technician">Technician</option>
                             <option value="warranty">Warranty</option>
                             <option value="superadmin">Super Admin</option>
-                            <option value="verification">Verification manager</option>
                         </select>
 
                     <!-- <input type="text" name="designation" placeholder="Role"  class="form-control"> -->

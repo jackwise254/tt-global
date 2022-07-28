@@ -15,103 +15,38 @@ endif;
 <?php echo $random = rand(1000000, 9999999); ?>
 
 <div class="row container col-12">
-      <form name="test" class=" mt-4 pt-5" action="<?php echo  base_url('ProductsCrud/sverify'); ?>" method="POST">
+   <form name="test" class=" mt-4 pt-5" action="<?php echo  base_url('ProductsCrud/sverify'); ?>" method="POST">
       <div class="col-10">
-         <input type="text" class="col-2 me-2 rounded-pill" id="serialno" name="serialno" placeholder="serial no." autofocus>
-         <select class="col-2 p-1 rounded-pill" id="sort-item" name='table' type="text" placeholder="serial no." required>
-            <option selected value='All'>All</option>
-            <option  value='Stockin'>Stock in</option>
-            <option value='stockout'>Stock out</option>
-            <option value='faulty'>Faulty in</option>
-            <option value='faultyout'>Faulty Out</option>
-            <option value='warranty'>Warranty in</option>
-            <option value='warrantyout'>Warranty Out</option>
-            <option value='credit'>Credit</option>
-            <optionm value='debit'>Debit</option>
+         <input type="text" class="col-3 me-2 rounded-pill" id="serialno" name="serialno" placeholder="serial no." autofocus>
+         <select class="col-3 me-2 rounded-pill" id="sort-item" name='table' type="text" placeholder="serial no." required>
+              <option value='All'>All</option>
+              <option value='Stockin'>Stock in</option>
+              <option value='stockout'>Stock out</option>
+              <option value='faulty'>Faulty in</option>
+              <option value='faultyout'>Faulty Out</option>
+              <option value='warranty'>Warranty in</option>
+              <option value='warrantyout'>Warranty Out</option>
+              <option value='credit'>Credit</option>
+              <optionm value='debit'>Debit</option>
           </select>
        </div>
             <button type ="submit" class="d-none" id="myBtn" onchange="this.form.submit()">Submit</button>
             <input class="form-control my-3 d-none" value="<?= $random; ?>" name="random">
        <div class="d-flex justify-content-end">
+
+       <button type="button" class="btn btn-outline-secondary rounded-pill btn-sm position-relative">
+        items
+                      <?php if($count_verify): ?>
+                      <span class="position-absolute d-flex justify-content-end top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                          <?php echo $count_verify; ?>
+                          <span class="visually-hidden">Items</span>
+                      </span>
+                      <?php endif; ?>
+              </button>
+
+            
        </div>
         </form>
-        <form>
-          <div class=" float-end">
-              <?php if(!$count_verify): ?>
-                  <!-- filter design -->
-              <div class="container">
-                  <div class="row searchFilter" >
-                    <div class="col-sm-12" >
-                      <div class="input-group" >
-                      <div class="input-group-btn" >
-                      <select class="col-2 p-1 rounded-pill" id="sort-item" name='search' type="text"  >
-                          <?php foreach($type as $t): ?>
-                          <option></option>
-                          <option value='<?php echo $t->type; ?>'><?php echo $t->type; ?></option>
-                          <?php endforeach; ?>
-                      </select>
-                      <input type="text" class="col-2  rounded-pill" id="model" name="model" placeholder="model." autofocus>
-                      <input type="text" class="col-2  rounded-pill" id="serialno" name="find" placeholder="search." autofocus>
-                        <select class="col-2 p-1 rounded-pill" id="sort-item" name='table' type="text" placeholder="serial no." required>
-                          <option  value='All'>All</option>
-                          <option selected value='Stockin'>Stock in</option>
-                          <option value='stockout'>Stock out</option>
-                          <option value='faulty'>Faulty in</option>
-                          <option value='faultyout'>Faulty Out</option>
-                          <option value='warranty'>Warranty in</option>
-                          <option value='warrantyout'>Warranty Out</option>
-                          <option value='credit'>Credit</option>
-                          <optionm value='debit'>Debit</option>
-                        </select>
-                          <button type ="submit" class="btn btn-sm btn-outline-success rounded-pill bi bi-search px-3" id="myBtn" ></button>
-                          <?php elseif($count_verify && $user_data == 'admin' ): ?>
-                            <input type="text" class="col-3 me-2 rounded-pill" id="serialno" name="replace" placeholder="Replace." autofocus>
-                            <select class="col-3 me-2 rounded-pill" id="sort-item" name='column' type="text" placeholder="." required>
-                              <option value='Conditions'>Conditions</option>
-                              <option value='Model'>Model</option>
-                              <option value='gen'>Generation</option>
-                              <option value='Brand'>Brand</option>
-                              <option value='Hdd'>Hdd</option>
-                              <option value='Speed'>speed</option>
-                              <option value='Price'>Price</option>
-                              <option value='Ram'>Ram</option>
-                              <option value='Odd'>Odd</option>
-                              <optionm value='Problem'>Problem</option>
-                            </select>
-                            <button type ="submit" class="btn btn-sm btn-outline-primary rounded-pill" id="myBtn" >Replace</button>
-                            <?php endif; ?>
-                            <button type="button" class="btn btn-outline-secondary rounded-pill btn-sm position-relative">
-                            items
-                            <?php if($count_verify): ?>
-                            <span class="position-absolute d-flex justify-content-end top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                <?php echo $count_verify; ?>
-                                <span class="visually-hidden">Items</span>
-                            </span>
-                                  <?php endif; ?>
-                            </button>
-                         <a href="<?php echo site_url('clear') ?>" class=" btn btn-outline-danger bi bi-trash-fill rounded-pill  btn-sm mt-1">Clear</a>
-
-                      </div>
-
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              <!-- end -->
-               
-                <!-- <select class="col-3 me-2 rounded-pill" id="sort-item" name='table' type="text" placeholder="" required>
-                  <option value='stockin'>Stock in</option>
-                  <option value='stockout'>Stock out</option>
-                  <option value='faulty'>Faulty in</option>
-                  <option value='faultyout'>Faulty Out</option>
-                  <option value='warranty'>Warranty in</option>
-                  <option value='warrantyout'>Warranty Out</option>
-                  <option value='credit'>Credit</option>
-                  <optionm value='debit'>Debit</option>
-               </select> -->
-               
-         </form>
        
     </div>
     
@@ -147,12 +82,17 @@ endif;
         echo "<h6 class=' alert alert-success d-flex align-items-center bi flex-shrink-0 me-2' width='10' height='10' role='alert' style='font-family:'Airal', Arial, Arial; font-size:40%'>" . session()->getFlashdata('status') . "</h6>"; 
     }
 ?>
+<!-- <h5 class="d-flex justify-content-end" style='font-family:"Airal", Arial, Arial; font-size:60%'><?php echo $count_verify; ?> Item(s) added </h5> -->
+
+
+
 <form method="post" id="invoice_create" name="invoice_create" action="<?php echo base_url('ProductsCrud/verified'); ?>">
+
 <div class="container-fluid">
         <div class=" form-row">
             <div class="col-sm-12 mx-auto bg-light rounded shadow">
                 <div class="table-responsive">
-                    <table class="table table-fixed table-striped tableditable" style='font-family:"Airal", Arial, Arial; font-size:60%'>
+                    <table class="table table-fixed table-striped " style='font-family:"Airal", Arial, Arial; font-size:60%'>
                         <thead >
                             <tr>
                               <?php if($user_data == 'admin'): ?>
@@ -197,7 +137,7 @@ endif;
                           $datedelivered = substr($user['datedelivered'],0,10);
                           ?>
                         <tbody>
-                            <tr id='someElementID'>
+                            <tr>
                               <?php if($user_data == 'admin'): ?>
 
                             <td class="">  
@@ -213,31 +153,31 @@ endif;
                             </td>
                             <?php endif ?>
                             <td class="col-3"><?=  $user['tbl']; ?></td>
-                            <td class="col-3" ><?=  $user['status']; ?></td>
+                            <td class="col-3"><?=  $user['status']; ?></td>
                             <td class="pt-3-half"><?=  $user['list']; ?></td>
-                            <td class="col-3" ><?=  $user['conditions']; ?></td>
-                            <td class="col-3 " ><?=  $user['assetid']; ?></td>
-                            <td class="col-3" ><?=  $user['type']; ?></td>
-                            <td class="col-3" \><?=  $user['brand']; ?></td>
-                            <td class="col-3" ><?=  $user['gen']; ?></td>
-                            <td class="col-3" ><?=  $user['part']; ?></td>
+                            <td class="col-3"><?=  $user['conditions']; ?></td>
+                            <td class="col-3"><?=  $user['assetid']; ?></td>
+                            <td class="col-3"><?=  $user['type']; ?></td>
+                            <td class="col-3"><?=  $user['brand']; ?></td>
+                            <td class="col-3"><?=  $user['gen']; ?></td>
+                            <td class="col-3"><?=  $user['part']; ?></td>
                             <td class="col-3"><?=  $user['serialno']; ?></td>
                             <td class="col-3"><?=  $user['modelid']; ?></td>
-                            <td class="col-5" ><?=  $user['model']; ?></td>
-                            <td class="col-4 " ><?=  $user['cpu']; ?></td>
-                            <td class="col-3" ><?=  $user['speed']; ?></td>
-                            <td class="col-3" ><?=  $user['ram']; ?></td>
-                            <td class="col-3" ><?=  $user['hdd']; ?></td>
-                            <td class="col-3" ><?=  $user['screen']; ?></td>
-                            <td class="col-3" ><?=  $user['odd']; ?></td>
-                            <td class="col-3" ><?=  $user['comment']; ?></td>
-                            <td class="col-3" ><?=  $user['problem']; ?></td>
+                            <td class="col-5"><?=  $user['model']; ?></td>
+                            <td class="col-4 "><?=  $user['cpu']; ?></td>
+                            <td class="col-3"><?=  $user['speed']; ?></td>
+                            <td class="col-3"><?=  $user['ram']; ?></td>
+                            <td class="col-3"><?=  $user['hdd']; ?></td>
+                            <td class="col-3"><?=  $user['screen']; ?></td>
+                            <td class="col-3"><?=  $user['odd']; ?></td>
+                            <td class="col-3"><?=  $user['comment']; ?></td>
+                            <td class="col-3"><?=  $user['problem']; ?></td>
                             <td class="col-3"><?=  $user['price']; ?></td>
                             <td cclass="col-3"><?=  $datereceived; ?></td>
                             <td cclass="col-3"><?=  $datedelivered; ?></td>
 
-                            <td class="col-3" ><?=  $user['customer']; ?></td>
-                            <td class="col-3" ><?=  $user['vendor']; ?></td>
+                            <td class="col-3"><?=  $user['customer']; ?></td>
+                            <td class="col-3"><?=  $user['vendor']; ?></td>
 
 
                             </tr>
@@ -255,26 +195,7 @@ endif;
         </div>
     </div>
 
-    <script type='text/javascript'>
-      var ignoreClickOnMeElement = document.getElementById('someElementID');
-        document.addEventListener('click', function(event) {
-            var isClickInsideElement = ignoreClickOnMeElement.contains(event.target);
-            if (!isClickInsideElement) {
-                //Do something click is outside specified element
-                console.log('hello, you clicked outsid');
-            }
-        });
-
-        window.onload = function() {
-    var someElementID = sessionStorage.getItem("someElementID");  
-    $('#sort-item').val(someElementID);
-    }
-    $('#sort-item').change(function() { 
-        var selVal = $(this).val();
-        sessionStorage.setItem("someElementID", selVal);
-    });
-
-    </script>
+    <script type='text/javascript'></script>
 </body>
 
  <style type="text/css">
@@ -292,14 +213,13 @@ endif;
   position: sticky; 
 }
 
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-<link href="search-filter.css" rel="stylesheet">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </style>
   
    </div>
+
   </div>
+
 
         <?php foreach($items as $user): ?>
           <input class="form-control my-3 d-none" id="barcodeValue" value="<?= $user['random']; ?>" name="random">
@@ -316,8 +236,16 @@ endif;
   <a href="<?= base_url('ProductsCrud/printbarcodver/') ?>" class="btn   btn-outline-secondary btn-sm mt-1">barcode</a> 
   <a href="<?= base_url('ProductsCrud/printbarcode2ver/' ) ?>" class="btn    btn-outline-success btn-sm mt-1">barcode2</a> 
   <a href="<?= site_url('/verify-create' ) ?>" class="btn  btn-outline-secondary  btn-sm mt-1">Previous Summary</a>
+  
   <a href="<?php echo site_url('clear') ?>" class=" btn btn-outline-danger bi bi-trash-fill  btn-sm mt-1">Clear</a>
 <?php endif; ?>
+
+    
+
+    
+
+
+
 
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
