@@ -45,7 +45,9 @@ endif;
             <th class="text-center px-5">Odd</th>
             <th class="text-center px-5">Comment</th>
             <th class="text-center px-5">Problem</th>
+
             <th class="text-center px-5">Price</th>
+            
             <th class="text-center px-5">Customer</th>
             <th class="text-center px-5">Status</th>
         </tr>
@@ -69,9 +71,8 @@ endif;
    				 
 			</td>
       <td>
-        <select class="form-select"  name="brand" value="<?php echo $obj->brand; ?>">
-          <option selected value="<?php echo $obj->brand; ?>"> <?php echo $obj->brand; ?></option>
-        </select>
+   				  <input type="text" class="form-control w-5" name="brand" value="<?php echo $obj->list; ?>">
+   				 
 			</td>
     		<td>
         <select class="form-select" name="type" value="<?php echo $obj->type; ?>">
@@ -102,9 +103,10 @@ endif;
     		</td>
     		<td>
    				  <input type="text" class="form-control" name="modelid" value="<?php echo $obj->modelid; ?>">
+   				 
 			</td>
     		<td>
-    			<input type="text" class="form-control" name="model" value="<?php echo $obj->model; ?>">
+    			<input type="text" class="form-control" name="model" value="<?php echo $obj->modelid; ?>">
     		</td>
     		<td>
     			<input type="text" class="form-control" name="cpu" value="<?php echo $obj->cpu; ?>">
@@ -138,9 +140,11 @@ endif;
     		</td>
         <td>
    				  <input type="text" class="form-control" name="comment" value="<?php echo $obj->comment; ?>">
+   				 
 			</td>
       <td>
    				  <input type="text" class="form-control" name="problem" value="<?php echo $obj->problem; ?>">
+   				 
 			</td>
     		<td>
     			<input type="number" class="form-control" name="price" value="<?php echo $obj->price; ?>">

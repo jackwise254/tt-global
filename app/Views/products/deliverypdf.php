@@ -157,18 +157,6 @@ if($desc1 != 'null'){$pdf->Cell($with_cell[7],7,$desc1,1,0,'L');}
 if($desc1 != 'null'){$pdf->Cell($with_cell[5],7,$qty1,1,1,'L');}
 if($desc2 != 'null'){$pdf->Cell($with_cell[7],7,$desc2,1,0,'L');}
 if($desc2 != 'null'){$pdf->Cell($with_cell[5],7,$qty2 ,1,1,'L');}
-
-if($desc3 != 'null'){$pdf->Cell($with_cell[7],7,$desc3,1,0,'L');}
-if($desc3 != 'null'){$pdf->Cell($with_cell[5],7,$qty3 ,1,1,'L');}
-
-if($desc4 != 'null'){$pdf->Cell($with_cell[7],7,$desc4,1,0,'L');}
-if($desc4 != 'null'){$pdf->Cell($with_cell[5],7,$qty4 ,1,1,'L');}
-
-if($desc5 != 'null'){$pdf->Cell($with_cell[7],7,$desc5,1,0,'L');}
-if($desc5 != 'null'){$pdf->Cell($with_cell[5],7,$qty5 ,1,1,'L');}
-
-if($desc6 != 'null'){$pdf->Cell($with_cell[7],7,$desc6,1,0,'L');}
-if($desc6 != 'null'){$pdf->Cell($with_cell[5],7,$qty6 ,1,1,'L');}
 $pdf->SetFillColor(193,229,252);
 
 $pdf->Cell($with_cell[6],8,'Total Qty : ',1,0,'L');

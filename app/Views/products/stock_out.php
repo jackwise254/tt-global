@@ -14,15 +14,14 @@ endif;
     $names = $session->get('user_name');
     ?> 
 
-<!-- <section class="content mt-4"> -->
+<section class="content mt-4">
 
-<!-- <div class=" px-5 float end"> -->
+<div class=" px-5 float end">
 
-<!-- <div class='container' style="margin-top: 5rem; border-radius: 1rem"> -->
+<div class='container' style="margin-top: 5rem; border-radius: 1rem">
 
-    <div class="container col-lg-12 px-5">
-  <h5 class="text-center mt-5 pt-4"><u>Stock out</u></h5>
-
+  <h5 class="text-center"><u>Stock out</u></h5>
+    <div class="container ">
     <a href="<?php echo site_url('stock-view') ?>" class="btn btn-outline-success btn-sm bi bi-chevron-left">back</a>
   <a href="<?php echo site_url('delivery-create') ?>" class="btn btn-outline-secondary btn-sm ">Delivery note</a>
   <a href="<?php echo site_url('debit-create') ?>" class="btn btn-outline-success btn-sm ">Debit note</a>
@@ -233,7 +232,7 @@ endif;
 
 
     </div>
-    <div class="row ">
+    <div class="row">
     <?php if($count_Rallinone> 0): ?> 
       
           <div class="col-md-3">
@@ -372,7 +371,7 @@ endif;
 
 
 <!-- extra crads -->
-<div class="row col-lg-12 px-5">
+<div class="row">
          <?php if($count_smartphone > 0): ?> 
       
           <div class="col-md-3">

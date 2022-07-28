@@ -14,13 +14,13 @@ endif;
 <div class="pt-4 mt-5">
   
       <div class="my-3">
-<div class="container mx-auto col-mx-auto col-lg-12 px-4" >
+<div class="container" >
 <h4 class="text-center"><u>Faulty stock</u></h4>
       <a href="<?php echo site_url('tload') ?>" class="btn btn-outline-success bi bi-upload btn-sm ">upload faulty</a>
       <a href="<?php echo base_url('ProductsCrud/previousRCVDf') ?>" class="btn btn-outline-info btn-sm flex m-2">Previous Recieved</a>
       <a href="<?php echo site_url('warranty') ?>" class="btn btn-outline-secondary  btn-sm ">Warranty</a>
 
-    <div class="row">
+    <div class="row ">
 <!-- another  -->
         <?php if($count_produ > 0): ?> 
         <?php if($count_produ > 0): ?> 

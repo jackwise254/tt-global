@@ -30,9 +30,9 @@ endif;
 
 <?php if($desg == 'warranty'): ?>
 <a href="<?php echo site_url('/fualty-stock') ?>" class="btn btn-outline-secondary d-none btn-sm flex m-2">Faulty stock</a>
-<?php elseif($desg == 'manager'): ?>
-<a href="<?php echo site_url('/stock-view') ?>" class="btn btn-outline-secondary btn-sm flex m-2">Back</a>
 <?php else: ?>
+<a href="<?php echo site_url('/fualty-stock') ?>" class="btn btn-outline-secondary btn-sm flex m-2">Faulty stock</a>
+
  <?php endif; ?>
     <div class="row">
     <?php if($count_warrantys > 0): ?> 

@@ -42,7 +42,6 @@ endif;
                             <th scope="col" class="col-3">Screen</th>
                             <th scope="col" class="col-3">Odd</th>
                             <th scope="col" class="col-3">Comment</th>
-                            <th scope="col" class="col-3">Problem</th>
                             <th scope="col" class="col-3">Price</th>
                             <th scope="col" class="col-3">Date_Recieved</th>
                             <th scope="col" class="col-3">Date_Delivered</th>
@@ -60,15 +59,13 @@ endif;
                             <tr>
                             <td class="">  
                               <div class="btn-group" role="group" aria-label="Basic example">
+                        <?php if($user_data == 'admin'): ?>
+                        <a href="<?= base_url('ProductsCrud/deleteRCVDw/'. $l['del']) ?>" class="trigger-btn  mx-2" >[del]</a>
+                        <?php endif; ?>
+                              <a href="<?= base_url('ProductsCrud/multipleRCVDw/'. $l['del']) ?>" class="mx-2">[edit]</a>
                               <a href="<?= base_url('ProductsCrud/printbarcodef/'.$l['del']) ?>" class="mx-2">[barcode]</a> 
                               <a href="<?= base_url('ProductsCrud/printbarcode2wi/'.$l['del']) ?>" class="mx-2">[barcode2]</a> 
                               <a href="<?= base_url('ProductsCrud/printjobwi/'.$l['del']) ?>" class="pr-2">[Job_Card]</a> 
-                              <?php if($user_data == 'admin'): ?>
-                              <a href="<?= base_url('ProductsCrud/deleteRCVDw/'. $l['del']) ?>" class="trigger-btn  mx-2" >[del]</a>
-                                <a href="<?= base_url('ProductsCrud/multipleRCVDw/'. $l['del']) ?>" class="mx-2 ">[edit]</a>
-                                <?php elseif($user_data == 'warranty' && $datereceived == date("Y-m-d")):?>
-                                <a href="<?= base_url('ProductsCrud/multipleRCVDw/'. $l['del']) ?>" class="mx-2 ">[edit]</a>
-                              <?php endif; ?>
                             </div>
                             </td>
                             <td class="pt-3-half"><?=  $l['list']; ?></td>
@@ -89,7 +86,6 @@ endif;
                             <td class="col-3"><?=  $l['screen']; ?></td>
                             <td class="col-3"><?=  $l['odd']; ?></td>
                             <td class="col-3"><?=  $l['comment']; ?></td>
-                            <td class="col-3"><?=  $l['problem']; ?></td>
                             <td class="col-3"><?=  $l['price']; ?></td>
                             <td cclass="col-3"><?=  $datereceived; ?></td>
                             <td cclass="col-3"><?=  $datedelivered; ?></td>

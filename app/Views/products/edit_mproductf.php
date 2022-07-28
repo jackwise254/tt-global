@@ -76,7 +76,7 @@ endif; ?>
    				 
 			</td>
       <td>
-   				  <input type="text" class="form-control w-5" name="brand" value="<?php echo $user_obj['brand']; ?>">
+   				  <input type="text" class="form-control w-5" name="brand" value="<?php echo $user_obj['list']; ?>">
    				 
 			</td>
     		<td>
