@@ -190,7 +190,7 @@ $count_rlcdw = mysqli_num_rows($run_rlcdw);
 
 $get_nlcdw = "SELECT * FROM warrantyin where type = 'Lcd' AND conditions ='New'";
 $run_nlcdw = mysqli_query($con, $get_nlcdw);
-$count_nlcdw = mysqli_num_rows($run_whdd);
+$count_nlcdw = mysqli_num_rows($run_nlcdw);
 
 $get_whdd = "SELECT * FROM warrantyin where type = 'hdd'";
 $run_hdd = mysqli_query($con, $get_whdd);
