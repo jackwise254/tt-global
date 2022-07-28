@@ -21,6 +21,7 @@ $_SESSION['hdd']=$item->hdd;
 $_SESSION['odd']=$item->odd;
 $_SESSION['status']=$item->status;
 $_SESSION['comment']=$item->comment;
+$_SESSION['problem']=$item->comment;
 $_SESSION['total']=$item->list;
 $_SESSION['random']=$item->del;
 $_SESSION['daterecieved']=$item->daterecieved;
@@ -101,7 +102,7 @@ function Header()
 function Footer()
 {
     // Position at 1.5 cm from bottom
-    $this->SetY(-15);
+    $this->SetY(-35);
     // Arial italic 8
     $this->SetFont('Arial','I',8);
 
@@ -133,8 +134,7 @@ $pdf->Cell($with_cell[1],7,'Cpu',1,0,'C',true);
 $pdf->Cell($with_cell[0],7,'Speed',1,0,'C',true);
 $pdf->Cell($with_cell[0],7,'Ram',1,0,'C',true);
 $pdf->Cell($with_cell[0],7,'Hdd',1,0,'C',true);
-$pdf->Cell($with_cell[0],7,'Odd',1,0,'C',true);
-$pdf->Cell($with_cell[0],7,'Screen',1,0,'C',true);
+$pdf->Cell($with_cell[1],7,'Problem',1,0,'C',true);
 $pdf->Cell($with_cell[1],7,'Comment',1,0,'C',true);
 $pdf->Cell($with_cell[0],7,'Qty',1,1,'C',true);
 // $pdf->Cell($with_cell[3],7,'Rate',1,0,'C',true);
@@ -154,8 +154,7 @@ $pdf->Cell($with_cell[1],7,$v->cpu ,1,0,'L');
 $pdf->Cell($with_cell[0],7,$v->speed ,1,0,'L');
 $pdf->Cell($with_cell[0],7,$v->ram ,1,0,'L');
 $pdf->Cell($with_cell[0],7,$v->hdd ,1,0,'L');
-$pdf->Cell($with_cell[0],7,$v->odd ,1,0,'L');
-$pdf->Cell($with_cell[0],7,$v->screen ,1,0,'L');
+$pdf->Cell($with_cell[1],7,$v->problem ,1,0,'L');
 $pdf->Cell($with_cell[1],7,$v->comment ,1,0,'L');
 $pdf->Cell($with_cell[0],7,$v->tqty ,1,1,'L');
 $totalqty = $totalqty + $v->tqty;
@@ -179,8 +178,7 @@ $pdf->Cell($with_cell[1],7,'' ,1,0,'L');
 $pdf->Cell($with_cell[0],7,'',1,0,'L');
 $pdf->Cell($with_cell[0],7,'' ,1,0,'L');
 $pdf->Cell($with_cell[0],7,'',1,0,'L');
-$pdf->Cell($with_cell[0],7,'' ,1,0,'L');
-$pdf->Cell($with_cell[0],7,'' ,1,0,'L');
+$pdf->Cell($with_cell[1],7,'' ,1,0,'L');
 $pdf->Cell($with_cell[1],7,'' ,1,0,'L');
 $pdf->Cell($with_cell[0],7,'' ,1,1,'L');
 
@@ -196,8 +194,7 @@ $pdf->Cell($with_cell[1],7,'' ,1,0,'L');
 $pdf->Cell($with_cell[0],7,'',1,0,'L');
 $pdf->Cell($with_cell[0],7,'' ,1,0,'L');
 $pdf->Cell($with_cell[0],7,'',1,0,'L');
-$pdf->Cell($with_cell[0],7,'' ,1,0,'L');
-$pdf->Cell($with_cell[0],7,'' ,1,0,'L');
+$pdf->Cell($with_cell[1],7,'' ,1,0,'L');
 $pdf->Cell($with_cell[1],7,'' ,1,0,'L');
 $pdf->Cell($with_cell[0],7,'' ,1,1,'L');
 
@@ -209,8 +206,7 @@ $pdf->Cell($with_cell[1],7,'' ,1,0,'L');
 $pdf->Cell($with_cell[0],7,'',1,0,'L');
 $pdf->Cell($with_cell[0],7,'' ,1,0,'L');
 $pdf->Cell($with_cell[0],7,'',1,0,'L');
-$pdf->Cell($with_cell[0],7,'' ,1,0,'L');
-$pdf->Cell($with_cell[0],7,'' ,1,0,'L');
+$pdf->Cell($with_cell[1],7,'' ,1,0,'L');
 $pdf->Cell($with_cell[1],7,'' ,1,0,'L');
 $pdf->Cell($with_cell[0],7,'' ,1,1,'L');
 
@@ -223,8 +219,7 @@ $pdf->Cell($with_cell[1],7,'' ,1,0,'L');
 $pdf->Cell($with_cell[0],7,'',1,0,'L');
 $pdf->Cell($with_cell[0],7,'' ,1,0,'L');
 $pdf->Cell($with_cell[0],7,'',1,0,'L');
-$pdf->Cell($with_cell[0],7,'' ,1,0,'L');
-$pdf->Cell($with_cell[0],7,'' ,1,0,'L');
+$pdf->Cell($with_cell[1],7,'' ,1,0,'L');
 $pdf->Cell($with_cell[1],7,'' ,1,0,'L');
 $pdf->Cell($with_cell[0],7,'' ,1,1,'L');
 

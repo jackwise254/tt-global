@@ -60,14 +60,15 @@ endif;
                             <tr>
                             <td class="">  
                               <div class="btn-group" role="group" aria-label="Basic example">
-                        <?php if($user_data == 'admin'): ?>
-                        <a href="<?= base_url('ProductsCrud/deleteRCVDw/'. $l['del']) ?>" class="trigger-btn  mx-2" >[del]</a>
-                              <a href="<?= base_url('ProductsCrud/multipleRCVDw/'. $l['del']) ?>" class="mx-2 ">[edit]</a>
-                        <?php endif; ?>
-
                               <a href="<?= base_url('ProductsCrud/printbarcodef/'.$l['del']) ?>" class="mx-2">[barcode]</a> 
                               <a href="<?= base_url('ProductsCrud/printbarcode2wi/'.$l['del']) ?>" class="mx-2">[barcode2]</a> 
                               <a href="<?= base_url('ProductsCrud/printjobwi/'.$l['del']) ?>" class="pr-2">[Job_Card]</a> 
+                              <?php if($user_data == 'admin'): ?>
+                              <a href="<?= base_url('ProductsCrud/deleteRCVDw/'. $l['del']) ?>" class="trigger-btn  mx-2" >[del]</a>
+                                <a href="<?= base_url('ProductsCrud/multipleRCVDw/'. $l['del']) ?>" class="mx-2 ">[edit]</a>
+                                <?php elseif($user_data == 'warranty' && $datereceived == date("Y-m-d")):?>
+                                <a href="<?= base_url('ProductsCrud/multipleRCVDw/'. $l['del']) ?>" class="mx-2 ">[edit]</a>
+                              <?php endif; ?>
                             </div>
                             </td>
                             <td class="pt-3-half"><?=  $l['list']; ?></td>
