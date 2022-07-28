@@ -44,9 +44,9 @@ endif;
                     <div class="col-sm-12" >
                       <div class="input-group" >
                       <div class="input-group-btn" >
-                      <select class="col-2 p-1 rounded-pill" id="sort-item" name='search' type="text"  required>
-                          <option selected >Category</option>
+                      <select class="col-2 p-1 rounded-pill" id="sort-item" name='search' type="text"  >
                           <?php foreach($type as $t): ?>
+                          <option></option>
                           <option value='<?php echo $t->type; ?>'><?php echo $t->type; ?></option>
                           <?php endforeach; ?>
                       </select>
