@@ -19,36 +19,30 @@ endif;
     <div class="row mx-3 mt-5">
 <!-- </h5 class="text-center mb-1"><u>Warranty note</u></h5> -->
 <h5 class="text-center mb-1"> <u>Warranty Note</u></h5>
-
-
     <div class="col-6">
     <form name="test" class="col-10 " action="<?php echo  base_url('ProductsCrud/warrantysub1'); ?>" method="POST">
-<a href="<?php echo site_url('/warranty-create') ?>" class="btn btn-dark btn-sm bi bi-chevron-left">back</a>
-
-            <label >Customer</label>
-            <select class="form-select form-control w-25 d-inline"  name="username" >
-                <option selected></option>
+      <a href="<?php echo site_url('/warranty-create') ?>" class="btn btn-outline-dark btn-sm rounded-pill bi bi-chevron-left">back</a>
+            <!-- <label >Customer</label> -->
+            <select class="form-select form-control d-inline w-25 rounded-pill btn-sm col-4"  name="username" placeholder='Customer' >
+                <option selected>Customer</option>
                     <?php foreach($customers as $user): ?>
                     <option value="<?php echo $user->username; ?>"><?php echo $user->username; ?></option>
                     <?php endforeach; ?>
                 </select>
-                <div class="w-25 d-inline">
+                <!-- <div class="w-25 d-inline">
             <label class=""></label>
                 <input type="text" class=" w-25 d-inline " name="warranty" placeholder="warranty No:" required>
-            </div>
-            <button type ="submit" class="bi bi-search" id="myBtn1" onchange="this.form.submit()"></button>
+            </div> -->
+            <button type ="submit" class="bi bi-search col-2 rounded-pill btn-outline-success" id="myBtn1" onchange="this.form.submit()"></button>
         </form>
         </div>
-        <div class="col-6">
+        <div class="col-6 float-end">
 
         <form name="test" class="col-12" action="<?php echo  base_url('ProductsCrud/warrantysub'); ?>" method="POST">
-        <a href="<?php echo  base_url('ProductsCrud/warrantyclear'); ?>" class=" btn btn-success   btn-sm">Manual</a>
+        <a href="<?php echo  base_url('ProductsCrud/warrantyclear'); ?>" class=" btn btn-success d-none  btn-sm">Manual</a>
 
-        <a href="<?php echo  base_url('ProductsCrud/warrantyclear'); ?>" class=" btn btn-danger bi bi-trash-fill float-end btn-sm">Clear</a>
-
-            <label class="label">Serial no.</label>
-            <input type="text" class="col-4 " id="serialno" name="serialno" autofocus required>
-            
+        <a href="<?php echo  base_url('ProductsCrud/warrantyclear'); ?>" class=" btn btn-outline-danger rounded-pill col-2 bi bi-trash-fill float-end btn-sm">Clear</a>
+            <input type="text" class="col-4 form-control rounded-pill" id="serialno" name="serialno" placeholder='serial no.' autofocus required>
             <button type ="submit" class="d-none" id="myBtn" onchange="this.form.submit()">Submit</button>
         </form>
         </div>

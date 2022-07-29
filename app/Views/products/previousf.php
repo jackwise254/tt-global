@@ -63,7 +63,7 @@ endif;
                               <!-- <a href="#myModal" class="trigger-btn  mx-2" data-toggle="modal" >[del]</a> -->
                               
                               <a href="<?= base_url('ProductsCrud/deleteRCVDf/'. $l['del']) ?>" class="mx-2">[del]</a>
-                              <a href="<?= base_url('ProductsCrud/multipleRCVDf/'. $l['del']) ?>" class="mx-2">[edit]</a>
+                              <a href="<?= base_url('ProductsCrud/multipleRCVDf/'. $l['del']) ?>" class="mx-2 d-none">[edit]</a>
                               <a href="<?= base_url('ProductsCrud/printbarcodepfi/'.$l['del']) ?>" class="mx-2">[barcode]</a> 
                               <a href="<?= base_url('ProductsCrud/printbarcode2pfi/'.$l['del']) ?>" class="">[barcode2]</a> 
 

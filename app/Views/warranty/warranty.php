@@ -90,6 +90,10 @@ endif;
                             <tr>
                             <td class="">  
                               <div class="btn-group" role="group" aria-label="Basic example">
+                              <?php if($user_data == 'admin'):  ?>
+                               <a href="<?php echo site_url('ProductsCrud/deletes/'.$user->id); ?>" class="pr-3  ">[del]</a>
+                                <a href="<?php echo base_url('ProductsCrud/singleProductw/'.$user->id);?>" class='px-2'>[Edit]</a>
+                               <?php endif; ?> 
                               <a href="<?= base_url('ProductsCrud/printbarcodwi/'.$user->assetid) ?>" class="px-2">[barcode]</a> 
                               <a href="<?= base_url('ProductsCrud/printbarcode2wi/'.$user->assetid ) ?>" class="px-2">[barcode2]</a> 
                               <a href="<?php echo base_url('ProductsCrud/ok/'.$user->assetid);?>" class='px-2'>[irrepairable]</a>
@@ -116,7 +120,6 @@ endif;
                             <td class="col-3"><?=  $user->odd; ?></td>
                             <td class="col-3"><?=  $user->comment; ?></td>
                             <td class="col-3"><?=  $user->problem; ?></td>
-
                             <td class="col-3"><?=  $user->price; ?></td>
                             <td cclass="col-3"><?=  $datereceived; ?></td>
                             <td class="col-3"><?=  $user->customer; ?></td>

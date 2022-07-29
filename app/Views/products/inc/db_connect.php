@@ -23,6 +23,18 @@ $get_hdd = "SELECT * FROM masterlist where type = 'laptop' AND conditions ='Used
 $run_hdd = mysqli_query($con, $get_hdd);
 $count_Olaptop = mysqli_num_rows($run_hdd);
 
+$get_Imac = "SELECT * FROM masterlist where type = 'Imac' AND conditions ='New'";
+$run_Imac = mysqli_query($con, $get_Imac);
+$count_NImacs = mysqli_num_rows($run_Imac);
+
+$get_UImac = "SELECT * FROM masterlist where type = 'Imac' AND conditions ='Used'";
+$run_UImac = mysqli_query($con, $get_UImac);
+$count_UImacs = mysqli_num_rows($run_UImac);
+
+$get_RImac = "SELECT * FROM masterlist where type = 'Imac' AND conditions ='Refurb'";
+$run_RImac = mysqli_query($con, $get_RImac);
+$count_RImacs = mysqli_num_rows($run_RImac);
+
 $get_hdd = "SELECT * FROM masterlist where type = 'laptop' AND conditions ='Refurb'";
 $run_hdd = mysqli_query($con, $get_hdd);
 $count_Rlaptop = mysqli_num_rows($run_hdd);
@@ -190,13 +202,13 @@ $count_rlcdw = mysqli_num_rows($run_rlcdw);
 
 $get_nlcdw = "SELECT * FROM warrantyin where type = 'Lcd' AND conditions ='New'";
 $run_nlcdw = mysqli_query($con, $get_nlcdw);
-$count_nlcdw = mysqli_num_rows($run_whdd);
+$count_nlcdw = mysqli_num_rows($run_nlcdw);
 
 $get_whdd = "SELECT * FROM warrantyin where type = 'hdd'";
 $run_hdd = mysqli_query($con, $get_whdd);
 $count_whdd = mysqli_num_rows($run_hdd);
 
-$get_smartphones = "SELECT * FROM warrantyin where type = 'smartphones'";
+$get_smartphones = "SELECT * FROM warrantyin where type = 'smartphone'";
 $run_smartphones = mysqli_query($con, $get_smartphones);
 $count_smartphones = mysqli_num_rows($run_smartphones);
 

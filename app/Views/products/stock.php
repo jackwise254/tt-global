@@ -14,109 +14,61 @@ endif;
     $session = session();
     $names = $session->get('user_name');
     ?> 
-<section class="content">
-
-<div class=" px-5 float end">
-
-<div class='container' style="">
-<h4 class="text-center mt-3 pt-4"> <u>Remaining Stock </u> </h4>
-<div class="container">
-
+<div class="container ">
+<h4 class="text-center mt-5 pt-4"> <u>Remaining Stock </u> </h4>
 <a href="<?php echo base_url('ProductsCrud/load') ?>" class="btn btn-outline-success btn-sm bi bi-upload">Recieve Goods</a>
 <a href="<?php echo base_url('ProductsCrud/previousRCVD') ?>" class="btn btn-outline-info btn--sm flex m-2">Previous Recieved</a>
 <a href="<?php echo site_url('/stockt-view') ?>" class="btn btn-outline-secondary btn-sm flex m-2">Stock Out</a>
-    
-    <div class="row">
-<!-- another  -->
-<?php if($count_products > 0): ?> 
-
+<a href="<?php echo site_url('/warranty') ?>" class="btn btn-outline-success btn-sm flex m-2">Warranty</a>
+<div class="row ">
+    <?php if($count_products > 0): ?> 
         <?php if($count_products > 0): ?> 
-
-          <div class="col-md-3">
-                <a href="<?php echo site_url('/inventory-view') ?>">
-                  <?php if($count_products <= 10): ?> 
-                    <div class="small-box bg-primary p-2">
-                  <?php elseif($count_products  < 20): ?>
-                    <div class="small-box bg-primary p-2">
-                      <?php else: ?>
-                        <div class="small-box bg-light p-2">
-                  <?php endif ?>
-                  <div class="inner">
-                      <h3 ><?php echo $count_products; ?></h3>
-
-                      <p >Total stock</p>
-                    </div>
-                    <div class="icon">
-                      <i class="ionicons ion-android-desktop"></i>
-                    </div>
-                    <a href="<?php echo site_url('/inventory-view') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
+           <div class="col-md-3">
+              <a href="<?php echo site_url('/inventory-view') ?>">
+                <?php if($count_products <= 10): ?> 
+                  <div class="small-box bg-primary p-2">
+                    <?php elseif($count_products  < 20): ?>
+                       <div class="small-box bg-primary p-2">
+                         <?php else: ?>
+                           <div class="small-box bg-light p-2">
+                               <?php endif ?>
+                                  <div class="inner">
+                                    <h3 ><?php echo $count_products; ?></h3>
+                                       <p >Total stock</p>
+                                  </div>
+                            <div class="icon">
+                            <i class="ionicons ion-android-desktop"></i>
+                       </div>
+                       <a href="<?php echo site_url('/inventory-view') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
                   </div>
-                </div>
-                      </a>
-                      <?php elseif($count_products < 1 ): ?>
-                        <div class="col-md-3 d-none">
-                <a href="<?php echo site_url('/inventory-view') ?>">
-                      <div class="d-none">
-                  <div class="inner">
-
-                      <p >Total stock</p>
-                    </div>
-                    <div class="icon">
-                      <i class="ionicons ion-android-desktop"></i>
-                    </div>
-                    <a href="<?php echo site_url('/inventory-view') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
-                  </div>
-                </div>
-                      </a>
-                      <?php endif ?>
-
-    <?php if($count_Ndesktop > 0): ?> 
-      <!-- another card -->
-          <div class="col-md-3">
-          <a href="<?php echo site_url('/Ndesktop') ?>">
-            <?php if($count_Ndesktop <= 10): ?> 
-              <div class="small-box bg-danger p-2">
-             <?php elseif($count_Ndesktop  < 20): ?>
-              <div class="small-box bg-secondary p-2">
-                <?php else: ?>
-                  <div class="small-box bg-light p-2">
-             <?php endif ?>
-             <div class="inner">
-                <h3 ><?php echo $count_Ndesktop; ?></h3>
-
-                <p >New Desktops</p>
-              </div>
-              <div class="icon">
-                <i class="ionicons ion-android-desktop"></i>
-              </div>
-              <a href="<?php echo site_url('/Ndesktop') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
+               </a>
             </div>
-          </div>
-                </a>
-
-                <?php elseif($count_Ndesktop < 1): ?>
-                        <div class="col-md-3 d-none">
-                <a href="<?php echo site_url('/inventory-view') ?>">
-                      <div class="d-none">
-                  <div class="inner">
-
-                      <p >Total stock</p>
+           
+    <?php endif ?>
+    <?php if($count_Ndesktop > 0): ?> 
+      <div class="col-md-3">
+        <a href="<?php echo site_url('/Ndesktop') ?>">
+          <?php if($count_Ndesktop <= 10): ?> 
+            <div class="small-box bg-danger p-2">
+               <?php elseif($count_Ndesktop  < 20): ?>
+                  <div class="small-box bg-secondary p-2">
+                     <?php else: ?>
+                    <div class="small-box bg-light p-2">
+                     <?php endif ?>
+                    <div class="inner">
+                    <h3 ><?php echo $count_Ndesktop; ?></h3>
+                    <p >New Desktops</p>
                     </div>
                     <div class="icon">
                       <i class="ionicons ion-android-desktop"></i>
                     </div>
-                    <a href="<?php echo site_url('/inventory-view') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
+                    <a href="<?php echo site_url('/Ndesktop') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
                   </div>
+                </a>
                 </div>
-                      </a>
-
                 <?php endif ?>
                 <!-- second card -->
-      
-      
-
           <?php if($count_Rdesktop > 0): ?> 
-
           <div class="col-md-3">
           <a href="<?php echo site_url('/Rdesktop') ?>">
 
@@ -240,7 +192,7 @@ endif;
 
          </div>
 
-         <div class="row">
+         <div class="row ">
          <?php if($count_Rlaptop > 0): ?> 
       
           <div class="col-md-3">
@@ -365,8 +317,8 @@ endif;
                 <?php endif ?>
 
 
-    </div>
-    <div class="row">
+    <!-- </div> -->
+    <div class="row ">
     <?php if($count_Rallinone> 0): ?> 
       
           <div class="col-md-3">
@@ -610,6 +562,63 @@ endif;
       </div>
     </a>
 <?php endif; ?>
+
+<!-- imacs -->
+  <!-- </div> -->
+  <div class="row ">
+    <?php if($count_NImacs> 0): ?> 
+          <div class="col-md-3">
+           <a href="<?php echo site_url('/Rallinone') ?>">
+            <div class="small-box bg-light p-2">
+              <div class="inner">
+                <h3 ><?php echo $count_NImacs; ?></h3>
+                <p >New Imacs</p>
+              </div>
+              <div class="icon">
+                <i class="ionicons ion-android-phone-landscape"></i>
+              </div>
+            <a href="<?php echo site_url('/Rallinone') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
+            </div>
+          </div>
+         </a>
+      <?php endif ?>
+
+     <?php if($count_UImacs > 0): ?> 
+       <div class="col-md-3">
+          <a href="<?php echo site_url('/hdd') ?>">
+            <div class="small-box bg-light p-2">
+              <div class="inner">
+                <h3><?php echo $count_UImacs; ?></h3>
+                <p>Used Imacs</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-laptop"></i>
+              </div>
+            <a href="<?php echo site_url('/hdd') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
+            </div>
+          </div>
+         </a>
+      <?php endif ?>
+
+      <?php if($count_RImacs > 0): ?> 
+        <div class="col-md-3">
+          <a href="<?php echo site_url('/ssd') ?>">
+            <div class="small-box bg-light p-2">
+              <div class="inner">
+                <h3><?php echo $count_RImacs; ?></h3>
+                <p>Refurb Imacs</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-speedometer"></i>
+              </div>
+            <a href="<?php echo site_url('/ssd') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
+            </div>
+          </div>
+         </a>
+<?php endif ?>
+      </div>
+<!-- //imacs -->
+
   <!-- end -->
   <?php
                 else: ?>

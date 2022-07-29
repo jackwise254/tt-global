@@ -89,6 +89,7 @@ endif;
                             <th scope="col" class="col-3">Condition</th>
                             <th scope="col" class="col-3 px-5">Assetid</th>
                             <th scope="col" class="col-3">Batch</th>
+                            <th scope="col" class="col-3">Total</th>
                             <th scope="col" class="col-3">Type</th>
                             <th scope="col" class="col-3">Brand</th>
                             <th scope="col" class="col-3 px-5">Gen</th>
@@ -103,6 +104,7 @@ endif;
                             <th scope="col" class="col-3">Screen</th>
                             <th scope="col" class="col-3">Odd</th>
                             <th scope="col" class="col-3">Comment</th>
+                            <th scope="col" class="col-3">Problem</th>
                             <th scope="col" class="col-3">Price</th>
                             <th scope="col" class="col-3">Date_Recieved</th>
                             <th scope="col" class="col-3">Customer</th>
@@ -122,6 +124,7 @@ endif;
                             <td class="col-3"><?=  $l['conditions']; ?></td>
                             <td class="col-3"><?=  $l['assetid']; ?></td>
                             <td class="col-3"><?=  $l['del']; ?></td>
+                            <td class="col-3"><?=  $l['total']; ?></td>
                             <td class="col-3"><?=  $l['type']; ?></td>
                             <td class="col-3"><?=  $l['brand']; ?></td>
                             <td class="col-3 "><?=  $l['gen']; ?></td>
@@ -136,6 +139,7 @@ endif;
                             <td class="col-3"><?=  $l['screen']; ?></td>
                             <td class="col-3"><?=  $l['odd']; ?></td>
                             <td class="col-3"><?=  $l['comment']; ?></td>
+                            <td class="col-3"><?=  $l['problem']; ?></td>
                             <td class="col-3"><?=  $l['price']; ?></td>
                             <td cclass="col-3"><?=  $datereceived; ?></td>
                             <td class="col-3"><?=  $l['customer']; ?></td>
