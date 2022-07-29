@@ -1004,13 +1004,2785 @@ public function load()
 
         }
 
-        public function Nallinone()
+        // start
+        public function Nimac()
         {
-            
             $session = \Config\Services::session();
 
             $db      = \Config\Database::connect();
     
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('masterlist');
+            $builder->select('masterlist.*')->orderBy('time', 'DESC');
+            $builder->where('masterlist.conditions = "New" AND type="Imac"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/stockin/Nimac', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/stockin/Nimac', $data);
+           }
+
+        }
+
+
+        public function Umac()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('masterlist');
+            $builder->select('masterlist.*')->orderBy('time', 'DESC');
+            $builder->where('masterlist.conditions = "Used" AND type="Imac"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/stockin/Uimac', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/stockin/Uimac', $data);
+           }
+
+        }
+
+
+        public function Rimac()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('masterlist');
+            $builder->select('masterlist.*')->orderBy('time', 'DESC');
+            $builder->where('masterlist.conditions = "Refurb" AND type="Imac"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/stockin/Rimac', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/stockin/Rimac', $data);
+           }
+
+        }
+
+
+        public function Nserver()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('masterlist');
+            $builder->select('masterlist.*')->orderBy('time', 'DESC');
+            $builder->where('masterlist.conditions = "New" AND type="Server"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/stockin/Nserver', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/stockin/Nserver', $data);
+           }
+
+        }
+
+
+        public function Userver()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('masterlist');
+            $builder->select('masterlist.*')->orderBy('time', 'DESC');
+            $builder->where('masterlist.conditions = "Used" AND type="Server"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/stockin/Userver', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/stockin/Userver', $data);
+           }
+
+        }
+
+
+        public function Rserver()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('masterlist');
+            $builder->select('masterlist.*')->orderBy('time', 'DESC');
+            $builder->where('masterlist.conditions = "Refurb" AND type="Server"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/stockin/Rserver', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/stockin/Rserver', $data);
+           }
+
+        }
+
+
+        public function Nworkstation()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('masterlist');
+            $builder->select('masterlist.*')->orderBy('time', 'DESC');
+            $builder->where('masterlist.conditions = "New" AND type="Workstation"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/stockin/Nworkstation', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/stockin/Nworkstation', $data);
+           }
+
+        }
+
+
+        public function Uworkstation()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('masterlist');
+            $builder->select('masterlist.*')->orderBy('time', 'DESC');
+            $builder->where('masterlist.conditions = "Used" AND type="Workstation"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/stockin/Uworkstation', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/stockin/Uworkstation', $data);
+           }
+
+        }
+
+
+        public function Rworkstation()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('masterlist');
+            $builder->select('masterlist.*')->orderBy('time', 'DESC');
+            $builder->where('masterlist.conditions = "Refurb" AND type="Workstation"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/stockin/Rworkstation', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/stockin/Rworkstation', $data);
+           }
+
+        }
+
+
+        public function Nmacbook()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('masterlist');
+            $builder->select('masterlist.*')->orderBy('time', 'DESC');
+            $builder->where('masterlist.conditions = "New" AND type="Macbook"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/stockin/Nmacbook', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/stockin/Nmacbook', $data);
+           }
+
+        }
+
+
+        public function Umacbook()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('masterlist');
+            $builder->select('masterlist.*')->orderBy('time', 'DESC');
+            $builder->where('masterlist.conditions = "Used" AND type="Macbook"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/stockin/Umacbook', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/stockin/Umacbook', $data);
+           }
+
+        }
+
+
+        public function Rmacbook()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('masterlist');
+            $builder->select('masterlist.*')->orderBy('time', 'DESC');
+            $builder->where('masterlist.conditions = "Refurb" AND type="Macbook"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/stockin/Rmacbook', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/stockin/Rmacbook', $data);
+           }
+
+        }
+
+
+        // end
+
+        // start of stockout new cards
+         public function Nimacs()
+         {
+             $session = \Config\Services::session();
+ 
+             $db      = \Config\Database::connect();
+     
+             $builder1 = $db->table('users');
+             $builder1->select('users.*');
+             $builder1->where('users.designation = "admin" ' );
+             $sdata['hello'] = $builder1->get()->getResultArray();
+             $session->set($sdata);
+             $data['user_data'] = $session->get('designation');
+             
+             $builder = $db->table('stockout');
+             $builder->select('stockout.*')->orderBy('time', 'DESC');
+             $builder->where('stockout.conditions = "New" AND type="Imac"' );
+             if($this->request->getGet('q')) {
+             $q=$this->request->getGet('q');
+            $builder->like('assetid', $q);
+            $builder->orLike('brand', $q);
+            $builder->orLike('conditions', $q);
+            $builder->orLike('model', $q);
+            $builder->orLike('modelid', $q);
+            $builder->orLike('gen', $q);
+            $builder->orLike('cpu', $q);
+            $builder->orLike('screen', $q);
+            $builder->orLike('price', $q);
+            $builder->orLike('customer', $q);
+            $builder->orLike('ram', $q);
+            $builder->orLike('odd', $q);
+            $builder->orLike('comment', $q);
+            $builder->orLike('type', $q);
+    
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+             return view('/stockout/Nimac', $data);
+               
+            } elseif(!$this->request->getGet('q')) {
+             $data['user_data'] = $session->get('designation');
+             $data['Rlaptop'] = $builder->get()->getResult();
+             return view('/stockout/Nimac', $data);
+            }
+ 
+         }
+ 
+ 
+         public function Umacs()
+         {
+             $session = \Config\Services::session();
+ 
+             $db      = \Config\Database::connect();
+     
+             $builder1 = $db->table('users');
+             $builder1->select('users.*');
+             $builder1->where('users.designation = "admin" ' );
+             $sdata['hello'] = $builder1->get()->getResultArray();
+             $session->set($sdata);
+             $data['user_data'] = $session->get('designation');
+             
+             $builder = $db->table('stockout');
+             $builder->select('stockout.*')->orderBy('time', 'DESC');
+             $builder->where('stockout.conditions = "Used" AND type="Imac"' );
+             if($this->request->getGet('q')) {
+             $q=$this->request->getGet('q');
+            $builder->like('assetid', $q);
+            $builder->orLike('brand', $q);
+            $builder->orLike('conditions', $q);
+            $builder->orLike('model', $q);
+            $builder->orLike('modelid', $q);
+            $builder->orLike('gen', $q);
+            $builder->orLike('cpu', $q);
+            $builder->orLike('screen', $q);
+            $builder->orLike('price', $q);
+            $builder->orLike('customer', $q);
+            $builder->orLike('ram', $q);
+            $builder->orLike('odd', $q);
+            $builder->orLike('comment', $q);
+            $builder->orLike('type', $q);
+    
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+             return view('/stockout/Uimac', $data);
+               
+            } elseif(!$this->request->getGet('q')) {
+             $data['user_data'] = $session->get('designation');
+             $data['Rlaptop'] = $builder->get()->getResult();
+             return view('/stockout/Uimac', $data);
+            }
+ 
+         }
+ 
+ 
+         public function Rimacs()
+         {
+             $session = \Config\Services::session();
+ 
+             $db      = \Config\Database::connect();
+     
+             $builder1 = $db->table('users');
+             $builder1->select('users.*');
+             $builder1->where('users.designation = "admin" ' );
+             $sdata['hello'] = $builder1->get()->getResultArray();
+             $session->set($sdata);
+             $data['user_data'] = $session->get('designation');
+             
+             $builder = $db->table('stockout');
+             $builder->select('stockout.*')->orderBy('time', 'DESC');
+             $builder->where('stockout.conditions = "Refurb" AND type="Imac"' );
+             if($this->request->getGet('q')) {
+             $q=$this->request->getGet('q');
+            $builder->like('assetid', $q);
+            $builder->orLike('brand', $q);
+            $builder->orLike('conditions', $q);
+            $builder->orLike('model', $q);
+            $builder->orLike('modelid', $q);
+            $builder->orLike('gen', $q);
+            $builder->orLike('cpu', $q);
+            $builder->orLike('screen', $q);
+            $builder->orLike('price', $q);
+            $builder->orLike('customer', $q);
+            $builder->orLike('ram', $q);
+            $builder->orLike('odd', $q);
+            $builder->orLike('comment', $q);
+            $builder->orLike('type', $q);
+    
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+             return view('/stockout/Rimac', $data);
+               
+            } elseif(!$this->request->getGet('q')) {
+             $data['user_data'] = $session->get('designation');
+             $data['Rlaptop'] = $builder->get()->getResult();
+             return view('/stockout/Rimac', $data);
+            }
+ 
+         }
+ 
+ 
+         public function Nservers()
+         {
+             $session = \Config\Services::session();
+ 
+             $db      = \Config\Database::connect();
+     
+             $builder1 = $db->table('users');
+             $builder1->select('users.*');
+             $builder1->where('users.designation = "admin" ' );
+             $sdata['hello'] = $builder1->get()->getResultArray();
+             $session->set($sdata);
+             $data['user_data'] = $session->get('designation');
+             
+             $builder = $db->table('stockout');
+             $builder->select('stockout.*')->orderBy('time', 'DESC');
+             $builder->where('stockout.conditions = "New" AND type="Server"' );
+             if($this->request->getGet('q')) {
+             $q=$this->request->getGet('q');
+            $builder->like('assetid', $q);
+            $builder->orLike('brand', $q);
+            $builder->orLike('conditions', $q);
+            $builder->orLike('model', $q);
+            $builder->orLike('modelid', $q);
+            $builder->orLike('gen', $q);
+            $builder->orLike('cpu', $q);
+            $builder->orLike('screen', $q);
+            $builder->orLike('price', $q);
+            $builder->orLike('customer', $q);
+            $builder->orLike('ram', $q);
+            $builder->orLike('odd', $q);
+            $builder->orLike('comment', $q);
+            $builder->orLike('type', $q);
+    
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+             return view('/stockout/Nserver', $data);
+               
+            } elseif(!$this->request->getGet('q')) {
+             $data['user_data'] = $session->get('designation');
+             $data['Rlaptop'] = $builder->get()->getResult();
+             return view('/stockout/Nserver', $data);
+            }
+ 
+         }
+ 
+ 
+         public function Uservers()
+         {
+             $session = \Config\Services::session();
+ 
+             $db      = \Config\Database::connect();
+     
+             $builder1 = $db->table('users');
+             $builder1->select('users.*');
+             $builder1->where('users.designation = "admin" ' );
+             $sdata['hello'] = $builder1->get()->getResultArray();
+             $session->set($sdata);
+             $data['user_data'] = $session->get('designation');
+             
+             $builder = $db->table('stockout');
+             $builder->select('stockout.*')->orderBy('time', 'DESC');
+             $builder->where('stockout.conditions = "Used" AND type="Server"' );
+             if($this->request->getGet('q')) {
+             $q=$this->request->getGet('q');
+            $builder->like('assetid', $q);
+            $builder->orLike('brand', $q);
+            $builder->orLike('conditions', $q);
+            $builder->orLike('model', $q);
+            $builder->orLike('modelid', $q);
+            $builder->orLike('gen', $q);
+            $builder->orLike('cpu', $q);
+            $builder->orLike('screen', $q);
+            $builder->orLike('price', $q);
+            $builder->orLike('customer', $q);
+            $builder->orLike('ram', $q);
+            $builder->orLike('odd', $q);
+            $builder->orLike('comment', $q);
+            $builder->orLike('type', $q);
+    
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+             return view('/stockout/Userver', $data);
+               
+            } elseif(!$this->request->getGet('q')) {
+             $data['user_data'] = $session->get('designation');
+             $data['Rlaptop'] = $builder->get()->getResult();
+             return view('/stockout/Userver', $data);
+            }
+ 
+         }
+ 
+ 
+         public function Rservers()
+         {
+             $session = \Config\Services::session();
+ 
+             $db      = \Config\Database::connect();
+     
+             $builder1 = $db->table('users');
+             $builder1->select('users.*');
+             $builder1->where('users.designation = "admin" ' );
+             $sdata['hello'] = $builder1->get()->getResultArray();
+             $session->set($sdata);
+             $data['user_data'] = $session->get('designation');
+             
+             $builder = $db->table('stockout');
+             $builder->select('stockout.*')->orderBy('time', 'DESC');
+             $builder->where('stockout.conditions = "Refurb" AND type="Server"' );
+             if($this->request->getGet('q')) {
+             $q=$this->request->getGet('q');
+            $builder->like('assetid', $q);
+            $builder->orLike('brand', $q);
+            $builder->orLike('conditions', $q);
+            $builder->orLike('model', $q);
+            $builder->orLike('modelid', $q);
+            $builder->orLike('gen', $q);
+            $builder->orLike('cpu', $q);
+            $builder->orLike('screen', $q);
+            $builder->orLike('price', $q);
+            $builder->orLike('customer', $q);
+            $builder->orLike('ram', $q);
+            $builder->orLike('odd', $q);
+            $builder->orLike('comment', $q);
+            $builder->orLike('type', $q);
+    
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+             return view('/stockout/Rserver', $data);
+               
+            } elseif(!$this->request->getGet('q')) {
+             $data['user_data'] = $session->get('designation');
+             $data['Rlaptop'] = $builder->get()->getResult();
+             return view('/stockout/Rserver', $data);
+            }
+ 
+         }
+ 
+ 
+         public function Nworkstations()
+         {
+             $session = \Config\Services::session();
+ 
+             $db      = \Config\Database::connect();
+     
+             $builder1 = $db->table('users');
+             $builder1->select('users.*');
+             $builder1->where('users.designation = "admin" ' );
+             $sdata['hello'] = $builder1->get()->getResultArray();
+             $session->set($sdata);
+             $data['user_data'] = $session->get('designation');
+             
+             $builder = $db->table('stockout');
+             $builder->select('stockout.*')->orderBy('time', 'DESC');
+             $builder->where('stockout.conditions = "New" AND type="Workstation"' );
+             if($this->request->getGet('q')) {
+             $q=$this->request->getGet('q');
+            $builder->like('assetid', $q);
+            $builder->orLike('brand', $q);
+            $builder->orLike('conditions', $q);
+            $builder->orLike('model', $q);
+            $builder->orLike('modelid', $q);
+            $builder->orLike('gen', $q);
+            $builder->orLike('cpu', $q);
+            $builder->orLike('screen', $q);
+            $builder->orLike('price', $q);
+            $builder->orLike('customer', $q);
+            $builder->orLike('ram', $q);
+            $builder->orLike('odd', $q);
+            $builder->orLike('comment', $q);
+            $builder->orLike('type', $q);
+    
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+             return view('/stockout/Nworkstation', $data);
+               
+            } elseif(!$this->request->getGet('q')) {
+             $data['user_data'] = $session->get('designation');
+             $data['Rlaptop'] = $builder->get()->getResult();
+             return view('/stockout/Nworkstation', $data);
+            }
+ 
+         }
+ 
+ 
+         public function Uworkstations()
+         {
+             $session = \Config\Services::session();
+ 
+             $db      = \Config\Database::connect();
+     
+             $builder1 = $db->table('users');
+             $builder1->select('users.*');
+             $builder1->where('users.designation = "admin" ' );
+             $sdata['hello'] = $builder1->get()->getResultArray();
+             $session->set($sdata);
+             $data['user_data'] = $session->get('designation');
+             
+             $builder = $db->table('stockout');
+             $builder->select('stockout.*')->orderBy('time', 'DESC');
+             $builder->where('stockout.conditions = "Used" AND type="Workstation"' );
+             if($this->request->getGet('q')) {
+             $q=$this->request->getGet('q');
+            $builder->like('assetid', $q);
+            $builder->orLike('brand', $q);
+            $builder->orLike('conditions', $q);
+            $builder->orLike('model', $q);
+            $builder->orLike('modelid', $q);
+            $builder->orLike('gen', $q);
+            $builder->orLike('cpu', $q);
+            $builder->orLike('screen', $q);
+            $builder->orLike('price', $q);
+            $builder->orLike('customer', $q);
+            $builder->orLike('ram', $q);
+            $builder->orLike('odd', $q);
+            $builder->orLike('comment', $q);
+            $builder->orLike('type', $q);
+    
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+             return view('/stockout/Uworkstation', $data);
+               
+            } elseif(!$this->request->getGet('q')) {
+             $data['user_data'] = $session->get('designation');
+             $data['Rlaptop'] = $builder->get()->getResult();
+             return view('/stockout/Uworkstation', $data);
+            }
+ 
+         }
+ 
+ 
+         public function Rworkstations()
+         {
+             $session = \Config\Services::session();
+ 
+             $db      = \Config\Database::connect();
+     
+             $builder1 = $db->table('users');
+             $builder1->select('users.*');
+             $builder1->where('users.designation = "admin" ' );
+             $sdata['hello'] = $builder1->get()->getResultArray();
+             $session->set($sdata);
+             $data['user_data'] = $session->get('designation');
+             
+             $builder = $db->table('stockout');
+             $builder->select('stockout.*')->orderBy('time', 'DESC');
+             $builder->where('stockout.conditions = "Refurb" AND type="Workstation"' );
+             if($this->request->getGet('q')) {
+             $q=$this->request->getGet('q');
+            $builder->like('assetid', $q);
+            $builder->orLike('brand', $q);
+            $builder->orLike('conditions', $q);
+            $builder->orLike('model', $q);
+            $builder->orLike('modelid', $q);
+            $builder->orLike('gen', $q);
+            $builder->orLike('cpu', $q);
+            $builder->orLike('screen', $q);
+            $builder->orLike('price', $q);
+            $builder->orLike('customer', $q);
+            $builder->orLike('ram', $q);
+            $builder->orLike('odd', $q);
+            $builder->orLike('comment', $q);
+            $builder->orLike('type', $q);
+    
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+             return view('/stockout/Rworkstation', $data);
+               
+            } elseif(!$this->request->getGet('q')) {
+             $data['user_data'] = $session->get('designation');
+             $data['Rlaptop'] = $builder->get()->getResult();
+             return view('/stockout/Rworkstation', $data);
+            }
+ 
+         }
+ 
+ 
+         public function Nmacbooks()
+         {
+             $session = \Config\Services::session();
+ 
+             $db      = \Config\Database::connect();
+     
+             $builder1 = $db->table('users');
+             $builder1->select('users.*');
+             $builder1->where('users.designation = "admin" ' );
+             $sdata['hello'] = $builder1->get()->getResultArray();
+             $session->set($sdata);
+             $data['user_data'] = $session->get('designation');
+             
+             $builder = $db->table('stockout');
+             $builder->select('stockout.*')->orderBy('time', 'DESC');
+             $builder->where('stockout.conditions = "New" AND type="Macbook"' );
+             if($this->request->getGet('q')) {
+             $q=$this->request->getGet('q');
+            $builder->like('assetid', $q);
+            $builder->orLike('brand', $q);
+            $builder->orLike('conditions', $q);
+            $builder->orLike('model', $q);
+            $builder->orLike('modelid', $q);
+            $builder->orLike('gen', $q);
+            $builder->orLike('cpu', $q);
+            $builder->orLike('screen', $q);
+            $builder->orLike('price', $q);
+            $builder->orLike('customer', $q);
+            $builder->orLike('ram', $q);
+            $builder->orLike('odd', $q);
+            $builder->orLike('comment', $q);
+            $builder->orLike('type', $q);
+    
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+             return view('/stockout/Nmacbook', $data);
+               
+            } elseif(!$this->request->getGet('q')) {
+             $data['user_data'] = $session->get('designation');
+             $data['Rlaptop'] = $builder->get()->getResult();
+             return view('/stockout/Nmacbook', $data);
+            }
+ 
+         }
+ 
+ 
+         public function Umacbooks()
+         {
+             $session = \Config\Services::session();
+ 
+             $db      = \Config\Database::connect();
+     
+             $builder1 = $db->table('users');
+             $builder1->select('users.*');
+             $builder1->where('users.designation = "admin" ' );
+             $sdata['hello'] = $builder1->get()->getResultArray();
+             $session->set($sdata);
+             $data['user_data'] = $session->get('designation');
+             
+             $builder = $db->table('stockout');
+             $builder->select('stockout.*')->orderBy('time', 'DESC');
+             $builder->where('stockout.conditions = "Used" AND type="Macbook"' );
+             if($this->request->getGet('q')) {
+             $q=$this->request->getGet('q');
+            $builder->like('assetid', $q);
+            $builder->orLike('brand', $q);
+            $builder->orLike('conditions', $q);
+            $builder->orLike('model', $q);
+            $builder->orLike('modelid', $q);
+            $builder->orLike('gen', $q);
+            $builder->orLike('cpu', $q);
+            $builder->orLike('screen', $q);
+            $builder->orLike('price', $q);
+            $builder->orLike('customer', $q);
+            $builder->orLike('ram', $q);
+            $builder->orLike('odd', $q);
+            $builder->orLike('comment', $q);
+            $builder->orLike('type', $q);
+    
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+             return view('/stockout/Umacbook', $data);
+               
+            } elseif(!$this->request->getGet('q')) {
+             $data['user_data'] = $session->get('designation');
+             $data['Rlaptop'] = $builder->get()->getResult();
+             return view('/stockout/Umacbook', $data);
+            }
+ 
+         }
+ 
+ 
+         public function Rmacbooks()
+         {
+             $session = \Config\Services::session();
+ 
+             $db      = \Config\Database::connect();
+     
+             $builder1 = $db->table('users');
+             $builder1->select('users.*');
+             $builder1->where('users.designation = "admin" ' );
+             $sdata['hello'] = $builder1->get()->getResultArray();
+             $session->set($sdata);
+             $data['user_data'] = $session->get('designation');
+             
+             $builder = $db->table('stockout');
+             $builder->select('stockout.*')->orderBy('time', 'DESC');
+             $builder->where('stockout.conditions = "Refurb" AND type="Macbook"' );
+             if($this->request->getGet('q')) {
+             $q=$this->request->getGet('q');
+            $builder->like('assetid', $q);
+            $builder->orLike('brand', $q);
+            $builder->orLike('conditions', $q);
+            $builder->orLike('model', $q);
+            $builder->orLike('modelid', $q);
+            $builder->orLike('gen', $q);
+            $builder->orLike('cpu', $q);
+            $builder->orLike('screen', $q);
+            $builder->orLike('price', $q);
+            $builder->orLike('customer', $q);
+            $builder->orLike('ram', $q);
+            $builder->orLike('odd', $q);
+            $builder->orLike('comment', $q);
+            $builder->orLike('type', $q);
+    
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+             return view('/stockout/Rmacbook', $data);
+               
+            } elseif(!$this->request->getGet('q')) {
+             $data['user_data'] = $session->get('designation');
+             $data['Rlaptop'] = $builder->get()->getResult();
+             return view('/stockout/Rmacbook', $data);
+            }
+ 
+         }
+ 
+        // end
+
+
+        // start of faulty new cards
+        public function Nimacf()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('faulty');
+            $builder->select('faulty.*')->orderBy('time', 'DESC');
+            $builder->where('faulty.conditions = "New" AND type="Imac"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/faulty/Nimac', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/faulty/Nimac', $data);
+           }
+
+        }
+
+
+        public function Umacf()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('faulty');
+            $builder->select('faulty.*')->orderBy('time', 'DESC');
+            $builder->where('faulty.conditions = "Used" AND type="Imac"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/faulty/Uimac', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/faulty/Uimac', $data);
+           }
+
+        }
+
+
+        public function Rimacf()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('faulty');
+            $builder->select('faulty.*')->orderBy('time', 'DESC');
+            $builder->where('faulty.conditions = "Refurb" AND type="Imac"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/faulty/Rimac', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/faulty/Rimac', $data);
+           }
+
+        }
+
+
+        public function Nserverf()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('faulty');
+            $builder->select('faulty.*')->orderBy('time', 'DESC');
+            $builder->where('faulty.conditions = "New" AND type="Server"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/faulty/Nserver', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/faulty/Nserver', $data);
+           }
+
+        }
+
+
+        public function Userverf()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('faulty');
+            $builder->select('faulty.*')->orderBy('time', 'DESC');
+            $builder->where('faulty.conditions = "Used" AND type="Server"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/faulty/Userver', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/faulty/Userver', $data);
+           }
+
+        }
+
+
+        public function Rserverf()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('faulty');
+            $builder->select('faulty.*')->orderBy('time', 'DESC');
+            $builder->where('faulty.conditions = "Refurb" AND type="Server"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/faulty/Rserver', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/faulty/Rserver', $data);
+           }
+
+        }
+
+
+        public function Nworkstationf()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('faulty');
+            $builder->select('faulty.*')->orderBy('time', 'DESC');
+            $builder->where('faulty.conditions = "New" AND type="Workstation"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/faulty/Nworkstation', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/faulty/Nworkstation', $data);
+           }
+
+        }
+
+
+        public function Uworkstationf()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('faulty');
+            $builder->select('faulty.*')->orderBy('time', 'DESC');
+            $builder->where('faulty.conditions = "Used" AND type="Workstation"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/faulty/Uworkstation', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/faulty/Uworkstation', $data);
+           }
+
+        }
+
+
+        public function Rworkstationf()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('faulty');
+            $builder->select('faulty.*')->orderBy('time', 'DESC');
+            $builder->where('faulty.conditions = "Refurb" AND type="Workstation"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/faulty/Rworkstation', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/faulty/Rworkstation', $data);
+           }
+
+        }
+
+
+        public function Nmacbookf()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('faulty');
+            $builder->select('faulty.*')->orderBy('time', 'DESC');
+            $builder->where('faulty.conditions = "New" AND type="Macbook"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/faulty/Nmacbook', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/faulty/Nmacbook', $data);
+           }
+
+        }
+
+
+        public function Umacbookf()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('faulty');
+            $builder->select('faulty.*')->orderBy('time', 'DESC');
+            $builder->where('faulty.conditions = "Used" AND type="Macbook"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/faulty/Umacbook', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/faulty/Umacbook', $data);
+           }
+
+        }
+
+
+        public function Rmacbookf()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('faulty');
+            $builder->select('faulty.*')->orderBy('time', 'DESC');
+            $builder->where('faulty.conditions = "Refurb" AND type="Macbook"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/faulty/Rmacbook', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/faulty/Rmacbook', $data);
+           }
+
+        }
+
+       // end
+
+        // start of warranty new cards
+        public function Nimacw()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('warrantyin');
+            $builder->select('warrantyin.*')->orderBy('time', 'DESC');
+            $builder->where('warrantyin.conditions = "New" AND type="Imac"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warranty/Nimac', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warranty/Nimac', $data);
+           }
+
+        }
+
+
+        public function Umacw()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('warrantyin');
+            $builder->select('warrantyin.*')->orderBy('time', 'DESC');
+            $builder->where('warrantyin.conditions = "Used" AND type="Imac"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warranty/Uimac', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warranty/Uimac', $data);
+           }
+
+        }
+
+
+        public function Rimacw()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('warrantyin');
+            $builder->select('warrantyin.*')->orderBy('time', 'DESC');
+            $builder->where('warrantyin.conditions = "Refurb" AND type="Imac"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warranty/Rimac', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warranty/Rimac', $data);
+           }
+
+        }
+
+
+        public function Nserverw()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('warrantyin');
+            $builder->select('warrantyin.*')->orderBy('time', 'DESC');
+            $builder->where('warrantyin.conditions = "New" AND type="Server"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warranty/Nserver', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warranty/Nserver', $data);
+           }
+
+        }
+
+
+        public function Userverw()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('warrantyin');
+            $builder->select('warrantyin.*')->orderBy('time', 'DESC');
+            $builder->where('warrantyin.conditions = "Used" AND type="Server"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warranty/Userver', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warranty/Userver', $data);
+           }
+
+        }
+
+
+        public function Rserverw()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('warrantyin');
+            $builder->select('warrantyin.*')->orderBy('time', 'DESC');
+            $builder->where('warrantyin.conditions = "Refurb" AND type="Server"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warranty/Rserver', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warranty/Rserver', $data);
+           }
+
+        }
+
+
+        public function Nworkstationw()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('warrantyin');
+            $builder->select('warrantyin.*')->orderBy('time', 'DESC');
+            $builder->where('warrantyin.conditions = "New" AND type="Workstation"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warranty/Nworkstation', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warranty/Nworkstation', $data);
+           }
+
+        }
+
+
+        public function Uworkstationw()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('warrantyin');
+            $builder->select('warrantyin.*')->orderBy('time', 'DESC');
+            $builder->where('warrantyin.conditions = "Used" AND type="Workstation"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warranty/Uworkstation', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warranty/Uworkstation', $data);
+           }
+
+        }
+
+
+        public function Rworkstationw()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('warrantyin');
+            $builder->select('warrantyin.*')->orderBy('time', 'DESC');
+            $builder->where('warrantyin.conditions = "Refurb" AND type="Workstation"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warranty/Rworkstation', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warranty/Rworkstation', $data);
+           }
+
+        }
+
+
+        public function Nmacbookw()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('warrantyin');
+            $builder->select('warrantyin.*')->orderBy('time', 'DESC');
+            $builder->where('warrantyin.conditions = "New" AND type="Macbook"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warranty/Nmacbook', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warranty/Nmacbook', $data);
+           }
+
+        }
+
+
+        public function Umacbookw()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('warrantyin');
+            $builder->select('warrantyin.*')->orderBy('time', 'DESC');
+            $builder->where('warrantyin.conditions = "Used" AND type="Macbook"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warranty/Umacbook', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warranty/Umacbook', $data);
+           }
+
+        }
+
+
+        public function Rmacbookw()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('warrantyin');
+            $builder->select('warrantyin.*')->orderBy('time', 'DESC');
+            $builder->where('warrantyin.conditions = "Refurb" AND type="Macbook"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warranty/Rmacbook', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warranty/Rmacbook', $data);
+           }
+
+        }
+
+       // end
+
+        // start of warranty out new cards
+        public function Nimacwo()
+        {
+            $session = \Config\Services::session();
+            $db      = \Config\Database::connect();
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('warrantyout');
+            $builder->select('warrantyout.*')->orderBy('time', 'DESC');
+            $builder->where('warrantyout.conditions = "New" AND type="Imac"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warrantyout/Nimac', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warrantyout/Nimac', $data);
+           }
+
+        }
+
+
+        public function Umacwo()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('warrantyout');
+            $builder->select('warrantyout.*')->orderBy('time', 'DESC');
+            $builder->where('warrantyout.conditions = "Used" AND type="Imac"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warrantyout/Uimac', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warrantyout/Uimac', $data);
+           }
+
+        }
+
+
+        public function Rimacwo()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('warrantyout');
+            $builder->select('warrantyout.*')->orderBy('time', 'DESC');
+            $builder->where('warrantyout.conditions = "Refurb" AND type="Imac"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warrantyout/Rimac', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warrantyout/Rimac', $data);
+           }
+
+        }
+
+
+        public function Nserverwo()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('warrantyout');
+            $builder->select('warrantyout.*')->orderBy('time', 'DESC');
+            $builder->where('warrantyout.conditions = "New" AND type="Server"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warrantyout/Nserver', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warrantyout/Nserver', $data);
+           }
+
+        }
+
+
+        public function Userverwo()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('warrantyout');
+            $builder->select('warrantyout.*')->orderBy('time', 'DESC');
+            $builder->where('warrantyout.conditions = "Used" AND type="Server"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warrantyout/Userver', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warrantyout/Userver', $data);
+           }
+
+        }
+
+
+        public function Rserverwo()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('warrantyout');
+            $builder->select('warrantyout.*')->orderBy('time', 'DESC');
+            $builder->where('warrantyout.conditions = "Refurb" AND type="Server"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warrantyout/Rserver', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warrantyout/Rserver', $data);
+           }
+
+        }
+
+
+        public function Nworkstationwo()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('warrantyout');
+            $builder->select('warrantyout.*')->orderBy('time', 'DESC');
+            $builder->where('warrantyout.conditions = "New" AND type="Workstation"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warrantyout/Nworkstation', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warrantyout/Nworkstation', $data);
+           }
+
+        }
+
+
+        public function Uworkstationwo()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('warrantyout');
+            $builder->select('warrantyout.*')->orderBy('time', 'DESC');
+            $builder->where('warrantyout.conditions = "Used" AND type="Workstation"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warrantyout/Uworkstation', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warrantyout/Uworkstation', $data);
+           }
+
+        }
+
+
+        public function Rworkstationwo()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('warrantyout');
+            $builder->select('warrantyout.*')->orderBy('time', 'DESC');
+            $builder->where('warrantyout.conditions = "Refurb" AND type="Workstation"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warrantyout/Rworkstation', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warrantyout/Rworkstation', $data);
+           }
+
+        }
+
+
+        public function Nmacbookwo()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('warrantyout');
+            $builder->select('warrantyout.*')->orderBy('time', 'DESC');
+            $builder->where('warrantyout.conditions = "New" AND type="Macbook"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warrantyout/Nmacbook', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warrantyout/Nmacbook', $data);
+           }
+
+        }
+
+
+        public function Umacbookwo()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('warrantyout');
+            $builder->select('warrantyout.*')->orderBy('time', 'DESC');
+            $builder->where('warrantyout.conditions = "Used" AND type="Macbook"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warrantyout/Umacbook', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warrantyout/Umacbook', $data);
+           }
+
+        }
+
+
+        public function Rmacbookwo()
+        {
+            $session = \Config\Services::session();
+
+            $db      = \Config\Database::connect();
+    
+            $builder1 = $db->table('users');
+            $builder1->select('users.*');
+            $builder1->where('users.designation = "admin" ' );
+            $sdata['hello'] = $builder1->get()->getResultArray();
+            $session->set($sdata);
+            $data['user_data'] = $session->get('designation');
+            
+            $builder = $db->table('warrantyout');
+            $builder->select('warrantyout.*')->orderBy('time', 'DESC');
+            $builder->where('warrantyout.conditions = "Refurb" AND type="Macbook"' );
+            if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+           $builder->like('assetid', $q);
+           $builder->orLike('brand', $q);
+           $builder->orLike('conditions', $q);
+           $builder->orLike('model', $q);
+           $builder->orLike('modelid', $q);
+           $builder->orLike('gen', $q);
+           $builder->orLike('cpu', $q);
+           $builder->orLike('screen', $q);
+           $builder->orLike('price', $q);
+           $builder->orLike('customer', $q);
+           $builder->orLike('ram', $q);
+           $builder->orLike('odd', $q);
+           $builder->orLike('comment', $q);
+           $builder->orLike('type', $q);
+   
+           $data['user_data'] = $session->get('designation');
+           $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warrantyout/Rmacbook', $data);
+              
+           } elseif(!$this->request->getGet('q')) {
+            $data['user_data'] = $session->get('designation');
+            $data['Rlaptop'] = $builder->get()->getResult();
+            return view('/warrantyout/Rmacbook', $data);
+           }
+
+        }
+
+       // end
+
+
+
+
+
+        public function Nallinone()
+        {
+            
+            $session = \Config\Services::session();
+            $db      = \Config\Database::connect();
             $builder1 = $db->table('users');
             $builder1->select('users.*');
             $builder1->where('users.designation = "admin" ' );

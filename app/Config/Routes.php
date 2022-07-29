@@ -95,21 +95,12 @@ $routes->get('/job-create', 'ProductsCrud::jobCreate',['filter' => 'auth']);
 $routes->get('/clear', 'ProductsCrud::clear',['filter' => 'auth']);
 
 
-
-
-
 $routes->get('/debit-create', 'ProductsCrud::debitcreate',['filter' => 'auth']);
 $routes->get('/faulty-create', 'ProductsCrud::faultycreate',['filter' => 'auth']);
 
 
-
-
 $routes->get('/debit-note', 'ProductsCrud::debitnote',['filter' => 'auth']);
 $routes->get('/fualty-note', 'ProductsCrud::fualtynote',['filter' => 'auth']);
-
-
-// fualty-note
-
 
 $routes->get('/warranty-create', 'ProductsCrud::warrantyadd',['filter' => 'auth']);
 $routes->get('/credit-create', 'ProductsCrud::creditadd',['filter' => 'auth']);
@@ -155,20 +146,9 @@ $routes->get('spreadsheetfs', 'Product::spreadsheetfs',['filter' => 'auth']);
 $routes->get('spreadsheetfp', 'Product::spreadsheetfp',['filter' => 'auth']);
 $routes->get('printerssp', 'Product::printerssp',['filter' => 'auth']);
 
-
-
-
-
-
-
-
 $routes->post('faultyimport', 'Settings::importCsvToDb',['filter' => 'auth']);
 $routes->post('masterimport', 'Settings::importCsvToM',['filter' => 'auth']);
 $routes->post('warrantyimport', 'Settings::importCsvToW',['filter' => 'auth']);
-
-
-
-
 
 $routes->get('/Ndesktop', 'Warranty::Ndesktop',['filter' => 'auth']);
 $routes->get('/Odesktop', 'Warranty::Odesktop',['filter' => 'auth']);
@@ -183,6 +163,79 @@ $routes->get('/Nallinone', 'Warranty::Nallinone',['filter' => 'auth']);
 $routes->get('/smartphone', 'Warranty::smartphone',['filter' => 'auth']);
 $routes->get('/tablet', 'Warranty::tablet',['filter' => 'auth']);
 $routes->get('/others', 'Warranty::others',['filter' => 'auth']);
+
+$routes->get('/Rmacbook', 'Warranty::Rmacbook',['filter' => 'auth']);
+$routes->get('/Umacbook', 'Warranty::Umacbook',['filter' => 'auth']);
+$routes->get('/Nmacbook', 'Warranty::Nmacbook',['filter' => 'auth']);
+$routes->get('/Rworkstation', 'Warranty::Rworkstation',['filter' => 'auth']);
+$routes->get('/Uworkstation', 'Warranty::Uworkstation',['filter' => 'auth']);
+$routes->get('/Nworkstation', 'Warranty::Nworkstation',['filter' => 'auth']);
+$routes->get('/Userver', 'Warranty::Userver',['filter' => 'auth']);
+$routes->get('/Nserver', 'Warranty::Nserver',['filter' => 'auth']);
+$routes->get('/Rserver', 'Warranty::Rserver',['filter' => 'auth']);
+$routes->get('/Rimac', 'Warranty::Rimac',['filter' => 'auth']);
+$routes->get('/Uimac', 'Warranty::Uimac',['filter' => 'auth']);
+$routes->get('/Nimac', 'Warranty::Nimac',['filter' => 'auth']);
+
+// stock out
+$routes->get('/Rmacbooks', 'Warranty::Rmacbooks',['filter' => 'auth']);
+$routes->get('/Umacbooks', 'Warranty::Umacbooks',['filter' => 'auth']);
+$routes->get('/Nmacbooks', 'Warranty::Nmacbooks',['filter' => 'auth']);
+$routes->get('/Rworkstations', 'Warranty::Rworkstations',['filter' => 'auth']);
+$routes->get('/Uworkstations', 'Warranty::Uworkstations',['filter' => 'auth']);
+$routes->get('/Nworkstations', 'Warranty::Nworkstations',['filter' => 'auth']);
+$routes->get('/Uservers', 'Warranty::Uservers',['filter' => 'auth']);
+$routes->get('/Nservers', 'Warranty::Nservers',['filter' => 'auth']);
+$routes->get('/Rservers', 'Warranty::Rservers',['filter' => 'auth']);
+$routes->get('/Rimacs', 'Warranty::Rimacs',['filter' => 'auth']);
+$routes->get('/Uimacs', 'Warranty::Uimacs',['filter' => 'auth']);
+$routes->get('/Nimacs', 'Warranty::Nimacs',['filter' => 'auth']);
+// end
+
+// faulty
+$routes->get('/Rmacbookf', 'Warranty::Rmacbookf',['filter' => 'auth']);
+$routes->get('/Umacbookf', 'Warranty::Umacbookf',['filter' => 'auth']);
+$routes->get('/Nmacbookf', 'Warranty::Nmacbookf',['filter' => 'auth']);
+$routes->get('/Rworkstationf', 'Warranty::Rworkstationf',['filter' => 'auth']);
+$routes->get('/Uworkstationf', 'Warranty::Uworkstationf',['filter' => 'auth']);
+$routes->get('/Nworkstationf', 'Warranty::Nworkstationf',['filter' => 'auth']);
+$routes->get('/Userverf', 'Warranty::Userverf',['filter' => 'auth']);
+$routes->get('/Nserverf', 'Warranty::Nserverf',['filter' => 'auth']);
+$routes->get('/Rserverf', 'Warranty::Rserverf',['filter' => 'auth']);
+$routes->get('/Rimacf', 'Warranty::Rimacf',['filter' => 'auth']);
+$routes->get('/Uimacf', 'Warranty::Uimacf',['filter' => 'auth']);
+$routes->get('/Nimacf', 'Warranty::Nimacf',['filter' => 'auth']);
+// end
+
+// warranty
+$routes->get('/Rmacbookw', 'Warranty::Rmacbookw',['filter' => 'auth']);
+$routes->get('/Umacbookw', 'Warranty::Umacbookw',['filter' => 'auth']);
+$routes->get('/Nmacbookw', 'Warranty::Nmacbookw',['filter' => 'auth']);
+$routes->get('/Rworkstationw', 'Warranty::Rworkstationw',['filter' => 'auth']);
+$routes->get('/Uworkstationw', 'Warranty::Uworkstationw',['filter' => 'auth']);
+$routes->get('/Nworkstationw', 'Warranty::Nworkstationw',['filter' => 'auth']);
+$routes->get('/Userverw', 'Warranty::Userverw',['filter' => 'auth']);
+$routes->get('/Nserverw', 'Warranty::Nserverw',['filter' => 'auth']);
+$routes->get('/Rserverw', 'Warranty::Rserverw',['filter' => 'auth']);
+$routes->get('/Rimacw', 'Warranty::Rimacw',['filter' => 'auth']);
+$routes->get('/Uimacw', 'Warranty::Uimacw',['filter' => 'auth']);
+$routes->get('/Nimacw', 'Warranty::Nimacw',['filter' => 'auth']);
+// end
+
+// warrantyout
+$routes->get('/Rmacbookwo', 'Warranty::Rmacbookwo',['filter' => 'auth']);
+$routes->get('/Umacbookwo', 'Warranty::Umacbookwo',['filter' => 'auth']);
+$routes->get('/Nmacbookwo', 'Warranty::Nmacbookwo',['filter' => 'auth']);
+$routes->get('/Rworkstationwo', 'Warranty::Rworkstationwo',['filter' => 'auth']);
+$routes->get('/Uworkstationwo', 'Warranty::Uworkstationwo',['filter' => 'auth']);
+$routes->get('/Nworkstationwo', 'Warranty::Nworkstationwo',['filter' => 'auth']);
+$routes->get('/Userverwo', 'Warranty::Userverwo',['filter' => 'auth']);
+$routes->get('/Nserverwo', 'Warranty::Nserverwo',['filter' => 'auth']);
+$routes->get('/Rserverwo', 'Warranty::Rserverwo',['filter' => 'auth']);
+$routes->get('/Rimacwo', 'Warranty::Rimacwo',['filter' => 'auth']);
+$routes->get('/Uimacwo', 'Warranty::Uimacwo',['filter' => 'auth']);
+$routes->get('/Nimacwo', 'Warranty::Nimacwo',['filter' => 'auth']);
+// end
 
 $routes->get('/Oallinone', 'Warranty::Oallinone',['filter' => 'auth']);
 $routes->get('/Rallinone', 'Warranty::Rallinone',['filter' => 'auth']);
@@ -278,8 +331,6 @@ $routes->get('/hddwo', 'Register::hdd',['filter' => 'auth']);
 $routes->get('/ramwo', 'Register::ram',['filter' => 'auth']);
 $routes->get('/warrantyoutv', 'Register::warrantyoutv',['filter' => 'auth']);
 
-
-
 $routes->get('/Ndesktopf', 'Product::Ndesktop',['filter' => 'auth']);
 $routes->get('/Odesktopf', 'Product::Odesktop',['filter' => 'auth']);
 $routes->get('/Rdesktopf', 'Product::Rdesktop',['filter' => 'auth']);
@@ -364,14 +415,6 @@ $routes->get('/stocktt-view', 'vendor::stockt',['filter' => 'auth']);
 $routes->get('/printer', 'Warranty::printer',['filter' => 'auth']);
 $routes->get('faulty-load', 'Settings::fload',['filter' => 'auth']);
 $routes->get('faulty-summary', 'Settings::fsummary',['filter' => 'auth']);
-
-
-
-
-
-
-
-
 
 
 /*

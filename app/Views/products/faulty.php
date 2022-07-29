@@ -412,6 +412,237 @@ endif;
             <?php endif ?>
      <!-- end -->
 
+     <!-- imacs -->
+
+  <!-- </div> -->
+  <div class="row ">
+    <?php if($count_NImacs> 0): ?> 
+          <div class="col-md-3">
+           <a href="<?php echo site_url('/Nimacf') ?>">
+            <div class="small-box bg-light p-2">
+              <div class="inner">
+                <h3 ><?php echo $count_NImacs; ?></h3>
+                <p >New Imacs</p>
+              </div>
+              <div class="icon">
+                <i class="ionicons ion-android-phone-landscape"></i>
+              </div>
+            <a href="<?php echo site_url('/Nimacf') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
+            </div>
+          </div>
+         </a>
+      <?php endif ?>
+      
+
+     <?php if($count_UImacs > 0): ?> 
+       <div class="col-md-3">
+          <a href="<?php echo site_url('/Uimacf') ?>">
+            <div class="small-box bg-light p-2">
+              <div class="inner">
+                <h3><?php echo $count_UImacs; ?></h3>
+                <p>Used Imacs</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-laptop"></i>
+              </div>
+            <a href="<?php echo site_url('/Uimacf') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
+            </div>
+          </div>
+         </a>
+      <?php endif ?>
+
+      
+
+      <?php if($count_RImacs > 0): ?> 
+        <div class="col-md-3">
+          <a href="<?php echo site_url('/Rimacf') ?>">
+            <div class="small-box bg-light p-2">
+              <div class="inner">
+                <h3><?php echo $count_RImacs; ?></h3>
+                <p>Refurb Imacs</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-speedometer"></i>
+              </div>
+            <a href="<?php echo site_url('/Rimacf') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
+            </div>
+          </div>
+         </a>
+       <?php endif ?>
+       
+
+       <?php if($count_Nserver > 0): ?> 
+        <div class="col-md-3">
+          <a href="<?php echo site_url('/Nserverf') ?>">
+            <div class="small-box bg-light p-2">
+              <div class="inner">
+                <h3><?php echo $count_Nserver; ?></h3>
+                <p>New Servers</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-speedometer"></i>
+              </div>
+            <a href="<?php echo site_url('/Nserverf') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
+            </div>
+          </div>
+         </a>
+       <?php endif ?>
+
+
+      </div>
+<!-- //imacs -->
+
+<!-- servers -->
+<div class="row ">
+    <?php if($count_Userver> 0): ?> 
+          <div class="col-md-3">
+           <a href="<?php echo site_url('/Userverf') ?>">
+            <div class="small-box bg-light p-2">
+              <div class="inner">
+                <h3 ><?php echo $count_Userver; ?></h3>
+                <p >Used Servers</p>
+              </div>
+              <div class="icon">
+                <i class="ionicons ion-android-phone-landscape"></i>
+              </div>
+            <a href="<?php echo site_url('/Userverf') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
+            </div>
+          </div>
+         </a>
+      <?php endif ?>
+      
+     <?php if($count_Rserver > 0): ?> 
+       <div class="col-md-3">
+          <a href="<?php echo site_url('/Rserverf') ?>">
+            <div class="small-box bg-light p-2">
+              <div class="inner">
+                <h3><?php echo $count_Rserver; ?></h3>
+                <p>Refurb  Servers</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-laptop"></i>
+              </div>
+            <a href="<?php echo site_url('/Rserverf') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
+            </div>
+          </div>
+         </a>
+      <?php endif ?>
+      
+      <?php if($count_Nworkstation > 0): ?> 
+        <div class="col-md-3">
+          <a href="<?php echo site_url('/Nworkstationf') ?>">
+            <div class="small-box bg-light p-2">
+              <div class="inner">
+                <h3><?php echo $count_Nworkstation; ?></h3>
+                <p>New  Workstations</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-speedometer"></i>
+              </div>
+            <a href="<?php echo site_url('/Nworkstationf') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
+            </div>
+          </div>
+         </a>
+       <?php endif ?>
+       
+
+       <?php if($count_Nworkstation > 0): ?> 
+        <div class="col-md-3">
+          <a href="<?php echo site_url('/Uworkstationf') ?>">
+            <div class="small-box bg-light p-2">
+              <div class="inner">
+                <h3><?php echo $count_Nworkstation; ?></h3>
+                <p>Used Workstations</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-speedometer"></i>
+              </div>
+            <a href="<?php echo site_url('/Uworkstationf') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
+            </div>
+          </div>
+         </a>
+       <?php endif ?>
+
+
+      </div>
+<!-- //servers -->
+
+<!-- Workstations -->
+<div class="row ">
+    <?php if($count_Rworkstation> 0): ?> 
+          <div class="col-md-3">
+           <a href="<?php echo site_url('/Rworkstationf') ?>">
+            <div class="small-box bg-light p-2">
+              <div class="inner">
+                <h3 ><?php echo $count_Rworkstation; ?></h3>
+                <p >Refurb workstations</p>
+              </div>
+              <div class="icon">
+                <i class="ionicons ion-android-phone-landscape"></i>
+              </div>
+            <a href="<?php echo site_url('/Rworkstationf') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
+            </div>
+          </div>
+         </a>
+      <?php endif ?>
+      
+     <?php if($count_Nmacbook > 0): ?> 
+       <div class="col-md-3">
+          <a href="<?php echo site_url('/Nmacbookf') ?>">
+            <div class="small-box bg-light p-2">
+              <div class="inner">
+                <h3><?php echo $count_Nmacbook; ?></h3>
+                <p>New Macbooks</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-laptop"></i>
+              </div>
+            <a href="<?php echo site_url('/Nmacbookf') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
+            </div>
+          </div>
+         </a>
+      <?php endif ?>
+      
+      <?php if($count_Umacbook > 0): ?> 
+        <div class="col-md-3">
+          <a href="<?php echo site_url('/Umacbookf') ?>">
+            <div class="small-box bg-light p-2">
+              <div class="inner">
+                <h3><?php echo $count_Umacbook; ?></h3>
+                <p>Used Macbooks</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-speedometer"></i>
+              </div>
+            <a href="<?php echo site_url('/Umacbookf') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
+            </div>
+          </div>
+         </a>
+       <?php endif ?>
+       
+
+       <?php if($count_Rmacbook > 0): ?> 
+        <div class="col-md-3">
+          <a href="<?php echo site_url('/Rmacbookf') ?>">
+            <div class="small-box bg-light p-2">
+              <div class="inner">
+                <h3><?php echo $count_Rmacbook; ?></h3>
+                <p>Refurb Macbooks</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-speedometer"></i>
+              </div>
+            <a href="<?php echo site_url('/Rmacbookf') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
+            </div>
+          </div>
+         </a>
+       <?php endif ?>
+      </div>
+
+      </div>
+<!-- //workstations -->
+
+
                 <?php
                 else: ?>
                   

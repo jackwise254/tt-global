@@ -19,6 +19,61 @@ $get_ulcds = "SELECT * FROM stockout where type = 'Lcd' AND conditions ='Used'";
 $run_ulcds = mysqli_query($con, $get_ulcds);
 $count_ulcds = mysqli_num_rows($run_ulcds);
 
+
+$get_Imac = "SELECT * FROM stockout where type = 'Imac' AND conditions ='New'";
+$run_Imac = mysqli_query($con, $get_Imac);
+$count_NImacso = mysqli_num_rows($run_Imac);
+
+$get_UImac = "SELECT * FROM stockout where type = 'Imac' AND conditions ='Used'";
+$run_UImac = mysqli_query($con, $get_UImac);
+$count_UImacso = mysqli_num_rows($run_UImac);
+
+$get_RImac = "SELECT * FROM stockout where type = 'Imac' AND conditions ='Refurb'";
+$run_RImac = mysqli_query($con, $get_RImac);
+$count_RImacso = mysqli_num_rows($run_RImac);
+
+// servers
+$get_Nserver = "SELECT * FROM stockout where type = 'Server' AND conditions ='New'";
+$run_Nserver = mysqli_query($con, $get_Nserver);
+$count_Nserverso = mysqli_num_rows($run_Nserver);
+
+$get_Userver = "SELECT * FROM stockout where type = 'Server' AND conditions ='Used'";
+$run_Userver = mysqli_query($con, $get_Userver);
+$count_Userverso = mysqli_num_rows($run_Userver);
+
+$get_Rserver = "SELECT * FROM stockout where type = 'Server' AND conditions ='Refurb'";
+$run_Rserver = mysqli_query($con, $get_Rserver);
+$count_Rserverso = mysqli_num_rows($run_Rserver);
+// //servers
+
+// Workstations
+$get_Nworkstation = "SELECT * FROM stockout where type = 'Workstation' AND conditions ='New'";
+$run_Nworkstation = mysqli_query($con, $get_Nworkstation);
+$count_Nworkstationso = mysqli_num_rows($run_Nworkstation);
+
+$get_Uworkstation = "SELECT * FROM stockout where type = 'Workstation' AND conditions ='Used'";
+$run_Uworkstation = mysqli_query($con, $get_Uworkstation);
+$count_Uworkstationso = mysqli_num_rows($run_Uworkstation);
+
+$get_Rworkstation = "SELECT * FROM stockout where type = 'Workstation' AND conditions ='Refurb'";
+$run_Rworkstation = mysqli_query($con, $get_Rworkstation);
+$count_Rworkstationso = mysqli_num_rows($run_Rworkstation);
+// //Workstations
+
+// Macbooks
+$get_Nmacbook = "SELECT * FROM stockout where type = 'Macbook' AND conditions ='New'";
+$run_Nmacbook = mysqli_query($con, $get_Nmacbook);
+$count_Nmacbookso = mysqli_num_rows($run_Nmacbook);
+
+$get_Umacbook = "SELECT * FROM stockout where type = 'Macbook' AND conditions ='Used'";
+$run_Umacbook = mysqli_query($con, $get_Umacbook);
+$count_Umacbookso = mysqli_num_rows($run_Umacbook);
+
+$get_Rmacbook = "SELECT * FROM stockout where type = 'Macbook' AND conditions ='Refurb'";
+$run_Rmacbook = mysqli_query($con, $get_Rmacbook);
+$count_Rmacbookso = mysqli_num_rows($run_Rmacbook);
+// //Macbooks
+
 $get_hdd = "SELECT * FROM stockout where type = 'laptop' AND conditions ='New'";
 $run_hdd = mysqli_query($con, $get_hdd);
 $count_Nlaptop = mysqli_num_rows($run_hdd);
