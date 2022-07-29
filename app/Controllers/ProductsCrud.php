@@ -11308,7 +11308,6 @@ public function printbarcodwi($id)
         $builder->select('warrantyin.*');
         $builder->where('id', $id);
         $builder->update($data);
-        // $productModel->update($id, $data);
         return $this->response->redirect(site_url('/warranty'));
     }
 

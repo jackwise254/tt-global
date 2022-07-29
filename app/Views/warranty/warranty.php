@@ -90,20 +90,19 @@ endif;
                             <tr>
                             <td class="">  
                               <div class="btn-group" role="group" aria-label="Basic example">
+                              <a href="<?= base_url('ProductsCrud/printbarcodwi/'.$user->assetid) ?>" class="px-2">[barcode]</a> 
+                              <a href="<?= base_url('ProductsCrud/printbarcode2wi/'.$user->assetid ) ?>" class="px-2">[barcode2]</a> 
+                              <a href="<?php echo base_url('ProductsCrud/ok/'.$user->assetid);?>" class='px-2'>[irrepairable]</a>
+                              <a href="<?php echo base_url('ProductsCrud/wip/'.$user->assetid);?>" class='px-2'>[Wip]</a>
+                              <a href="<?php echo base_url('ProductsCrud/fixed/'.$user->assetid);?>" class='px-2'>[Fixed]</a>
                               <?php if($user_data == 'admin'):  ?>
                                <a href="<?php echo site_url('ProductsCrud/deletes/'.$user->id); ?>" class="pr-3  ">[del]</a>
                                 <a href="<?php echo base_url('ProductsCrud/singleProductw/'.$user->id);?>" class='px-2'>[Edit]</a>
                                <?php elseif($user_data == 'warranty' && $datereceived == date("Y-m-d")):?>
                                 <a href="<?php echo base_url('ProductsCrud/singleProductw/'.$user->id);?>" class='px-2'>[Edit]</a>
                               <?php endif; ?>
-                              <a href="<?= base_url('ProductsCrud/printbarcodwi/'.$user->assetid) ?>" class="px-2">[barcode]</a> 
-                              <a href="<?= base_url('ProductsCrud/printbarcode2wi/'.$user->assetid ) ?>" class="px-2">[barcode2]</a> 
-                              <a href="<?php echo base_url('ProductsCrud/ok/'.$user->assetid);?>" class='px-2'>[irrepairable]</a>
-                              <a href="<?php echo base_url('ProductsCrud/wip/'.$user->assetid);?>" class='px-2'>[Wip]</a>
-                              <a href="<?php echo base_url('ProductsCrud/fixed/'.$user->assetid);?>" class='px-2'>[Fixed]</a>
                             </div>
                             </td>
-
                             <td class="col-5"><?=  $user->list; ?></td>
                             <td class="col-5"><?=  $user->assetid; ?></td>
                             <td class="col-3"><?=  $user->conditions; ?></td>

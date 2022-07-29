@@ -122,11 +122,21 @@ endif;
    				 
 			</td>
     		<td>
-    			<input type="text" class="form-control" name="ram" value="<?php echo $user_obj[0]['ram']; ?>">
+        <select class="form-select" name="ram">
+         <option selected value="<?php echo $user_obj[0]['ram']; ?>"> <?php echo $user_obj[0]['ram']; ?></option>
+          <?php foreach($ram as $r):?>
+          <option value="<?php echo $r->ram; ?>"> <?php echo $r->ram; ?></option>
+          <?php endforeach;?>
+        </select>
+
     		</td>
     		<td>
-   				  <input type="text" class="form-control" name="hdd" value="<?php echo $user_obj[0]['hdd']; ?>">
-   				 
+        <select class="form-select" name="hdd">
+         <option selected value="<?php echo $user_obj[0]['hdd']; ?>"> <?php echo $user_obj[0]['hdd']; ?></option>
+          <?php foreach($hdd as $h):?>
+          <option value="<?php echo $h->hdd; ?>"> <?php echo $h->hdd; ?></option>
+          <?php endforeach;?>
+        </select>
 			</td>
     		<td>
         <select class="form-select"  name="screen">
