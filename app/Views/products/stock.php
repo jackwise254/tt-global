@@ -200,9 +200,9 @@ endif;
 
             <div class="small-box bg-light p-2">
               <div class="inner">
-                <h3 class="text-center"><?php echo $count_Rlaptop; ?></h3>
+                <h3 class=><?php echo $count_Rlaptop; ?></h3>
 
-                <p class="text-center">Refurb laptops </p>
+                <p class=>Refurb laptops </p>
               </div>
               <div class="icon">
                 <i class="ionicons ion-laptop"></i>
@@ -447,7 +447,7 @@ endif;
             <div class="small-box bg-light p-2">
               <div class="inner">
                 <h3 class=""><?php echo $count_smartphonesm; ?></h3>
-                <p class="text-center">Smartphones</p>
+                <p class=>Smartphones</p>
               </div>
               <div class="icon">
                 <i class="ionicons ion-laptop"></i>
@@ -564,11 +564,12 @@ endif;
 <?php endif; ?>
 
 <!-- imacs -->
+
   <!-- </div> -->
   <div class="row ">
     <?php if($count_NImacs> 0): ?> 
           <div class="col-md-3">
-           <a href="<?php echo site_url('/Rallinone') ?>">
+           <a href="<?php echo site_url('/Nimac') ?>">
             <div class="small-box bg-light p-2">
               <div class="inner">
                 <h3 ><?php echo $count_NImacs; ?></h3>
@@ -577,15 +578,16 @@ endif;
               <div class="icon">
                 <i class="ionicons ion-android-phone-landscape"></i>
               </div>
-            <a href="<?php echo site_url('/Rallinone') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
+            <a href="<?php echo site_url('/Nimac') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
             </div>
           </div>
          </a>
       <?php endif ?>
+      
 
      <?php if($count_UImacs > 0): ?> 
        <div class="col-md-3">
-          <a href="<?php echo site_url('/hdd') ?>">
+          <a href="<?php echo site_url('/Uimac') ?>">
             <div class="small-box bg-light p-2">
               <div class="inner">
                 <h3><?php echo $count_UImacs; ?></h3>
@@ -594,15 +596,17 @@ endif;
               <div class="icon">
                 <i class="ion ion-laptop"></i>
               </div>
-            <a href="<?php echo site_url('/hdd') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
+            <a href="<?php echo site_url('/Uimac') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
             </div>
           </div>
          </a>
       <?php endif ?>
 
+      
+
       <?php if($count_RImacs > 0): ?> 
         <div class="col-md-3">
-          <a href="<?php echo site_url('/ssd') ?>">
+          <a href="<?php echo site_url('/Rimac') ?>">
             <div class="small-box bg-light p-2">
               <div class="inner">
                 <h3><?php echo $count_RImacs; ?></h3>
@@ -611,22 +615,190 @@ endif;
               <div class="icon">
                 <i class="ion ion-speedometer"></i>
               </div>
-            <a href="<?php echo site_url('/ssd') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
+            <a href="<?php echo site_url('/Rimac') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
             </div>
           </div>
          </a>
-<?php endif ?>
+       <?php endif ?>
+       
+
+       <?php if($count_Nserver > 0): ?> 
+        <div class="col-md-3">
+          <a href="<?php echo site_url('/Nserver') ?>">
+            <div class="small-box bg-light p-2">
+              <div class="inner">
+                <h3><?php echo $count_Nserver; ?></h3>
+                <p>New Servers</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-speedometer"></i>
+              </div>
+            <a href="<?php echo site_url('/Nserver') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
+            </div>
+          </div>
+         </a>
+       <?php endif ?>
+
+
       </div>
 <!-- //imacs -->
 
-  <!-- end -->
-  <?php
-                else: ?>
-                  
-        <h5 class=' alert alert-light d-flex align-items-center bi flex-shrink-0 me-2 ' width='12' height='10' role='alert' style='font-family:'Airal', Arial, Arial; font-size:50%'>Cards Will appear when you stock in</h5>
+<!-- servers -->
+<div class="row ">
+    <?php if($count_Userver> 0): ?> 
+          <div class="col-md-3">
+           <a href="<?php echo site_url('/Userver') ?>">
+            <div class="small-box bg-light p-2">
+              <div class="inner">
+                <h3 ><?php echo $count_Userver; ?></h3>
+                <p >Used Servers</p>
+              </div>
+              <div class="icon">
+                <i class="ionicons ion-android-phone-landscape"></i>
+              </div>
+            <a href="<?php echo site_url('/Userver') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
+            </div>
+          </div>
+         </a>
+      <?php endif ?>
+      
+     <?php if($count_Rserver > 0): ?> 
+       <div class="col-md-3">
+          <a href="<?php echo site_url('/Rserver') ?>">
+            <div class="small-box bg-light p-2">
+              <div class="inner">
+                <h3><?php echo $count_Rserver; ?></h3>
+                <p>Refurb  Servers</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-laptop"></i>
+              </div>
+            <a href="<?php echo site_url('/Rserver') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
+            </div>
+          </div>
+         </a>
+      <?php endif ?>
+      
+      <?php if($count_Nworkstation > 0): ?> 
+        <div class="col-md-3">
+          <a href="<?php echo site_url('/Nworkstation') ?>">
+            <div class="small-box bg-light p-2">
+              <div class="inner">
+                <h3><?php echo $count_Nworkstation; ?></h3>
+                <p>New  Workstations</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-speedometer"></i>
+              </div>
+            <a href="<?php echo site_url('/Nworkstation') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
+            </div>
+          </div>
+         </a>
+       <?php endif ?>
+       
 
-                  <?php
-                endif ?>
+       <?php if($count_Nworkstation > 0): ?> 
+        <div class="col-md-3">
+          <a href="<?php echo site_url('/Uworkstation') ?>">
+            <div class="small-box bg-light p-2">
+              <div class="inner">
+                <h3><?php echo $count_Nworkstation; ?></h3>
+                <p>Used Workstations</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-speedometer"></i>
+              </div>
+            <a href="<?php echo site_url('/Uworkstation') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
+            </div>
+          </div>
+         </a>
+       <?php endif ?>
+
+
+      </div>
+<!-- //servers -->
+
+<!-- Workstations -->
+<div class="row ">
+    <?php if($count_Rworkstation> 0): ?> 
+          <div class="col-md-3">
+           <a href="<?php echo site_url('/Rworkstation') ?>">
+            <div class="small-box bg-light p-2">
+              <div class="inner">
+                <h3 ><?php echo $count_Rworkstation; ?></h3>
+                <p >Refurb workstations</p>
+              </div>
+              <div class="icon">
+                <i class="ionicons ion-android-phone-landscape"></i>
+              </div>
+            <a href="<?php echo site_url('/Rworkstation') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
+            </div>
+          </div>
+         </a>
+      <?php endif ?>
+      
+     <?php if($count_Nmacbook > 0): ?> 
+       <div class="col-md-3">
+          <a href="<?php echo site_url('/Nmacbook') ?>">
+            <div class="small-box bg-light p-2">
+              <div class="inner">
+                <h3><?php echo $count_Nmacbook; ?></h3>
+                <p>New Macbooks</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-laptop"></i>
+              </div>
+            <a href="<?php echo site_url('/Nmacbook') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
+            </div>
+          </div>
+         </a>
+      <?php endif ?>
+      
+      <?php if($count_Umacbook > 0): ?> 
+        <div class="col-md-3">
+          <a href="<?php echo site_url('/Umacbook') ?>">
+            <div class="small-box bg-light p-2">
+              <div class="inner">
+                <h3><?php echo $count_Umacbook; ?></h3>
+                <p>Used Macbooks</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-speedometer"></i>
+              </div>
+            <a href="<?php echo site_url('/Umacbook') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
+            </div>
+          </div>
+         </a>
+       <?php endif ?>
+       
+
+       <?php if($count_Rmacbook > 0): ?> 
+        <div class="col-md-3">
+          <a href="<?php echo site_url('/Rmacbook') ?>">
+            <div class="small-box bg-light p-2">
+              <div class="inner">
+                <h3><?php echo $count_Rmacbook; ?></h3>
+                <p>Refurb Macbooks</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-speedometer"></i>
+              </div>
+            <a href="<?php echo site_url('/Rmacbook') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
+            </div>
+          </div>
+         </a>
+       <?php endif ?>
+      </div>
+
+      </div>
+<!-- //workstations -->
+  <?php
+else: ?>
+
+          <h5 class=' alert alert-light d-flex align-items-center bi flex-shrink-0 me-2 ' width='12' height='10' role='alert' style='font-family:'Airal', Arial, Arial; font-size:50%'>Cards Will appear when you stock in</h5>
+
+<?php
+endif ?>
 
     </div>
 

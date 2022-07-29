@@ -24,6 +24,61 @@ $run_rlcdf = mysqli_query($con, $get_rlcdf);
 $count_rlcdf = mysqli_num_rows($run_rlcdf);
 
 
+$get_Imac = "SELECT * FROM faulty where type = 'Imac' AND conditions ='New'";
+$run_Imac = mysqli_query($con, $get_Imac);
+$count_NImacs = mysqli_num_rows($run_Imac);
+
+$get_UImac = "SELECT * FROM faulty where type = 'Imac' AND conditions ='Used'";
+$run_UImac = mysqli_query($con, $get_UImac);
+$count_UImacs = mysqli_num_rows($run_UImac);
+
+$get_RImac = "SELECT * FROM faulty where type = 'Imac' AND conditions ='Refurb'";
+$run_RImac = mysqli_query($con, $get_RImac);
+$count_RImacs = mysqli_num_rows($run_RImac);
+
+// servers
+$get_Nserver = "SELECT * FROM faulty where type = 'Server' AND conditions ='New'";
+$run_Nserver = mysqli_query($con, $get_Nserver);
+$count_Nserver = mysqli_num_rows($run_Nserver);
+
+$get_Userver = "SELECT * FROM faulty where type = 'Server' AND conditions ='Used'";
+$run_Userver = mysqli_query($con, $get_Userver);
+$count_Userver = mysqli_num_rows($run_Userver);
+
+$get_Rserver = "SELECT * FROM faulty where type = 'Server' AND conditions ='Refurb'";
+$run_Rserver = mysqli_query($con, $get_Rserver);
+$count_Rserver = mysqli_num_rows($run_Rserver);
+// //servers
+
+// Workstations
+$get_Nworkstation = "SELECT * FROM faulty where type = 'Workstation' AND conditions ='New'";
+$run_Nworkstation = mysqli_query($con, $get_Nworkstation);
+$count_Nworkstation = mysqli_num_rows($run_Nworkstation);
+
+$get_Uworkstation = "SELECT * FROM faulty where type = 'Workstation' AND conditions ='Used'";
+$run_Uworkstation = mysqli_query($con, $get_Uworkstation);
+$count_Uworkstation = mysqli_num_rows($run_Uworkstation);
+
+$get_Rworkstation = "SELECT * FROM faulty where type = 'Workstation' AND conditions ='Refurb'";
+$run_Rworkstation = mysqli_query($con, $get_Rworkstation);
+$count_Rworkstation = mysqli_num_rows($run_Rworkstation);
+// //Workstations
+
+// Macbooks
+$get_Nmacbook = "SELECT * FROM faulty where type = 'Macbook' AND conditions ='New'";
+$run_Nmacbook = mysqli_query($con, $get_Nmacbook);
+$count_Nmacbook = mysqli_num_rows($run_Nmacbook);
+
+$get_Umacbook = "SELECT * FROM faulty where type = 'Macbook' AND conditions ='Used'";
+$run_Umacbook = mysqli_query($con, $get_Umacbook);
+$count_Umacbook = mysqli_num_rows($run_Umacbook);
+
+$get_Rmacbook = "SELECT * FROM faulty where type = 'Macbook' AND conditions ='Refurb'";
+$run_Rmacbook = mysqli_query($con, $get_Rmacbook);
+$count_Rmacbook = mysqli_num_rows($run_Rmacbook);
+// //Macbooks
+
+
 $get_hddf = "SELECT * FROM faulty where type = 'laptop' AND conditions ='Used'";
 $run_hddf = mysqli_query($con, $get_hddf);
 $count_Olaptopf = mysqli_num_rows($run_hddf);

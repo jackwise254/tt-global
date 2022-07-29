@@ -12,6 +12,62 @@ $run_hdd = mysqli_query($con, $get_hdd);
 $count_Nlaptop = mysqli_num_rows($run_hdd);
 
 
+$get_Imacw = "SELECT * FROM warrantyout where type = 'Imac' AND conditions ='New'";
+$run_Imacw = mysqli_query($con, $get_Imacw);
+$count_NImacsw = mysqli_num_rows($run_Imacw);
+
+$get_UImacw = "SELECT * FROM warrantyout where type = 'Imac' AND conditions ='Used'";
+$run_UImacw = mysqli_query($con, $get_UImacw);
+$count_UImacsw = mysqli_num_rows($run_UImacw);
+
+$get_RImacw = "SELECT * FROM warrantyout where type = 'Imac' AND conditions ='Refurb'";
+$run_RImacw = mysqli_query($con, $get_RImacw);
+$count_RImacsw = mysqli_num_rows($run_RImacw);
+
+// servers
+$get_Nserverw = "SELECT * FROM warrantyout where type = 'Server' AND conditions ='New'";
+$run_Nserverw = mysqli_query($con, $get_Nserverw);
+$count_Nserverw = mysqli_num_rows($run_Nserverw);
+
+$get_Userverw = "SELECT * FROM warrantyout where type = 'Server' AND conditions ='Used'";
+$run_Userverw = mysqli_query($con, $get_Userverw);
+$count_Userverw = mysqli_num_rows($run_Userverw);
+
+$get_Rserverw = "SELECT * FROM warrantyout where type = 'Server' AND conditions ='Refurb'";
+$run_Rserverw = mysqli_query($con, $get_Rserverw);
+$count_Rserverw = mysqli_num_rows($run_Rserverw);
+// //servers
+
+// Workstations
+$get_Nworkstationw = "SELECT * FROM warrantyout where type = 'Workstation' AND conditions ='New'";
+$run_Nworkstationw = mysqli_query($con, $get_Nworkstationw);
+$count_Nworkstationw = mysqli_num_rows($run_Nworkstationw);
+
+$get_Uworkstationw = "SELECT * FROM warrantyout where type = 'Workstation' AND conditions ='Used'";
+$run_Uworkstationw = mysqli_query($con, $get_Uworkstationw);
+$count_Uworkstationw = mysqli_num_rows($run_Uworkstationw);
+
+$get_Rworkstationw = "SELECT * FROM warrantyout where type = 'Workstation' AND conditions ='Refurb'";
+$run_Rworkstationw = mysqli_query($con, $get_Rworkstationw);
+$count_Rworkstationw = mysqli_num_rows($run_Rworkstationw);
+// //Workstations
+
+// Macbooks
+$get_Nmacbookw = "SELECT * FROM warrantyout where type = 'Macbook' AND conditions ='New'";
+$run_Nmacbookw = mysqli_query($con, $get_Nmacbookw);
+$count_Nmacbookw = mysqli_num_rows($run_Nmacbookw);
+
+$get_Umacbookw = "SELECT * FROM warrantyout where type = 'Macbook' AND conditions ='Used'";
+$run_Umacbookw = mysqli_query($con, $get_Umacbookw);
+$count_Umacbookw = mysqli_num_rows($run_Umacbookw);
+
+$get_Rmacbookw = "SELECT * FROM warrantyout where type = 'Macbook' AND conditions ='Refurb'";
+$run_Rmacbookw = mysqli_query($con, $get_Rmacbookw);
+$count_Rmacbookw = mysqli_num_rows($run_Rmacbookw);
+// //Macbooks
+
+
+
 $get_rlcdwo = "SELECT * FROM warrantyout where type = 'Lcd' AND conditions ='Refurb'";
 $run_rlcdwo = mysqli_query($con, $get_rlcdwo);
 $count_rlcdwo = mysqli_num_rows($run_rlcdwo);
