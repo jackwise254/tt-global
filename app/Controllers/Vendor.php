@@ -1147,20 +1147,14 @@ class Vendor extends Controller
       $data['user_data'] = $session->get('designation');
 
       $builder14 = $db->table('warrantyin');
-      $builder14->select('warrantyin.*');
+      $builder14->select('warrantyin.*')->orderBy('daterecieved', 'DESC');
       $nums = $builder14->countAll();
       $data['true'] = 0;
       $random = rand(10000, 99999);
       $customer = $this->request->getVar('customer');
-
-    //   echo '';
-    //   print_r($customer);
-    //   exit;
-
-
       
       $builder = $db->table('warrantyin');
-      $builder->select('warrantyin.*');
+      $builder->select('warrantyin.*')->orderBy('daterecieved' ,' DESC');
       if($this->request->getGet('q')) {
       $q=$this->request->getGet('q');
      $builder->like('assetid', $q);
