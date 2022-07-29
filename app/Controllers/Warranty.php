@@ -6471,4 +6471,3955 @@ public function load()
       
         }
 
+
+        // new spreadsheets
+        public function Nimacsp()
+        {
+          $db      = \Config\Database::connect();
+          $builder = $db->table('masterlist');
+            $builder->select('masterlist.*')->orderBy('time', 'DESC');
+            $builder->where('masterlist.conditions = "New" AND type="Imac"' );
+          
+        $users = $builder->get()->getResult();
+      
+        //   $users = $query->getResult();
+        $idd = rand(1000, 9999);
+        $fileName = 'Newimac'.$idd. '.xlsx';
+      
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'Id');
+        $sheet->setCellValue('B1', 'CONDTIONS');
+        $sheet->setCellValue('C1', 'Type');
+        $sheet->setCellValue('D1', 'ASSETID');
+        $sheet->setCellValue('E1', 'GEN');
+        $sheet->setCellValue('F1', 'BRAND');
+        $sheet->setCellValue('G1', 'SERIANO');
+        $sheet->setCellValue('H1', 'PART');
+        $sheet->setCellValue('I1', 'MODELID');
+        $sheet->setCellValue('J1', 'MODEL');
+        $sheet->setCellValue('K1', 'CPU');
+        $sheet->setCellValue('L1', 'SPEED');
+        $sheet->setCellValue('M1', 'RAM'); 
+        $sheet->setCellValue('N1', 'HDD');
+        $sheet->setCellValue('O1', 'ODD');
+        $sheet->setCellValue('P1', 'SCREEN');
+        $sheet->setCellValue('Q1', 'COMMENT');
+        $sheet->setCellValue('R1', 'PRICE'); 
+        $sheet->setCellValue('S1', 'CUSTOMER'); 
+        $sheet->setCellValue('T1', 'LIST');      
+        $sheet->setCellValue('U1', 'STATUS');      
+        $sheet->setCellValue('V1', 'DATERECIEVERD');
+        $sheet->setCellValue('W1', 'DATEDELIVERED');
+      
+        $rows = 2;
+      
+        foreach ($users as $val){
+            $sheet->setCellValue('A' . $rows, $val->id);
+            $sheet->setCellValue('B' . $rows, $val->conditions);
+            $sheet->setCellValue('C' . $rows, $val->type);
+            $sheet->setCellValue('D' . $rows, $val->assetid);
+            $sheet->setCellValue('E' . $rows, $val->gen);
+            $sheet->setCellValue('F' . $rows, $val->brand);
+            $sheet->setCellValue('G' . $rows, $val->serialno);
+            $sheet->setCellValue('H' . $rows, $val->part);
+            $sheet->setCellValue('I' . $rows, $val->modelid);
+            $sheet->setCellValue('J' . $rows, $val->model);
+            $sheet->setCellValue('K' . $rows, $val->cpu);
+            $sheet->setCellValue('L' . $rows, $val->speed);
+            $sheet->setCellValue('M' . $rows, $val->ram);
+            $sheet->setCellValue('N' . $rows, $val->hdd);
+            $sheet->setCellValue('O' . $rows, $val->odd);
+            $sheet->setCellValue('P' . $rows, $val->screen);
+            $sheet->setCellValue('Q' . $rows, $val->comment);
+            $sheet->setCellValue('R' . $rows, $val->price);
+            $sheet->setCellValue('S' . $rows, $val->customer);
+            $sheet->setCellValue('T' . $rows, $val->list);
+            $sheet->setCellValue('U' . $rows, $val->status);
+            $sheet->setCellValue('V' . $rows, $val->daterecieved);
+            $sheet->setCellValue('W' . $rows, $val->datedelivered);
+      
+              $rows++;
+          } 
+      
+            $data = [
+                'ref' => $idd,
+            ];
+            $builder = $db->table("export");
+            $builder = $db->table("export.*");
+            $db->table('export')->insert($data);
+          $writer = new Xlsx($spreadsheet);
+          $writer->save("upload/".$fileName);
+          $filename = "upload/".'Newimac'.$idd.".xlsx";
+          return redirect()->to(base_url($filename));
+      
+        }
+
+        public function Uimacsp()
+        {
+          $db      = \Config\Database::connect();
+          $builder = $db->table('masterlist');
+            $builder->select('masterlist.*')->orderBy('time', 'DESC');
+            $builder->where('masterlist.conditions = "Used" AND type="Imac"' );
+          
+        $users = $builder->get()->getResult();
+      
+        //   $users = $query->getResult();
+        $idd = rand(1000, 9999);
+        $fileName = 'Uimacsp'.$idd. '.xlsx';
+      
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'Id');
+        $sheet->setCellValue('B1', 'CONDTIONS');
+        $sheet->setCellValue('C1', 'Type');
+        $sheet->setCellValue('D1', 'ASSETID');
+        $sheet->setCellValue('E1', 'GEN');
+        $sheet->setCellValue('F1', 'BRAND');
+        $sheet->setCellValue('G1', 'SERIANO');
+        $sheet->setCellValue('H1', 'PART');
+        $sheet->setCellValue('I1', 'MODELID');
+        $sheet->setCellValue('J1', 'MODEL');
+        $sheet->setCellValue('K1', 'CPU');
+        $sheet->setCellValue('L1', 'SPEED');
+        $sheet->setCellValue('M1', 'RAM'); 
+        $sheet->setCellValue('N1', 'HDD');
+        $sheet->setCellValue('O1', 'ODD');
+        $sheet->setCellValue('P1', 'SCREEN');
+        $sheet->setCellValue('Q1', 'COMMENT');
+        $sheet->setCellValue('R1', 'PRICE'); 
+        $sheet->setCellValue('S1', 'CUSTOMER'); 
+        $sheet->setCellValue('T1', 'LIST');      
+        $sheet->setCellValue('U1', 'STATUS');      
+        $sheet->setCellValue('V1', 'DATERECIEVERD');
+        $sheet->setCellValue('W1', 'DATEDELIVERED');
+      
+        $rows = 2;
+      
+        foreach ($users as $val){
+            $sheet->setCellValue('A' . $rows, $val->id);
+            $sheet->setCellValue('B' . $rows, $val->conditions);
+            $sheet->setCellValue('C' . $rows, $val->type);
+            $sheet->setCellValue('D' . $rows, $val->assetid);
+            $sheet->setCellValue('E' . $rows, $val->gen);
+            $sheet->setCellValue('F' . $rows, $val->brand);
+            $sheet->setCellValue('G' . $rows, $val->serialno);
+            $sheet->setCellValue('H' . $rows, $val->part);
+            $sheet->setCellValue('I' . $rows, $val->modelid);
+            $sheet->setCellValue('J' . $rows, $val->model);
+            $sheet->setCellValue('K' . $rows, $val->cpu);
+            $sheet->setCellValue('L' . $rows, $val->speed);
+            $sheet->setCellValue('M' . $rows, $val->ram);
+            $sheet->setCellValue('N' . $rows, $val->hdd);
+            $sheet->setCellValue('O' . $rows, $val->odd);
+            $sheet->setCellValue('P' . $rows, $val->screen);
+            $sheet->setCellValue('Q' . $rows, $val->comment);
+            $sheet->setCellValue('R' . $rows, $val->price);
+            $sheet->setCellValue('S' . $rows, $val->customer);
+            $sheet->setCellValue('T' . $rows, $val->list);
+            $sheet->setCellValue('U' . $rows, $val->status);
+            $sheet->setCellValue('V' . $rows, $val->daterecieved);
+            $sheet->setCellValue('W' . $rows, $val->datedelivered);
+      
+              $rows++;
+          } 
+      
+            $data = [
+                'ref' => $idd,
+            ];
+            $builder = $db->table("export");
+            $builder = $db->table("export.*");
+            $db->table('export')->insert($data);
+          $writer = new Xlsx($spreadsheet);
+          $writer->save("upload/".$fileName);
+          $filename = "upload/".'Uimacsp'.$idd.".xlsx";
+          return redirect()->to(base_url($filename));
+      
+        }
+
+        public function Rimacsp()
+        {
+          $db      = \Config\Database::connect();
+          $builder = $db->table('masterlist');
+            $builder->select('masterlist.*')->orderBy('time', 'DESC');
+            $builder->where('masterlist.conditions = "Refurb" AND type="Imac"' );
+          
+        $users = $builder->get()->getResult();
+      
+        //   $users = $query->getResult();
+        $idd = rand(1000, 9999);
+        $fileName = 'Rimacsp'.$idd. '.xlsx';
+      
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'Id');
+        $sheet->setCellValue('B1', 'CONDTIONS');
+        $sheet->setCellValue('C1', 'Type');
+        $sheet->setCellValue('D1', 'ASSETID');
+        $sheet->setCellValue('E1', 'GEN');
+        $sheet->setCellValue('F1', 'BRAND');
+        $sheet->setCellValue('G1', 'SERIANO');
+        $sheet->setCellValue('H1', 'PART');
+        $sheet->setCellValue('I1', 'MODELID');
+        $sheet->setCellValue('J1', 'MODEL');
+        $sheet->setCellValue('K1', 'CPU');
+        $sheet->setCellValue('L1', 'SPEED');
+        $sheet->setCellValue('M1', 'RAM'); 
+        $sheet->setCellValue('N1', 'HDD');
+        $sheet->setCellValue('O1', 'ODD');
+        $sheet->setCellValue('P1', 'SCREEN');
+        $sheet->setCellValue('Q1', 'COMMENT');
+        $sheet->setCellValue('R1', 'PRICE'); 
+        $sheet->setCellValue('S1', 'CUSTOMER'); 
+        $sheet->setCellValue('T1', 'LIST');      
+        $sheet->setCellValue('U1', 'STATUS');      
+        $sheet->setCellValue('V1', 'DATERECIEVERD');
+        $sheet->setCellValue('W1', 'DATEDELIVERED');
+      
+        $rows = 2;
+      
+        foreach ($users as $val){
+            $sheet->setCellValue('A' . $rows, $val->id);
+            $sheet->setCellValue('B' . $rows, $val->conditions);
+            $sheet->setCellValue('C' . $rows, $val->type);
+            $sheet->setCellValue('D' . $rows, $val->assetid);
+            $sheet->setCellValue('E' . $rows, $val->gen);
+            $sheet->setCellValue('F' . $rows, $val->brand);
+            $sheet->setCellValue('G' . $rows, $val->serialno);
+            $sheet->setCellValue('H' . $rows, $val->part);
+            $sheet->setCellValue('I' . $rows, $val->modelid);
+            $sheet->setCellValue('J' . $rows, $val->model);
+            $sheet->setCellValue('K' . $rows, $val->cpu);
+            $sheet->setCellValue('L' . $rows, $val->speed);
+            $sheet->setCellValue('M' . $rows, $val->ram);
+            $sheet->setCellValue('N' . $rows, $val->hdd);
+            $sheet->setCellValue('O' . $rows, $val->odd);
+            $sheet->setCellValue('P' . $rows, $val->screen);
+            $sheet->setCellValue('Q' . $rows, $val->comment);
+            $sheet->setCellValue('R' . $rows, $val->price);
+            $sheet->setCellValue('S' . $rows, $val->customer);
+            $sheet->setCellValue('T' . $rows, $val->list);
+            $sheet->setCellValue('U' . $rows, $val->status);
+            $sheet->setCellValue('V' . $rows, $val->daterecieved);
+            $sheet->setCellValue('W' . $rows, $val->datedelivered);
+      
+              $rows++;
+          } 
+      
+            $data = [
+                'ref' => $idd,
+            ];
+            $builder = $db->table("export");
+            $builder = $db->table("export.*");
+            $db->table('export')->insert($data);
+          $writer = new Xlsx($spreadsheet);
+          $writer->save("upload/".$fileName);
+          $filename = "upload/".'Rimacsp'.$idd.".xlsx";
+          return redirect()->to(base_url($filename));
+      
+        }
+
+        public function Nserversp()
+        {
+          $db      = \Config\Database::connect();
+          $builder = $db->table('masterlist');
+            $builder->select('masterlist.*')->orderBy('time', 'DESC');
+            $builder->where('masterlist.conditions = "New" AND type="Server"' );
+          
+        $users = $builder->get()->getResult();
+      
+        //   $users = $query->getResult();
+        $idd = rand(1000, 9999);
+        $fileName = 'Nserversp'.$idd. '.xlsx';
+      
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'Id');
+        $sheet->setCellValue('B1', 'CONDTIONS');
+        $sheet->setCellValue('C1', 'Type');
+        $sheet->setCellValue('D1', 'ASSETID');
+        $sheet->setCellValue('E1', 'GEN');
+        $sheet->setCellValue('F1', 'BRAND');
+        $sheet->setCellValue('G1', 'SERIANO');
+        $sheet->setCellValue('H1', 'PART');
+        $sheet->setCellValue('I1', 'MODELID');
+        $sheet->setCellValue('J1', 'MODEL');
+        $sheet->setCellValue('K1', 'CPU');
+        $sheet->setCellValue('L1', 'SPEED');
+        $sheet->setCellValue('M1', 'RAM'); 
+        $sheet->setCellValue('N1', 'HDD');
+        $sheet->setCellValue('O1', 'ODD');
+        $sheet->setCellValue('P1', 'SCREEN');
+        $sheet->setCellValue('Q1', 'COMMENT');
+        $sheet->setCellValue('R1', 'PRICE'); 
+        $sheet->setCellValue('S1', 'CUSTOMER'); 
+        $sheet->setCellValue('T1', 'LIST');      
+        $sheet->setCellValue('U1', 'STATUS');      
+        $sheet->setCellValue('V1', 'DATERECIEVERD');
+        $sheet->setCellValue('W1', 'DATEDELIVERED');
+      
+        $rows = 2;
+      
+        foreach ($users as $val){
+            $sheet->setCellValue('A' . $rows, $val->id);
+            $sheet->setCellValue('B' . $rows, $val->conditions);
+            $sheet->setCellValue('C' . $rows, $val->type);
+            $sheet->setCellValue('D' . $rows, $val->assetid);
+            $sheet->setCellValue('E' . $rows, $val->gen);
+            $sheet->setCellValue('F' . $rows, $val->brand);
+            $sheet->setCellValue('G' . $rows, $val->serialno);
+            $sheet->setCellValue('H' . $rows, $val->part);
+            $sheet->setCellValue('I' . $rows, $val->modelid);
+            $sheet->setCellValue('J' . $rows, $val->model);
+            $sheet->setCellValue('K' . $rows, $val->cpu);
+            $sheet->setCellValue('L' . $rows, $val->speed);
+            $sheet->setCellValue('M' . $rows, $val->ram);
+            $sheet->setCellValue('N' . $rows, $val->hdd);
+            $sheet->setCellValue('O' . $rows, $val->odd);
+            $sheet->setCellValue('P' . $rows, $val->screen);
+            $sheet->setCellValue('Q' . $rows, $val->comment);
+            $sheet->setCellValue('R' . $rows, $val->price);
+            $sheet->setCellValue('S' . $rows, $val->customer);
+            $sheet->setCellValue('T' . $rows, $val->list);
+            $sheet->setCellValue('U' . $rows, $val->status);
+            $sheet->setCellValue('V' . $rows, $val->daterecieved);
+            $sheet->setCellValue('W' . $rows, $val->datedelivered);
+      
+              $rows++;
+          } 
+      
+            $data = [
+                'ref' => $idd,
+            ];
+            $builder = $db->table("export");
+            $builder = $db->table("export.*");
+            $db->table('export')->insert($data);
+          $writer = new Xlsx($spreadsheet);
+          $writer->save("upload/".$fileName);
+          $filename = "upload/".'Nserversp'.$idd.".xlsx";
+          return redirect()->to(base_url($filename));
+      
+        }
+
+        public function Userversp()
+        {
+          $db      = \Config\Database::connect();
+          $builder = $db->table('masterlist');
+            $builder->select('masterlist.*')->orderBy('time', 'DESC');
+            $builder->where('masterlist.conditions = "Used" AND type="Server"' );
+          
+        $users = $builder->get()->getResult();
+      
+        //   $users = $query->getResult();
+        $idd = rand(1000, 9999);
+        $fileName = 'Userversp'.$idd. '.xlsx';
+      
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'Id');
+        $sheet->setCellValue('B1', 'CONDTIONS');
+        $sheet->setCellValue('C1', 'Type');
+        $sheet->setCellValue('D1', 'ASSETID');
+        $sheet->setCellValue('E1', 'GEN');
+        $sheet->setCellValue('F1', 'BRAND');
+        $sheet->setCellValue('G1', 'SERIANO');
+        $sheet->setCellValue('H1', 'PART');
+        $sheet->setCellValue('I1', 'MODELID');
+        $sheet->setCellValue('J1', 'MODEL');
+        $sheet->setCellValue('K1', 'CPU');
+        $sheet->setCellValue('L1', 'SPEED');
+        $sheet->setCellValue('M1', 'RAM'); 
+        $sheet->setCellValue('N1', 'HDD');
+        $sheet->setCellValue('O1', 'ODD');
+        $sheet->setCellValue('P1', 'SCREEN');
+        $sheet->setCellValue('Q1', 'COMMENT');
+        $sheet->setCellValue('R1', 'PRICE'); 
+        $sheet->setCellValue('S1', 'CUSTOMER'); 
+        $sheet->setCellValue('T1', 'LIST');      
+        $sheet->setCellValue('U1', 'STATUS');      
+        $sheet->setCellValue('V1', 'DATERECIEVERD');
+        $sheet->setCellValue('W1', 'DATEDELIVERED');
+      
+        $rows = 2;
+      
+        foreach ($users as $val){
+            $sheet->setCellValue('A' . $rows, $val->id);
+            $sheet->setCellValue('B' . $rows, $val->conditions);
+            $sheet->setCellValue('C' . $rows, $val->type);
+            $sheet->setCellValue('D' . $rows, $val->assetid);
+            $sheet->setCellValue('E' . $rows, $val->gen);
+            $sheet->setCellValue('F' . $rows, $val->brand);
+            $sheet->setCellValue('G' . $rows, $val->serialno);
+            $sheet->setCellValue('H' . $rows, $val->part);
+            $sheet->setCellValue('I' . $rows, $val->modelid);
+            $sheet->setCellValue('J' . $rows, $val->model);
+            $sheet->setCellValue('K' . $rows, $val->cpu);
+            $sheet->setCellValue('L' . $rows, $val->speed);
+            $sheet->setCellValue('M' . $rows, $val->ram);
+            $sheet->setCellValue('N' . $rows, $val->hdd);
+            $sheet->setCellValue('O' . $rows, $val->odd);
+            $sheet->setCellValue('P' . $rows, $val->screen);
+            $sheet->setCellValue('Q' . $rows, $val->comment);
+            $sheet->setCellValue('R' . $rows, $val->price);
+            $sheet->setCellValue('S' . $rows, $val->customer);
+            $sheet->setCellValue('T' . $rows, $val->list);
+            $sheet->setCellValue('U' . $rows, $val->status);
+            $sheet->setCellValue('V' . $rows, $val->daterecieved);
+            $sheet->setCellValue('W' . $rows, $val->datedelivered);
+      
+              $rows++;
+          } 
+      
+            $data = [
+                'ref' => $idd,
+            ];
+            $builder = $db->table("export");
+            $builder = $db->table("export.*");
+            $db->table('export')->insert($data);
+          $writer = new Xlsx($spreadsheet);
+          $writer->save("upload/".$fileName);
+          $filename = "upload/".'Userversp'.$idd.".xlsx";
+          return redirect()->to(base_url($filename));
+      
+        }
+
+        public function Rserversp()
+        {
+          $db      = \Config\Database::connect();
+          $builder = $db->table('masterlist');
+            $builder->select('masterlist.*')->orderBy('time', 'DESC');
+            $builder->where('masterlist.conditions = "Refurb" AND type="Server"' );
+          
+        $users = $builder->get()->getResult();
+      
+        //   $users = $query->getResult();
+        $idd = rand(1000, 9999);
+        $fileName = 'Rserversp'.$idd. '.xlsx';
+      
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'Id');
+        $sheet->setCellValue('B1', 'CONDTIONS');
+        $sheet->setCellValue('C1', 'Type');
+        $sheet->setCellValue('D1', 'ASSETID');
+        $sheet->setCellValue('E1', 'GEN');
+        $sheet->setCellValue('F1', 'BRAND');
+        $sheet->setCellValue('G1', 'SERIANO');
+        $sheet->setCellValue('H1', 'PART');
+        $sheet->setCellValue('I1', 'MODELID');
+        $sheet->setCellValue('J1', 'MODEL');
+        $sheet->setCellValue('K1', 'CPU');
+        $sheet->setCellValue('L1', 'SPEED');
+        $sheet->setCellValue('M1', 'RAM'); 
+        $sheet->setCellValue('N1', 'HDD');
+        $sheet->setCellValue('O1', 'ODD');
+        $sheet->setCellValue('P1', 'SCREEN');
+        $sheet->setCellValue('Q1', 'COMMENT');
+        $sheet->setCellValue('R1', 'PRICE'); 
+        $sheet->setCellValue('S1', 'CUSTOMER'); 
+        $sheet->setCellValue('T1', 'LIST');      
+        $sheet->setCellValue('U1', 'STATUS');      
+        $sheet->setCellValue('V1', 'DATERECIEVERD');
+        $sheet->setCellValue('W1', 'DATEDELIVERED');
+      
+        $rows = 2;
+      
+        foreach ($users as $val){
+            $sheet->setCellValue('A' . $rows, $val->id);
+            $sheet->setCellValue('B' . $rows, $val->conditions);
+            $sheet->setCellValue('C' . $rows, $val->type);
+            $sheet->setCellValue('D' . $rows, $val->assetid);
+            $sheet->setCellValue('E' . $rows, $val->gen);
+            $sheet->setCellValue('F' . $rows, $val->brand);
+            $sheet->setCellValue('G' . $rows, $val->serialno);
+            $sheet->setCellValue('H' . $rows, $val->part);
+            $sheet->setCellValue('I' . $rows, $val->modelid);
+            $sheet->setCellValue('J' . $rows, $val->model);
+            $sheet->setCellValue('K' . $rows, $val->cpu);
+            $sheet->setCellValue('L' . $rows, $val->speed);
+            $sheet->setCellValue('M' . $rows, $val->ram);
+            $sheet->setCellValue('N' . $rows, $val->hdd);
+            $sheet->setCellValue('O' . $rows, $val->odd);
+            $sheet->setCellValue('P' . $rows, $val->screen);
+            $sheet->setCellValue('Q' . $rows, $val->comment);
+            $sheet->setCellValue('R' . $rows, $val->price);
+            $sheet->setCellValue('S' . $rows, $val->customer);
+            $sheet->setCellValue('T' . $rows, $val->list);
+            $sheet->setCellValue('U' . $rows, $val->status);
+            $sheet->setCellValue('V' . $rows, $val->daterecieved);
+            $sheet->setCellValue('W' . $rows, $val->datedelivered);
+      
+              $rows++;
+          } 
+      
+            $data = [
+                'ref' => $idd,
+            ];
+            $builder = $db->table("export");
+            $builder = $db->table("export.*");
+            $db->table('export')->insert($data);
+          $writer = new Xlsx($spreadsheet);
+          $writer->save("upload/".$fileName);
+          $filename = "upload/".'Rserversp'.$idd.".xlsx";
+          return redirect()->to(base_url($filename));
+      
+        }
+
+        public function Nworkstationsp()
+        {
+          $db      = \Config\Database::connect();
+          $builder = $db->table('masterlist');
+            $builder->select('masterlist.*')->orderBy('time', 'DESC');
+            $builder->where('masterlist.conditions = "New" AND type="Workstation"' );
+          
+        $users = $builder->get()->getResult();
+      
+        //   $users = $query->getResult();
+        $idd = rand(1000, 9999);
+        $fileName = 'Nworkstationsp'.$idd. '.xlsx';
+      
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'Id');
+        $sheet->setCellValue('B1', 'CONDTIONS');
+        $sheet->setCellValue('C1', 'Type');
+        $sheet->setCellValue('D1', 'ASSETID');
+        $sheet->setCellValue('E1', 'GEN');
+        $sheet->setCellValue('F1', 'BRAND');
+        $sheet->setCellValue('G1', 'SERIANO');
+        $sheet->setCellValue('H1', 'PART');
+        $sheet->setCellValue('I1', 'MODELID');
+        $sheet->setCellValue('J1', 'MODEL');
+        $sheet->setCellValue('K1', 'CPU');
+        $sheet->setCellValue('L1', 'SPEED');
+        $sheet->setCellValue('M1', 'RAM'); 
+        $sheet->setCellValue('N1', 'HDD');
+        $sheet->setCellValue('O1', 'ODD');
+        $sheet->setCellValue('P1', 'SCREEN');
+        $sheet->setCellValue('Q1', 'COMMENT');
+        $sheet->setCellValue('R1', 'PRICE'); 
+        $sheet->setCellValue('S1', 'CUSTOMER'); 
+        $sheet->setCellValue('T1', 'LIST');      
+        $sheet->setCellValue('U1', 'STATUS');      
+        $sheet->setCellValue('V1', 'DATERECIEVERD');
+        $sheet->setCellValue('W1', 'DATEDELIVERED');
+      
+        $rows = 2;
+      
+        foreach ($users as $val){
+            $sheet->setCellValue('A' . $rows, $val->id);
+            $sheet->setCellValue('B' . $rows, $val->conditions);
+            $sheet->setCellValue('C' . $rows, $val->type);
+            $sheet->setCellValue('D' . $rows, $val->assetid);
+            $sheet->setCellValue('E' . $rows, $val->gen);
+            $sheet->setCellValue('F' . $rows, $val->brand);
+            $sheet->setCellValue('G' . $rows, $val->serialno);
+            $sheet->setCellValue('H' . $rows, $val->part);
+            $sheet->setCellValue('I' . $rows, $val->modelid);
+            $sheet->setCellValue('J' . $rows, $val->model);
+            $sheet->setCellValue('K' . $rows, $val->cpu);
+            $sheet->setCellValue('L' . $rows, $val->speed);
+            $sheet->setCellValue('M' . $rows, $val->ram);
+            $sheet->setCellValue('N' . $rows, $val->hdd);
+            $sheet->setCellValue('O' . $rows, $val->odd);
+            $sheet->setCellValue('P' . $rows, $val->screen);
+            $sheet->setCellValue('Q' . $rows, $val->comment);
+            $sheet->setCellValue('R' . $rows, $val->price);
+            $sheet->setCellValue('S' . $rows, $val->customer);
+            $sheet->setCellValue('T' . $rows, $val->list);
+            $sheet->setCellValue('U' . $rows, $val->status);
+            $sheet->setCellValue('V' . $rows, $val->daterecieved);
+            $sheet->setCellValue('W' . $rows, $val->datedelivered);
+      
+              $rows++;
+          } 
+      
+            $data = [
+                'ref' => $idd,
+            ];
+            $builder = $db->table("export");
+            $builder = $db->table("export.*");
+            $db->table('export')->insert($data);
+          $writer = new Xlsx($spreadsheet);
+          $writer->save("upload/".$fileName);
+          $filename = "upload/".'Nworkstationsp'.$idd.".xlsx";
+          return redirect()->to(base_url($filename));
+      
+        }
+
+        public function Uworkstationsp()
+        {
+          $db      = \Config\Database::connect();
+          $builder = $db->table('masterlist');
+            $builder->select('masterlist.*')->orderBy('time', 'DESC');
+            $builder->where('masterlist.conditions = "Used" AND type="Workstation"' );
+          
+        $users = $builder->get()->getResult();
+      
+        //   $users = $query->getResult();
+        $idd = rand(1000, 9999);
+        $fileName = 'Uworkstationsp'.$idd. '.xlsx';
+      
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'Id');
+        $sheet->setCellValue('B1', 'CONDTIONS');
+        $sheet->setCellValue('C1', 'Type');
+        $sheet->setCellValue('D1', 'ASSETID');
+        $sheet->setCellValue('E1', 'GEN');
+        $sheet->setCellValue('F1', 'BRAND');
+        $sheet->setCellValue('G1', 'SERIANO');
+        $sheet->setCellValue('H1', 'PART');
+        $sheet->setCellValue('I1', 'MODELID');
+        $sheet->setCellValue('J1', 'MODEL');
+        $sheet->setCellValue('K1', 'CPU');
+        $sheet->setCellValue('L1', 'SPEED');
+        $sheet->setCellValue('M1', 'RAM'); 
+        $sheet->setCellValue('N1', 'HDD');
+        $sheet->setCellValue('O1', 'ODD');
+        $sheet->setCellValue('P1', 'SCREEN');
+        $sheet->setCellValue('Q1', 'COMMENT');
+        $sheet->setCellValue('R1', 'PRICE'); 
+        $sheet->setCellValue('S1', 'CUSTOMER'); 
+        $sheet->setCellValue('T1', 'LIST');      
+        $sheet->setCellValue('U1', 'STATUS');      
+        $sheet->setCellValue('V1', 'DATERECIEVERD');
+        $sheet->setCellValue('W1', 'DATEDELIVERED');
+      
+        $rows = 2;
+      
+        foreach ($users as $val){
+            $sheet->setCellValue('A' . $rows, $val->id);
+            $sheet->setCellValue('B' . $rows, $val->conditions);
+            $sheet->setCellValue('C' . $rows, $val->type);
+            $sheet->setCellValue('D' . $rows, $val->assetid);
+            $sheet->setCellValue('E' . $rows, $val->gen);
+            $sheet->setCellValue('F' . $rows, $val->brand);
+            $sheet->setCellValue('G' . $rows, $val->serialno);
+            $sheet->setCellValue('H' . $rows, $val->part);
+            $sheet->setCellValue('I' . $rows, $val->modelid);
+            $sheet->setCellValue('J' . $rows, $val->model);
+            $sheet->setCellValue('K' . $rows, $val->cpu);
+            $sheet->setCellValue('L' . $rows, $val->speed);
+            $sheet->setCellValue('M' . $rows, $val->ram);
+            $sheet->setCellValue('N' . $rows, $val->hdd);
+            $sheet->setCellValue('O' . $rows, $val->odd);
+            $sheet->setCellValue('P' . $rows, $val->screen);
+            $sheet->setCellValue('Q' . $rows, $val->comment);
+            $sheet->setCellValue('R' . $rows, $val->price);
+            $sheet->setCellValue('S' . $rows, $val->customer);
+            $sheet->setCellValue('T' . $rows, $val->list);
+            $sheet->setCellValue('U' . $rows, $val->status);
+            $sheet->setCellValue('V' . $rows, $val->daterecieved);
+            $sheet->setCellValue('W' . $rows, $val->datedelivered);
+      
+              $rows++;
+          } 
+      
+            $data = [
+                'ref' => $idd,
+            ];
+            $builder = $db->table("export");
+            $builder = $db->table("export.*");
+            $db->table('export')->insert($data);
+          $writer = new Xlsx($spreadsheet);
+          $writer->save("upload/".$fileName);
+          $filename = "upload/".'Uworkstationsp'.$idd.".xlsx";
+          return redirect()->to(base_url($filename));
+      
+        }
+
+        public function Rworkstationsp()
+        {
+          $db      = \Config\Database::connect();
+          $builder = $db->table('masterlist');
+            $builder->select('masterlist.*')->orderBy('time', 'DESC');
+            $builder->where('masterlist.conditions = "Refurb" AND type="Workstation"' );
+          
+        $users = $builder->get()->getResult();
+      
+        //   $users = $query->getResult();
+        $idd = rand(1000, 9999);
+        $fileName = 'Rworkstationsp'.$idd. '.xlsx';
+      
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'Id');
+        $sheet->setCellValue('B1', 'CONDTIONS');
+        $sheet->setCellValue('C1', 'Type');
+        $sheet->setCellValue('D1', 'ASSETID');
+        $sheet->setCellValue('E1', 'GEN');
+        $sheet->setCellValue('F1', 'BRAND');
+        $sheet->setCellValue('G1', 'SERIANO');
+        $sheet->setCellValue('H1', 'PART');
+        $sheet->setCellValue('I1', 'MODELID');
+        $sheet->setCellValue('J1', 'MODEL');
+        $sheet->setCellValue('K1', 'CPU');
+        $sheet->setCellValue('L1', 'SPEED');
+        $sheet->setCellValue('M1', 'RAM'); 
+        $sheet->setCellValue('N1', 'HDD');
+        $sheet->setCellValue('O1', 'ODD');
+        $sheet->setCellValue('P1', 'SCREEN');
+        $sheet->setCellValue('Q1', 'COMMENT');
+        $sheet->setCellValue('R1', 'PRICE'); 
+        $sheet->setCellValue('S1', 'CUSTOMER'); 
+        $sheet->setCellValue('T1', 'LIST');      
+        $sheet->setCellValue('U1', 'STATUS');      
+        $sheet->setCellValue('V1', 'DATERECIEVERD');
+        $sheet->setCellValue('W1', 'DATEDELIVERED');
+      
+        $rows = 2;
+      
+        foreach ($users as $val){
+            $sheet->setCellValue('A' . $rows, $val->id);
+            $sheet->setCellValue('B' . $rows, $val->conditions);
+            $sheet->setCellValue('C' . $rows, $val->type);
+            $sheet->setCellValue('D' . $rows, $val->assetid);
+            $sheet->setCellValue('E' . $rows, $val->gen);
+            $sheet->setCellValue('F' . $rows, $val->brand);
+            $sheet->setCellValue('G' . $rows, $val->serialno);
+            $sheet->setCellValue('H' . $rows, $val->part);
+            $sheet->setCellValue('I' . $rows, $val->modelid);
+            $sheet->setCellValue('J' . $rows, $val->model);
+            $sheet->setCellValue('K' . $rows, $val->cpu);
+            $sheet->setCellValue('L' . $rows, $val->speed);
+            $sheet->setCellValue('M' . $rows, $val->ram);
+            $sheet->setCellValue('N' . $rows, $val->hdd);
+            $sheet->setCellValue('O' . $rows, $val->odd);
+            $sheet->setCellValue('P' . $rows, $val->screen);
+            $sheet->setCellValue('Q' . $rows, $val->comment);
+            $sheet->setCellValue('R' . $rows, $val->price);
+            $sheet->setCellValue('S' . $rows, $val->customer);
+            $sheet->setCellValue('T' . $rows, $val->list);
+            $sheet->setCellValue('U' . $rows, $val->status);
+            $sheet->setCellValue('V' . $rows, $val->daterecieved);
+            $sheet->setCellValue('W' . $rows, $val->datedelivered);
+      
+              $rows++;
+          } 
+      
+            $data = [
+                'ref' => $idd,
+            ];
+            $builder = $db->table("export");
+            $builder = $db->table("export.*");
+            $db->table('export')->insert($data);
+          $writer = new Xlsx($spreadsheet);
+          $writer->save("upload/".$fileName);
+          $filename = "upload/".'Rworkstationsp'.$idd.".xlsx";
+          return redirect()->to(base_url($filename));
+      
+        }
+
+        public function Nmacbooksp()
+        {
+          $db      = \Config\Database::connect();
+          $builder = $db->table('masterlist');
+            $builder->select('masterlist.*')->orderBy('time', 'DESC');
+            $builder->where('masterlist.conditions = "New" AND type="Macbook"' );
+          
+        $users = $builder->get()->getResult();
+      
+        //   $users = $query->getResult();
+        $idd = rand(1000, 9999);
+        $fileName = 'Nmacbooksp'.$idd. '.xlsx';
+      
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'Id');
+        $sheet->setCellValue('B1', 'CONDTIONS');
+        $sheet->setCellValue('C1', 'Type');
+        $sheet->setCellValue('D1', 'ASSETID');
+        $sheet->setCellValue('E1', 'GEN');
+        $sheet->setCellValue('F1', 'BRAND');
+        $sheet->setCellValue('G1', 'SERIANO');
+        $sheet->setCellValue('H1', 'PART');
+        $sheet->setCellValue('I1', 'MODELID');
+        $sheet->setCellValue('J1', 'MODEL');
+        $sheet->setCellValue('K1', 'CPU');
+        $sheet->setCellValue('L1', 'SPEED');
+        $sheet->setCellValue('M1', 'RAM'); 
+        $sheet->setCellValue('N1', 'HDD');
+        $sheet->setCellValue('O1', 'ODD');
+        $sheet->setCellValue('P1', 'SCREEN');
+        $sheet->setCellValue('Q1', 'COMMENT');
+        $sheet->setCellValue('R1', 'PRICE'); 
+        $sheet->setCellValue('S1', 'CUSTOMER'); 
+        $sheet->setCellValue('T1', 'LIST');      
+        $sheet->setCellValue('U1', 'STATUS');      
+        $sheet->setCellValue('V1', 'DATERECIEVERD');
+        $sheet->setCellValue('W1', 'DATEDELIVERED');
+      
+        $rows = 2;
+      
+        foreach ($users as $val){
+            $sheet->setCellValue('A' . $rows, $val->id);
+            $sheet->setCellValue('B' . $rows, $val->conditions);
+            $sheet->setCellValue('C' . $rows, $val->type);
+            $sheet->setCellValue('D' . $rows, $val->assetid);
+            $sheet->setCellValue('E' . $rows, $val->gen);
+            $sheet->setCellValue('F' . $rows, $val->brand);
+            $sheet->setCellValue('G' . $rows, $val->serialno);
+            $sheet->setCellValue('H' . $rows, $val->part);
+            $sheet->setCellValue('I' . $rows, $val->modelid);
+            $sheet->setCellValue('J' . $rows, $val->model);
+            $sheet->setCellValue('K' . $rows, $val->cpu);
+            $sheet->setCellValue('L' . $rows, $val->speed);
+            $sheet->setCellValue('M' . $rows, $val->ram);
+            $sheet->setCellValue('N' . $rows, $val->hdd);
+            $sheet->setCellValue('O' . $rows, $val->odd);
+            $sheet->setCellValue('P' . $rows, $val->screen);
+            $sheet->setCellValue('Q' . $rows, $val->comment);
+            $sheet->setCellValue('R' . $rows, $val->price);
+            $sheet->setCellValue('S' . $rows, $val->customer);
+            $sheet->setCellValue('T' . $rows, $val->list);
+            $sheet->setCellValue('U' . $rows, $val->status);
+            $sheet->setCellValue('V' . $rows, $val->daterecieved);
+            $sheet->setCellValue('W' . $rows, $val->datedelivered);
+      
+              $rows++;
+          } 
+      
+            $data = [
+                'ref' => $idd,
+            ];
+            $builder = $db->table("export");
+            $builder = $db->table("export.*");
+            $db->table('export')->insert($data);
+          $writer = new Xlsx($spreadsheet);
+          $writer->save("upload/".$fileName);
+          $filename = "upload/".'Nmacbooksp'.$idd.".xlsx";
+          return redirect()->to(base_url($filename));
+      
+        }
+
+        public function Umacbooksp()
+        {
+          $db      = \Config\Database::connect();
+          $builder = $db->table('masterlist');
+            $builder->select('masterlist.*')->orderBy('time', 'DESC');
+            $builder->where('masterlist.conditions = "Used" AND type="Macbook"' );
+          
+        $users = $builder->get()->getResult();
+      
+        //   $users = $query->getResult();
+        $idd = rand(1000, 9999);
+        $fileName = 'Umacbooksp'.$idd. '.xlsx';
+      
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'Id');
+        $sheet->setCellValue('B1', 'CONDTIONS');
+        $sheet->setCellValue('C1', 'Type');
+        $sheet->setCellValue('D1', 'ASSETID');
+        $sheet->setCellValue('E1', 'GEN');
+        $sheet->setCellValue('F1', 'BRAND');
+        $sheet->setCellValue('G1', 'SERIANO');
+        $sheet->setCellValue('H1', 'PART');
+        $sheet->setCellValue('I1', 'MODELID');
+        $sheet->setCellValue('J1', 'MODEL');
+        $sheet->setCellValue('K1', 'CPU');
+        $sheet->setCellValue('L1', 'SPEED');
+        $sheet->setCellValue('M1', 'RAM'); 
+        $sheet->setCellValue('N1', 'HDD');
+        $sheet->setCellValue('O1', 'ODD');
+        $sheet->setCellValue('P1', 'SCREEN');
+        $sheet->setCellValue('Q1', 'COMMENT');
+        $sheet->setCellValue('R1', 'PRICE'); 
+        $sheet->setCellValue('S1', 'CUSTOMER'); 
+        $sheet->setCellValue('T1', 'LIST');      
+        $sheet->setCellValue('U1', 'STATUS');      
+        $sheet->setCellValue('V1', 'DATERECIEVERD');
+        $sheet->setCellValue('W1', 'DATEDELIVERED');
+      
+        $rows = 2;
+      
+        foreach ($users as $val){
+            $sheet->setCellValue('A' . $rows, $val->id);
+            $sheet->setCellValue('B' . $rows, $val->conditions);
+            $sheet->setCellValue('C' . $rows, $val->type);
+            $sheet->setCellValue('D' . $rows, $val->assetid);
+            $sheet->setCellValue('E' . $rows, $val->gen);
+            $sheet->setCellValue('F' . $rows, $val->brand);
+            $sheet->setCellValue('G' . $rows, $val->serialno);
+            $sheet->setCellValue('H' . $rows, $val->part);
+            $sheet->setCellValue('I' . $rows, $val->modelid);
+            $sheet->setCellValue('J' . $rows, $val->model);
+            $sheet->setCellValue('K' . $rows, $val->cpu);
+            $sheet->setCellValue('L' . $rows, $val->speed);
+            $sheet->setCellValue('M' . $rows, $val->ram);
+            $sheet->setCellValue('N' . $rows, $val->hdd);
+            $sheet->setCellValue('O' . $rows, $val->odd);
+            $sheet->setCellValue('P' . $rows, $val->screen);
+            $sheet->setCellValue('Q' . $rows, $val->comment);
+            $sheet->setCellValue('R' . $rows, $val->price);
+            $sheet->setCellValue('S' . $rows, $val->customer);
+            $sheet->setCellValue('T' . $rows, $val->list);
+            $sheet->setCellValue('U' . $rows, $val->status);
+            $sheet->setCellValue('V' . $rows, $val->daterecieved);
+            $sheet->setCellValue('W' . $rows, $val->datedelivered);
+      
+              $rows++;
+          } 
+      
+            $data = [
+                'ref' => $idd,
+            ];
+            $builder = $db->table("export");
+            $builder = $db->table("export.*");
+            $db->table('export')->insert($data);
+          $writer = new Xlsx($spreadsheet);
+          $writer->save("upload/".$fileName);
+          $filename = "upload/".'Umacbooksp'.$idd.".xlsx";
+          return redirect()->to(base_url($filename));
+      
+        }
+
+        public function Rmacbooksp()
+        {
+          $db      = \Config\Database::connect();
+          $builder = $db->table('masterlist');
+          $builder->select('masterlist.*')->orderBy('time', 'DESC');
+          $builder->where('masterlist.conditions = "Refurb" AND type="Macbook"' );
+          $users = $builder->get()->getResult();
+        //   $users = $query->getResult();
+        $idd = rand(1000, 9999);
+        $fileName = 'Rmacbooksp'.$idd. '.xlsx';
+      
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'Id');
+        $sheet->setCellValue('B1', 'CONDTIONS');
+        $sheet->setCellValue('C1', 'Type');
+        $sheet->setCellValue('D1', 'ASSETID');
+        $sheet->setCellValue('E1', 'GEN');
+        $sheet->setCellValue('F1', 'BRAND');
+        $sheet->setCellValue('G1', 'SERIANO');
+        $sheet->setCellValue('H1', 'PART');
+        $sheet->setCellValue('I1', 'MODELID');
+        $sheet->setCellValue('J1', 'MODEL');
+        $sheet->setCellValue('K1', 'CPU');
+        $sheet->setCellValue('L1', 'SPEED');
+        $sheet->setCellValue('M1', 'RAM'); 
+        $sheet->setCellValue('N1', 'HDD');
+        $sheet->setCellValue('O1', 'ODD');
+        $sheet->setCellValue('P1', 'SCREEN');
+        $sheet->setCellValue('Q1', 'COMMENT');
+        $sheet->setCellValue('R1', 'PRICE'); 
+        $sheet->setCellValue('S1', 'CUSTOMER'); 
+        $sheet->setCellValue('T1', 'LIST');      
+        $sheet->setCellValue('U1', 'STATUS');      
+        $sheet->setCellValue('V1', 'DATERECIEVERD');
+        $sheet->setCellValue('W1', 'DATEDELIVERED');
+      
+        $rows = 2;
+      
+        foreach ($users as $val){
+            $sheet->setCellValue('A' . $rows, $val->id);
+            $sheet->setCellValue('B' . $rows, $val->conditions);
+            $sheet->setCellValue('C' . $rows, $val->type);
+            $sheet->setCellValue('D' . $rows, $val->assetid);
+            $sheet->setCellValue('E' . $rows, $val->gen);
+            $sheet->setCellValue('F' . $rows, $val->brand);
+            $sheet->setCellValue('G' . $rows, $val->serialno);
+            $sheet->setCellValue('H' . $rows, $val->part);
+            $sheet->setCellValue('I' . $rows, $val->modelid);
+            $sheet->setCellValue('J' . $rows, $val->model);
+            $sheet->setCellValue('K' . $rows, $val->cpu);
+            $sheet->setCellValue('L' . $rows, $val->speed);
+            $sheet->setCellValue('M' . $rows, $val->ram);
+            $sheet->setCellValue('N' . $rows, $val->hdd);
+            $sheet->setCellValue('O' . $rows, $val->odd);
+            $sheet->setCellValue('P' . $rows, $val->screen);
+            $sheet->setCellValue('Q' . $rows, $val->comment);
+            $sheet->setCellValue('R' . $rows, $val->price);
+            $sheet->setCellValue('S' . $rows, $val->customer);
+            $sheet->setCellValue('T' . $rows, $val->list);
+            $sheet->setCellValue('U' . $rows, $val->status);
+            $sheet->setCellValue('V' . $rows, $val->daterecieved);
+            $sheet->setCellValue('W' . $rows, $val->datedelivered);
+      
+              $rows++;
+          } 
+      
+            $data = [
+                'ref' => $idd,
+            ];
+            $builder = $db->table("export");
+            $builder = $db->table("export.*");
+            $db->table('export')->insert($data);
+          $writer = new Xlsx($spreadsheet);
+          $writer->save("upload/".$fileName);
+          $filename = "upload/".'Rmacbooksp'.$idd.".xlsx";
+          return redirect()->to(base_url($filename));
+      
+        }
+
+
+        // end
+
+
+          // new spreadsheets for stock out
+          public function Nimacsps()
+          {
+            $db      = \Config\Database::connect();
+            $builder = $db->table('stockout');
+              $builder->select('stockout.*')->orderBy('time', 'DESC');
+              $builder->where('stockout.conditions = "New" AND type="Imac"' );
+            
+          $users = $builder->get()->getResult();
+        
+          //   $users = $query->getResult();
+          $idd = rand(1000, 9999);
+          $fileName = 'Newimac'.$idd. '.xlsx';
+        
+          $spreadsheet = new Spreadsheet();
+          $sheet = $spreadsheet->getActiveSheet();
+          $sheet->setCellValue('A1', 'Id');
+          $sheet->setCellValue('B1', 'CONDTIONS');
+          $sheet->setCellValue('C1', 'Type');
+          $sheet->setCellValue('D1', 'ASSETID');
+          $sheet->setCellValue('E1', 'GEN');
+          $sheet->setCellValue('F1', 'BRAND');
+          $sheet->setCellValue('G1', 'SERIANO');
+          $sheet->setCellValue('H1', 'PART');
+          $sheet->setCellValue('I1', 'MODELID');
+          $sheet->setCellValue('J1', 'MODEL');
+          $sheet->setCellValue('K1', 'CPU');
+          $sheet->setCellValue('L1', 'SPEED');
+          $sheet->setCellValue('M1', 'RAM'); 
+          $sheet->setCellValue('N1', 'HDD');
+          $sheet->setCellValue('O1', 'ODD');
+          $sheet->setCellValue('P1', 'SCREEN');
+          $sheet->setCellValue('Q1', 'COMMENT');
+          $sheet->setCellValue('R1', 'PRICE'); 
+          $sheet->setCellValue('S1', 'CUSTOMER'); 
+          $sheet->setCellValue('T1', 'LIST');      
+          $sheet->setCellValue('U1', 'STATUS');      
+          $sheet->setCellValue('V1', 'DATERECIEVERD');
+          $sheet->setCellValue('W1', 'DATEDELIVERED');
+        
+          $rows = 2;
+        
+          foreach ($users as $val){
+              $sheet->setCellValue('A' . $rows, $val->id);
+              $sheet->setCellValue('B' . $rows, $val->conditions);
+              $sheet->setCellValue('C' . $rows, $val->type);
+              $sheet->setCellValue('D' . $rows, $val->assetid);
+              $sheet->setCellValue('E' . $rows, $val->gen);
+              $sheet->setCellValue('F' . $rows, $val->brand);
+              $sheet->setCellValue('G' . $rows, $val->serialno);
+              $sheet->setCellValue('H' . $rows, $val->part);
+              $sheet->setCellValue('I' . $rows, $val->modelid);
+              $sheet->setCellValue('J' . $rows, $val->model);
+              $sheet->setCellValue('K' . $rows, $val->cpu);
+              $sheet->setCellValue('L' . $rows, $val->speed);
+              $sheet->setCellValue('M' . $rows, $val->ram);
+              $sheet->setCellValue('N' . $rows, $val->hdd);
+              $sheet->setCellValue('O' . $rows, $val->odd);
+              $sheet->setCellValue('P' . $rows, $val->screen);
+              $sheet->setCellValue('Q' . $rows, $val->comment);
+              $sheet->setCellValue('R' . $rows, $val->price);
+              $sheet->setCellValue('S' . $rows, $val->customer);
+              $sheet->setCellValue('T' . $rows, $val->list);
+              $sheet->setCellValue('U' . $rows, $val->status);
+              $sheet->setCellValue('V' . $rows, $val->daterecieved);
+              $sheet->setCellValue('W' . $rows, $val->datedelivered);
+        
+                $rows++;
+            } 
+        
+              $data = [
+                  'ref' => $idd,
+              ];
+              $builder = $db->table("export");
+              $builder = $db->table("export.*");
+              $db->table('export')->insert($data);
+            $writer = new Xlsx($spreadsheet);
+            $writer->save("upload/".$fileName);
+            $filename = "upload/".'Newimac'.$idd.".xlsx";
+            return redirect()->to(base_url($filename));
+        
+          }
+  
+          public function Uimacsps()
+          {
+            $db      = \Config\Database::connect();
+            $builder = $db->table('stockout');
+              $builder->select('stockout.*')->orderBy('time', 'DESC');
+              $builder->where('stockout.conditions = "Used" AND type="Imac"' );
+            
+          $users = $builder->get()->getResult();
+        
+          //   $users = $query->getResult();
+          $idd = rand(1000, 9999);
+          $fileName = 'Uimacsp'.$idd. '.xlsx';
+        
+          $spreadsheet = new Spreadsheet();
+          $sheet = $spreadsheet->getActiveSheet();
+          $sheet->setCellValue('A1', 'Id');
+          $sheet->setCellValue('B1', 'CONDTIONS');
+          $sheet->setCellValue('C1', 'Type');
+          $sheet->setCellValue('D1', 'ASSETID');
+          $sheet->setCellValue('E1', 'GEN');
+          $sheet->setCellValue('F1', 'BRAND');
+          $sheet->setCellValue('G1', 'SERIANO');
+          $sheet->setCellValue('H1', 'PART');
+          $sheet->setCellValue('I1', 'MODELID');
+          $sheet->setCellValue('J1', 'MODEL');
+          $sheet->setCellValue('K1', 'CPU');
+          $sheet->setCellValue('L1', 'SPEED');
+          $sheet->setCellValue('M1', 'RAM'); 
+          $sheet->setCellValue('N1', 'HDD');
+          $sheet->setCellValue('O1', 'ODD');
+          $sheet->setCellValue('P1', 'SCREEN');
+          $sheet->setCellValue('Q1', 'COMMENT');
+          $sheet->setCellValue('R1', 'PRICE'); 
+          $sheet->setCellValue('S1', 'CUSTOMER'); 
+          $sheet->setCellValue('T1', 'LIST');      
+          $sheet->setCellValue('U1', 'STATUS');      
+          $sheet->setCellValue('V1', 'DATERECIEVERD');
+          $sheet->setCellValue('W1', 'DATEDELIVERED');
+        
+          $rows = 2;
+        
+          foreach ($users as $val){
+              $sheet->setCellValue('A' . $rows, $val->id);
+              $sheet->setCellValue('B' . $rows, $val->conditions);
+              $sheet->setCellValue('C' . $rows, $val->type);
+              $sheet->setCellValue('D' . $rows, $val->assetid);
+              $sheet->setCellValue('E' . $rows, $val->gen);
+              $sheet->setCellValue('F' . $rows, $val->brand);
+              $sheet->setCellValue('G' . $rows, $val->serialno);
+              $sheet->setCellValue('H' . $rows, $val->part);
+              $sheet->setCellValue('I' . $rows, $val->modelid);
+              $sheet->setCellValue('J' . $rows, $val->model);
+              $sheet->setCellValue('K' . $rows, $val->cpu);
+              $sheet->setCellValue('L' . $rows, $val->speed);
+              $sheet->setCellValue('M' . $rows, $val->ram);
+              $sheet->setCellValue('N' . $rows, $val->hdd);
+              $sheet->setCellValue('O' . $rows, $val->odd);
+              $sheet->setCellValue('P' . $rows, $val->screen);
+              $sheet->setCellValue('Q' . $rows, $val->comment);
+              $sheet->setCellValue('R' . $rows, $val->price);
+              $sheet->setCellValue('S' . $rows, $val->customer);
+              $sheet->setCellValue('T' . $rows, $val->list);
+              $sheet->setCellValue('U' . $rows, $val->status);
+              $sheet->setCellValue('V' . $rows, $val->daterecieved);
+              $sheet->setCellValue('W' . $rows, $val->datedelivered);
+        
+                $rows++;
+            } 
+        
+              $data = [
+                  'ref' => $idd,
+              ];
+              $builder = $db->table("export");
+              $builder = $db->table("export.*");
+              $db->table('export')->insert($data);
+            $writer = new Xlsx($spreadsheet);
+            $writer->save("upload/".$fileName);
+            $filename = "upload/".'Uimacsp'.$idd.".xlsx";
+            return redirect()->to(base_url($filename));
+        
+          }
+  
+          public function Rimacsps()
+          {
+            $db      = \Config\Database::connect();
+            $builder = $db->table('stockout');
+              $builder->select('stockout.*')->orderBy('time', 'DESC');
+              $builder->where('stockout.conditions = "Refurb" AND type="Imac"' );
+            
+          $users = $builder->get()->getResult();
+        
+          //   $users = $query->getResult();
+          $idd = rand(1000, 9999);
+          $fileName = 'Rimacsp'.$idd. '.xlsx';
+        
+          $spreadsheet = new Spreadsheet();
+          $sheet = $spreadsheet->getActiveSheet();
+          $sheet->setCellValue('A1', 'Id');
+          $sheet->setCellValue('B1', 'CONDTIONS');
+          $sheet->setCellValue('C1', 'Type');
+          $sheet->setCellValue('D1', 'ASSETID');
+          $sheet->setCellValue('E1', 'GEN');
+          $sheet->setCellValue('F1', 'BRAND');
+          $sheet->setCellValue('G1', 'SERIANO');
+          $sheet->setCellValue('H1', 'PART');
+          $sheet->setCellValue('I1', 'MODELID');
+          $sheet->setCellValue('J1', 'MODEL');
+          $sheet->setCellValue('K1', 'CPU');
+          $sheet->setCellValue('L1', 'SPEED');
+          $sheet->setCellValue('M1', 'RAM'); 
+          $sheet->setCellValue('N1', 'HDD');
+          $sheet->setCellValue('O1', 'ODD');
+          $sheet->setCellValue('P1', 'SCREEN');
+          $sheet->setCellValue('Q1', 'COMMENT');
+          $sheet->setCellValue('R1', 'PRICE'); 
+          $sheet->setCellValue('S1', 'CUSTOMER'); 
+          $sheet->setCellValue('T1', 'LIST');      
+          $sheet->setCellValue('U1', 'STATUS');      
+          $sheet->setCellValue('V1', 'DATERECIEVERD');
+          $sheet->setCellValue('W1', 'DATEDELIVERED');
+        
+          $rows = 2;
+        
+          foreach ($users as $val){
+              $sheet->setCellValue('A' . $rows, $val->id);
+              $sheet->setCellValue('B' . $rows, $val->conditions);
+              $sheet->setCellValue('C' . $rows, $val->type);
+              $sheet->setCellValue('D' . $rows, $val->assetid);
+              $sheet->setCellValue('E' . $rows, $val->gen);
+              $sheet->setCellValue('F' . $rows, $val->brand);
+              $sheet->setCellValue('G' . $rows, $val->serialno);
+              $sheet->setCellValue('H' . $rows, $val->part);
+              $sheet->setCellValue('I' . $rows, $val->modelid);
+              $sheet->setCellValue('J' . $rows, $val->model);
+              $sheet->setCellValue('K' . $rows, $val->cpu);
+              $sheet->setCellValue('L' . $rows, $val->speed);
+              $sheet->setCellValue('M' . $rows, $val->ram);
+              $sheet->setCellValue('N' . $rows, $val->hdd);
+              $sheet->setCellValue('O' . $rows, $val->odd);
+              $sheet->setCellValue('P' . $rows, $val->screen);
+              $sheet->setCellValue('Q' . $rows, $val->comment);
+              $sheet->setCellValue('R' . $rows, $val->price);
+              $sheet->setCellValue('S' . $rows, $val->customer);
+              $sheet->setCellValue('T' . $rows, $val->list);
+              $sheet->setCellValue('U' . $rows, $val->status);
+              $sheet->setCellValue('V' . $rows, $val->daterecieved);
+              $sheet->setCellValue('W' . $rows, $val->datedelivered);
+        
+                $rows++;
+            } 
+        
+              $data = [
+                  'ref' => $idd,
+              ];
+              $builder = $db->table("export");
+              $builder = $db->table("export.*");
+              $db->table('export')->insert($data);
+            $writer = new Xlsx($spreadsheet);
+            $writer->save("upload/".$fileName);
+            $filename = "upload/".'Rimacsp'.$idd.".xlsx";
+            return redirect()->to(base_url($filename));
+        
+          }
+  
+          public function Nserversps()
+          {
+            $db      = \Config\Database::connect();
+            $builder = $db->table('stockout');
+              $builder->select('stockout.*')->orderBy('time', 'DESC');
+              $builder->where('stockout.conditions = "New" AND type="Server"' );
+            
+          $users = $builder->get()->getResult();
+        
+          //   $users = $query->getResult();
+          $idd = rand(1000, 9999);
+          $fileName = 'Nserversp'.$idd. '.xlsx';
+        
+          $spreadsheet = new Spreadsheet();
+          $sheet = $spreadsheet->getActiveSheet();
+          $sheet->setCellValue('A1', 'Id');
+          $sheet->setCellValue('B1', 'CONDTIONS');
+          $sheet->setCellValue('C1', 'Type');
+          $sheet->setCellValue('D1', 'ASSETID');
+          $sheet->setCellValue('E1', 'GEN');
+          $sheet->setCellValue('F1', 'BRAND');
+          $sheet->setCellValue('G1', 'SERIANO');
+          $sheet->setCellValue('H1', 'PART');
+          $sheet->setCellValue('I1', 'MODELID');
+          $sheet->setCellValue('J1', 'MODEL');
+          $sheet->setCellValue('K1', 'CPU');
+          $sheet->setCellValue('L1', 'SPEED');
+          $sheet->setCellValue('M1', 'RAM'); 
+          $sheet->setCellValue('N1', 'HDD');
+          $sheet->setCellValue('O1', 'ODD');
+          $sheet->setCellValue('P1', 'SCREEN');
+          $sheet->setCellValue('Q1', 'COMMENT');
+          $sheet->setCellValue('R1', 'PRICE'); 
+          $sheet->setCellValue('S1', 'CUSTOMER'); 
+          $sheet->setCellValue('T1', 'LIST');      
+          $sheet->setCellValue('U1', 'STATUS');      
+          $sheet->setCellValue('V1', 'DATERECIEVERD');
+          $sheet->setCellValue('W1', 'DATEDELIVERED');
+        
+          $rows = 2;
+        
+          foreach ($users as $val){
+              $sheet->setCellValue('A' . $rows, $val->id);
+              $sheet->setCellValue('B' . $rows, $val->conditions);
+              $sheet->setCellValue('C' . $rows, $val->type);
+              $sheet->setCellValue('D' . $rows, $val->assetid);
+              $sheet->setCellValue('E' . $rows, $val->gen);
+              $sheet->setCellValue('F' . $rows, $val->brand);
+              $sheet->setCellValue('G' . $rows, $val->serialno);
+              $sheet->setCellValue('H' . $rows, $val->part);
+              $sheet->setCellValue('I' . $rows, $val->modelid);
+              $sheet->setCellValue('J' . $rows, $val->model);
+              $sheet->setCellValue('K' . $rows, $val->cpu);
+              $sheet->setCellValue('L' . $rows, $val->speed);
+              $sheet->setCellValue('M' . $rows, $val->ram);
+              $sheet->setCellValue('N' . $rows, $val->hdd);
+              $sheet->setCellValue('O' . $rows, $val->odd);
+              $sheet->setCellValue('P' . $rows, $val->screen);
+              $sheet->setCellValue('Q' . $rows, $val->comment);
+              $sheet->setCellValue('R' . $rows, $val->price);
+              $sheet->setCellValue('S' . $rows, $val->customer);
+              $sheet->setCellValue('T' . $rows, $val->list);
+              $sheet->setCellValue('U' . $rows, $val->status);
+              $sheet->setCellValue('V' . $rows, $val->daterecieved);
+              $sheet->setCellValue('W' . $rows, $val->datedelivered);
+        
+                $rows++;
+            } 
+        
+              $data = [
+                  'ref' => $idd,
+              ];
+              $builder = $db->table("export");
+              $builder = $db->table("export.*");
+              $db->table('export')->insert($data);
+            $writer = new Xlsx($spreadsheet);
+            $writer->save("upload/".$fileName);
+            $filename = "upload/".'Nserversp'.$idd.".xlsx";
+            return redirect()->to(base_url($filename));
+        
+          }
+  
+          public function Userversps()
+          {
+            $db      = \Config\Database::connect();
+            $builder = $db->table('stockout');
+              $builder->select('stockout.*')->orderBy('time', 'DESC');
+              $builder->where('stockout.conditions = "Used" AND type="Server"' );
+            
+          $users = $builder->get()->getResult();
+        
+          //   $users = $query->getResult();
+          $idd = rand(1000, 9999);
+          $fileName = 'Userversp'.$idd. '.xlsx';
+        
+          $spreadsheet = new Spreadsheet();
+          $sheet = $spreadsheet->getActiveSheet();
+          $sheet->setCellValue('A1', 'Id');
+          $sheet->setCellValue('B1', 'CONDTIONS');
+          $sheet->setCellValue('C1', 'Type');
+          $sheet->setCellValue('D1', 'ASSETID');
+          $sheet->setCellValue('E1', 'GEN');
+          $sheet->setCellValue('F1', 'BRAND');
+          $sheet->setCellValue('G1', 'SERIANO');
+          $sheet->setCellValue('H1', 'PART');
+          $sheet->setCellValue('I1', 'MODELID');
+          $sheet->setCellValue('J1', 'MODEL');
+          $sheet->setCellValue('K1', 'CPU');
+          $sheet->setCellValue('L1', 'SPEED');
+          $sheet->setCellValue('M1', 'RAM'); 
+          $sheet->setCellValue('N1', 'HDD');
+          $sheet->setCellValue('O1', 'ODD');
+          $sheet->setCellValue('P1', 'SCREEN');
+          $sheet->setCellValue('Q1', 'COMMENT');
+          $sheet->setCellValue('R1', 'PRICE'); 
+          $sheet->setCellValue('S1', 'CUSTOMER'); 
+          $sheet->setCellValue('T1', 'LIST');      
+          $sheet->setCellValue('U1', 'STATUS');      
+          $sheet->setCellValue('V1', 'DATERECIEVERD');
+          $sheet->setCellValue('W1', 'DATEDELIVERED');
+        
+          $rows = 2;
+        
+          foreach ($users as $val){
+              $sheet->setCellValue('A' . $rows, $val->id);
+              $sheet->setCellValue('B' . $rows, $val->conditions);
+              $sheet->setCellValue('C' . $rows, $val->type);
+              $sheet->setCellValue('D' . $rows, $val->assetid);
+              $sheet->setCellValue('E' . $rows, $val->gen);
+              $sheet->setCellValue('F' . $rows, $val->brand);
+              $sheet->setCellValue('G' . $rows, $val->serialno);
+              $sheet->setCellValue('H' . $rows, $val->part);
+              $sheet->setCellValue('I' . $rows, $val->modelid);
+              $sheet->setCellValue('J' . $rows, $val->model);
+              $sheet->setCellValue('K' . $rows, $val->cpu);
+              $sheet->setCellValue('L' . $rows, $val->speed);
+              $sheet->setCellValue('M' . $rows, $val->ram);
+              $sheet->setCellValue('N' . $rows, $val->hdd);
+              $sheet->setCellValue('O' . $rows, $val->odd);
+              $sheet->setCellValue('P' . $rows, $val->screen);
+              $sheet->setCellValue('Q' . $rows, $val->comment);
+              $sheet->setCellValue('R' . $rows, $val->price);
+              $sheet->setCellValue('S' . $rows, $val->customer);
+              $sheet->setCellValue('T' . $rows, $val->list);
+              $sheet->setCellValue('U' . $rows, $val->status);
+              $sheet->setCellValue('V' . $rows, $val->daterecieved);
+              $sheet->setCellValue('W' . $rows, $val->datedelivered);
+        
+                $rows++;
+            } 
+        
+              $data = [
+                  'ref' => $idd,
+              ];
+              $builder = $db->table("export");
+              $builder = $db->table("export.*");
+              $db->table('export')->insert($data);
+            $writer = new Xlsx($spreadsheet);
+            $writer->save("upload/".$fileName);
+            $filename = "upload/".'Userversp'.$idd.".xlsx";
+            return redirect()->to(base_url($filename));
+        
+          }
+  
+          public function Rserversps()
+          {
+            $db      = \Config\Database::connect();
+            $builder = $db->table('stockout');
+              $builder->select('stockout.*')->orderBy('time', 'DESC');
+              $builder->where('stockout.conditions = "Refurb" AND type="Server"' );
+            
+          $users = $builder->get()->getResult();
+        
+          //   $users = $query->getResult();
+          $idd = rand(1000, 9999);
+          $fileName = 'Rserversp'.$idd. '.xlsx';
+        
+          $spreadsheet = new Spreadsheet();
+          $sheet = $spreadsheet->getActiveSheet();
+          $sheet->setCellValue('A1', 'Id');
+          $sheet->setCellValue('B1', 'CONDTIONS');
+          $sheet->setCellValue('C1', 'Type');
+          $sheet->setCellValue('D1', 'ASSETID');
+          $sheet->setCellValue('E1', 'GEN');
+          $sheet->setCellValue('F1', 'BRAND');
+          $sheet->setCellValue('G1', 'SERIANO');
+          $sheet->setCellValue('H1', 'PART');
+          $sheet->setCellValue('I1', 'MODELID');
+          $sheet->setCellValue('J1', 'MODEL');
+          $sheet->setCellValue('K1', 'CPU');
+          $sheet->setCellValue('L1', 'SPEED');
+          $sheet->setCellValue('M1', 'RAM'); 
+          $sheet->setCellValue('N1', 'HDD');
+          $sheet->setCellValue('O1', 'ODD');
+          $sheet->setCellValue('P1', 'SCREEN');
+          $sheet->setCellValue('Q1', 'COMMENT');
+          $sheet->setCellValue('R1', 'PRICE'); 
+          $sheet->setCellValue('S1', 'CUSTOMER'); 
+          $sheet->setCellValue('T1', 'LIST');      
+          $sheet->setCellValue('U1', 'STATUS');      
+          $sheet->setCellValue('V1', 'DATERECIEVERD');
+          $sheet->setCellValue('W1', 'DATEDELIVERED');
+        
+          $rows = 2;
+        
+          foreach ($users as $val){
+              $sheet->setCellValue('A' . $rows, $val->id);
+              $sheet->setCellValue('B' . $rows, $val->conditions);
+              $sheet->setCellValue('C' . $rows, $val->type);
+              $sheet->setCellValue('D' . $rows, $val->assetid);
+              $sheet->setCellValue('E' . $rows, $val->gen);
+              $sheet->setCellValue('F' . $rows, $val->brand);
+              $sheet->setCellValue('G' . $rows, $val->serialno);
+              $sheet->setCellValue('H' . $rows, $val->part);
+              $sheet->setCellValue('I' . $rows, $val->modelid);
+              $sheet->setCellValue('J' . $rows, $val->model);
+              $sheet->setCellValue('K' . $rows, $val->cpu);
+              $sheet->setCellValue('L' . $rows, $val->speed);
+              $sheet->setCellValue('M' . $rows, $val->ram);
+              $sheet->setCellValue('N' . $rows, $val->hdd);
+              $sheet->setCellValue('O' . $rows, $val->odd);
+              $sheet->setCellValue('P' . $rows, $val->screen);
+              $sheet->setCellValue('Q' . $rows, $val->comment);
+              $sheet->setCellValue('R' . $rows, $val->price);
+              $sheet->setCellValue('S' . $rows, $val->customer);
+              $sheet->setCellValue('T' . $rows, $val->list);
+              $sheet->setCellValue('U' . $rows, $val->status);
+              $sheet->setCellValue('V' . $rows, $val->daterecieved);
+              $sheet->setCellValue('W' . $rows, $val->datedelivered);
+        
+                $rows++;
+            } 
+        
+              $data = [
+                  'ref' => $idd,
+              ];
+              $builder = $db->table("export");
+              $builder = $db->table("export.*");
+              $db->table('export')->insert($data);
+            $writer = new Xlsx($spreadsheet);
+            $writer->save("upload/".$fileName);
+            $filename = "upload/".'Rserversp'.$idd.".xlsx";
+            return redirect()->to(base_url($filename));
+        
+          }
+  
+          public function Nworkstationsps()
+          {
+            $db      = \Config\Database::connect();
+            $builder = $db->table('stockout');
+              $builder->select('stockout.*')->orderBy('time', 'DESC');
+              $builder->where('stockout.conditions = "New" AND type="Workstation"' );
+            
+          $users = $builder->get()->getResult();
+        
+          //   $users = $query->getResult();
+          $idd = rand(1000, 9999);
+          $fileName = 'Nworkstationsp'.$idd. '.xlsx';
+        
+          $spreadsheet = new Spreadsheet();
+          $sheet = $spreadsheet->getActiveSheet();
+          $sheet->setCellValue('A1', 'Id');
+          $sheet->setCellValue('B1', 'CONDTIONS');
+          $sheet->setCellValue('C1', 'Type');
+          $sheet->setCellValue('D1', 'ASSETID');
+          $sheet->setCellValue('E1', 'GEN');
+          $sheet->setCellValue('F1', 'BRAND');
+          $sheet->setCellValue('G1', 'SERIANO');
+          $sheet->setCellValue('H1', 'PART');
+          $sheet->setCellValue('I1', 'MODELID');
+          $sheet->setCellValue('J1', 'MODEL');
+          $sheet->setCellValue('K1', 'CPU');
+          $sheet->setCellValue('L1', 'SPEED');
+          $sheet->setCellValue('M1', 'RAM'); 
+          $sheet->setCellValue('N1', 'HDD');
+          $sheet->setCellValue('O1', 'ODD');
+          $sheet->setCellValue('P1', 'SCREEN');
+          $sheet->setCellValue('Q1', 'COMMENT');
+          $sheet->setCellValue('R1', 'PRICE'); 
+          $sheet->setCellValue('S1', 'CUSTOMER'); 
+          $sheet->setCellValue('T1', 'LIST');      
+          $sheet->setCellValue('U1', 'STATUS');      
+          $sheet->setCellValue('V1', 'DATERECIEVERD');
+          $sheet->setCellValue('W1', 'DATEDELIVERED');
+        
+          $rows = 2;
+        
+          foreach ($users as $val){
+              $sheet->setCellValue('A' . $rows, $val->id);
+              $sheet->setCellValue('B' . $rows, $val->conditions);
+              $sheet->setCellValue('C' . $rows, $val->type);
+              $sheet->setCellValue('D' . $rows, $val->assetid);
+              $sheet->setCellValue('E' . $rows, $val->gen);
+              $sheet->setCellValue('F' . $rows, $val->brand);
+              $sheet->setCellValue('G' . $rows, $val->serialno);
+              $sheet->setCellValue('H' . $rows, $val->part);
+              $sheet->setCellValue('I' . $rows, $val->modelid);
+              $sheet->setCellValue('J' . $rows, $val->model);
+              $sheet->setCellValue('K' . $rows, $val->cpu);
+              $sheet->setCellValue('L' . $rows, $val->speed);
+              $sheet->setCellValue('M' . $rows, $val->ram);
+              $sheet->setCellValue('N' . $rows, $val->hdd);
+              $sheet->setCellValue('O' . $rows, $val->odd);
+              $sheet->setCellValue('P' . $rows, $val->screen);
+              $sheet->setCellValue('Q' . $rows, $val->comment);
+              $sheet->setCellValue('R' . $rows, $val->price);
+              $sheet->setCellValue('S' . $rows, $val->customer);
+              $sheet->setCellValue('T' . $rows, $val->list);
+              $sheet->setCellValue('U' . $rows, $val->status);
+              $sheet->setCellValue('V' . $rows, $val->daterecieved);
+              $sheet->setCellValue('W' . $rows, $val->datedelivered);
+        
+                $rows++;
+            } 
+        
+              $data = [
+                  'ref' => $idd,
+              ];
+              $builder = $db->table("export");
+              $builder = $db->table("export.*");
+              $db->table('export')->insert($data);
+            $writer = new Xlsx($spreadsheet);
+            $writer->save("upload/".$fileName);
+            $filename = "upload/".'Nworkstationsp'.$idd.".xlsx";
+            return redirect()->to(base_url($filename));
+        
+          }
+  
+          public function Uworkstationsps()
+          {
+            $db      = \Config\Database::connect();
+            $builder = $db->table('stockout');
+              $builder->select('stockout.*')->orderBy('time', 'DESC');
+              $builder->where('stockout.conditions = "Used" AND type="Workstation"' );
+            
+          $users = $builder->get()->getResult();
+        
+          //   $users = $query->getResult();
+          $idd = rand(1000, 9999);
+          $fileName = 'Uworkstationsp'.$idd. '.xlsx';
+        
+          $spreadsheet = new Spreadsheet();
+          $sheet = $spreadsheet->getActiveSheet();
+          $sheet->setCellValue('A1', 'Id');
+          $sheet->setCellValue('B1', 'CONDTIONS');
+          $sheet->setCellValue('C1', 'Type');
+          $sheet->setCellValue('D1', 'ASSETID');
+          $sheet->setCellValue('E1', 'GEN');
+          $sheet->setCellValue('F1', 'BRAND');
+          $sheet->setCellValue('G1', 'SERIANO');
+          $sheet->setCellValue('H1', 'PART');
+          $sheet->setCellValue('I1', 'MODELID');
+          $sheet->setCellValue('J1', 'MODEL');
+          $sheet->setCellValue('K1', 'CPU');
+          $sheet->setCellValue('L1', 'SPEED');
+          $sheet->setCellValue('M1', 'RAM'); 
+          $sheet->setCellValue('N1', 'HDD');
+          $sheet->setCellValue('O1', 'ODD');
+          $sheet->setCellValue('P1', 'SCREEN');
+          $sheet->setCellValue('Q1', 'COMMENT');
+          $sheet->setCellValue('R1', 'PRICE'); 
+          $sheet->setCellValue('S1', 'CUSTOMER'); 
+          $sheet->setCellValue('T1', 'LIST');      
+          $sheet->setCellValue('U1', 'STATUS');      
+          $sheet->setCellValue('V1', 'DATERECIEVERD');
+          $sheet->setCellValue('W1', 'DATEDELIVERED');
+        
+          $rows = 2;
+        
+          foreach ($users as $val){
+              $sheet->setCellValue('A' . $rows, $val->id);
+              $sheet->setCellValue('B' . $rows, $val->conditions);
+              $sheet->setCellValue('C' . $rows, $val->type);
+              $sheet->setCellValue('D' . $rows, $val->assetid);
+              $sheet->setCellValue('E' . $rows, $val->gen);
+              $sheet->setCellValue('F' . $rows, $val->brand);
+              $sheet->setCellValue('G' . $rows, $val->serialno);
+              $sheet->setCellValue('H' . $rows, $val->part);
+              $sheet->setCellValue('I' . $rows, $val->modelid);
+              $sheet->setCellValue('J' . $rows, $val->model);
+              $sheet->setCellValue('K' . $rows, $val->cpu);
+              $sheet->setCellValue('L' . $rows, $val->speed);
+              $sheet->setCellValue('M' . $rows, $val->ram);
+              $sheet->setCellValue('N' . $rows, $val->hdd);
+              $sheet->setCellValue('O' . $rows, $val->odd);
+              $sheet->setCellValue('P' . $rows, $val->screen);
+              $sheet->setCellValue('Q' . $rows, $val->comment);
+              $sheet->setCellValue('R' . $rows, $val->price);
+              $sheet->setCellValue('S' . $rows, $val->customer);
+              $sheet->setCellValue('T' . $rows, $val->list);
+              $sheet->setCellValue('U' . $rows, $val->status);
+              $sheet->setCellValue('V' . $rows, $val->daterecieved);
+              $sheet->setCellValue('W' . $rows, $val->datedelivered);
+        
+                $rows++;
+            } 
+        
+              $data = [
+                  'ref' => $idd,
+              ];
+              $builder = $db->table("export");
+              $builder = $db->table("export.*");
+              $db->table('export')->insert($data);
+            $writer = new Xlsx($spreadsheet);
+            $writer->save("upload/".$fileName);
+            $filename = "upload/".'Uworkstationsp'.$idd.".xlsx";
+            return redirect()->to(base_url($filename));
+        
+          }
+  
+          public function Rworkstationsps()
+          {
+            $db      = \Config\Database::connect();
+            $builder = $db->table('stockout');
+              $builder->select('stockout.*')->orderBy('time', 'DESC');
+              $builder->where('stockout.conditions = "Refurb" AND type="Workstation"' );
+            
+          $users = $builder->get()->getResult();
+        
+          //   $users = $query->getResult();
+          $idd = rand(1000, 9999);
+          $fileName = 'Rworkstationsp'.$idd. '.xlsx';
+        
+          $spreadsheet = new Spreadsheet();
+          $sheet = $spreadsheet->getActiveSheet();
+          $sheet->setCellValue('A1', 'Id');
+          $sheet->setCellValue('B1', 'CONDTIONS');
+          $sheet->setCellValue('C1', 'Type');
+          $sheet->setCellValue('D1', 'ASSETID');
+          $sheet->setCellValue('E1', 'GEN');
+          $sheet->setCellValue('F1', 'BRAND');
+          $sheet->setCellValue('G1', 'SERIANO');
+          $sheet->setCellValue('H1', 'PART');
+          $sheet->setCellValue('I1', 'MODELID');
+          $sheet->setCellValue('J1', 'MODEL');
+          $sheet->setCellValue('K1', 'CPU');
+          $sheet->setCellValue('L1', 'SPEED');
+          $sheet->setCellValue('M1', 'RAM'); 
+          $sheet->setCellValue('N1', 'HDD');
+          $sheet->setCellValue('O1', 'ODD');
+          $sheet->setCellValue('P1', 'SCREEN');
+          $sheet->setCellValue('Q1', 'COMMENT');
+          $sheet->setCellValue('R1', 'PRICE'); 
+          $sheet->setCellValue('S1', 'CUSTOMER'); 
+          $sheet->setCellValue('T1', 'LIST');      
+          $sheet->setCellValue('U1', 'STATUS');      
+          $sheet->setCellValue('V1', 'DATERECIEVERD');
+          $sheet->setCellValue('W1', 'DATEDELIVERED');
+        
+          $rows = 2;
+        
+          foreach ($users as $val){
+              $sheet->setCellValue('A' . $rows, $val->id);
+              $sheet->setCellValue('B' . $rows, $val->conditions);
+              $sheet->setCellValue('C' . $rows, $val->type);
+              $sheet->setCellValue('D' . $rows, $val->assetid);
+              $sheet->setCellValue('E' . $rows, $val->gen);
+              $sheet->setCellValue('F' . $rows, $val->brand);
+              $sheet->setCellValue('G' . $rows, $val->serialno);
+              $sheet->setCellValue('H' . $rows, $val->part);
+              $sheet->setCellValue('I' . $rows, $val->modelid);
+              $sheet->setCellValue('J' . $rows, $val->model);
+              $sheet->setCellValue('K' . $rows, $val->cpu);
+              $sheet->setCellValue('L' . $rows, $val->speed);
+              $sheet->setCellValue('M' . $rows, $val->ram);
+              $sheet->setCellValue('N' . $rows, $val->hdd);
+              $sheet->setCellValue('O' . $rows, $val->odd);
+              $sheet->setCellValue('P' . $rows, $val->screen);
+              $sheet->setCellValue('Q' . $rows, $val->comment);
+              $sheet->setCellValue('R' . $rows, $val->price);
+              $sheet->setCellValue('S' . $rows, $val->customer);
+              $sheet->setCellValue('T' . $rows, $val->list);
+              $sheet->setCellValue('U' . $rows, $val->status);
+              $sheet->setCellValue('V' . $rows, $val->daterecieved);
+              $sheet->setCellValue('W' . $rows, $val->datedelivered);
+        
+                $rows++;
+            } 
+        
+              $data = [
+                  'ref' => $idd,
+              ];
+              $builder = $db->table("export");
+              $builder = $db->table("export.*");
+              $db->table('export')->insert($data);
+            $writer = new Xlsx($spreadsheet);
+            $writer->save("upload/".$fileName);
+            $filename = "upload/".'Rworkstationsp'.$idd.".xlsx";
+            return redirect()->to(base_url($filename));
+        
+          }
+  
+          public function Nmacbooksps()
+          {
+            $db      = \Config\Database::connect();
+            $builder = $db->table('stockout');
+              $builder->select('stockout.*')->orderBy('time', 'DESC');
+              $builder->where('stockout.conditions = "New" AND type="Macbook"' );
+            
+          $users = $builder->get()->getResult();
+        
+          //   $users = $query->getResult();
+          $idd = rand(1000, 9999);
+          $fileName = 'Nmacbooksp'.$idd. '.xlsx';
+        
+          $spreadsheet = new Spreadsheet();
+          $sheet = $spreadsheet->getActiveSheet();
+          $sheet->setCellValue('A1', 'Id');
+          $sheet->setCellValue('B1', 'CONDTIONS');
+          $sheet->setCellValue('C1', 'Type');
+          $sheet->setCellValue('D1', 'ASSETID');
+          $sheet->setCellValue('E1', 'GEN');
+          $sheet->setCellValue('F1', 'BRAND');
+          $sheet->setCellValue('G1', 'SERIANO');
+          $sheet->setCellValue('H1', 'PART');
+          $sheet->setCellValue('I1', 'MODELID');
+          $sheet->setCellValue('J1', 'MODEL');
+          $sheet->setCellValue('K1', 'CPU');
+          $sheet->setCellValue('L1', 'SPEED');
+          $sheet->setCellValue('M1', 'RAM'); 
+          $sheet->setCellValue('N1', 'HDD');
+          $sheet->setCellValue('O1', 'ODD');
+          $sheet->setCellValue('P1', 'SCREEN');
+          $sheet->setCellValue('Q1', 'COMMENT');
+          $sheet->setCellValue('R1', 'PRICE'); 
+          $sheet->setCellValue('S1', 'CUSTOMER'); 
+          $sheet->setCellValue('T1', 'LIST');      
+          $sheet->setCellValue('U1', 'STATUS');      
+          $sheet->setCellValue('V1', 'DATERECIEVERD');
+          $sheet->setCellValue('W1', 'DATEDELIVERED');
+        
+          $rows = 2;
+        
+          foreach ($users as $val){
+              $sheet->setCellValue('A' . $rows, $val->id);
+              $sheet->setCellValue('B' . $rows, $val->conditions);
+              $sheet->setCellValue('C' . $rows, $val->type);
+              $sheet->setCellValue('D' . $rows, $val->assetid);
+              $sheet->setCellValue('E' . $rows, $val->gen);
+              $sheet->setCellValue('F' . $rows, $val->brand);
+              $sheet->setCellValue('G' . $rows, $val->serialno);
+              $sheet->setCellValue('H' . $rows, $val->part);
+              $sheet->setCellValue('I' . $rows, $val->modelid);
+              $sheet->setCellValue('J' . $rows, $val->model);
+              $sheet->setCellValue('K' . $rows, $val->cpu);
+              $sheet->setCellValue('L' . $rows, $val->speed);
+              $sheet->setCellValue('M' . $rows, $val->ram);
+              $sheet->setCellValue('N' . $rows, $val->hdd);
+              $sheet->setCellValue('O' . $rows, $val->odd);
+              $sheet->setCellValue('P' . $rows, $val->screen);
+              $sheet->setCellValue('Q' . $rows, $val->comment);
+              $sheet->setCellValue('R' . $rows, $val->price);
+              $sheet->setCellValue('S' . $rows, $val->customer);
+              $sheet->setCellValue('T' . $rows, $val->list);
+              $sheet->setCellValue('U' . $rows, $val->status);
+              $sheet->setCellValue('V' . $rows, $val->daterecieved);
+              $sheet->setCellValue('W' . $rows, $val->datedelivered);
+        
+                $rows++;
+            } 
+        
+              $data = [
+                  'ref' => $idd,
+              ];
+              $builder = $db->table("export");
+              $builder = $db->table("export.*");
+              $db->table('export')->insert($data);
+            $writer = new Xlsx($spreadsheet);
+            $writer->save("upload/".$fileName);
+            $filename = "upload/".'Nmacbooksp'.$idd.".xlsx";
+            return redirect()->to(base_url($filename));
+        
+          }
+  
+          public function Umacbooksps()
+          {
+            $db      = \Config\Database::connect();
+            $builder = $db->table('stockout');
+              $builder->select('stockout.*')->orderBy('time', 'DESC');
+              $builder->where('stockout.conditions = "Used" AND type="Macbook"' );
+            
+          $users = $builder->get()->getResult();
+        
+          //   $users = $query->getResult();
+          $idd = rand(1000, 9999);
+          $fileName = 'Umacbooksp'.$idd. '.xlsx';
+        
+          $spreadsheet = new Spreadsheet();
+          $sheet = $spreadsheet->getActiveSheet();
+          $sheet->setCellValue('A1', 'Id');
+          $sheet->setCellValue('B1', 'CONDTIONS');
+          $sheet->setCellValue('C1', 'Type');
+          $sheet->setCellValue('D1', 'ASSETID');
+          $sheet->setCellValue('E1', 'GEN');
+          $sheet->setCellValue('F1', 'BRAND');
+          $sheet->setCellValue('G1', 'SERIANO');
+          $sheet->setCellValue('H1', 'PART');
+          $sheet->setCellValue('I1', 'MODELID');
+          $sheet->setCellValue('J1', 'MODEL');
+          $sheet->setCellValue('K1', 'CPU');
+          $sheet->setCellValue('L1', 'SPEED');
+          $sheet->setCellValue('M1', 'RAM'); 
+          $sheet->setCellValue('N1', 'HDD');
+          $sheet->setCellValue('O1', 'ODD');
+          $sheet->setCellValue('P1', 'SCREEN');
+          $sheet->setCellValue('Q1', 'COMMENT');
+          $sheet->setCellValue('R1', 'PRICE'); 
+          $sheet->setCellValue('S1', 'CUSTOMER'); 
+          $sheet->setCellValue('T1', 'LIST');      
+          $sheet->setCellValue('U1', 'STATUS');      
+          $sheet->setCellValue('V1', 'DATERECIEVERD');
+          $sheet->setCellValue('W1', 'DATEDELIVERED');
+        
+          $rows = 2;
+        
+          foreach ($users as $val){
+              $sheet->setCellValue('A' . $rows, $val->id);
+              $sheet->setCellValue('B' . $rows, $val->conditions);
+              $sheet->setCellValue('C' . $rows, $val->type);
+              $sheet->setCellValue('D' . $rows, $val->assetid);
+              $sheet->setCellValue('E' . $rows, $val->gen);
+              $sheet->setCellValue('F' . $rows, $val->brand);
+              $sheet->setCellValue('G' . $rows, $val->serialno);
+              $sheet->setCellValue('H' . $rows, $val->part);
+              $sheet->setCellValue('I' . $rows, $val->modelid);
+              $sheet->setCellValue('J' . $rows, $val->model);
+              $sheet->setCellValue('K' . $rows, $val->cpu);
+              $sheet->setCellValue('L' . $rows, $val->speed);
+              $sheet->setCellValue('M' . $rows, $val->ram);
+              $sheet->setCellValue('N' . $rows, $val->hdd);
+              $sheet->setCellValue('O' . $rows, $val->odd);
+              $sheet->setCellValue('P' . $rows, $val->screen);
+              $sheet->setCellValue('Q' . $rows, $val->comment);
+              $sheet->setCellValue('R' . $rows, $val->price);
+              $sheet->setCellValue('S' . $rows, $val->customer);
+              $sheet->setCellValue('T' . $rows, $val->list);
+              $sheet->setCellValue('U' . $rows, $val->status);
+              $sheet->setCellValue('V' . $rows, $val->daterecieved);
+              $sheet->setCellValue('W' . $rows, $val->datedelivered);
+        
+                $rows++;
+            } 
+        
+              $data = [
+                  'ref' => $idd,
+              ];
+              $builder = $db->table("export");
+              $builder = $db->table("export.*");
+              $db->table('export')->insert($data);
+            $writer = new Xlsx($spreadsheet);
+            $writer->save("upload/".$fileName);
+            $filename = "upload/".'Umacbooksp'.$idd.".xlsx";
+            return redirect()->to(base_url($filename));
+        
+          }
+  
+          public function Rmacbooksps()
+          {
+            $db      = \Config\Database::connect();
+            $builder = $db->table('stockout');
+            $builder->select('stockout.*')->orderBy('time', 'DESC');
+            $builder->where('stockout.conditions = "Refurb" AND type="Macbook"' );
+            $users = $builder->get()->getResult();
+          //   $users = $query->getResult();
+          $idd = rand(1000, 9999);
+          $fileName = 'Rmacbooksp'.$idd. '.xlsx';
+        
+          $spreadsheet = new Spreadsheet();
+          $sheet = $spreadsheet->getActiveSheet();
+          $sheet->setCellValue('A1', 'Id');
+          $sheet->setCellValue('B1', 'CONDTIONS');
+          $sheet->setCellValue('C1', 'Type');
+          $sheet->setCellValue('D1', 'ASSETID');
+          $sheet->setCellValue('E1', 'GEN');
+          $sheet->setCellValue('F1', 'BRAND');
+          $sheet->setCellValue('G1', 'SERIANO');
+          $sheet->setCellValue('H1', 'PART');
+          $sheet->setCellValue('I1', 'MODELID');
+          $sheet->setCellValue('J1', 'MODEL');
+          $sheet->setCellValue('K1', 'CPU');
+          $sheet->setCellValue('L1', 'SPEED');
+          $sheet->setCellValue('M1', 'RAM'); 
+          $sheet->setCellValue('N1', 'HDD');
+          $sheet->setCellValue('O1', 'ODD');
+          $sheet->setCellValue('P1', 'SCREEN');
+          $sheet->setCellValue('Q1', 'COMMENT');
+          $sheet->setCellValue('R1', 'PRICE'); 
+          $sheet->setCellValue('S1', 'CUSTOMER'); 
+          $sheet->setCellValue('T1', 'LIST');      
+          $sheet->setCellValue('U1', 'STATUS');      
+          $sheet->setCellValue('V1', 'DATERECIEVERD');
+          $sheet->setCellValue('W1', 'DATEDELIVERED');
+        
+          $rows = 2;
+        
+          foreach ($users as $val){
+              $sheet->setCellValue('A' . $rows, $val->id);
+              $sheet->setCellValue('B' . $rows, $val->conditions);
+              $sheet->setCellValue('C' . $rows, $val->type);
+              $sheet->setCellValue('D' . $rows, $val->assetid);
+              $sheet->setCellValue('E' . $rows, $val->gen);
+              $sheet->setCellValue('F' . $rows, $val->brand);
+              $sheet->setCellValue('G' . $rows, $val->serialno);
+              $sheet->setCellValue('H' . $rows, $val->part);
+              $sheet->setCellValue('I' . $rows, $val->modelid);
+              $sheet->setCellValue('J' . $rows, $val->model);
+              $sheet->setCellValue('K' . $rows, $val->cpu);
+              $sheet->setCellValue('L' . $rows, $val->speed);
+              $sheet->setCellValue('M' . $rows, $val->ram);
+              $sheet->setCellValue('N' . $rows, $val->hdd);
+              $sheet->setCellValue('O' . $rows, $val->odd);
+              $sheet->setCellValue('P' . $rows, $val->screen);
+              $sheet->setCellValue('Q' . $rows, $val->comment);
+              $sheet->setCellValue('R' . $rows, $val->price);
+              $sheet->setCellValue('S' . $rows, $val->customer);
+              $sheet->setCellValue('T' . $rows, $val->list);
+              $sheet->setCellValue('U' . $rows, $val->status);
+              $sheet->setCellValue('V' . $rows, $val->daterecieved);
+              $sheet->setCellValue('W' . $rows, $val->datedelivered);
+        
+                $rows++;
+            } 
+        
+              $data = [
+                  'ref' => $idd,
+              ];
+              $builder = $db->table("export");
+              $builder = $db->table("export.*");
+              $db->table('export')->insert($data);
+            $writer = new Xlsx($spreadsheet);
+            $writer->save("upload/".$fileName);
+            $filename = "upload/".'Rmacbooksp'.$idd.".xlsx";
+            return redirect()->to(base_url($filename));
+        
+          }
+  
+  
+          // end
+
+
+          // new spreadsheets for faulty 
+          public function Nimacspf()
+          {
+            $db      = \Config\Database::connect();
+            $builder = $db->table('faulty');
+              $builder->select('faulty.*')->orderBy('time', 'DESC');
+              $builder->where('faulty.conditions = "New" AND type="Imac"' );
+            
+          $users = $builder->get()->getResult();
+        
+          //   $users = $query->getResult();
+          $idd = rand(1000, 9999);
+          $fileName = 'Newimac'.$idd. '.xlsx';
+        
+          $spreadsheet = new Spreadsheet();
+          $sheet = $spreadsheet->getActiveSheet();
+          $sheet->setCellValue('A1', 'Id');
+          $sheet->setCellValue('B1', 'CONDTIONS');
+          $sheet->setCellValue('C1', 'Type');
+          $sheet->setCellValue('D1', 'ASSETID');
+          $sheet->setCellValue('E1', 'GEN');
+          $sheet->setCellValue('F1', 'BRAND');
+          $sheet->setCellValue('G1', 'SERIANO');
+          $sheet->setCellValue('H1', 'PART');
+          $sheet->setCellValue('I1', 'MODELID');
+          $sheet->setCellValue('J1', 'MODEL');
+          $sheet->setCellValue('K1', 'CPU');
+          $sheet->setCellValue('L1', 'SPEED');
+          $sheet->setCellValue('M1', 'RAM'); 
+          $sheet->setCellValue('N1', 'HDD');
+          $sheet->setCellValue('O1', 'ODD');
+          $sheet->setCellValue('P1', 'SCREEN');
+          $sheet->setCellValue('Q1', 'COMMENT');
+          $sheet->setCellValue('R1', 'PRICE'); 
+          $sheet->setCellValue('S1', 'CUSTOMER'); 
+          $sheet->setCellValue('T1', 'LIST');      
+          $sheet->setCellValue('U1', 'STATUS');      
+          $sheet->setCellValue('V1', 'DATERECIEVERD');
+          $sheet->setCellValue('W1', 'DATEDELIVERED');
+        
+          $rows = 2;
+        
+          foreach ($users as $val){
+              $sheet->setCellValue('A' . $rows, $val->id);
+              $sheet->setCellValue('B' . $rows, $val->conditions);
+              $sheet->setCellValue('C' . $rows, $val->type);
+              $sheet->setCellValue('D' . $rows, $val->assetid);
+              $sheet->setCellValue('E' . $rows, $val->gen);
+              $sheet->setCellValue('F' . $rows, $val->brand);
+              $sheet->setCellValue('G' . $rows, $val->serialno);
+              $sheet->setCellValue('H' . $rows, $val->part);
+              $sheet->setCellValue('I' . $rows, $val->modelid);
+              $sheet->setCellValue('J' . $rows, $val->model);
+              $sheet->setCellValue('K' . $rows, $val->cpu);
+              $sheet->setCellValue('L' . $rows, $val->speed);
+              $sheet->setCellValue('M' . $rows, $val->ram);
+              $sheet->setCellValue('N' . $rows, $val->hdd);
+              $sheet->setCellValue('O' . $rows, $val->odd);
+              $sheet->setCellValue('P' . $rows, $val->screen);
+              $sheet->setCellValue('Q' . $rows, $val->comment);
+              $sheet->setCellValue('R' . $rows, $val->price);
+              $sheet->setCellValue('S' . $rows, $val->customer);
+              $sheet->setCellValue('T' . $rows, $val->list);
+              $sheet->setCellValue('U' . $rows, $val->status);
+              $sheet->setCellValue('V' . $rows, $val->daterecieved);
+              $sheet->setCellValue('W' . $rows, $val->datedelivered);
+        
+                $rows++;
+            } 
+        
+              $data = [
+                  'ref' => $idd,
+              ];
+              $builder = $db->table("export");
+              $builder = $db->table("export.*");
+              $db->table('export')->insert($data);
+            $writer = new Xlsx($spreadsheet);
+            $writer->save("upload/".$fileName);
+            $filename = "upload/".'Newimac'.$idd.".xlsx";
+            return redirect()->to(base_url($filename));
+        
+          }
+  
+          public function Uimacspf()
+          {
+            $db      = \Config\Database::connect();
+            $builder = $db->table('faulty');
+              $builder->select('faulty.*')->orderBy('time', 'DESC');
+              $builder->where('faulty.conditions = "Used" AND type="Imac"' );
+            
+          $users = $builder->get()->getResult();
+        
+          //   $users = $query->getResult();
+          $idd = rand(1000, 9999);
+          $fileName = 'Uimacsp'.$idd. '.xlsx';
+        
+          $spreadsheet = new Spreadsheet();
+          $sheet = $spreadsheet->getActiveSheet();
+          $sheet->setCellValue('A1', 'Id');
+          $sheet->setCellValue('B1', 'CONDTIONS');
+          $sheet->setCellValue('C1', 'Type');
+          $sheet->setCellValue('D1', 'ASSETID');
+          $sheet->setCellValue('E1', 'GEN');
+          $sheet->setCellValue('F1', 'BRAND');
+          $sheet->setCellValue('G1', 'SERIANO');
+          $sheet->setCellValue('H1', 'PART');
+          $sheet->setCellValue('I1', 'MODELID');
+          $sheet->setCellValue('J1', 'MODEL');
+          $sheet->setCellValue('K1', 'CPU');
+          $sheet->setCellValue('L1', 'SPEED');
+          $sheet->setCellValue('M1', 'RAM'); 
+          $sheet->setCellValue('N1', 'HDD');
+          $sheet->setCellValue('O1', 'ODD');
+          $sheet->setCellValue('P1', 'SCREEN');
+          $sheet->setCellValue('Q1', 'COMMENT');
+          $sheet->setCellValue('R1', 'PRICE'); 
+          $sheet->setCellValue('S1', 'CUSTOMER'); 
+          $sheet->setCellValue('T1', 'LIST');      
+          $sheet->setCellValue('U1', 'STATUS');      
+          $sheet->setCellValue('V1', 'DATERECIEVERD');
+          $sheet->setCellValue('W1', 'DATEDELIVERED');
+        
+          $rows = 2;
+        
+          foreach ($users as $val){
+              $sheet->setCellValue('A' . $rows, $val->id);
+              $sheet->setCellValue('B' . $rows, $val->conditions);
+              $sheet->setCellValue('C' . $rows, $val->type);
+              $sheet->setCellValue('D' . $rows, $val->assetid);
+              $sheet->setCellValue('E' . $rows, $val->gen);
+              $sheet->setCellValue('F' . $rows, $val->brand);
+              $sheet->setCellValue('G' . $rows, $val->serialno);
+              $sheet->setCellValue('H' . $rows, $val->part);
+              $sheet->setCellValue('I' . $rows, $val->modelid);
+              $sheet->setCellValue('J' . $rows, $val->model);
+              $sheet->setCellValue('K' . $rows, $val->cpu);
+              $sheet->setCellValue('L' . $rows, $val->speed);
+              $sheet->setCellValue('M' . $rows, $val->ram);
+              $sheet->setCellValue('N' . $rows, $val->hdd);
+              $sheet->setCellValue('O' . $rows, $val->odd);
+              $sheet->setCellValue('P' . $rows, $val->screen);
+              $sheet->setCellValue('Q' . $rows, $val->comment);
+              $sheet->setCellValue('R' . $rows, $val->price);
+              $sheet->setCellValue('S' . $rows, $val->customer);
+              $sheet->setCellValue('T' . $rows, $val->list);
+              $sheet->setCellValue('U' . $rows, $val->status);
+              $sheet->setCellValue('V' . $rows, $val->daterecieved);
+              $sheet->setCellValue('W' . $rows, $val->datedelivered);
+        
+                $rows++;
+            } 
+        
+              $data = [
+                  'ref' => $idd,
+              ];
+              $builder = $db->table("export");
+              $builder = $db->table("export.*");
+              $db->table('export')->insert($data);
+            $writer = new Xlsx($spreadsheet);
+            $writer->save("upload/".$fileName);
+            $filename = "upload/".'Uimacsp'.$idd.".xlsx";
+            return redirect()->to(base_url($filename));
+        
+          }
+  
+          public function Rimacspf()
+          {
+            $db      = \Config\Database::connect();
+            $builder = $db->table('faulty');
+              $builder->select('faulty.*')->orderBy('time', 'DESC');
+              $builder->where('faulty.conditions = "Refurb" AND type="Imac"' );
+            
+          $users = $builder->get()->getResult();
+        
+          //   $users = $query->getResult();
+          $idd = rand(1000, 9999);
+          $fileName = 'Rimacsp'.$idd. '.xlsx';
+        
+          $spreadsheet = new Spreadsheet();
+          $sheet = $spreadsheet->getActiveSheet();
+          $sheet->setCellValue('A1', 'Id');
+          $sheet->setCellValue('B1', 'CONDTIONS');
+          $sheet->setCellValue('C1', 'Type');
+          $sheet->setCellValue('D1', 'ASSETID');
+          $sheet->setCellValue('E1', 'GEN');
+          $sheet->setCellValue('F1', 'BRAND');
+          $sheet->setCellValue('G1', 'SERIANO');
+          $sheet->setCellValue('H1', 'PART');
+          $sheet->setCellValue('I1', 'MODELID');
+          $sheet->setCellValue('J1', 'MODEL');
+          $sheet->setCellValue('K1', 'CPU');
+          $sheet->setCellValue('L1', 'SPEED');
+          $sheet->setCellValue('M1', 'RAM'); 
+          $sheet->setCellValue('N1', 'HDD');
+          $sheet->setCellValue('O1', 'ODD');
+          $sheet->setCellValue('P1', 'SCREEN');
+          $sheet->setCellValue('Q1', 'COMMENT');
+          $sheet->setCellValue('R1', 'PRICE'); 
+          $sheet->setCellValue('S1', 'CUSTOMER'); 
+          $sheet->setCellValue('T1', 'LIST');      
+          $sheet->setCellValue('U1', 'STATUS');      
+          $sheet->setCellValue('V1', 'DATERECIEVERD');
+          $sheet->setCellValue('W1', 'DATEDELIVERED');
+        
+          $rows = 2;
+        
+          foreach ($users as $val){
+              $sheet->setCellValue('A' . $rows, $val->id);
+              $sheet->setCellValue('B' . $rows, $val->conditions);
+              $sheet->setCellValue('C' . $rows, $val->type);
+              $sheet->setCellValue('D' . $rows, $val->assetid);
+              $sheet->setCellValue('E' . $rows, $val->gen);
+              $sheet->setCellValue('F' . $rows, $val->brand);
+              $sheet->setCellValue('G' . $rows, $val->serialno);
+              $sheet->setCellValue('H' . $rows, $val->part);
+              $sheet->setCellValue('I' . $rows, $val->modelid);
+              $sheet->setCellValue('J' . $rows, $val->model);
+              $sheet->setCellValue('K' . $rows, $val->cpu);
+              $sheet->setCellValue('L' . $rows, $val->speed);
+              $sheet->setCellValue('M' . $rows, $val->ram);
+              $sheet->setCellValue('N' . $rows, $val->hdd);
+              $sheet->setCellValue('O' . $rows, $val->odd);
+              $sheet->setCellValue('P' . $rows, $val->screen);
+              $sheet->setCellValue('Q' . $rows, $val->comment);
+              $sheet->setCellValue('R' . $rows, $val->price);
+              $sheet->setCellValue('S' . $rows, $val->customer);
+              $sheet->setCellValue('T' . $rows, $val->list);
+              $sheet->setCellValue('U' . $rows, $val->status);
+              $sheet->setCellValue('V' . $rows, $val->daterecieved);
+              $sheet->setCellValue('W' . $rows, $val->datedelivered);
+        
+                $rows++;
+            } 
+        
+              $data = [
+                  'ref' => $idd,
+              ];
+              $builder = $db->table("export");
+              $builder = $db->table("export.*");
+              $db->table('export')->insert($data);
+            $writer = new Xlsx($spreadsheet);
+            $writer->save("upload/".$fileName);
+            $filename = "upload/".'Rimacsp'.$idd.".xlsx";
+            return redirect()->to(base_url($filename));
+        
+          }
+  
+          public function Nserverspf()
+          {
+            $db      = \Config\Database::connect();
+            $builder = $db->table('faulty');
+              $builder->select('faulty.*')->orderBy('time', 'DESC');
+              $builder->where('faulty.conditions = "New" AND type="Server"' );
+            
+          $users = $builder->get()->getResult();
+        
+          //   $users = $query->getResult();
+          $idd = rand(1000, 9999);
+          $fileName = 'Nserversp'.$idd. '.xlsx';
+        
+          $spreadsheet = new Spreadsheet();
+          $sheet = $spreadsheet->getActiveSheet();
+          $sheet->setCellValue('A1', 'Id');
+          $sheet->setCellValue('B1', 'CONDTIONS');
+          $sheet->setCellValue('C1', 'Type');
+          $sheet->setCellValue('D1', 'ASSETID');
+          $sheet->setCellValue('E1', 'GEN');
+          $sheet->setCellValue('F1', 'BRAND');
+          $sheet->setCellValue('G1', 'SERIANO');
+          $sheet->setCellValue('H1', 'PART');
+          $sheet->setCellValue('I1', 'MODELID');
+          $sheet->setCellValue('J1', 'MODEL');
+          $sheet->setCellValue('K1', 'CPU');
+          $sheet->setCellValue('L1', 'SPEED');
+          $sheet->setCellValue('M1', 'RAM'); 
+          $sheet->setCellValue('N1', 'HDD');
+          $sheet->setCellValue('O1', 'ODD');
+          $sheet->setCellValue('P1', 'SCREEN');
+          $sheet->setCellValue('Q1', 'COMMENT');
+          $sheet->setCellValue('R1', 'PRICE'); 
+          $sheet->setCellValue('S1', 'CUSTOMER'); 
+          $sheet->setCellValue('T1', 'LIST');      
+          $sheet->setCellValue('U1', 'STATUS');      
+          $sheet->setCellValue('V1', 'DATERECIEVERD');
+          $sheet->setCellValue('W1', 'DATEDELIVERED');
+        
+          $rows = 2;
+        
+          foreach ($users as $val){
+              $sheet->setCellValue('A' . $rows, $val->id);
+              $sheet->setCellValue('B' . $rows, $val->conditions);
+              $sheet->setCellValue('C' . $rows, $val->type);
+              $sheet->setCellValue('D' . $rows, $val->assetid);
+              $sheet->setCellValue('E' . $rows, $val->gen);
+              $sheet->setCellValue('F' . $rows, $val->brand);
+              $sheet->setCellValue('G' . $rows, $val->serialno);
+              $sheet->setCellValue('H' . $rows, $val->part);
+              $sheet->setCellValue('I' . $rows, $val->modelid);
+              $sheet->setCellValue('J' . $rows, $val->model);
+              $sheet->setCellValue('K' . $rows, $val->cpu);
+              $sheet->setCellValue('L' . $rows, $val->speed);
+              $sheet->setCellValue('M' . $rows, $val->ram);
+              $sheet->setCellValue('N' . $rows, $val->hdd);
+              $sheet->setCellValue('O' . $rows, $val->odd);
+              $sheet->setCellValue('P' . $rows, $val->screen);
+              $sheet->setCellValue('Q' . $rows, $val->comment);
+              $sheet->setCellValue('R' . $rows, $val->price);
+              $sheet->setCellValue('S' . $rows, $val->customer);
+              $sheet->setCellValue('T' . $rows, $val->list);
+              $sheet->setCellValue('U' . $rows, $val->status);
+              $sheet->setCellValue('V' . $rows, $val->daterecieved);
+              $sheet->setCellValue('W' . $rows, $val->datedelivered);
+        
+                $rows++;
+            } 
+        
+              $data = [
+                  'ref' => $idd,
+              ];
+              $builder = $db->table("export");
+              $builder = $db->table("export.*");
+              $db->table('export')->insert($data);
+            $writer = new Xlsx($spreadsheet);
+            $writer->save("upload/".$fileName);
+            $filename = "upload/".'Nserversp'.$idd.".xlsx";
+            return redirect()->to(base_url($filename));
+        
+          }
+  
+          public function Userverspf()
+          {
+            $db      = \Config\Database::connect();
+            $builder = $db->table('faulty');
+              $builder->select('faulty.*')->orderBy('time', 'DESC');
+              $builder->where('faulty.conditions = "Used" AND type="Server"' );
+            
+          $users = $builder->get()->getResult();
+        
+          //   $users = $query->getResult();
+          $idd = rand(1000, 9999);
+          $fileName = 'Userversp'.$idd. '.xlsx';
+        
+          $spreadsheet = new Spreadsheet();
+          $sheet = $spreadsheet->getActiveSheet();
+          $sheet->setCellValue('A1', 'Id');
+          $sheet->setCellValue('B1', 'CONDTIONS');
+          $sheet->setCellValue('C1', 'Type');
+          $sheet->setCellValue('D1', 'ASSETID');
+          $sheet->setCellValue('E1', 'GEN');
+          $sheet->setCellValue('F1', 'BRAND');
+          $sheet->setCellValue('G1', 'SERIANO');
+          $sheet->setCellValue('H1', 'PART');
+          $sheet->setCellValue('I1', 'MODELID');
+          $sheet->setCellValue('J1', 'MODEL');
+          $sheet->setCellValue('K1', 'CPU');
+          $sheet->setCellValue('L1', 'SPEED');
+          $sheet->setCellValue('M1', 'RAM'); 
+          $sheet->setCellValue('N1', 'HDD');
+          $sheet->setCellValue('O1', 'ODD');
+          $sheet->setCellValue('P1', 'SCREEN');
+          $sheet->setCellValue('Q1', 'COMMENT');
+          $sheet->setCellValue('R1', 'PRICE'); 
+          $sheet->setCellValue('S1', 'CUSTOMER'); 
+          $sheet->setCellValue('T1', 'LIST');      
+          $sheet->setCellValue('U1', 'STATUS');      
+          $sheet->setCellValue('V1', 'DATERECIEVERD');
+          $sheet->setCellValue('W1', 'DATEDELIVERED');
+        
+          $rows = 2;
+        
+          foreach ($users as $val){
+              $sheet->setCellValue('A' . $rows, $val->id);
+              $sheet->setCellValue('B' . $rows, $val->conditions);
+              $sheet->setCellValue('C' . $rows, $val->type);
+              $sheet->setCellValue('D' . $rows, $val->assetid);
+              $sheet->setCellValue('E' . $rows, $val->gen);
+              $sheet->setCellValue('F' . $rows, $val->brand);
+              $sheet->setCellValue('G' . $rows, $val->serialno);
+              $sheet->setCellValue('H' . $rows, $val->part);
+              $sheet->setCellValue('I' . $rows, $val->modelid);
+              $sheet->setCellValue('J' . $rows, $val->model);
+              $sheet->setCellValue('K' . $rows, $val->cpu);
+              $sheet->setCellValue('L' . $rows, $val->speed);
+              $sheet->setCellValue('M' . $rows, $val->ram);
+              $sheet->setCellValue('N' . $rows, $val->hdd);
+              $sheet->setCellValue('O' . $rows, $val->odd);
+              $sheet->setCellValue('P' . $rows, $val->screen);
+              $sheet->setCellValue('Q' . $rows, $val->comment);
+              $sheet->setCellValue('R' . $rows, $val->price);
+              $sheet->setCellValue('S' . $rows, $val->customer);
+              $sheet->setCellValue('T' . $rows, $val->list);
+              $sheet->setCellValue('U' . $rows, $val->status);
+              $sheet->setCellValue('V' . $rows, $val->daterecieved);
+              $sheet->setCellValue('W' . $rows, $val->datedelivered);
+        
+                $rows++;
+            } 
+        
+              $data = [
+                  'ref' => $idd,
+              ];
+              $builder = $db->table("export");
+              $builder = $db->table("export.*");
+              $db->table('export')->insert($data);
+            $writer = new Xlsx($spreadsheet);
+            $writer->save("upload/".$fileName);
+            $filename = "upload/".'Userversp'.$idd.".xlsx";
+            return redirect()->to(base_url($filename));
+        
+          }
+  
+          public function Rserverspf()
+          {
+            $db      = \Config\Database::connect();
+            $builder = $db->table('faulty');
+              $builder->select('faulty.*')->orderBy('time', 'DESC');
+              $builder->where('faulty.conditions = "Refurb" AND type="Server"' );
+            
+          $users = $builder->get()->getResult();
+        
+          //   $users = $query->getResult();
+          $idd = rand(1000, 9999);
+          $fileName = 'Rserversp'.$idd. '.xlsx';
+        
+          $spreadsheet = new Spreadsheet();
+          $sheet = $spreadsheet->getActiveSheet();
+          $sheet->setCellValue('A1', 'Id');
+          $sheet->setCellValue('B1', 'CONDTIONS');
+          $sheet->setCellValue('C1', 'Type');
+          $sheet->setCellValue('D1', 'ASSETID');
+          $sheet->setCellValue('E1', 'GEN');
+          $sheet->setCellValue('F1', 'BRAND');
+          $sheet->setCellValue('G1', 'SERIANO');
+          $sheet->setCellValue('H1', 'PART');
+          $sheet->setCellValue('I1', 'MODELID');
+          $sheet->setCellValue('J1', 'MODEL');
+          $sheet->setCellValue('K1', 'CPU');
+          $sheet->setCellValue('L1', 'SPEED');
+          $sheet->setCellValue('M1', 'RAM'); 
+          $sheet->setCellValue('N1', 'HDD');
+          $sheet->setCellValue('O1', 'ODD');
+          $sheet->setCellValue('P1', 'SCREEN');
+          $sheet->setCellValue('Q1', 'COMMENT');
+          $sheet->setCellValue('R1', 'PRICE'); 
+          $sheet->setCellValue('S1', 'CUSTOMER'); 
+          $sheet->setCellValue('T1', 'LIST');      
+          $sheet->setCellValue('U1', 'STATUS');      
+          $sheet->setCellValue('V1', 'DATERECIEVERD');
+          $sheet->setCellValue('W1', 'DATEDELIVERED');
+        
+          $rows = 2;
+        
+          foreach ($users as $val){
+              $sheet->setCellValue('A' . $rows, $val->id);
+              $sheet->setCellValue('B' . $rows, $val->conditions);
+              $sheet->setCellValue('C' . $rows, $val->type);
+              $sheet->setCellValue('D' . $rows, $val->assetid);
+              $sheet->setCellValue('E' . $rows, $val->gen);
+              $sheet->setCellValue('F' . $rows, $val->brand);
+              $sheet->setCellValue('G' . $rows, $val->serialno);
+              $sheet->setCellValue('H' . $rows, $val->part);
+              $sheet->setCellValue('I' . $rows, $val->modelid);
+              $sheet->setCellValue('J' . $rows, $val->model);
+              $sheet->setCellValue('K' . $rows, $val->cpu);
+              $sheet->setCellValue('L' . $rows, $val->speed);
+              $sheet->setCellValue('M' . $rows, $val->ram);
+              $sheet->setCellValue('N' . $rows, $val->hdd);
+              $sheet->setCellValue('O' . $rows, $val->odd);
+              $sheet->setCellValue('P' . $rows, $val->screen);
+              $sheet->setCellValue('Q' . $rows, $val->comment);
+              $sheet->setCellValue('R' . $rows, $val->price);
+              $sheet->setCellValue('S' . $rows, $val->customer);
+              $sheet->setCellValue('T' . $rows, $val->list);
+              $sheet->setCellValue('U' . $rows, $val->status);
+              $sheet->setCellValue('V' . $rows, $val->daterecieved);
+              $sheet->setCellValue('W' . $rows, $val->datedelivered);
+        
+                $rows++;
+            } 
+        
+              $data = [
+                  'ref' => $idd,
+              ];
+              $builder = $db->table("export");
+              $builder = $db->table("export.*");
+              $db->table('export')->insert($data);
+            $writer = new Xlsx($spreadsheet);
+            $writer->save("upload/".$fileName);
+            $filename = "upload/".'Rserversp'.$idd.".xlsx";
+            return redirect()->to(base_url($filename));
+        
+          }
+  
+          public function Nworkstationspf()
+          {
+            $db      = \Config\Database::connect();
+            $builder = $db->table('faulty');
+              $builder->select('faulty.*')->orderBy('time', 'DESC');
+              $builder->where('faulty.conditions = "New" AND type="Workstation"' );
+            
+          $users = $builder->get()->getResult();
+        
+          //   $users = $query->getResult();
+          $idd = rand(1000, 9999);
+          $fileName = 'Nworkstationsp'.$idd. '.xlsx';
+        
+          $spreadsheet = new Spreadsheet();
+          $sheet = $spreadsheet->getActiveSheet();
+          $sheet->setCellValue('A1', 'Id');
+          $sheet->setCellValue('B1', 'CONDTIONS');
+          $sheet->setCellValue('C1', 'Type');
+          $sheet->setCellValue('D1', 'ASSETID');
+          $sheet->setCellValue('E1', 'GEN');
+          $sheet->setCellValue('F1', 'BRAND');
+          $sheet->setCellValue('G1', 'SERIANO');
+          $sheet->setCellValue('H1', 'PART');
+          $sheet->setCellValue('I1', 'MODELID');
+          $sheet->setCellValue('J1', 'MODEL');
+          $sheet->setCellValue('K1', 'CPU');
+          $sheet->setCellValue('L1', 'SPEED');
+          $sheet->setCellValue('M1', 'RAM'); 
+          $sheet->setCellValue('N1', 'HDD');
+          $sheet->setCellValue('O1', 'ODD');
+          $sheet->setCellValue('P1', 'SCREEN');
+          $sheet->setCellValue('Q1', 'COMMENT');
+          $sheet->setCellValue('R1', 'PRICE'); 
+          $sheet->setCellValue('S1', 'CUSTOMER'); 
+          $sheet->setCellValue('T1', 'LIST');      
+          $sheet->setCellValue('U1', 'STATUS');      
+          $sheet->setCellValue('V1', 'DATERECIEVERD');
+          $sheet->setCellValue('W1', 'DATEDELIVERED');
+        
+          $rows = 2;
+        
+          foreach ($users as $val){
+              $sheet->setCellValue('A' . $rows, $val->id);
+              $sheet->setCellValue('B' . $rows, $val->conditions);
+              $sheet->setCellValue('C' . $rows, $val->type);
+              $sheet->setCellValue('D' . $rows, $val->assetid);
+              $sheet->setCellValue('E' . $rows, $val->gen);
+              $sheet->setCellValue('F' . $rows, $val->brand);
+              $sheet->setCellValue('G' . $rows, $val->serialno);
+              $sheet->setCellValue('H' . $rows, $val->part);
+              $sheet->setCellValue('I' . $rows, $val->modelid);
+              $sheet->setCellValue('J' . $rows, $val->model);
+              $sheet->setCellValue('K' . $rows, $val->cpu);
+              $sheet->setCellValue('L' . $rows, $val->speed);
+              $sheet->setCellValue('M' . $rows, $val->ram);
+              $sheet->setCellValue('N' . $rows, $val->hdd);
+              $sheet->setCellValue('O' . $rows, $val->odd);
+              $sheet->setCellValue('P' . $rows, $val->screen);
+              $sheet->setCellValue('Q' . $rows, $val->comment);
+              $sheet->setCellValue('R' . $rows, $val->price);
+              $sheet->setCellValue('S' . $rows, $val->customer);
+              $sheet->setCellValue('T' . $rows, $val->list);
+              $sheet->setCellValue('U' . $rows, $val->status);
+              $sheet->setCellValue('V' . $rows, $val->daterecieved);
+              $sheet->setCellValue('W' . $rows, $val->datedelivered);
+        
+                $rows++;
+            } 
+        
+              $data = [
+                  'ref' => $idd,
+              ];
+              $builder = $db->table("export");
+              $builder = $db->table("export.*");
+              $db->table('export')->insert($data);
+            $writer = new Xlsx($spreadsheet);
+            $writer->save("upload/".$fileName);
+            $filename = "upload/".'Nworkstationsp'.$idd.".xlsx";
+            return redirect()->to(base_url($filename));
+        
+          }
+  
+          public function Uworkstationspf()
+          {
+            $db      = \Config\Database::connect();
+            $builder = $db->table('faulty');
+              $builder->select('faulty.*')->orderBy('time', 'DESC');
+              $builder->where('faulty.conditions = "Used" AND type="Workstation"' );
+            
+          $users = $builder->get()->getResult();
+        
+          //   $users = $query->getResult();
+          $idd = rand(1000, 9999);
+          $fileName = 'Uworkstationsp'.$idd. '.xlsx';
+        
+          $spreadsheet = new Spreadsheet();
+          $sheet = $spreadsheet->getActiveSheet();
+          $sheet->setCellValue('A1', 'Id');
+          $sheet->setCellValue('B1', 'CONDTIONS');
+          $sheet->setCellValue('C1', 'Type');
+          $sheet->setCellValue('D1', 'ASSETID');
+          $sheet->setCellValue('E1', 'GEN');
+          $sheet->setCellValue('F1', 'BRAND');
+          $sheet->setCellValue('G1', 'SERIANO');
+          $sheet->setCellValue('H1', 'PART');
+          $sheet->setCellValue('I1', 'MODELID');
+          $sheet->setCellValue('J1', 'MODEL');
+          $sheet->setCellValue('K1', 'CPU');
+          $sheet->setCellValue('L1', 'SPEED');
+          $sheet->setCellValue('M1', 'RAM'); 
+          $sheet->setCellValue('N1', 'HDD');
+          $sheet->setCellValue('O1', 'ODD');
+          $sheet->setCellValue('P1', 'SCREEN');
+          $sheet->setCellValue('Q1', 'COMMENT');
+          $sheet->setCellValue('R1', 'PRICE'); 
+          $sheet->setCellValue('S1', 'CUSTOMER'); 
+          $sheet->setCellValue('T1', 'LIST');      
+          $sheet->setCellValue('U1', 'STATUS');      
+          $sheet->setCellValue('V1', 'DATERECIEVERD');
+          $sheet->setCellValue('W1', 'DATEDELIVERED');
+        
+          $rows = 2;
+        
+          foreach ($users as $val){
+              $sheet->setCellValue('A' . $rows, $val->id);
+              $sheet->setCellValue('B' . $rows, $val->conditions);
+              $sheet->setCellValue('C' . $rows, $val->type);
+              $sheet->setCellValue('D' . $rows, $val->assetid);
+              $sheet->setCellValue('E' . $rows, $val->gen);
+              $sheet->setCellValue('F' . $rows, $val->brand);
+              $sheet->setCellValue('G' . $rows, $val->serialno);
+              $sheet->setCellValue('H' . $rows, $val->part);
+              $sheet->setCellValue('I' . $rows, $val->modelid);
+              $sheet->setCellValue('J' . $rows, $val->model);
+              $sheet->setCellValue('K' . $rows, $val->cpu);
+              $sheet->setCellValue('L' . $rows, $val->speed);
+              $sheet->setCellValue('M' . $rows, $val->ram);
+              $sheet->setCellValue('N' . $rows, $val->hdd);
+              $sheet->setCellValue('O' . $rows, $val->odd);
+              $sheet->setCellValue('P' . $rows, $val->screen);
+              $sheet->setCellValue('Q' . $rows, $val->comment);
+              $sheet->setCellValue('R' . $rows, $val->price);
+              $sheet->setCellValue('S' . $rows, $val->customer);
+              $sheet->setCellValue('T' . $rows, $val->list);
+              $sheet->setCellValue('U' . $rows, $val->status);
+              $sheet->setCellValue('V' . $rows, $val->daterecieved);
+              $sheet->setCellValue('W' . $rows, $val->datedelivered);
+        
+                $rows++;
+            } 
+        
+              $data = [
+                  'ref' => $idd,
+              ];
+              $builder = $db->table("export");
+              $builder = $db->table("export.*");
+              $db->table('export')->insert($data);
+            $writer = new Xlsx($spreadsheet);
+            $writer->save("upload/".$fileName);
+            $filename = "upload/".'Uworkstationsp'.$idd.".xlsx";
+            return redirect()->to(base_url($filename));
+        
+          }
+  
+          public function Rworkstationspf()
+          {
+            $db      = \Config\Database::connect();
+            $builder = $db->table('faulty');
+              $builder->select('faulty.*')->orderBy('time', 'DESC');
+              $builder->where('faulty.conditions = "Refurb" AND type="Workstation"' );
+            
+          $users = $builder->get()->getResult();
+        
+          //   $users = $query->getResult();
+          $idd = rand(1000, 9999);
+          $fileName = 'Rworkstationsp'.$idd. '.xlsx';
+        
+          $spreadsheet = new Spreadsheet();
+          $sheet = $spreadsheet->getActiveSheet();
+          $sheet->setCellValue('A1', 'Id');
+          $sheet->setCellValue('B1', 'CONDTIONS');
+          $sheet->setCellValue('C1', 'Type');
+          $sheet->setCellValue('D1', 'ASSETID');
+          $sheet->setCellValue('E1', 'GEN');
+          $sheet->setCellValue('F1', 'BRAND');
+          $sheet->setCellValue('G1', 'SERIANO');
+          $sheet->setCellValue('H1', 'PART');
+          $sheet->setCellValue('I1', 'MODELID');
+          $sheet->setCellValue('J1', 'MODEL');
+          $sheet->setCellValue('K1', 'CPU');
+          $sheet->setCellValue('L1', 'SPEED');
+          $sheet->setCellValue('M1', 'RAM'); 
+          $sheet->setCellValue('N1', 'HDD');
+          $sheet->setCellValue('O1', 'ODD');
+          $sheet->setCellValue('P1', 'SCREEN');
+          $sheet->setCellValue('Q1', 'COMMENT');
+          $sheet->setCellValue('R1', 'PRICE'); 
+          $sheet->setCellValue('S1', 'CUSTOMER'); 
+          $sheet->setCellValue('T1', 'LIST');      
+          $sheet->setCellValue('U1', 'STATUS');      
+          $sheet->setCellValue('V1', 'DATERECIEVERD');
+          $sheet->setCellValue('W1', 'DATEDELIVERED');
+        
+          $rows = 2;
+        
+          foreach ($users as $val){
+              $sheet->setCellValue('A' . $rows, $val->id);
+              $sheet->setCellValue('B' . $rows, $val->conditions);
+              $sheet->setCellValue('C' . $rows, $val->type);
+              $sheet->setCellValue('D' . $rows, $val->assetid);
+              $sheet->setCellValue('E' . $rows, $val->gen);
+              $sheet->setCellValue('F' . $rows, $val->brand);
+              $sheet->setCellValue('G' . $rows, $val->serialno);
+              $sheet->setCellValue('H' . $rows, $val->part);
+              $sheet->setCellValue('I' . $rows, $val->modelid);
+              $sheet->setCellValue('J' . $rows, $val->model);
+              $sheet->setCellValue('K' . $rows, $val->cpu);
+              $sheet->setCellValue('L' . $rows, $val->speed);
+              $sheet->setCellValue('M' . $rows, $val->ram);
+              $sheet->setCellValue('N' . $rows, $val->hdd);
+              $sheet->setCellValue('O' . $rows, $val->odd);
+              $sheet->setCellValue('P' . $rows, $val->screen);
+              $sheet->setCellValue('Q' . $rows, $val->comment);
+              $sheet->setCellValue('R' . $rows, $val->price);
+              $sheet->setCellValue('S' . $rows, $val->customer);
+              $sheet->setCellValue('T' . $rows, $val->list);
+              $sheet->setCellValue('U' . $rows, $val->status);
+              $sheet->setCellValue('V' . $rows, $val->daterecieved);
+              $sheet->setCellValue('W' . $rows, $val->datedelivered);
+        
+                $rows++;
+            } 
+        
+              $data = [
+                  'ref' => $idd,
+              ];
+              $builder = $db->table("export");
+              $builder = $db->table("export.*");
+              $db->table('export')->insert($data);
+            $writer = new Xlsx($spreadsheet);
+            $writer->save("upload/".$fileName);
+            $filename = "upload/".'Rworkstationsp'.$idd.".xlsx";
+            return redirect()->to(base_url($filename));
+        
+          }
+  
+          public function Nmacbookspf()
+          {
+            $db      = \Config\Database::connect();
+            $builder = $db->table('faulty');
+              $builder->select('faulty.*')->orderBy('time', 'DESC');
+              $builder->where('faulty.conditions = "New" AND type="Macbook"' );
+            
+          $users = $builder->get()->getResult();
+        
+          //   $users = $query->getResult();
+          $idd = rand(1000, 9999);
+          $fileName = 'Nmacbooksp'.$idd. '.xlsx';
+        
+          $spreadsheet = new Spreadsheet();
+          $sheet = $spreadsheet->getActiveSheet();
+          $sheet->setCellValue('A1', 'Id');
+          $sheet->setCellValue('B1', 'CONDTIONS');
+          $sheet->setCellValue('C1', 'Type');
+          $sheet->setCellValue('D1', 'ASSETID');
+          $sheet->setCellValue('E1', 'GEN');
+          $sheet->setCellValue('F1', 'BRAND');
+          $sheet->setCellValue('G1', 'SERIANO');
+          $sheet->setCellValue('H1', 'PART');
+          $sheet->setCellValue('I1', 'MODELID');
+          $sheet->setCellValue('J1', 'MODEL');
+          $sheet->setCellValue('K1', 'CPU');
+          $sheet->setCellValue('L1', 'SPEED');
+          $sheet->setCellValue('M1', 'RAM'); 
+          $sheet->setCellValue('N1', 'HDD');
+          $sheet->setCellValue('O1', 'ODD');
+          $sheet->setCellValue('P1', 'SCREEN');
+          $sheet->setCellValue('Q1', 'COMMENT');
+          $sheet->setCellValue('R1', 'PRICE'); 
+          $sheet->setCellValue('S1', 'CUSTOMER'); 
+          $sheet->setCellValue('T1', 'LIST');      
+          $sheet->setCellValue('U1', 'STATUS');      
+          $sheet->setCellValue('V1', 'DATERECIEVERD');
+          $sheet->setCellValue('W1', 'DATEDELIVERED');
+        
+          $rows = 2;
+        
+          foreach ($users as $val){
+              $sheet->setCellValue('A' . $rows, $val->id);
+              $sheet->setCellValue('B' . $rows, $val->conditions);
+              $sheet->setCellValue('C' . $rows, $val->type);
+              $sheet->setCellValue('D' . $rows, $val->assetid);
+              $sheet->setCellValue('E' . $rows, $val->gen);
+              $sheet->setCellValue('F' . $rows, $val->brand);
+              $sheet->setCellValue('G' . $rows, $val->serialno);
+              $sheet->setCellValue('H' . $rows, $val->part);
+              $sheet->setCellValue('I' . $rows, $val->modelid);
+              $sheet->setCellValue('J' . $rows, $val->model);
+              $sheet->setCellValue('K' . $rows, $val->cpu);
+              $sheet->setCellValue('L' . $rows, $val->speed);
+              $sheet->setCellValue('M' . $rows, $val->ram);
+              $sheet->setCellValue('N' . $rows, $val->hdd);
+              $sheet->setCellValue('O' . $rows, $val->odd);
+              $sheet->setCellValue('P' . $rows, $val->screen);
+              $sheet->setCellValue('Q' . $rows, $val->comment);
+              $sheet->setCellValue('R' . $rows, $val->price);
+              $sheet->setCellValue('S' . $rows, $val->customer);
+              $sheet->setCellValue('T' . $rows, $val->list);
+              $sheet->setCellValue('U' . $rows, $val->status);
+              $sheet->setCellValue('V' . $rows, $val->daterecieved);
+              $sheet->setCellValue('W' . $rows, $val->datedelivered);
+        
+                $rows++;
+            } 
+        
+              $data = [
+                  'ref' => $idd,
+              ];
+              $builder = $db->table("export");
+              $builder = $db->table("export.*");
+              $db->table('export')->insert($data);
+            $writer = new Xlsx($spreadsheet);
+            $writer->save("upload/".$fileName);
+            $filename = "upload/".'Nmacbooksp'.$idd.".xlsx";
+            return redirect()->to(base_url($filename));
+        
+          }
+  
+          public function Umacbookspf()
+          {
+            $db      = \Config\Database::connect();
+            $builder = $db->table('faulty');
+              $builder->select('faulty.*')->orderBy('time', 'DESC');
+              $builder->where('faulty.conditions = "Used" AND type="Macbook"' );
+            
+          $users = $builder->get()->getResult();
+        
+          //   $users = $query->getResult();
+          $idd = rand(1000, 9999);
+          $fileName = 'Umacbooksp'.$idd. '.xlsx';
+        
+          $spreadsheet = new Spreadsheet();
+          $sheet = $spreadsheet->getActiveSheet();
+          $sheet->setCellValue('A1', 'Id');
+          $sheet->setCellValue('B1', 'CONDTIONS');
+          $sheet->setCellValue('C1', 'Type');
+          $sheet->setCellValue('D1', 'ASSETID');
+          $sheet->setCellValue('E1', 'GEN');
+          $sheet->setCellValue('F1', 'BRAND');
+          $sheet->setCellValue('G1', 'SERIANO');
+          $sheet->setCellValue('H1', 'PART');
+          $sheet->setCellValue('I1', 'MODELID');
+          $sheet->setCellValue('J1', 'MODEL');
+          $sheet->setCellValue('K1', 'CPU');
+          $sheet->setCellValue('L1', 'SPEED');
+          $sheet->setCellValue('M1', 'RAM'); 
+          $sheet->setCellValue('N1', 'HDD');
+          $sheet->setCellValue('O1', 'ODD');
+          $sheet->setCellValue('P1', 'SCREEN');
+          $sheet->setCellValue('Q1', 'COMMENT');
+          $sheet->setCellValue('R1', 'PRICE'); 
+          $sheet->setCellValue('S1', 'CUSTOMER'); 
+          $sheet->setCellValue('T1', 'LIST');      
+          $sheet->setCellValue('U1', 'STATUS');      
+          $sheet->setCellValue('V1', 'DATERECIEVERD');
+          $sheet->setCellValue('W1', 'DATEDELIVERED');
+        
+          $rows = 2;
+        
+          foreach ($users as $val){
+              $sheet->setCellValue('A' . $rows, $val->id);
+              $sheet->setCellValue('B' . $rows, $val->conditions);
+              $sheet->setCellValue('C' . $rows, $val->type);
+              $sheet->setCellValue('D' . $rows, $val->assetid);
+              $sheet->setCellValue('E' . $rows, $val->gen);
+              $sheet->setCellValue('F' . $rows, $val->brand);
+              $sheet->setCellValue('G' . $rows, $val->serialno);
+              $sheet->setCellValue('H' . $rows, $val->part);
+              $sheet->setCellValue('I' . $rows, $val->modelid);
+              $sheet->setCellValue('J' . $rows, $val->model);
+              $sheet->setCellValue('K' . $rows, $val->cpu);
+              $sheet->setCellValue('L' . $rows, $val->speed);
+              $sheet->setCellValue('M' . $rows, $val->ram);
+              $sheet->setCellValue('N' . $rows, $val->hdd);
+              $sheet->setCellValue('O' . $rows, $val->odd);
+              $sheet->setCellValue('P' . $rows, $val->screen);
+              $sheet->setCellValue('Q' . $rows, $val->comment);
+              $sheet->setCellValue('R' . $rows, $val->price);
+              $sheet->setCellValue('S' . $rows, $val->customer);
+              $sheet->setCellValue('T' . $rows, $val->list);
+              $sheet->setCellValue('U' . $rows, $val->status);
+              $sheet->setCellValue('V' . $rows, $val->daterecieved);
+              $sheet->setCellValue('W' . $rows, $val->datedelivered);
+        
+                $rows++;
+            } 
+        
+              $data = [
+                  'ref' => $idd,
+              ];
+              $builder = $db->table("export");
+              $builder = $db->table("export.*");
+              $db->table('export')->insert($data);
+            $writer = new Xlsx($spreadsheet);
+            $writer->save("upload/".$fileName);
+            $filename = "upload/".'Umacbooksp'.$idd.".xlsx";
+            return redirect()->to(base_url($filename));
+        
+          }
+  
+          public function Rmacbookspf()
+          {
+            $db      = \Config\Database::connect();
+            $builder = $db->table('faulty');
+            $builder->select('faulty.*')->orderBy('time', 'DESC');
+            $builder->where('faulty.conditions = "Refurb" AND type="Macbook"' );
+            $users = $builder->get()->getResult();
+          //   $users = $query->getResult();
+          $idd = rand(1000, 9999);
+          $fileName = 'Rmacbooksp'.$idd. '.xlsx';
+        
+          $spreadsheet = new Spreadsheet();
+          $sheet = $spreadsheet->getActiveSheet();
+          $sheet->setCellValue('A1', 'Id');
+          $sheet->setCellValue('B1', 'CONDTIONS');
+          $sheet->setCellValue('C1', 'Type');
+          $sheet->setCellValue('D1', 'ASSETID');
+          $sheet->setCellValue('E1', 'GEN');
+          $sheet->setCellValue('F1', 'BRAND');
+          $sheet->setCellValue('G1', 'SERIANO');
+          $sheet->setCellValue('H1', 'PART');
+          $sheet->setCellValue('I1', 'MODELID');
+          $sheet->setCellValue('J1', 'MODEL');
+          $sheet->setCellValue('K1', 'CPU');
+          $sheet->setCellValue('L1', 'SPEED');
+          $sheet->setCellValue('M1', 'RAM'); 
+          $sheet->setCellValue('N1', 'HDD');
+          $sheet->setCellValue('O1', 'ODD');
+          $sheet->setCellValue('P1', 'SCREEN');
+          $sheet->setCellValue('Q1', 'COMMENT');
+          $sheet->setCellValue('R1', 'PRICE'); 
+          $sheet->setCellValue('S1', 'CUSTOMER'); 
+          $sheet->setCellValue('T1', 'LIST');      
+          $sheet->setCellValue('U1', 'STATUS');      
+          $sheet->setCellValue('V1', 'DATERECIEVERD');
+          $sheet->setCellValue('W1', 'DATEDELIVERED');
+        
+          $rows = 2;
+        
+          foreach ($users as $val){
+              $sheet->setCellValue('A' . $rows, $val->id);
+              $sheet->setCellValue('B' . $rows, $val->conditions);
+              $sheet->setCellValue('C' . $rows, $val->type);
+              $sheet->setCellValue('D' . $rows, $val->assetid);
+              $sheet->setCellValue('E' . $rows, $val->gen);
+              $sheet->setCellValue('F' . $rows, $val->brand);
+              $sheet->setCellValue('G' . $rows, $val->serialno);
+              $sheet->setCellValue('H' . $rows, $val->part);
+              $sheet->setCellValue('I' . $rows, $val->modelid);
+              $sheet->setCellValue('J' . $rows, $val->model);
+              $sheet->setCellValue('K' . $rows, $val->cpu);
+              $sheet->setCellValue('L' . $rows, $val->speed);
+              $sheet->setCellValue('M' . $rows, $val->ram);
+              $sheet->setCellValue('N' . $rows, $val->hdd);
+              $sheet->setCellValue('O' . $rows, $val->odd);
+              $sheet->setCellValue('P' . $rows, $val->screen);
+              $sheet->setCellValue('Q' . $rows, $val->comment);
+              $sheet->setCellValue('R' . $rows, $val->price);
+              $sheet->setCellValue('S' . $rows, $val->customer);
+              $sheet->setCellValue('T' . $rows, $val->list);
+              $sheet->setCellValue('U' . $rows, $val->status);
+              $sheet->setCellValue('V' . $rows, $val->daterecieved);
+              $sheet->setCellValue('W' . $rows, $val->datedelivered);
+        
+                $rows++;
+            } 
+        
+              $data = [
+                  'ref' => $idd,
+              ];
+              $builder = $db->table("export");
+              $builder = $db->table("export.*");
+              $db->table('export')->insert($data);
+            $writer = new Xlsx($spreadsheet);
+            $writer->save("upload/".$fileName);
+            $filename = "upload/".'Rmacbooksp'.$idd.".xlsx";
+            return redirect()->to(base_url($filename));
+        
+          }
+  
+  
+          // end
+
+
+          // new spreadsheets for faulty out 
+          public function Nimacspfo()
+          {
+            $db      = \Config\Database::connect();
+            $builder = $db->table('faultyout');
+              $builder->select('faultyout.*')->orderBy('time', 'DESC');
+              $builder->where('faultyout.conditions = "New" AND type="Imac"' );
+            
+          $users = $builder->get()->getResult();
+        
+          //   $users = $query->getResult();
+          $idd = rand(1000, 9999);
+          $fileName = 'Newimac'.$idd. '.xlsx';
+        
+          $spreadsheet = new Spreadsheet();
+          $sheet = $spreadsheet->getActiveSheet();
+          $sheet->setCellValue('A1', 'Id');
+          $sheet->setCellValue('B1', 'CONDTIONS');
+          $sheet->setCellValue('C1', 'Type');
+          $sheet->setCellValue('D1', 'ASSETID');
+          $sheet->setCellValue('E1', 'GEN');
+          $sheet->setCellValue('F1', 'BRAND');
+          $sheet->setCellValue('G1', 'SERIANO');
+          $sheet->setCellValue('H1', 'PART');
+          $sheet->setCellValue('I1', 'MODELID');
+          $sheet->setCellValue('J1', 'MODEL');
+          $sheet->setCellValue('K1', 'CPU');
+          $sheet->setCellValue('L1', 'SPEED');
+          $sheet->setCellValue('M1', 'RAM'); 
+          $sheet->setCellValue('N1', 'HDD');
+          $sheet->setCellValue('O1', 'ODD');
+          $sheet->setCellValue('P1', 'SCREEN');
+          $sheet->setCellValue('Q1', 'COMMENT');
+          $sheet->setCellValue('R1', 'PRICE'); 
+          $sheet->setCellValue('S1', 'CUSTOMER'); 
+          $sheet->setCellValue('T1', 'LIST');      
+          $sheet->setCellValue('U1', 'STATUS');      
+          $sheet->setCellValue('V1', 'DATERECIEVERD');
+          $sheet->setCellValue('W1', 'DATEDELIVERED');
+        
+          $rows = 2;
+        
+          foreach ($users as $val){
+              $sheet->setCellValue('A' . $rows, $val->id);
+              $sheet->setCellValue('B' . $rows, $val->conditions);
+              $sheet->setCellValue('C' . $rows, $val->type);
+              $sheet->setCellValue('D' . $rows, $val->assetid);
+              $sheet->setCellValue('E' . $rows, $val->gen);
+              $sheet->setCellValue('F' . $rows, $val->brand);
+              $sheet->setCellValue('G' . $rows, $val->serialno);
+              $sheet->setCellValue('H' . $rows, $val->part);
+              $sheet->setCellValue('I' . $rows, $val->modelid);
+              $sheet->setCellValue('J' . $rows, $val->model);
+              $sheet->setCellValue('K' . $rows, $val->cpu);
+              $sheet->setCellValue('L' . $rows, $val->speed);
+              $sheet->setCellValue('M' . $rows, $val->ram);
+              $sheet->setCellValue('N' . $rows, $val->hdd);
+              $sheet->setCellValue('O' . $rows, $val->odd);
+              $sheet->setCellValue('P' . $rows, $val->screen);
+              $sheet->setCellValue('Q' . $rows, $val->comment);
+              $sheet->setCellValue('R' . $rows, $val->price);
+              $sheet->setCellValue('S' . $rows, $val->customer);
+              $sheet->setCellValue('T' . $rows, $val->list);
+              $sheet->setCellValue('U' . $rows, $val->status);
+              $sheet->setCellValue('V' . $rows, $val->daterecieved);
+              $sheet->setCellValue('W' . $rows, $val->datedelivered);
+        
+                $rows++;
+            } 
+        
+              $data = [
+                  'ref' => $idd,
+              ];
+              $builder = $db->table("export");
+              $builder = $db->table("export.*");
+              $db->table('export')->insert($data);
+            $writer = new Xlsx($spreadsheet);
+            $writer->save("upload/".$fileName);
+            $filename = "upload/".'Newimac'.$idd.".xlsx";
+            return redirect()->to(base_url($filename));
+        
+          }
+  
+          public function Uimacspfo()
+          {
+            $db      = \Config\Database::connect();
+            $builder = $db->table('faultyout');
+              $builder->select('faultyout.*')->orderBy('time', 'DESC');
+              $builder->where('faultyout.conditions = "Used" AND type="Imac"' );
+            
+          $users = $builder->get()->getResult();
+        
+          //   $users = $query->getResult();
+          $idd = rand(1000, 9999);
+          $fileName = 'Uimacsp'.$idd. '.xlsx';
+        
+          $spreadsheet = new Spreadsheet();
+          $sheet = $spreadsheet->getActiveSheet();
+          $sheet->setCellValue('A1', 'Id');
+          $sheet->setCellValue('B1', 'CONDTIONS');
+          $sheet->setCellValue('C1', 'Type');
+          $sheet->setCellValue('D1', 'ASSETID');
+          $sheet->setCellValue('E1', 'GEN');
+          $sheet->setCellValue('F1', 'BRAND');
+          $sheet->setCellValue('G1', 'SERIANO');
+          $sheet->setCellValue('H1', 'PART');
+          $sheet->setCellValue('I1', 'MODELID');
+          $sheet->setCellValue('J1', 'MODEL');
+          $sheet->setCellValue('K1', 'CPU');
+          $sheet->setCellValue('L1', 'SPEED');
+          $sheet->setCellValue('M1', 'RAM'); 
+          $sheet->setCellValue('N1', 'HDD');
+          $sheet->setCellValue('O1', 'ODD');
+          $sheet->setCellValue('P1', 'SCREEN');
+          $sheet->setCellValue('Q1', 'COMMENT');
+          $sheet->setCellValue('R1', 'PRICE'); 
+          $sheet->setCellValue('S1', 'CUSTOMER'); 
+          $sheet->setCellValue('T1', 'LIST');      
+          $sheet->setCellValue('U1', 'STATUS');      
+          $sheet->setCellValue('V1', 'DATERECIEVERD');
+          $sheet->setCellValue('W1', 'DATEDELIVERED');
+        
+          $rows = 2;
+        
+          foreach ($users as $val){
+              $sheet->setCellValue('A' . $rows, $val->id);
+              $sheet->setCellValue('B' . $rows, $val->conditions);
+              $sheet->setCellValue('C' . $rows, $val->type);
+              $sheet->setCellValue('D' . $rows, $val->assetid);
+              $sheet->setCellValue('E' . $rows, $val->gen);
+              $sheet->setCellValue('F' . $rows, $val->brand);
+              $sheet->setCellValue('G' . $rows, $val->serialno);
+              $sheet->setCellValue('H' . $rows, $val->part);
+              $sheet->setCellValue('I' . $rows, $val->modelid);
+              $sheet->setCellValue('J' . $rows, $val->model);
+              $sheet->setCellValue('K' . $rows, $val->cpu);
+              $sheet->setCellValue('L' . $rows, $val->speed);
+              $sheet->setCellValue('M' . $rows, $val->ram);
+              $sheet->setCellValue('N' . $rows, $val->hdd);
+              $sheet->setCellValue('O' . $rows, $val->odd);
+              $sheet->setCellValue('P' . $rows, $val->screen);
+              $sheet->setCellValue('Q' . $rows, $val->comment);
+              $sheet->setCellValue('R' . $rows, $val->price);
+              $sheet->setCellValue('S' . $rows, $val->customer);
+              $sheet->setCellValue('T' . $rows, $val->list);
+              $sheet->setCellValue('U' . $rows, $val->status);
+              $sheet->setCellValue('V' . $rows, $val->daterecieved);
+              $sheet->setCellValue('W' . $rows, $val->datedelivered);
+        
+                $rows++;
+            } 
+        
+              $data = [
+                  'ref' => $idd,
+              ];
+              $builder = $db->table("export");
+              $builder = $db->table("export.*");
+              $db->table('export')->insert($data);
+            $writer = new Xlsx($spreadsheet);
+            $writer->save("upload/".$fileName);
+            $filename = "upload/".'Uimacsp'.$idd.".xlsx";
+            return redirect()->to(base_url($filename));
+        
+          }
+  
+          public function Rimacspfo()
+          {
+            $db      = \Config\Database::connect();
+            $builder = $db->table('faultyout');
+              $builder->select('faultyout.*')->orderBy('time', 'DESC');
+              $builder->where('faultyout.conditions = "Refurb" AND type="Imac"' );
+            
+          $users = $builder->get()->getResult();
+        
+          //   $users = $query->getResult();
+          $idd = rand(1000, 9999);
+          $fileName = 'Rimacsp'.$idd. '.xlsx';
+        
+          $spreadsheet = new Spreadsheet();
+          $sheet = $spreadsheet->getActiveSheet();
+          $sheet->setCellValue('A1', 'Id');
+          $sheet->setCellValue('B1', 'CONDTIONS');
+          $sheet->setCellValue('C1', 'Type');
+          $sheet->setCellValue('D1', 'ASSETID');
+          $sheet->setCellValue('E1', 'GEN');
+          $sheet->setCellValue('F1', 'BRAND');
+          $sheet->setCellValue('G1', 'SERIANO');
+          $sheet->setCellValue('H1', 'PART');
+          $sheet->setCellValue('I1', 'MODELID');
+          $sheet->setCellValue('J1', 'MODEL');
+          $sheet->setCellValue('K1', 'CPU');
+          $sheet->setCellValue('L1', 'SPEED');
+          $sheet->setCellValue('M1', 'RAM'); 
+          $sheet->setCellValue('N1', 'HDD');
+          $sheet->setCellValue('O1', 'ODD');
+          $sheet->setCellValue('P1', 'SCREEN');
+          $sheet->setCellValue('Q1', 'COMMENT');
+          $sheet->setCellValue('R1', 'PRICE'); 
+          $sheet->setCellValue('S1', 'CUSTOMER'); 
+          $sheet->setCellValue('T1', 'LIST');      
+          $sheet->setCellValue('U1', 'STATUS');      
+          $sheet->setCellValue('V1', 'DATERECIEVERD');
+          $sheet->setCellValue('W1', 'DATEDELIVERED');
+        
+          $rows = 2;
+        
+          foreach ($users as $val){
+              $sheet->setCellValue('A' . $rows, $val->id);
+              $sheet->setCellValue('B' . $rows, $val->conditions);
+              $sheet->setCellValue('C' . $rows, $val->type);
+              $sheet->setCellValue('D' . $rows, $val->assetid);
+              $sheet->setCellValue('E' . $rows, $val->gen);
+              $sheet->setCellValue('F' . $rows, $val->brand);
+              $sheet->setCellValue('G' . $rows, $val->serialno);
+              $sheet->setCellValue('H' . $rows, $val->part);
+              $sheet->setCellValue('I' . $rows, $val->modelid);
+              $sheet->setCellValue('J' . $rows, $val->model);
+              $sheet->setCellValue('K' . $rows, $val->cpu);
+              $sheet->setCellValue('L' . $rows, $val->speed);
+              $sheet->setCellValue('M' . $rows, $val->ram);
+              $sheet->setCellValue('N' . $rows, $val->hdd);
+              $sheet->setCellValue('O' . $rows, $val->odd);
+              $sheet->setCellValue('P' . $rows, $val->screen);
+              $sheet->setCellValue('Q' . $rows, $val->comment);
+              $sheet->setCellValue('R' . $rows, $val->price);
+              $sheet->setCellValue('S' . $rows, $val->customer);
+              $sheet->setCellValue('T' . $rows, $val->list);
+              $sheet->setCellValue('U' . $rows, $val->status);
+              $sheet->setCellValue('V' . $rows, $val->daterecieved);
+              $sheet->setCellValue('W' . $rows, $val->datedelivered);
+        
+                $rows++;
+            } 
+        
+              $data = [
+                  'ref' => $idd,
+              ];
+              $builder = $db->table("export");
+              $builder = $db->table("export.*");
+              $db->table('export')->insert($data);
+            $writer = new Xlsx($spreadsheet);
+            $writer->save("upload/".$fileName);
+            $filename = "upload/".'Rimacsp'.$idd.".xlsx";
+            return redirect()->to(base_url($filename));
+        
+          }
+  
+          public function Nserverspfo()
+          {
+            $db      = \Config\Database::connect();
+            $builder = $db->table('faultyout');
+              $builder->select('faultyout.*')->orderBy('time', 'DESC');
+              $builder->where('faultyout.conditions = "New" AND type="Server"' );
+            
+          $users = $builder->get()->getResult();
+        
+          //   $users = $query->getResult();
+          $idd = rand(1000, 9999);
+          $fileName = 'Nserversp'.$idd. '.xlsx';
+        
+          $spreadsheet = new Spreadsheet();
+          $sheet = $spreadsheet->getActiveSheet();
+          $sheet->setCellValue('A1', 'Id');
+          $sheet->setCellValue('B1', 'CONDTIONS');
+          $sheet->setCellValue('C1', 'Type');
+          $sheet->setCellValue('D1', 'ASSETID');
+          $sheet->setCellValue('E1', 'GEN');
+          $sheet->setCellValue('F1', 'BRAND');
+          $sheet->setCellValue('G1', 'SERIANO');
+          $sheet->setCellValue('H1', 'PART');
+          $sheet->setCellValue('I1', 'MODELID');
+          $sheet->setCellValue('J1', 'MODEL');
+          $sheet->setCellValue('K1', 'CPU');
+          $sheet->setCellValue('L1', 'SPEED');
+          $sheet->setCellValue('M1', 'RAM'); 
+          $sheet->setCellValue('N1', 'HDD');
+          $sheet->setCellValue('O1', 'ODD');
+          $sheet->setCellValue('P1', 'SCREEN');
+          $sheet->setCellValue('Q1', 'COMMENT');
+          $sheet->setCellValue('R1', 'PRICE'); 
+          $sheet->setCellValue('S1', 'CUSTOMER'); 
+          $sheet->setCellValue('T1', 'LIST');      
+          $sheet->setCellValue('U1', 'STATUS');      
+          $sheet->setCellValue('V1', 'DATERECIEVERD');
+          $sheet->setCellValue('W1', 'DATEDELIVERED');
+        
+          $rows = 2;
+        
+          foreach ($users as $val){
+              $sheet->setCellValue('A' . $rows, $val->id);
+              $sheet->setCellValue('B' . $rows, $val->conditions);
+              $sheet->setCellValue('C' . $rows, $val->type);
+              $sheet->setCellValue('D' . $rows, $val->assetid);
+              $sheet->setCellValue('E' . $rows, $val->gen);
+              $sheet->setCellValue('F' . $rows, $val->brand);
+              $sheet->setCellValue('G' . $rows, $val->serialno);
+              $sheet->setCellValue('H' . $rows, $val->part);
+              $sheet->setCellValue('I' . $rows, $val->modelid);
+              $sheet->setCellValue('J' . $rows, $val->model);
+              $sheet->setCellValue('K' . $rows, $val->cpu);
+              $sheet->setCellValue('L' . $rows, $val->speed);
+              $sheet->setCellValue('M' . $rows, $val->ram);
+              $sheet->setCellValue('N' . $rows, $val->hdd);
+              $sheet->setCellValue('O' . $rows, $val->odd);
+              $sheet->setCellValue('P' . $rows, $val->screen);
+              $sheet->setCellValue('Q' . $rows, $val->comment);
+              $sheet->setCellValue('R' . $rows, $val->price);
+              $sheet->setCellValue('S' . $rows, $val->customer);
+              $sheet->setCellValue('T' . $rows, $val->list);
+              $sheet->setCellValue('U' . $rows, $val->status);
+              $sheet->setCellValue('V' . $rows, $val->daterecieved);
+              $sheet->setCellValue('W' . $rows, $val->datedelivered);
+        
+                $rows++;
+            } 
+        
+              $data = [
+                  'ref' => $idd,
+              ];
+              $builder = $db->table("export");
+              $builder = $db->table("export.*");
+              $db->table('export')->insert($data);
+            $writer = new Xlsx($spreadsheet);
+            $writer->save("upload/".$fileName);
+            $filename = "upload/".'Nserversp'.$idd.".xlsx";
+            return redirect()->to(base_url($filename));
+        
+          }
+  
+          public function Userverspfo()
+          {
+            $db      = \Config\Database::connect();
+            $builder = $db->table('faultyout');
+              $builder->select('faultyout.*')->orderBy('time', 'DESC');
+              $builder->where('faultyout.conditions = "Used" AND type="Server"' );
+            
+          $users = $builder->get()->getResult();
+        
+          //   $users = $query->getResult();
+          $idd = rand(1000, 9999);
+          $fileName = 'Userversp'.$idd. '.xlsx';
+        
+          $spreadsheet = new Spreadsheet();
+          $sheet = $spreadsheet->getActiveSheet();
+          $sheet->setCellValue('A1', 'Id');
+          $sheet->setCellValue('B1', 'CONDTIONS');
+          $sheet->setCellValue('C1', 'Type');
+          $sheet->setCellValue('D1', 'ASSETID');
+          $sheet->setCellValue('E1', 'GEN');
+          $sheet->setCellValue('F1', 'BRAND');
+          $sheet->setCellValue('G1', 'SERIANO');
+          $sheet->setCellValue('H1', 'PART');
+          $sheet->setCellValue('I1', 'MODELID');
+          $sheet->setCellValue('J1', 'MODEL');
+          $sheet->setCellValue('K1', 'CPU');
+          $sheet->setCellValue('L1', 'SPEED');
+          $sheet->setCellValue('M1', 'RAM'); 
+          $sheet->setCellValue('N1', 'HDD');
+          $sheet->setCellValue('O1', 'ODD');
+          $sheet->setCellValue('P1', 'SCREEN');
+          $sheet->setCellValue('Q1', 'COMMENT');
+          $sheet->setCellValue('R1', 'PRICE'); 
+          $sheet->setCellValue('S1', 'CUSTOMER'); 
+          $sheet->setCellValue('T1', 'LIST');      
+          $sheet->setCellValue('U1', 'STATUS');      
+          $sheet->setCellValue('V1', 'DATERECIEVERD');
+          $sheet->setCellValue('W1', 'DATEDELIVERED');
+        
+          $rows = 2;
+        
+          foreach ($users as $val){
+              $sheet->setCellValue('A' . $rows, $val->id);
+              $sheet->setCellValue('B' . $rows, $val->conditions);
+              $sheet->setCellValue('C' . $rows, $val->type);
+              $sheet->setCellValue('D' . $rows, $val->assetid);
+              $sheet->setCellValue('E' . $rows, $val->gen);
+              $sheet->setCellValue('F' . $rows, $val->brand);
+              $sheet->setCellValue('G' . $rows, $val->serialno);
+              $sheet->setCellValue('H' . $rows, $val->part);
+              $sheet->setCellValue('I' . $rows, $val->modelid);
+              $sheet->setCellValue('J' . $rows, $val->model);
+              $sheet->setCellValue('K' . $rows, $val->cpu);
+              $sheet->setCellValue('L' . $rows, $val->speed);
+              $sheet->setCellValue('M' . $rows, $val->ram);
+              $sheet->setCellValue('N' . $rows, $val->hdd);
+              $sheet->setCellValue('O' . $rows, $val->odd);
+              $sheet->setCellValue('P' . $rows, $val->screen);
+              $sheet->setCellValue('Q' . $rows, $val->comment);
+              $sheet->setCellValue('R' . $rows, $val->price);
+              $sheet->setCellValue('S' . $rows, $val->customer);
+              $sheet->setCellValue('T' . $rows, $val->list);
+              $sheet->setCellValue('U' . $rows, $val->status);
+              $sheet->setCellValue('V' . $rows, $val->daterecieved);
+              $sheet->setCellValue('W' . $rows, $val->datedelivered);
+        
+                $rows++;
+            } 
+        
+              $data = [
+                  'ref' => $idd,
+              ];
+              $builder = $db->table("export");
+              $builder = $db->table("export.*");
+              $db->table('export')->insert($data);
+            $writer = new Xlsx($spreadsheet);
+            $writer->save("upload/".$fileName);
+            $filename = "upload/".'Userversp'.$idd.".xlsx";
+            return redirect()->to(base_url($filename));
+        
+          }
+  
+          public function Rserverspfo()
+          {
+            $db      = \Config\Database::connect();
+            $builder = $db->table('faultyout');
+              $builder->select('faultyout.*')->orderBy('time', 'DESC');
+              $builder->where('faultyout.conditions = "Refurb" AND type="Server"' );
+            
+          $users = $builder->get()->getResult();
+        
+          //   $users = $query->getResult();
+          $idd = rand(1000, 9999);
+          $fileName = 'Rserversp'.$idd. '.xlsx';
+        
+          $spreadsheet = new Spreadsheet();
+          $sheet = $spreadsheet->getActiveSheet();
+          $sheet->setCellValue('A1', 'Id');
+          $sheet->setCellValue('B1', 'CONDTIONS');
+          $sheet->setCellValue('C1', 'Type');
+          $sheet->setCellValue('D1', 'ASSETID');
+          $sheet->setCellValue('E1', 'GEN');
+          $sheet->setCellValue('F1', 'BRAND');
+          $sheet->setCellValue('G1', 'SERIANO');
+          $sheet->setCellValue('H1', 'PART');
+          $sheet->setCellValue('I1', 'MODELID');
+          $sheet->setCellValue('J1', 'MODEL');
+          $sheet->setCellValue('K1', 'CPU');
+          $sheet->setCellValue('L1', 'SPEED');
+          $sheet->setCellValue('M1', 'RAM'); 
+          $sheet->setCellValue('N1', 'HDD');
+          $sheet->setCellValue('O1', 'ODD');
+          $sheet->setCellValue('P1', 'SCREEN');
+          $sheet->setCellValue('Q1', 'COMMENT');
+          $sheet->setCellValue('R1', 'PRICE'); 
+          $sheet->setCellValue('S1', 'CUSTOMER'); 
+          $sheet->setCellValue('T1', 'LIST');      
+          $sheet->setCellValue('U1', 'STATUS');      
+          $sheet->setCellValue('V1', 'DATERECIEVERD');
+          $sheet->setCellValue('W1', 'DATEDELIVERED');
+        
+          $rows = 2;
+        
+          foreach ($users as $val){
+              $sheet->setCellValue('A' . $rows, $val->id);
+              $sheet->setCellValue('B' . $rows, $val->conditions);
+              $sheet->setCellValue('C' . $rows, $val->type);
+              $sheet->setCellValue('D' . $rows, $val->assetid);
+              $sheet->setCellValue('E' . $rows, $val->gen);
+              $sheet->setCellValue('F' . $rows, $val->brand);
+              $sheet->setCellValue('G' . $rows, $val->serialno);
+              $sheet->setCellValue('H' . $rows, $val->part);
+              $sheet->setCellValue('I' . $rows, $val->modelid);
+              $sheet->setCellValue('J' . $rows, $val->model);
+              $sheet->setCellValue('K' . $rows, $val->cpu);
+              $sheet->setCellValue('L' . $rows, $val->speed);
+              $sheet->setCellValue('M' . $rows, $val->ram);
+              $sheet->setCellValue('N' . $rows, $val->hdd);
+              $sheet->setCellValue('O' . $rows, $val->odd);
+              $sheet->setCellValue('P' . $rows, $val->screen);
+              $sheet->setCellValue('Q' . $rows, $val->comment);
+              $sheet->setCellValue('R' . $rows, $val->price);
+              $sheet->setCellValue('S' . $rows, $val->customer);
+              $sheet->setCellValue('T' . $rows, $val->list);
+              $sheet->setCellValue('U' . $rows, $val->status);
+              $sheet->setCellValue('V' . $rows, $val->daterecieved);
+              $sheet->setCellValue('W' . $rows, $val->datedelivered);
+        
+                $rows++;
+            } 
+        
+              $data = [
+                  'ref' => $idd,
+              ];
+              $builder = $db->table("export");
+              $builder = $db->table("export.*");
+              $db->table('export')->insert($data);
+            $writer = new Xlsx($spreadsheet);
+            $writer->save("upload/".$fileName);
+            $filename = "upload/".'Rserversp'.$idd.".xlsx";
+            return redirect()->to(base_url($filename));
+        
+          }
+  
+          public function Nworkstationspfo()
+          {
+            $db      = \Config\Database::connect();
+            $builder = $db->table('faultyout');
+              $builder->select('faultyout.*')->orderBy('time', 'DESC');
+              $builder->where('faultyout.conditions = "New" AND type="Workstation"' );
+            
+          $users = $builder->get()->getResult();
+        
+          //   $users = $query->getResult();
+          $idd = rand(1000, 9999);
+          $fileName = 'Nworkstationsp'.$idd. '.xlsx';
+        
+          $spreadsheet = new Spreadsheet();
+          $sheet = $spreadsheet->getActiveSheet();
+          $sheet->setCellValue('A1', 'Id');
+          $sheet->setCellValue('B1', 'CONDTIONS');
+          $sheet->setCellValue('C1', 'Type');
+          $sheet->setCellValue('D1', 'ASSETID');
+          $sheet->setCellValue('E1', 'GEN');
+          $sheet->setCellValue('F1', 'BRAND');
+          $sheet->setCellValue('G1', 'SERIANO');
+          $sheet->setCellValue('H1', 'PART');
+          $sheet->setCellValue('I1', 'MODELID');
+          $sheet->setCellValue('J1', 'MODEL');
+          $sheet->setCellValue('K1', 'CPU');
+          $sheet->setCellValue('L1', 'SPEED');
+          $sheet->setCellValue('M1', 'RAM'); 
+          $sheet->setCellValue('N1', 'HDD');
+          $sheet->setCellValue('O1', 'ODD');
+          $sheet->setCellValue('P1', 'SCREEN');
+          $sheet->setCellValue('Q1', 'COMMENT');
+          $sheet->setCellValue('R1', 'PRICE'); 
+          $sheet->setCellValue('S1', 'CUSTOMER'); 
+          $sheet->setCellValue('T1', 'LIST');      
+          $sheet->setCellValue('U1', 'STATUS');      
+          $sheet->setCellValue('V1', 'DATERECIEVERD');
+          $sheet->setCellValue('W1', 'DATEDELIVERED');
+        
+          $rows = 2;
+        
+          foreach ($users as $val){
+              $sheet->setCellValue('A' . $rows, $val->id);
+              $sheet->setCellValue('B' . $rows, $val->conditions);
+              $sheet->setCellValue('C' . $rows, $val->type);
+              $sheet->setCellValue('D' . $rows, $val->assetid);
+              $sheet->setCellValue('E' . $rows, $val->gen);
+              $sheet->setCellValue('F' . $rows, $val->brand);
+              $sheet->setCellValue('G' . $rows, $val->serialno);
+              $sheet->setCellValue('H' . $rows, $val->part);
+              $sheet->setCellValue('I' . $rows, $val->modelid);
+              $sheet->setCellValue('J' . $rows, $val->model);
+              $sheet->setCellValue('K' . $rows, $val->cpu);
+              $sheet->setCellValue('L' . $rows, $val->speed);
+              $sheet->setCellValue('M' . $rows, $val->ram);
+              $sheet->setCellValue('N' . $rows, $val->hdd);
+              $sheet->setCellValue('O' . $rows, $val->odd);
+              $sheet->setCellValue('P' . $rows, $val->screen);
+              $sheet->setCellValue('Q' . $rows, $val->comment);
+              $sheet->setCellValue('R' . $rows, $val->price);
+              $sheet->setCellValue('S' . $rows, $val->customer);
+              $sheet->setCellValue('T' . $rows, $val->list);
+              $sheet->setCellValue('U' . $rows, $val->status);
+              $sheet->setCellValue('V' . $rows, $val->daterecieved);
+              $sheet->setCellValue('W' . $rows, $val->datedelivered);
+        
+                $rows++;
+            } 
+        
+              $data = [
+                  'ref' => $idd,
+              ];
+              $builder = $db->table("export");
+              $builder = $db->table("export.*");
+              $db->table('export')->insert($data);
+            $writer = new Xlsx($spreadsheet);
+            $writer->save("upload/".$fileName);
+            $filename = "upload/".'Nworkstationsp'.$idd.".xlsx";
+            return redirect()->to(base_url($filename));
+        
+          }
+  
+          public function Uworkstationspfo()
+          {
+            $db      = \Config\Database::connect();
+            $builder = $db->table('faultyout');
+              $builder->select('faultyout.*')->orderBy('time', 'DESC');
+              $builder->where('faultyout.conditions = "Used" AND type="Workstation"' );
+            
+          $users = $builder->get()->getResult();
+        
+          //   $users = $query->getResult();
+          $idd = rand(1000, 9999);
+          $fileName = 'Uworkstationsp'.$idd. '.xlsx';
+        
+          $spreadsheet = new Spreadsheet();
+          $sheet = $spreadsheet->getActiveSheet();
+          $sheet->setCellValue('A1', 'Id');
+          $sheet->setCellValue('B1', 'CONDTIONS');
+          $sheet->setCellValue('C1', 'Type');
+          $sheet->setCellValue('D1', 'ASSETID');
+          $sheet->setCellValue('E1', 'GEN');
+          $sheet->setCellValue('F1', 'BRAND');
+          $sheet->setCellValue('G1', 'SERIANO');
+          $sheet->setCellValue('H1', 'PART');
+          $sheet->setCellValue('I1', 'MODELID');
+          $sheet->setCellValue('J1', 'MODEL');
+          $sheet->setCellValue('K1', 'CPU');
+          $sheet->setCellValue('L1', 'SPEED');
+          $sheet->setCellValue('M1', 'RAM'); 
+          $sheet->setCellValue('N1', 'HDD');
+          $sheet->setCellValue('O1', 'ODD');
+          $sheet->setCellValue('P1', 'SCREEN');
+          $sheet->setCellValue('Q1', 'COMMENT');
+          $sheet->setCellValue('R1', 'PRICE'); 
+          $sheet->setCellValue('S1', 'CUSTOMER'); 
+          $sheet->setCellValue('T1', 'LIST');      
+          $sheet->setCellValue('U1', 'STATUS');      
+          $sheet->setCellValue('V1', 'DATERECIEVERD');
+          $sheet->setCellValue('W1', 'DATEDELIVERED');
+        
+          $rows = 2;
+        
+          foreach ($users as $val){
+              $sheet->setCellValue('A' . $rows, $val->id);
+              $sheet->setCellValue('B' . $rows, $val->conditions);
+              $sheet->setCellValue('C' . $rows, $val->type);
+              $sheet->setCellValue('D' . $rows, $val->assetid);
+              $sheet->setCellValue('E' . $rows, $val->gen);
+              $sheet->setCellValue('F' . $rows, $val->brand);
+              $sheet->setCellValue('G' . $rows, $val->serialno);
+              $sheet->setCellValue('H' . $rows, $val->part);
+              $sheet->setCellValue('I' . $rows, $val->modelid);
+              $sheet->setCellValue('J' . $rows, $val->model);
+              $sheet->setCellValue('K' . $rows, $val->cpu);
+              $sheet->setCellValue('L' . $rows, $val->speed);
+              $sheet->setCellValue('M' . $rows, $val->ram);
+              $sheet->setCellValue('N' . $rows, $val->hdd);
+              $sheet->setCellValue('O' . $rows, $val->odd);
+              $sheet->setCellValue('P' . $rows, $val->screen);
+              $sheet->setCellValue('Q' . $rows, $val->comment);
+              $sheet->setCellValue('R' . $rows, $val->price);
+              $sheet->setCellValue('S' . $rows, $val->customer);
+              $sheet->setCellValue('T' . $rows, $val->list);
+              $sheet->setCellValue('U' . $rows, $val->status);
+              $sheet->setCellValue('V' . $rows, $val->daterecieved);
+              $sheet->setCellValue('W' . $rows, $val->datedelivered);
+        
+                $rows++;
+            } 
+        
+              $data = [
+                  'ref' => $idd,
+              ];
+              $builder = $db->table("export");
+              $builder = $db->table("export.*");
+              $db->table('export')->insert($data);
+            $writer = new Xlsx($spreadsheet);
+            $writer->save("upload/".$fileName);
+            $filename = "upload/".'Uworkstationsp'.$idd.".xlsx";
+            return redirect()->to(base_url($filename));
+        
+          }
+  
+          public function Rworkstationspfo()
+          {
+            $db      = \Config\Database::connect();
+            $builder = $db->table('faultyout');
+              $builder->select('faultyout.*')->orderBy('time', 'DESC');
+              $builder->where('faultyout.conditions = "Refurb" AND type="Workstation"' );
+            
+          $users = $builder->get()->getResult();
+        
+          //   $users = $query->getResult();
+          $idd = rand(1000, 9999);
+          $fileName = 'Rworkstationsp'.$idd. '.xlsx';
+        
+          $spreadsheet = new Spreadsheet();
+          $sheet = $spreadsheet->getActiveSheet();
+          $sheet->setCellValue('A1', 'Id');
+          $sheet->setCellValue('B1', 'CONDTIONS');
+          $sheet->setCellValue('C1', 'Type');
+          $sheet->setCellValue('D1', 'ASSETID');
+          $sheet->setCellValue('E1', 'GEN');
+          $sheet->setCellValue('F1', 'BRAND');
+          $sheet->setCellValue('G1', 'SERIANO');
+          $sheet->setCellValue('H1', 'PART');
+          $sheet->setCellValue('I1', 'MODELID');
+          $sheet->setCellValue('J1', 'MODEL');
+          $sheet->setCellValue('K1', 'CPU');
+          $sheet->setCellValue('L1', 'SPEED');
+          $sheet->setCellValue('M1', 'RAM'); 
+          $sheet->setCellValue('N1', 'HDD');
+          $sheet->setCellValue('O1', 'ODD');
+          $sheet->setCellValue('P1', 'SCREEN');
+          $sheet->setCellValue('Q1', 'COMMENT');
+          $sheet->setCellValue('R1', 'PRICE'); 
+          $sheet->setCellValue('S1', 'CUSTOMER'); 
+          $sheet->setCellValue('T1', 'LIST');      
+          $sheet->setCellValue('U1', 'STATUS');      
+          $sheet->setCellValue('V1', 'DATERECIEVERD');
+          $sheet->setCellValue('W1', 'DATEDELIVERED');
+        
+          $rows = 2;
+        
+          foreach ($users as $val){
+              $sheet->setCellValue('A' . $rows, $val->id);
+              $sheet->setCellValue('B' . $rows, $val->conditions);
+              $sheet->setCellValue('C' . $rows, $val->type);
+              $sheet->setCellValue('D' . $rows, $val->assetid);
+              $sheet->setCellValue('E' . $rows, $val->gen);
+              $sheet->setCellValue('F' . $rows, $val->brand);
+              $sheet->setCellValue('G' . $rows, $val->serialno);
+              $sheet->setCellValue('H' . $rows, $val->part);
+              $sheet->setCellValue('I' . $rows, $val->modelid);
+              $sheet->setCellValue('J' . $rows, $val->model);
+              $sheet->setCellValue('K' . $rows, $val->cpu);
+              $sheet->setCellValue('L' . $rows, $val->speed);
+              $sheet->setCellValue('M' . $rows, $val->ram);
+              $sheet->setCellValue('N' . $rows, $val->hdd);
+              $sheet->setCellValue('O' . $rows, $val->odd);
+              $sheet->setCellValue('P' . $rows, $val->screen);
+              $sheet->setCellValue('Q' . $rows, $val->comment);
+              $sheet->setCellValue('R' . $rows, $val->price);
+              $sheet->setCellValue('S' . $rows, $val->customer);
+              $sheet->setCellValue('T' . $rows, $val->list);
+              $sheet->setCellValue('U' . $rows, $val->status);
+              $sheet->setCellValue('V' . $rows, $val->daterecieved);
+              $sheet->setCellValue('W' . $rows, $val->datedelivered);
+        
+                $rows++;
+            } 
+        
+              $data = [
+                  'ref' => $idd,
+              ];
+              $builder = $db->table("export");
+              $builder = $db->table("export.*");
+              $db->table('export')->insert($data);
+            $writer = new Xlsx($spreadsheet);
+            $writer->save("upload/".$fileName);
+            $filename = "upload/".'Rworkstationsp'.$idd.".xlsx";
+            return redirect()->to(base_url($filename));
+        
+          }
+  
+          public function Nmacbookspfo()
+          {
+            $db      = \Config\Database::connect();
+            $builder = $db->table('faultyout');
+              $builder->select('faultyout.*')->orderBy('time', 'DESC');
+              $builder->where('faultyout.conditions = "New" AND type="Macbook"' );
+            
+          $users = $builder->get()->getResult();
+        
+          //   $users = $query->getResult();
+          $idd = rand(1000, 9999);
+          $fileName = 'Nmacbooksp'.$idd. '.xlsx';
+        
+          $spreadsheet = new Spreadsheet();
+          $sheet = $spreadsheet->getActiveSheet();
+          $sheet->setCellValue('A1', 'Id');
+          $sheet->setCellValue('B1', 'CONDTIONS');
+          $sheet->setCellValue('C1', 'Type');
+          $sheet->setCellValue('D1', 'ASSETID');
+          $sheet->setCellValue('E1', 'GEN');
+          $sheet->setCellValue('F1', 'BRAND');
+          $sheet->setCellValue('G1', 'SERIANO');
+          $sheet->setCellValue('H1', 'PART');
+          $sheet->setCellValue('I1', 'MODELID');
+          $sheet->setCellValue('J1', 'MODEL');
+          $sheet->setCellValue('K1', 'CPU');
+          $sheet->setCellValue('L1', 'SPEED');
+          $sheet->setCellValue('M1', 'RAM'); 
+          $sheet->setCellValue('N1', 'HDD');
+          $sheet->setCellValue('O1', 'ODD');
+          $sheet->setCellValue('P1', 'SCREEN');
+          $sheet->setCellValue('Q1', 'COMMENT');
+          $sheet->setCellValue('R1', 'PRICE'); 
+          $sheet->setCellValue('S1', 'CUSTOMER'); 
+          $sheet->setCellValue('T1', 'LIST');      
+          $sheet->setCellValue('U1', 'STATUS');      
+          $sheet->setCellValue('V1', 'DATERECIEVERD');
+          $sheet->setCellValue('W1', 'DATEDELIVERED');
+        
+          $rows = 2;
+        
+          foreach ($users as $val){
+              $sheet->setCellValue('A' . $rows, $val->id);
+              $sheet->setCellValue('B' . $rows, $val->conditions);
+              $sheet->setCellValue('C' . $rows, $val->type);
+              $sheet->setCellValue('D' . $rows, $val->assetid);
+              $sheet->setCellValue('E' . $rows, $val->gen);
+              $sheet->setCellValue('F' . $rows, $val->brand);
+              $sheet->setCellValue('G' . $rows, $val->serialno);
+              $sheet->setCellValue('H' . $rows, $val->part);
+              $sheet->setCellValue('I' . $rows, $val->modelid);
+              $sheet->setCellValue('J' . $rows, $val->model);
+              $sheet->setCellValue('K' . $rows, $val->cpu);
+              $sheet->setCellValue('L' . $rows, $val->speed);
+              $sheet->setCellValue('M' . $rows, $val->ram);
+              $sheet->setCellValue('N' . $rows, $val->hdd);
+              $sheet->setCellValue('O' . $rows, $val->odd);
+              $sheet->setCellValue('P' . $rows, $val->screen);
+              $sheet->setCellValue('Q' . $rows, $val->comment);
+              $sheet->setCellValue('R' . $rows, $val->price);
+              $sheet->setCellValue('S' . $rows, $val->customer);
+              $sheet->setCellValue('T' . $rows, $val->list);
+              $sheet->setCellValue('U' . $rows, $val->status);
+              $sheet->setCellValue('V' . $rows, $val->daterecieved);
+              $sheet->setCellValue('W' . $rows, $val->datedelivered);
+        
+                $rows++;
+            } 
+        
+              $data = [
+                  'ref' => $idd,
+              ];
+              $builder = $db->table("export");
+              $builder = $db->table("export.*");
+              $db->table('export')->insert($data);
+            $writer = new Xlsx($spreadsheet);
+            $writer->save("upload/".$fileName);
+            $filename = "upload/".'Nmacbooksp'.$idd.".xlsx";
+            return redirect()->to(base_url($filename));
+        
+          }
+  
+          public function Umacbookspfo()
+          {
+            $db      = \Config\Database::connect();
+            $builder = $db->table('faultyout');
+              $builder->select('faultyout.*')->orderBy('time', 'DESC');
+              $builder->where('faultyout.conditions = "Used" AND type="Macbook"' );
+            
+          $users = $builder->get()->getResult();
+        
+          //   $users = $query->getResult();
+          $idd = rand(1000, 9999);
+          $fileName = 'Umacbooksp'.$idd. '.xlsx';
+        
+          $spreadsheet = new Spreadsheet();
+          $sheet = $spreadsheet->getActiveSheet();
+          $sheet->setCellValue('A1', 'Id');
+          $sheet->setCellValue('B1', 'CONDTIONS');
+          $sheet->setCellValue('C1', 'Type');
+          $sheet->setCellValue('D1', 'ASSETID');
+          $sheet->setCellValue('E1', 'GEN');
+          $sheet->setCellValue('F1', 'BRAND');
+          $sheet->setCellValue('G1', 'SERIANO');
+          $sheet->setCellValue('H1', 'PART');
+          $sheet->setCellValue('I1', 'MODELID');
+          $sheet->setCellValue('J1', 'MODEL');
+          $sheet->setCellValue('K1', 'CPU');
+          $sheet->setCellValue('L1', 'SPEED');
+          $sheet->setCellValue('M1', 'RAM'); 
+          $sheet->setCellValue('N1', 'HDD');
+          $sheet->setCellValue('O1', 'ODD');
+          $sheet->setCellValue('P1', 'SCREEN');
+          $sheet->setCellValue('Q1', 'COMMENT');
+          $sheet->setCellValue('R1', 'PRICE'); 
+          $sheet->setCellValue('S1', 'CUSTOMER'); 
+          $sheet->setCellValue('T1', 'LIST');      
+          $sheet->setCellValue('U1', 'STATUS');      
+          $sheet->setCellValue('V1', 'DATERECIEVERD');
+          $sheet->setCellValue('W1', 'DATEDELIVERED');
+        
+          $rows = 2;
+        
+          foreach ($users as $val){
+              $sheet->setCellValue('A' . $rows, $val->id);
+              $sheet->setCellValue('B' . $rows, $val->conditions);
+              $sheet->setCellValue('C' . $rows, $val->type);
+              $sheet->setCellValue('D' . $rows, $val->assetid);
+              $sheet->setCellValue('E' . $rows, $val->gen);
+              $sheet->setCellValue('F' . $rows, $val->brand);
+              $sheet->setCellValue('G' . $rows, $val->serialno);
+              $sheet->setCellValue('H' . $rows, $val->part);
+              $sheet->setCellValue('I' . $rows, $val->modelid);
+              $sheet->setCellValue('J' . $rows, $val->model);
+              $sheet->setCellValue('K' . $rows, $val->cpu);
+              $sheet->setCellValue('L' . $rows, $val->speed);
+              $sheet->setCellValue('M' . $rows, $val->ram);
+              $sheet->setCellValue('N' . $rows, $val->hdd);
+              $sheet->setCellValue('O' . $rows, $val->odd);
+              $sheet->setCellValue('P' . $rows, $val->screen);
+              $sheet->setCellValue('Q' . $rows, $val->comment);
+              $sheet->setCellValue('R' . $rows, $val->price);
+              $sheet->setCellValue('S' . $rows, $val->customer);
+              $sheet->setCellValue('T' . $rows, $val->list);
+              $sheet->setCellValue('U' . $rows, $val->status);
+              $sheet->setCellValue('V' . $rows, $val->daterecieved);
+              $sheet->setCellValue('W' . $rows, $val->datedelivered);
+        
+                $rows++;
+            } 
+        
+              $data = [
+                  'ref' => $idd,
+              ];
+              $builder = $db->table("export");
+              $builder = $db->table("export.*");
+              $db->table('export')->insert($data);
+            $writer = new Xlsx($spreadsheet);
+            $writer->save("upload/".$fileName);
+            $filename = "upload/".'Umacbooksp'.$idd.".xlsx";
+            return redirect()->to(base_url($filename));
+        
+          }
+  
+          public function Rmacbookspfo()
+          {
+            $db      = \Config\Database::connect();
+            $builder = $db->table('faultyout');
+            $builder->select('faultyout.*')->orderBy('time', 'DESC');
+            $builder->where('faultyout.conditions = "Refurb" AND type="Macbook"' );
+            $users = $builder->get()->getResult();
+          //   $users = $query->getResult();
+          $idd = rand(1000, 9999);
+          $fileName = 'Rmacbooksp'.$idd. '.xlsx';
+        
+          $spreadsheet = new Spreadsheet();
+          $sheet = $spreadsheet->getActiveSheet();
+          $sheet->setCellValue('A1', 'Id');
+          $sheet->setCellValue('B1', 'CONDTIONS');
+          $sheet->setCellValue('C1', 'Type');
+          $sheet->setCellValue('D1', 'ASSETID');
+          $sheet->setCellValue('E1', 'GEN');
+          $sheet->setCellValue('F1', 'BRAND');
+          $sheet->setCellValue('G1', 'SERIANO');
+          $sheet->setCellValue('H1', 'PART');
+          $sheet->setCellValue('I1', 'MODELID');
+          $sheet->setCellValue('J1', 'MODEL');
+          $sheet->setCellValue('K1', 'CPU');
+          $sheet->setCellValue('L1', 'SPEED');
+          $sheet->setCellValue('M1', 'RAM'); 
+          $sheet->setCellValue('N1', 'HDD');
+          $sheet->setCellValue('O1', 'ODD');
+          $sheet->setCellValue('P1', 'SCREEN');
+          $sheet->setCellValue('Q1', 'COMMENT');
+          $sheet->setCellValue('R1', 'PRICE'); 
+          $sheet->setCellValue('S1', 'CUSTOMER'); 
+          $sheet->setCellValue('T1', 'LIST');      
+          $sheet->setCellValue('U1', 'STATUS');      
+          $sheet->setCellValue('V1', 'DATERECIEVERD');
+          $sheet->setCellValue('W1', 'DATEDELIVERED');
+        
+          $rows = 2;
+        
+          foreach ($users as $val){
+              $sheet->setCellValue('A' . $rows, $val->id);
+              $sheet->setCellValue('B' . $rows, $val->conditions);
+              $sheet->setCellValue('C' . $rows, $val->type);
+              $sheet->setCellValue('D' . $rows, $val->assetid);
+              $sheet->setCellValue('E' . $rows, $val->gen);
+              $sheet->setCellValue('F' . $rows, $val->brand);
+              $sheet->setCellValue('G' . $rows, $val->serialno);
+              $sheet->setCellValue('H' . $rows, $val->part);
+              $sheet->setCellValue('I' . $rows, $val->modelid);
+              $sheet->setCellValue('J' . $rows, $val->model);
+              $sheet->setCellValue('K' . $rows, $val->cpu);
+              $sheet->setCellValue('L' . $rows, $val->speed);
+              $sheet->setCellValue('M' . $rows, $val->ram);
+              $sheet->setCellValue('N' . $rows, $val->hdd);
+              $sheet->setCellValue('O' . $rows, $val->odd);
+              $sheet->setCellValue('P' . $rows, $val->screen);
+              $sheet->setCellValue('Q' . $rows, $val->comment);
+              $sheet->setCellValue('R' . $rows, $val->price);
+              $sheet->setCellValue('S' . $rows, $val->customer);
+              $sheet->setCellValue('T' . $rows, $val->list);
+              $sheet->setCellValue('U' . $rows, $val->status);
+              $sheet->setCellValue('V' . $rows, $val->daterecieved);
+              $sheet->setCellValue('W' . $rows, $val->datedelivered);
+        
+                $rows++;
+            } 
+        
+              $data = [
+                  'ref' => $idd,
+              ];
+              $builder = $db->table("export");
+              $builder = $db->table("export.*");
+              $db->table('export')->insert($data);
+            $writer = new Xlsx($spreadsheet);
+            $writer->save("upload/".$fileName);
+            $filename = "upload/".'Rmacbooksp'.$idd.".xlsx";
+            return redirect()->to(base_url($filename));
+        
+          }
+  
+  
+          // end
+  
+
+  
+
 }
