@@ -68,8 +68,8 @@ $count_invoices = mysqli_num_rows($run_invoices);
     $session = session();
     $names = $session->get('user_name');
     ?>
-    <section class="content mt-5 pt-4 ">
-    <div class="container">
+    <section class="content mt-5 pt-4   col-mx-auto col-lg-12 px-4">
+    <div class="container ">
       <h4> <u>Welcome <?= $names ?></u>  </h4>
     <div class="row">
           <div class="col-md-3">

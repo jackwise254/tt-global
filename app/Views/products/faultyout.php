@@ -14,7 +14,7 @@ endif;
     $session = session();
     $names = $session->get('user_name');
     ?> 
-<section class="content mt-4">
+<section class="content mt-4 col-mx-auto col-lg-12 px-4">
 
 <div class=" px-5 float end">
 

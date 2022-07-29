@@ -18,7 +18,7 @@ endif;
       <div class="my-3">
       <a href="<?php echo site_url('stockt-view') ?>" class="btn btn-success btn-sm bi bi-chevron-left">back</a>
       <!-- spreadsheet -->
-      <a href="<?php echo site_url('spreadsheet') ?>" class="btn btn-info btn-sm bi bi-download">spreadsheet</a>
+      <a href="<?php echo site_url('ssdspot') ?>" class="btn btn-info btn-sm bi bi-download">spreadsheet</a>
 
 
       <form class="d-flex float-end">

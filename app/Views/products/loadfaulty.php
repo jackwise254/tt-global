@@ -35,7 +35,7 @@ endif;
                 <select class="form-select form-control w-25 d-inline"  name="vendor" >
                 <option selected></option>
                     <?php foreach($customer as $user): ?>
-                    <option value="<?php echo $user->fname; ?>"><?php echo $user->fname; ?></option>
+                    <option value="<?php echo $user->username; ?>"><?php echo $user->username; ?></option>
                     <?php endforeach; ?>
                 </select>
                 
