@@ -93,7 +93,9 @@ endif;
                               <?php if($user_data == 'admin'):  ?>
                                <a href="<?php echo site_url('ProductsCrud/deletes/'.$user->id); ?>" class="pr-3  ">[del]</a>
                                 <a href="<?php echo base_url('ProductsCrud/singleProductw/'.$user->id);?>" class='px-2'>[Edit]</a>
-                               <?php endif; ?> 
+                               <?php elseif($user_data == 'warranty' && $datereceived == date("Y-m-d")):?>
+                                <a href="<?php echo base_url('ProductsCrud/singleProductw/'.$user->id);?>" class='px-2'>[Edit]</a>
+                              <?php endif; ?>
                               <a href="<?= base_url('ProductsCrud/printbarcodwi/'.$user->assetid) ?>" class="px-2">[barcode]</a> 
                               <a href="<?= base_url('ProductsCrud/printbarcode2wi/'.$user->assetid ) ?>" class="px-2">[barcode2]</a> 
                               <a href="<?php echo base_url('ProductsCrud/ok/'.$user->assetid);?>" class='px-2'>[irrepairable]</a>

@@ -1051,7 +1051,7 @@ public function load()
         }
 
 
-        public function Umac()
+        public function Uimac()
         {
             $session = \Config\Services::session();
 

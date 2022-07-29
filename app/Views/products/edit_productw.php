@@ -12,7 +12,7 @@ endif;
 <body class="bg-light container mt-5 p-5">
 
     <form method="post" id="update_user" name="update_user" 
-     action="<?= site_url('/update-productsw') ?>">
+     action="<?= base_url('ProductsCrud/updatew') ?>">
 
 
      <input type="hidden" name="id" id="id" value="<?php echo $user_obj[0]['id']; ?>">
@@ -39,6 +39,7 @@ endif;
             <th class="text-center px-5">Hdd</th>
             <th class="text-center px-5">Screen</th>
             <th class="text-center px-5">Odd</th>
+            <th class="text-center px-5">Daterecieved</th>
             <th class="text-center px-5">Comment</th>
             <th class="text-center px-5">Problem</th>
             <th class="text-center px-5">Price</th>
@@ -142,6 +143,9 @@ endif;
           <option value="no">Yes</option>
         </select>
     		</td>
+        <td>
+   				  <input type="text" class="form-control" name="daterecieved" value="<?php echo $user_obj[0]['daterecieved']; ?>">
+			</td>
         <td>
    				  <input type="text" class="form-control" name="comment" value="<?php echo $user_obj[0]['comment']; ?>">
    				 

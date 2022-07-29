@@ -11296,7 +11296,6 @@ public function printbarcodwi($id)
             'hdd' => $this->request->getVar('hdd'),
             'list' => $this->request->getVar('list'),
             'daterecieved' => $this->request->getVar('daterecieved'),
-            'datedelivered' => $this->request->getVar('datedelivered'),
             'odd' => $this->request->getVar('odd'),
             'comment' => $this->request->getVar('comment'),
             'problem' => $this->request->getVar('problem'),
