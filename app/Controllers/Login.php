@@ -1402,10 +1402,16 @@ class Login extends Controller
         $builder31 = $db->table('type');
         $builder31->select('type.*');
         $cart4['num'] = $builder31->get()->getResultArray();
-
          
         return view('/products/test', $cart4);
         
+
+
+    }
+
+    public function savetest(){
+
+
 
 
     }
