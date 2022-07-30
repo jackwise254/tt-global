@@ -1372,4 +1372,130 @@ class Vendor extends Controller
      }
     }
 
+
+    public function generateFunction($id){
+        $delimiter = ' ';
+        $words = explode($delimiter, $id);
+        $condition = $words[0];
+        $type = $words[1];
+        $data['title'] = $id;
+
+        $db      = \Config\Database::connect();
+        $builder1 = $db->table('masterlist');
+        $builder1->select('*');
+        $builder1->where('type', $type);
+        $builder1->where('conditions', $condition);
+        $data['test'] = $builder1->get()->getResult();
+
+
+        if($this->request->getGet('q')) {
+           $q=$this->request->getGet('q');
+           $builder1 = $db->table('masterlist');
+           $builder1->select('*')->orderBy('daterecieved', 'DESC');
+           $builder1->where('type', $type);
+           $builder1->where('conditions', $condition);
+           $builder1->like('assetid', '%'.$q.'%');
+           $builder1->orLike('brand', '%'.$q.'%');
+           $builder1->orLike('conditions', '%'.$q.'%');
+           $builder1->orLike('random', '%'.$q.'%');
+           $builder1->orLike('modelid', '%'.$q.'%');
+           $builder1->orLike('gen', '%'.$q.'%');
+           $builder1->orLike('cpu', '%'.$q.'%');
+           $builder1->orLike('screen', '%'.$q.'%');
+           $builder1->orLike('price', '%'.$q.'%');
+           $builder1->orLike('customer', '%'.$q.'%');
+           $builder1->orLike('ram', '%'.$q.'%');
+           $builder1->orLike('odd', '%'.$q.'%');
+           $builder1->orLike('comment', '%'.$q.'%');
+           $builder1->orLike('type', '%'.$q.'%');
+           $data['test'] = $builder1->get()->getResult();
+
+           if(!$this->request->getGet('q')){
+
+            echo view('products/template/header.php');
+            return view('test/index', $data);
+           }
+
+            echo view('products/template/header.php');
+            return view('test/index', $data);
+        }
+
+
+        echo view('products/template/header.php');
+        return view('test/index', $data);
+    }
+
+    public function spreadsheetgn($title){
+
+        $delimiter = ' ';
+        $words = explode($delimiter, $title);
+        $condition = $words[0];
+        $type = $words[1];
+
+        $db      = \Config\Database::connect();
+        $build = $db->table('masterlist');
+        $build->select('*');
+        $build->where('type', $type);
+        $build->where('conditions', $condition);
+        $users = $build->get()->getResult();
+        $fileName = $title. '.xlsx';
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'Id');
+        $sheet->setCellValue('B1', 'CONDTIONS');
+        $sheet->setCellValue('C1', 'Type');
+        $sheet->setCellValue('D1', 'ASSETID');
+        $sheet->setCellValue('E1', 'GEN');
+        $sheet->setCellValue('F1', 'BRAND');
+        $sheet->setCellValue('G1', 'SERIANO');
+        $sheet->setCellValue('H1', 'PART');
+        $sheet->setCellValue('I1', 'MODELID');
+        $sheet->setCellValue('J1', 'MODEL');
+        $sheet->setCellValue('K1', 'CPU');
+        $sheet->setCellValue('L1', 'SPEED');
+        $sheet->setCellValue('M1', 'RAM'); 
+        $sheet->setCellValue('N1', 'HDD');
+        $sheet->setCellValue('O1', 'ODD');
+        $sheet->setCellValue('P1', 'SCREEN');
+        $sheet->setCellValue('Q1', 'COMMENT');
+        $sheet->setCellValue('R1', 'PRICE'); 
+        $sheet->setCellValue('S1', 'CUSTOMER'); 
+        $sheet->setCellValue('T1', 'LIST');      
+        $sheet->setCellValue('U1', 'STATUS');      
+        $sheet->setCellValue('V1', 'DATERECIEVERD');
+        $sheet->setCellValue('W1', 'DATEDELIVERED');
+        $rows = 2;
+        foreach ($users as $val){
+        $sheet->setCellValue('A' . $rows, $val->id);
+        $sheet->setCellValue('B' . $rows, $val->conditions);
+        $sheet->setCellValue('C' . $rows, $val->type);
+        $sheet->setCellValue('D' . $rows, $val->assetid);
+        $sheet->setCellValue('E' . $rows, $val->gen);
+        $sheet->setCellValue('F' . $rows, $val->brand);
+        $sheet->setCellValue('G' . $rows, $val->serialno);
+        $sheet->setCellValue('H' . $rows, $val->part);
+        $sheet->setCellValue('I' . $rows, $val->modelid);
+        $sheet->setCellValue('J' . $rows, $val->model);
+        $sheet->setCellValue('K' . $rows, $val->cpu);
+        $sheet->setCellValue('L' . $rows, $val->speed);
+        $sheet->setCellValue('M' . $rows, $val->ram);
+        $sheet->setCellValue('N' . $rows, $val->hdd);
+        $sheet->setCellValue('O' . $rows, $val->odd);
+        $sheet->setCellValue('P' . $rows, $val->screen);
+        $sheet->setCellValue('Q' . $rows, $val->comment);
+        $sheet->setCellValue('R' . $rows, $val->price);
+        $sheet->setCellValue('S' . $rows, $val->customer);
+        $sheet->setCellValue('T' . $rows, $val->list);
+        $sheet->setCellValue('U' . $rows, $val->status);
+        $sheet->setCellValue('V' . $rows, $val->daterecieved);
+        $sheet->setCellValue('W' . $rows, $val->datedelivered);
+            $rows++;
+        } 
+        $writer = new Xlsx($spreadsheet);
+        $writer->save("upload/".$fileName);
+        $filename = "upload/".$title.".xlsx";
+        return redirect()->to(base_url($filename));
+
+    }
+
 }
