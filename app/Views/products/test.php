@@ -1,60 +1,39 @@
-<?php include('template/header.php'); 
+<?php include('template/header.php'); ?>
+<div class='container'>
 
-foreach($num as $d):
-        
+<div class ='row col-sm-12 p-1 mt-5 pt-5 '>
+<?php
+  $arr = array(); 
+  $arr2 = array();
+
+foreach($type as $t): ?>
+<?php foreach($condition as $c):
+  
   $db      = \Config\Database::connect();
-  $builder10 = $db->table('masterlist');
-  $builder10->selectCount('assetid ');
-  $builder10->where('type', $d['type']);
-  $builder10->groupBy('type');
-  $cart = $builder10->get()->getResult();
+  $builder1 = $db->table('masterlist');
+  $builder1->selectCount('type', 'conditions');
+  $builder1->where('type', $t->type);
+  $builder1->where('conditions', $c->conditions);
+  $builder1->HAVING('conditions' > 1);
+  $builder1->groupBy(['type', 'conditions']);
+  $data = $builder1->get()->getResultArray(); 
+  foreach($data as $d): ?>
 
-foreach($cart as $ct):
-
-      echo '<pre>';
-        print_r($ct);
-
-  endforeach; 
-  endforeach; 
-
-?>
-
-
-
-<div class= "container mt-5 pt-5 bg-light ">
-<h4 class="text-center"><u>Testing page</u></h4>
-  <div class="row pt-3"> 
-     <?php foreach($type as $t): ?>
-     <?php foreach($condition as $c): 
-      
-
-
-        // foreach($cart as $ct):
-
-        // $cart4 = count($ct);
-
-        
-      
-      ?>
-        <!-- first card -->
-        <!-- <div class="col-sm-3">
-            <a href="<?php echo site_url('/Ndesktopf') ?>">
-                  <div class="small-box bg-light p-2">
-                        <div class="inner">
-                            <h3><?php echo 'helllp    ' ?></h3>
-                            <p><?php echo $c->conditions .' '. $t->type ?></p>
-                        </div>
-                         <div class="icon">
-                             <i class="ionicons ion-android-desktop"></i>
-                         </div>
-                     <a href="<?php echo site_url('/Ndesktopf') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
-                   </div>
-             </a>
-      </div> -->
-      <!-- end -->
-    
-    <?php endforeach; ?>
-    <?php endforeach; ?>
-
-  </div>
+  <div class="col-md-3">
+    <a href="<?php echo site_url('/Nimac') ?>">
+     <div class="small-box bg-light p-2">
+        <div class="inner">
+          <h3 ><?php echo $d['conditions'];?></h>
+          <p ><?php echo $c->conditions .' '. $t->type?></p>
+        </div>
+      <div class="icon">
+        <i class="ionicons ion-android-phone-landscape"></i>
+     </div>
+  <a href="<?php echo site_url('/Nimac') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
 </div>
+</div>
+</a>
+
+<?php endforeach; ?>
+<?php endforeach; ?>
+<?php endforeach; ?>
