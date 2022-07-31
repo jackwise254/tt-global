@@ -3,14 +3,13 @@
 
         <h3 class='text-center'><u><?php echo $title.'s'?></u></h3>
       <div class="my-3">
-      <a href="<?php echo site_url('/stock-view') ?>" class="btn btn-outline-success rounded-pill btn-sm bi bi-chevron-left">back</a>
-      <a href="<?php echo base_url('Vendor/spreadsheetgn/'.$title) ?>" class="btn btn-outline-primary rounded-pill btn-sm bi bi-download">spreadsheet</a>
+      <a href="<?php echo site_url('/tests') ?>" class="btn btn-outline-success rounded-pill btn-sm bi bi-chevron-left">back</a>
+      <a href="<?php echo base_url('Vendor/spreadsheetgns/'.$title) ?>" class="btn btn-outline-primary rounded-pill btn-sm bi bi-download">spreadsheet</a>
       <form class="d-flex float-end">
-          <input class="rounded-pill col-8  " name="q" placeholder="Search" aria-label="Search">
+          <input class="rounded-pill col-8 " name="q" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success rounded-pill bi bi-search" type="submit">Search </button>
       </form>
       </div>
-
    <?php
     if(session()->getFlashdata('status')) {
         echo "<h4 class=' alert alert-success d-flex align-items-center bi flex-shrink-0 me-2' width='24' height='24' role='alert' style='font-family:'Airal', Arial, Arial; font-size:60%'>" . session()->getFlashdata('status') . "</h4>"; 
