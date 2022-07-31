@@ -248,37 +248,23 @@ public function warrantyout()
         $builder1->select('warrantyout.*');
         $data['warrantyout'] = $builder1->get()->getResult();
 
-    
-        if($this->request->getGet('q')) {
-         $q=$this->request->getGet('q');
-        $builder1->select('warrantyout.*');
-        $builder1->like('assetid', $q);
-        $builder1->orLike('brand', $q);
-        $builder1->orLike('conditions', $q);
-        $builder1->orLike('model', $q);
-        $builder1->orLike('modelid', $q);
-        $builder1->orLike('gen', $q);
-        $builder1->orLike('cpu', $q);
-        $builder1->orLike('screen', $q);
-        $builder1->orLike('price', $q);
-        $builder1->orLike('customer', $q);
-        $builder1->orLike('ram', $q);
-        $builder1->orLike('odd', $q);
-        $builder1->orLike('comment', $q);
-        $builder1->orLike('type', $q);
-
-
-        $data['warrantyout'] = $builder1->get()->getResult();
-        
-       return view('products/warrantyout', $data);
-           
-
-        } elseif(!$this->request->getGet('q')) {
             $data['masterlist'] = $builder1->get()->getResult();
+
+            $db      = \Config\Database::connect();
+          $builder12 = $db->table('condition');
+          $builder12->select('condition.*');
+          $data['condition'] = $builder12->get()->getResult();
+
+          $builder2 = $db->table('brand');
+          $builder2->select('brand.*');
+          $data['brand'] = $builder2->get()->getResult();
+
+          $builder3 = $db->table('type');
+          $builder3->select('type.*');
+          $data['type'] = $builder3->get()->getResult();
 
             helper(['url', 'form']);
             return view('products/warrantyout', $data);
-        }
     }
 
 //faulty stock operations

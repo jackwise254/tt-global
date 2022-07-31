@@ -103,8 +103,8 @@
       <a class="nav-link d-none text-dark  " style="font-family: arial, arial, arial; font-size: 11px "  href="<?php echo base_url('Settings/backup') ?>">test</a>
         <a class="nav-link text-dark" style="font-family: arial, arial, arial; font-size: 11px" href="<?php echo site_url('/stock-view') ?>">Stock in</a>
         <a class="nav-link text-dark d-none" style="font-family: arial, arial, arial; font-size: 11px" href="<?php echo site_url('/duplicate') ?>">Duplicate</a>
-        <a class="nav-link text-dark d-none" style="font-family: arial, arial, arial; font-size: 11px" href="<?php echo site_url('/stockt-view') ?>">Stock out</a>
-        <a class="nav-link text-dark" style="font-family: arial, arial, arial; font-size: 11px" href="<?php echo site_url('/tests') ?>">Stock out</a>
+        <a class="nav-link text-dark " style="font-family: arial, arial, arial; font-size: 11px" href="<?php echo site_url('/stockt-view') ?>">Stock out</a>
+        <a class="nav-link text-dark d-none" style="font-family: arial, arial, arial; font-size: 11px" href="<?php echo site_url('/tests') ?>">Stock out</a>
         <a class="nav-link text-dark" style="font-family: arial, arial, arial; font-size: 11px" href="<?php echo site_url('/invoice-page') ?>">Invoice</a>
         <a class="nav-link text-dark" style="font-family: arial, arial, arial; font-size: 11px" href="<?php echo site_url('/warranty') ?>">Warranty In</a>
         <a class="nav-link text-dark" style="font-family: arial, arial, arial; font-size: 11px" href="<?php echo site_url('/warrantyout') ?>">Warranty out</a>

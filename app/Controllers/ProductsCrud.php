@@ -724,6 +724,21 @@ class ProductsCrud extends Controller
         $sdata['hello'] = $builder1->get()->getResultArray();
         $session->set($sdata);
         $data['user_data'] = $session->get('designation');
+
+        $db      = \Config\Database::connect();
+        $builder12 = $db->table('condition');
+        $builder12->select('condition.*');
+        $data['condition'] = $builder12->get()->getResult();
+
+        $builder2 = $db->table('brand');
+        $builder2->select('brand.*');
+        $data['brand'] = $builder2->get()->getResult();
+
+        $builder3 = $db->table('type');
+        $builder3->select('type.*');
+        $data['type'] = $builder3->get()->getResult();
+
+     
         return view('products/stock' ,$data );
     }
 
@@ -775,6 +790,20 @@ class ProductsCrud extends Controller
             $cart4['all'] = $builder1->get()->getResult();
 
             helper(['url', 'form']);
+
+            $db      = \Config\Database::connect();
+            $builder12 = $db->table('condition');
+            $builder12->select('condition.*');
+            $cart4['condition'] = $builder12->get()->getResult();
+
+            $builder2 = $db->table('brand');
+            $builder2->select('brand.*');
+            $cart4['brand'] = $builder2->get()->getResult();
+
+            $builder3 = $db->table('type');
+            $builder3->select('type.*');
+            $cart4['type'] = $builder3->get()->getResult();
+
             return view('products/stock_out', $cart4);
         }
         
@@ -793,6 +822,19 @@ class ProductsCrud extends Controller
         $sdata['hello'] = $builder1->get()->getResultArray();
         $session->set($sdata);
         $cart4['user_data'] = $session->get('designation');
+
+        $db      = \Config\Database::connect();
+        $builder12 = $db->table('condition');
+        $builder12->select('condition.*');
+        $cart4['condition'] = $builder12->get()->getResult();
+
+        $builder2 = $db->table('brand');
+        $builder2->select('brand.*');
+        $cart4['brand'] = $builder2->get()->getResult();
+
+        $builder3 = $db->table('type');
+        $builder3->select('type.*');
+        $cart4['type'] = $builder3->get()->getResult();
 
        return view('products/faultyout', $cart4);
     }
@@ -833,6 +875,20 @@ class ProductsCrud extends Controller
         $sdata['hello'] = $builder1->get()->getResultArray();
         $session->set($sdata);
         $data['user_data'] = $session->get('designation');
+
+
+        $db      = \Config\Database::connect();
+        $builder12 = $db->table('condition');
+        $builder12->select('condition.*');
+        $data['condition'] = $builder12->get()->getResult();
+
+        $builder2 = $db->table('brand');
+        $builder2->select('brand.*');
+        $data['brand'] = $builder2->get()->getResult();
+
+        $builder3 = $db->table('type');
+        $builder3->select('type.*');
+        $data['type'] = $builder3->get()->getResult();
 
         helper(['form', 'url']);
         $db      = \Config\Database::connect();
@@ -10669,6 +10725,21 @@ public function printbarcodwi($id)
         $sdata['hello'] = $builder1->get()->getResultArray();
         $session->set($sdata);
         $data1['user_data'] = $session->get('designation');
+
+
+        $db      = \Config\Database::connect();
+        $builder12 = $db->table('condition');
+        $builder12->select('condition.*');
+        $data1['condition'] = $builder12->get()->getResult();
+
+        $builder2 = $db->table('brand');
+        $builder2->select('brand.*');
+        $data1['brand'] = $builder2->get()->getResult();
+
+        $builder3 = $db->table('type');
+        $builder3->select('type.*');
+        $data1['type'] = $builder3->get()->getResult();
+
 
         $db      = \Config\Database::connect();
 
