@@ -60,7 +60,7 @@ foreach($type as $t): ?>
   $builder1->groupBy(['type', 'conditions']);
   $data = $builder1->get()->getResultArray(); 
   foreach($data as $d): 
-  $link = 'vendor/generateFunction/'.$c->conditions.' '.$t->type;
+  $link = 'vendor/generateFunctionf/'.$c->conditions.' '.$t->type;
    ?>
 
 <div class="col-md-3">

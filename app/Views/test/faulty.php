@@ -1,16 +1,23 @@
+<?php if($user_data == 'admin'): 
+include('template/header.php');
 
+else:
+    include('template/head.php');
+
+endif;
+
+?>
 <div class="py-2 mt-5 pt-4">
 
         <h3 class='text-center'><u><?php echo $title.'s'?></u></h3>
       <div class="my-3">
-      <a href="<?php echo site_url('/stock-view') ?>" class="btn btn-outline-success rounded-pill btn-sm bi bi-chevron-left">back</a>
-      <a href="<?php echo base_url('Vendor/spreadsheetgn/'.$title) ?>" class="btn btn-outline-primary rounded-pill btn-sm bi bi-download">spreadsheet</a>
+      <a href="<?php echo site_url('/fualty-stock') ?>" class="btn btn-outline-success rounded-pill btn-sm bi bi-chevron-left">back</a>
+      <a href="<?php echo base_url('Vendor/spreadsheetgnf/'.$title) ?>" class="btn btn-outline-primary rounded-pill btn-sm bi bi-download">spreadsheet</a>
       <form class="d-flex float-end">
-          <input class="rounded-pill col-8  " name="q" placeholder="Search" aria-label="Search">
+          <input class="rounded-pill col-8 " name="q" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success rounded-pill bi bi-search" type="submit">Search </button>
       </form>
       </div>
-
    <?php
     if(session()->getFlashdata('status')) {
         echo "<h4 class=' alert alert-success d-flex align-items-center bi flex-shrink-0 me-2' width='24' height='24' role='alert' style='font-family:'Airal', Arial, Arial; font-size:60%'>" . session()->getFlashdata('status') . "</h4>"; 
@@ -57,11 +64,16 @@
                             <tr>
                             <td class="">  
                             <div class="btn-group" role="group" aria-label="Basic example">
-                              <a href="<?php echo base_url('ProductsCrud/singleProduct/'.$user->id);?>" class='px-2'>[Edit]</a>
-                              <a href="<?php echo base_url('ProductsCrud/delete/'.$user->assetid);?>" class="pr-2">[del]</a>
-                              <a href="<?= base_url('ProductsCrud/printbarcod/'.$user->assetid) ?>" class="px-2">[barcode]</a>
-                              <a href="<?= base_url('ProductsCrud/printbarcode2/'.$user->del ) ?>" class="px-2">[barcode2]</a> 
-                              <a href="<?php echo base_url('ProductsCrud/faultyp/'.$user->assetid);?> " class="" >[faulty]</a>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                            <a href="<?php echo base_url('ProductsCrud/singleProductf/'.$user->id);?>" class='px-2'>[Edit]</a>
+                              <a href="#myModal" class="trigger-btn" data-toggle="modal" class="pr-2">[del]</a>
+                              <a href="<?= base_url('ProductsCrud/printbarcodf/'.$user->assetid) ?>" class="px-2">[barcode]</a> 
+                              <a href="<?= base_url('ProductsCrud/printbarcode2f/'.$user->assetid ) ?>" class="px-2">[barcode2]</a> 
+
+                              <a href="<?php echo base_url('ProductsCrud/masterp/'.$user->assetid);?> " class="" >[masterlist]</a>
+                              <a href="<?php echo base_url('ProductsCrud/okf/'.$user->assetid);?>" class='px-2'>[irrepairable]</a>
+                              <a href="<?php echo base_url('ProductsCrud/wipf/'.$user->assetid);?>" class='px-2'>[Wip]</a>
+                              <a href="<?php echo base_url('ProductsCrud/fixedf/'.$user->assetid);?>" class='px-2'>[Fixed]</a>
                             </div>
                             </td>
                             <td class="col-5"><?=  $user->list; ?></td>
