@@ -1273,9 +1273,6 @@ class Vendor extends Controller
         $filename = "upload/".$customer.$rands.".xlsx";
         return redirect()->to(base_url($filename));
         }
-    // end
-
-
        elseif(!$this->request->getGet('q')) {
         $data['user_data'] = $session->get('designation');
         $data['printer'] = $builder->get()->getResult();
