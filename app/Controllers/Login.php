@@ -1409,11 +1409,58 @@ class Login extends Controller
 
     }
 
-    public function savetest(){
+    public function tests()
+    {
+        
+        $db      = \Config\Database::connect();
+        $builder1 = $db->table('condition');
+        $builder1->select('condition.*');
+        $cart4['condition'] = $builder1->get()->getResult();
+
+        $builder2 = $db->table('brand');
+        $builder2->select('brand.*');
+        $cart4['brand'] = $builder2->get()->getResult();
+
+        $builder3 = $db->table('type');
+        $builder3->select('type.*');
+        $cart4['type'] = $builder3->get()->getResult();
+
+        $builder4 = $db->table('Gen');
+        $builder4->select('Gen.*');
+        $cart4['gen'] = $builder4->get()->getResult();
+
+        $builder5 = $db->table('Cpu');
+        $builder5->select('Cpu.*');
+        $cart4['cpu'] = $builder5->get()->getResult();
+
+        $builder6 = $db->table('Speed');
+        $builder6->select('Speed.*');
+        $cart4['speed'] = $builder6->get()->getResult();
+
+        $builder7 = $db->table('Ram');
+        $builder7->select('Ram.*');
+        $cart4['ram'] = $builder7->get()->getResult();
+
+        $builder8 = $db->table('Hdd');
+        $builder8->select('Hdd.*');
+        $cart4['hdd'] = $builder8->get()->getResult();
+
+        $builder9 = $db->table('Screen');
+        $builder9->select('Screen.*');
+        $cart4['screen'] = $builder9->get()->getResult();
+
+        $builder10 = $db->table('vendors');
+        $builder10->select('vendors.*');
+        $cart4['customer'] = $builder10->get()->getResult();
 
 
-
+        $builder31 = $db->table('type');
+        $builder31->select('type.*');
+        $cart4['num'] = $builder31->get()->getResultArray();
+         
+        return view('/products/testso', $cart4);
 
     }
+
 
 } 

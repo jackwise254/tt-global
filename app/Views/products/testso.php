@@ -2,13 +2,12 @@
 <div class='container'>
 
 <div class ='row col-sm-12 p-1 mt-5 pt-5 '>
-  <h3 class='text-center'><u>Remaining Stock</u></h3>
+  <h3 class='text-center'><u>Stock Out</u></h3>
   <div class='container'>
     
-    <a href="<?php echo base_url('ProductsCrud/load') ?>" class="btn btn-outline-success btn-sm  bi bi-upload">Recieve Goods</a>
-    <a href="<?php echo base_url('ProductsCrud/previousRCVD') ?>" class="btn btn-outline-info btn-sm flex m-2">Previous Recieved</a>
-    <a href="<?php echo site_url('/tests') ?>" class="btn btn-outline-secondary btn-sm flex m-2">Stock Out</a>
-    <a href="<?php echo site_url('/warranty') ?>" class="btn btn-outline-success btn-sm flex m-2">Warranty</a>
+  <a href="<?php echo site_url('test') ?>" class="btn btn-outline-success btn-sm bi bi-chevron-left">back</a>
+  <a href="<?php echo site_url('delivery-create') ?>" class="btn btn-outline-secondary btn-sm ">Delivery note</a>
+  <a href="<?php echo site_url('debit-create') ?>" class="btn btn-outline-success btn-sm ">Debit note</a>
   </div>
 <?php
   $arr = array(); 
@@ -18,7 +17,7 @@ foreach($type as $t): ?>
 <?php foreach($condition as $c):
   
   $db      = \Config\Database::connect();
-  $builder1 = $db->table('masterlist');
+  $builder1 = $db->table('stockout');
   $builder1->selectCount('type', 'conditions');
   $builder1->where('type', $t->type);
   $builder1->where('conditions', $c->conditions);
@@ -26,10 +25,7 @@ foreach($type as $t): ?>
   $builder1->groupBy(['type', 'conditions']);
   $data = $builder1->get()->getResultArray(); 
   foreach($data as $d): 
-
-  // $link = 'vendor/'.$c->conditions.$t->type;
-  $link = 'vendor/generateFunction/'.$c->conditions.' '.$t->type;
-
+  $link = 'vendor/generateFunctions/'.$c->conditions.' '.$t->type;
    ?>
 
   <div class="col-md-3">
