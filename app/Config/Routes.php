@@ -342,6 +342,7 @@ $routes->get('/Nimacspfo', 'Warranty::Nimacspfo',['filter' => 'auth']);
 
 $routes->get('/Ndesktopfo', 'Login::Ndesktop',['filter' => 'auth']);
 $routes->get('/test', 'Login::test',['filter' => 'auth']);
+$routes->get('/tests', 'Login::tests',['filter' => 'auth']);
 
 $routes->get('/Odesktopfo', 'Login::Odesktop',['filter' => 'auth']);
 $routes->get('/Rdesktopfo', 'Login::Rdesktop',['filter' => 'auth']);
