@@ -145,6 +145,9 @@ $pdf->SetFillColor(193,229,252);
 $totalqty = 0;
 
  foreach ($items as $v):
+$problem = substr($v->problem,0,28);
+$problem1 = substr($v->problem,29,50);
+
 $pdf->Cell($with_cell[1],7,$v->type ,1,0,'L');
 $pdf->Cell($with_cell[1],7,$v->brand,1,0,'L');
 $pdf->Cell($with_cell[0],7,$v->gen ,1,0,'L');
@@ -257,4 +260,5 @@ header('Location: '.$redirect);
 exit();
 
 ?>
+
 
