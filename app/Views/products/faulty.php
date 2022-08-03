@@ -27,7 +27,7 @@ endif;
                 <?php if($count_produ <= 10): ?> 
                   <div class="small-box bg-primary p-2">
                     <?php elseif($count_produ  < 20): ?>
-                       <div class="small-box bg-primary p-2">
+                       <div class="small-box bg-info p-2">
                          <?php else: ?>
                            <div class="small-box bg-light p-2">
                                <?php endif ?>

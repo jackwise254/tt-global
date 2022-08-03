@@ -151,9 +151,14 @@ endif;
             <div class="col-sm-12 mx-auto bg-light rounded shadow">
                 <h4 class="text-center" style="font-family: arial, arial, arial; font-size: 14px ">Products details </h4>
                 
-                <input type="date" class=" col-sm-2  rounded-pill px-1" name="datedelivered" style="font-family: arial, rounded-pill arial, arial; font-size: 14px" >
+                <?php $max = date("Y-m-d H:i:s");
+                    ?>
+
+                <input type="date" class=" col-sm-2  rounded-pill px-1" name="datedelivered" max='date(yyyy/mm/dd)' style="font-family: arial, rounded-pill arial, arial; font-size: 14px" >
                 <div class="table-responsive">
-                <?php if($masterlist): ?>
+                <?php if($masterlist): 
+                    $max = date("Y-m-d H:i:s");
+                    ?>
                     <table class="table table-fixed table-striped " style='font-family:"Airal", Arial, Arial; font-size:60%'>
                         <thead >
                             <tr>

@@ -20,6 +20,11 @@ public function verify()
             'tbl' =>$this->request->getvar('table'),
         ];
 
+        for($i = 0; $i <= $al; $i ++){
+            $num = $num + 1;
+
+        }
+
         session()->set($rands);
         $datam = [
             'random' => $random,

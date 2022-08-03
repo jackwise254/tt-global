@@ -33,7 +33,7 @@ endif;
                 <?php if($count_warrantys <= 10): ?> 
                   <div class="small-box bg-primary p-2">
                     <?php elseif($count_warrantys  < 20): ?>
-                       <div class="small-box bg-primary p-2">
+                       <div class="small-box bg-info p-2">
                          <?php else: ?>
                            <div class="small-box bg-light p-2">
                                <?php endif ?>
