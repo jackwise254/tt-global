@@ -6,8 +6,9 @@
       <a href="<?php echo site_url('/warrantyout') ?>" class="btn btn-outline-success rounded-pill btn-sm bi bi-chevron-left">back</a>
       <a href="<?php echo base_url('Vendor/spreadsheetgnwo/'.$title) ?>" class="btn btn-outline-primary rounded-pill btn-sm bi bi-download">spreadsheet</a>
       <form class="d-flex float-end">
-          <input class="rounded-pill col-8 " name="q" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success rounded-pill bi bi-search" type="submit">Search </button>
+          <input class="form-control col-5 rounded-pill" name="model" placeholder="Search model" aria-label="Search">
+          <input class="form-control col-5 rounded-pill" name="q" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-info rounded-pill bi bi-search btn-sm" type="submit">Search </button>
       </form>
       </div>
    <?php

@@ -1356,8 +1356,22 @@ class Login extends Controller
 
     public function test()
     {
-        
         $db      = \Config\Database::connect();
+        $db      = \Config\Database::connect();
+        $builder11211 = $db->table('masterlist');
+        $builder11211->select('assetid,  COUNT(assetid) as total');
+        $builder11211->groupBy(['total']);
+        $builder11211->HAVING('total > 1');
+
+//         SELECT OrderID, COUNT(OrderID)
+        // FROM Orders
+        // GROUP BY OrderID
+        // HAVING COUNT(OrderID) > 1
+
+        $datas = $builder11211->get()->getResultArray();
+        echo '<pre>';
+        print_r($datas);
+        exit;
         $builder1 = $db->table('condition');
         $builder1->select('condition.*');
         $cart4['condition'] = $builder1->get()->getResult();

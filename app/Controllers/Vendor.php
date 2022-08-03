@@ -1443,54 +1443,6 @@ class Vendor extends Controller
 
     }
 
-
-    public function generateFunctionwo($id){
-        $delimiter = ' ';
-        $words = explode($delimiter, $id);
-        $condition = $words[0];
-        $type = $words[1];
-        $data['title'] = $id;
-
-        $db      = \Config\Database::connect();
-        $builder1 = $db->table('warrantyout');
-        $builder1->select('*');
-        $builder1->where('type', $type);
-        $builder1->where('conditions', $condition);
-        $data['test'] = $builder1->get()->getResult();
-
-
-        if($this->request->getGet('q')) {
-             $q=$this->request->getGet('q');
-             $builder122 = $db->table('warrantyout');
-             $builder122->select('*')->orderBy('daterecieved', 'DESC');
-             $builder122->where('type' ,$type);
-             $builder122->where('conditions' ,$condition);
-             $builder122->like('cpu', $q);
-             $builder122->orLike('assetid', $q);
-             $builder122->orLike('brand', $q);
-             $builder122->orLike('conditions', $q);
-             $builder122->orLike('modelid', $q);
-             $builder122->orLike('gen', $q);
-             $builder122->orLike('screen', $q);
-             $builder122->orLike('price', $q);
-             $builder122->orLike('customer', $q);
-             $builder122->orLike('ram', $q);
-             $builder122->orLike('odd', $q);
-             $builder122->orLike('comment', $q);
-             $builder122->orLike('type', $q);
-             $data['test'] = $builder122->get()->getResult();
-            
-             echo view('products/template/header.php');
-             return view('test/warrantyout', $data);
-                
-             } elseif(!$this->request->getGet('q')) {
-            $data['test'] = $builder1->get()->getResult();
-    
-            echo view('products/template/header.php');
-             return view('test/warrantyout', $data);
-             }
-    }
-
     public function generateFunctionw($id){
         $db      = \Config\Database::connect();
         $session = \Config\Services::session();
@@ -1511,6 +1463,63 @@ class Vendor extends Controller
         $builder1->select('*');
         $builder1->where('type', $type);
         $builder1->where('conditions', $condition);
+
+
+        
+        if($this->request->getGet('q') && $this->request->getGet('model') ) {
+            $q = $this->request->getVar('q');
+            $model = $this->request->getVar('model');
+            $builder122 = $db->table('warrantyin');
+            $builder122->select('warrantyin.*')->orderBy('daterecieved', 'DESC');
+            $builder122->where('type' ,$type);
+            $builder122->where('conditions' ,$condition);
+            $builder122->like('model', $model) &&
+            $builder122->like('cpu', $q);
+            $builder122->orLike('model', $model) && 
+            $builder122->like('assetid', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('brand', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('conditions', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('modelid', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('gen', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('screen', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('price', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('customer', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('ram', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('odd', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('comment', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('type', $q);
+
+            $data['test'] = $builder122->get()->getResult();
+            echo view('products/template/header.php');
+            return view('test/warrantyin', $data);
+        } 
+
+        if($this->request->getGet('model')) {
+            $q=$this->request->getGet('model');
+             $builder122 = $db->table('warrantyin');
+             $builder122->select('*')->orderBy('daterecieved', 'DESC');
+             $builder122->where('type' ,$type);
+             $builder122->where('conditions' ,$condition);
+             $builder122->like('model', $q);
+             $data['test'] = $builder122->get()->getResult();
+            
+             echo view('products/template/header.php');
+             return view('test/warrantyin', $data);
+                
+             }
+
+
         if($this->request->getGet('q')) {
             $q=$this->request->getGet('q');
              $builder122 = $db->table('warrantyin');
@@ -1547,6 +1556,118 @@ class Vendor extends Controller
         
     }
 
+    public function generateFunctionwo($id){
+        $db      = \Config\Database::connect();
+        $session = \Config\Services::session();
+        $builder1 = $db->table('users');
+        $builder1->select('users.*');
+        $builder1->where('users.designation = "admin" ' );
+        $sdata['hello'] = $builder1->get()->getResultArray();
+        $session->set($sdata);
+        $data['user_data'] = $session->get('designation');
+
+        $delimiter = ' ';
+        $words = explode($delimiter, $id);
+        $condition = $words[0];
+        $type = $words[1];
+        $data['title'] = $id;
+
+        $builder1 = $db->table('warrantyout');
+        $builder1->select('*');
+        $builder1->where('type', $type);
+        $builder1->where('conditions', $condition);
+
+
+        
+        if($this->request->getGet('q') && $this->request->getGet('model') ) {
+            $q = $this->request->getVar('q');
+            $model = $this->request->getVar('model');
+            $builder122 = $db->table('warrantyout');
+            $builder122->select('warrantyout.*')->orderBy('daterecieved', 'DESC');
+            $builder122->where('type' ,$type);
+            $builder122->where('conditions' ,$condition);
+            $builder122->like('model', $model) &&
+            $builder122->like('cpu', $q);
+            $builder122->orLike('model', $model) && 
+            $builder122->like('assetid', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('brand', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('conditions', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('modelid', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('gen', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('screen', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('price', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('customer', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('ram', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('odd', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('comment', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('type', $q);
+
+            $data['test'] = $builder122->get()->getResult();
+            echo view('products/template/header.php');
+            return view('test/warrantyout', $data);
+        } 
+
+        if($this->request->getGet('model')) {
+            $q=$this->request->getGet('model');
+             $builder122 = $db->table('warrantyout');
+             $builder122->select('*')->orderBy('daterecieved', 'DESC');
+             $builder122->where('type' ,$type);
+             $builder122->where('conditions' ,$condition);
+             $builder122->like('model', $q);
+             $data['test'] = $builder122->get()->getResult();
+            
+             echo view('products/template/header.php');
+             return view('test/warrantyout', $data);
+                
+             }
+
+
+        if($this->request->getGet('q')) {
+            $q=$this->request->getGet('q');
+             $builder122 = $db->table('warrantyout');
+             $builder122->select('*')->orderBy('daterecieved', 'DESC');
+             $builder122->where('type' ,$type);
+             $builder122->where('conditions' ,$condition);
+             $builder122->like('cpu', $q);
+             $builder122->orLike('assetid', $q);
+             $builder122->orLike('brand', $q);
+             $builder122->orLike('conditions', $q);
+             $builder122->orLike('modelid', $q);
+             $builder122->orLike('gen', $q);
+             $builder122->orLike('screen', $q);
+             $builder122->orLike('price', $q);
+             $builder122->orLike('customer', $q);
+             $builder122->orLike('ram', $q);
+             $builder122->orLike('odd', $q);
+             $builder122->orLike('comment', $q);
+             $builder122->orLike('type', $q);
+             $data['test'] = $builder122->get()->getResult();
+            
+             echo view('products/template/header.php');
+             return view('test/warrantyout', $data);
+                
+             } elseif(!$this->request->getGet('q')) {
+            $data['test'] = $builder1->get()->getResult();
+    
+            echo view('products/template/header.php');
+            return view('test/warrantyout', $data);
+             }
+
+        
+    }
+
+
     public function generateFunction($id){
         $db      = \Config\Database::connect();
         $session = \Config\Services::session();
@@ -1567,6 +1688,60 @@ class Vendor extends Controller
         $builder1->select('*');
         $builder1->where('type', $type);
         $builder1->where('conditions', $condition);
+
+        if($this->request->getGet('q') && $this->request->getGet('model') ) {
+            $q = $this->request->getVar('q');
+            $model = $this->request->getVar('model');
+            $builder122 = $db->table('masterlist');
+            $builder122->select('masterlist.*')->orderBy('daterecieved', 'DESC');
+            $builder122->where('type' ,$type);
+            $builder122->where('conditions' ,$condition);
+            $builder122->like('model', $model) &&
+            $builder122->like('cpu', $q);
+            $builder122->orLike('model', $model) && 
+            $builder122->like('assetid', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('brand', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('conditions', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('modelid', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('gen', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('screen', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('price', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('customer', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('ram', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('odd', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('comment', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('type', $q);
+
+            $data['test'] = $builder122->get()->getResult();
+             echo view('products/template/header.php');
+             return view('test/index', $data);
+        } 
+
+        if($this->request->getGet('model')) {
+            $q=$this->request->getGet('model');
+             $builder122 = $db->table('masterlist');
+             $builder122->select('*')->orderBy('daterecieved', 'DESC');
+             $builder122->where('type' ,$type);
+             $builder122->where('conditions' ,$condition);
+             $builder122->like('model', $q);
+             $data['test'] = $builder122->get()->getResult();
+            
+             echo view('products/template/header.php');
+             return view('test/index', $data);
+                
+             }
+
         if($this->request->getGet('q')) {
             $q=$this->request->getGet('q');
              $builder122 = $db->table('masterlist');
@@ -1597,9 +1772,6 @@ class Vendor extends Controller
             echo view('products/template/header.php');
             return view('test/index', $data);
              }
-
-
-
         
     }
 
@@ -1624,6 +1796,61 @@ class Vendor extends Controller
         $builder1->select('*');
         $builder1->where('type', $type);
         $builder1->where('conditions', $condition);
+
+        if($this->request->getGet('q') && $this->request->getGet('model') ) {
+            $q = $this->request->getVar('q');
+            $model = $this->request->getVar('model');
+            $builder122 = $db->table('stockout');
+            $builder122->select('*')->orderBy('daterecieved', 'DESC');
+            $builder122->where('type' ,$type);
+            $builder122->where('conditions' ,$condition);
+            $builder122->like('model', $model) &&
+            $builder122->like('cpu', $q);
+            $builder122->orLike('model', $model) && 
+            $builder122->like('assetid', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('brand', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('conditions', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('modelid', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('gen', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('screen', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('price', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('customer', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('ram', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('odd', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('comment', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('type', $q);
+
+            $data['test'] = $builder122->get()->getResult();
+            echo view('products/template/header.php');
+            return view('test/stockout', $data);
+        } 
+
+        if($this->request->getGet('model')) {
+            $q=$this->request->getGet('model');
+             $builder122 = $db->table('stockout');
+             $builder122->select('*')->orderBy('daterecieved', 'DESC');
+             $builder122->where('type' ,$type);
+             $builder122->where('conditions' ,$condition);
+             $builder122->like('model', $q);
+             $data['test'] = $builder122->get()->getResult();
+            
+             echo view('products/template/header.php');
+             return view('test/stockout', $data);
+                
+             }
+
+
         if($this->request->getGet('q')) {
             $q=$this->request->getGet('q');
              $builder122 = $db->table('stockout');
@@ -1680,6 +1907,59 @@ class Vendor extends Controller
         $builder1->where('type', $type);
         $builder1->where('conditions', $condition);
         // search function
+
+        if($this->request->getGet('q') && $this->request->getGet('model') ) {
+            $q = $this->request->getVar('q');
+            $model = $this->request->getVar('model');
+            $builder122 = $db->table('faultyout');
+            $builder122->select('*')->orderBy('daterecieved', 'DESC');
+            $builder122->where('type' ,$type);
+            $builder122->where('conditions' ,$condition);
+            $builder122->like('model', $model) &&
+            $builder122->like('cpu', $q);
+            $builder122->orLike('model', $model) && 
+            $builder122->like('assetid', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('brand', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('conditions', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('modelid', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('gen', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('screen', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('price', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('customer', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('ram', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('odd', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('comment', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('type', $q);
+
+            $data['test'] = $builder122->get()->getResult();
+            echo view('products/template/header.php');
+            return view('test/faultyout', $data);
+        } 
+
+        if($this->request->getGet('model')) {
+            $q=$this->request->getGet('model');
+             $builder122 = $db->table('faultyout');
+             $builder122->select('*')->orderBy('daterecieved', 'DESC');
+             $builder122->where('type' ,$type);
+             $builder122->where('conditions' ,$condition);
+             $builder122->like('model', $q);
+             $data['test'] = $builder122->get()->getResult();
+            
+             echo view('products/template/header.php');
+             return view('test/faultyout', $data);
+                
+             }
         
         if($this->request->getGet('q')) {
           $q=$this->request->getGet('q');
@@ -1737,6 +2017,59 @@ class Vendor extends Controller
         $builder1->where('type', $type);
         $builder1->where('conditions', $condition);
         // search function
+
+        if($this->request->getGet('q') && $this->request->getGet('model') ) {
+            $q = $this->request->getVar('q');
+            $model = $this->request->getVar('model');
+            $builder122 = $db->table('faulty');
+            $builder122->select('*')->orderBy('daterecieved', 'DESC');
+            $builder122->where('type' ,$type);
+            $builder122->where('conditions' ,$condition);
+            $builder122->like('model', $model) &&
+            $builder122->like('cpu', $q);
+            $builder122->orLike('model', $model) && 
+            $builder122->like('assetid', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('brand', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('conditions', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('modelid', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('gen', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('screen', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('price', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('customer', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('ram', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('odd', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('comment', $q);
+            $builder122->orLike('model', $model) &&
+            $builder122->like('type', $q);
+
+            $data['test'] = $builder122->get()->getResult();
+            echo view('products/template/header.php');
+            return view('test/faulty', $data);
+        } 
+
+        if($this->request->getGet('model')) {
+            $q=$this->request->getGet('model');
+             $builder122 = $db->table('faulty');
+             $builder122->select('*')->orderBy('daterecieved', 'DESC');
+             $builder122->where('type' ,$type);
+             $builder122->where('conditions' ,$condition);
+             $builder122->like('model', $q);
+             $data['test'] = $builder122->get()->getResult();
+            
+             echo view('products/template/header.php');
+             return view('test/faulty', $data);
+                
+             }
         
         if($this->request->getGet('q')) {
           $q=$this->request->getGet('q');

@@ -5,17 +5,17 @@
       <div class="my-3">
       <a href="<?php echo site_url('/stock-view') ?>" class="btn btn-outline-success rounded-pill btn-sm bi bi-chevron-left">back</a>
       <a href="<?php echo base_url('Vendor/spreadsheetgn/'.$title) ?>" class="btn btn-outline-primary rounded-pill btn-sm bi bi-download">spreadsheet</a>
+      <!-- <div class ='container'> -->
       <form class="d-flex float-end">
-          <input class="rounded-pill col-8  " name="q" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success rounded-pill bi bi-search" type="submit">Search </button>
+          <input class="form-control col-5 rounded-pill" name="model" placeholder="Search model" aria-label="Search">
+          <input class="form-control col-5 rounded-pill" name="q" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-info rounded-pill bi bi-search btn-sm" type="submit">Search </button>
       </form>
       </div>
-
    <?php
     if(session()->getFlashdata('status')) {
         echo "<h4 class=' alert alert-success d-flex align-items-center bi flex-shrink-0 me-2' width='24' height='24' role='alert' style='font-family:'Airal', Arial, Arial; font-size:60%'>" . session()->getFlashdata('status') . "</h4>"; 
     }
-  
 ?>    
  <div class="container-fluid">
         <div class=" form-row">
@@ -60,7 +60,7 @@
                               <a href="<?php echo base_url('ProductsCrud/singleProduct/'.$user->id);?>" class='px-2'>[Edit]</a>
                               <a href="<?php echo base_url('ProductsCrud/delete/'.$user->assetid);?>" class="pr-2">[del]</a>
                               <a href="<?= base_url('ProductsCrud/printbarcod/'.$user->assetid) ?>" class="px-2">[barcode]</a>
-                              <a href="<?= base_url('ProductsCrud/printbarcode2/'.$user->del ) ?>" class="px-2">[barcode2]</a> 
+                              <a href="<?= base_url('ProductsCrud/printbarcode2/'.$user->assetid ) ?>" class="px-2">[barcode2]</a> 
                               <a href="<?php echo base_url('ProductsCrud/faultyp/'.$user->assetid);?> " class="" >[faulty]</a>
                             </div>
                             </td>

@@ -175,7 +175,7 @@ $pdf->Cell($with_cell[6],8,'Total Qty : ',1,0,'L');
 $pdf->Cell($with_cell[0],8,$totalqty ,1,1,'L');
 $pdf->Cell($with_cell[0],8,'',0,1,'L');
 
-$idd = $_SESSION['deliver'];
+$idd = $ref;
 $namepdf = $username.$idd. '.pdf';
 $pdf->Output('uploads/delvdocuments/' .$namepdf, "F");
 

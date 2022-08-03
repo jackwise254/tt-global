@@ -66,7 +66,7 @@ endif;
                           <button type ="submit" class="btn btn-sm btn-outline-success rounded-pill bi bi-search px-3" id="myBtn" ></button>
                           <?php elseif($count_verify && $user_data == 'admin' ): ?>
                             <input type="text" class="col-3 me-2 rounded-pill" id="serialno" name="replace" placeholder="Replace." autofocus>
-                            <select class="col-3 me-2 rounded-pill" id="sort-item" name='column' type="text" placeholder="." required>
+                            <select class="col-3 p-1 rounded-pill" id="sort-item" name='column' type="text" placeholder="." required>
                               <option value='Conditions'>Conditions</option>
                               <option value='Model'>Model</option>
                               <option value='gen'>Generation</option>

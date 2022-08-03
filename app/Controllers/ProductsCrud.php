@@ -1446,6 +1446,7 @@ class ProductsCrud extends Controller
         $cat[] = $array;
         $cart4['all'] = $cat;
         
+
         }
         if($cart4 != []){
         $cart4['user_data'] = $session->get('designation');
@@ -1454,6 +1455,8 @@ class ProductsCrud extends Controller
         $builder = $db->table('vendors');
         $builder->select('vendors.*');
         $cart4['customer'] = $builder->get()->getResult();
+
+
 
             return view('products/uploadCsv', $cart4);
         }else{
@@ -2239,7 +2242,10 @@ public function printbarcodwi($id)
         $data['items'] = $builder->get()->getResultArray();
         foreach($data as $l):
         endforeach;
+        $num = 0;
+
         foreach($l as $al):
+            // for($i)
         $gen = substr($al['gen'],0,7);
          $example = '<h6>'.'<strong>'.$al['brand'].' - '.$al['model'].'</strong>'.'</br>';
          $barcode = new \Com\Tecnick\Barcode\Barcode();
@@ -2387,30 +2393,22 @@ public function printbarcodwi($id)
         
         $builder = $db->table("warrantyin");
         $builder->select('warrantyin.*');
-        $builder->where('assetid', $l);
+        $builder->where('del', $l);
         $data['items'] = $builder->get()->getResultArray();
         $date  = date('Y/m/d- ');
         foreach($data as $l):
         endforeach;
         foreach($l as $al):
-         $examples = '<h5>'.'<strong>'.$al['model'].'</strong>'.'</h3>';
-         $example = '<h5>';
-        $barcode = new \Com\Tecnick\Barcode\Barcode();
-    
-        $example = '<h6>'.'<strong>'.$al['brand'].' - '.$al['model'].'</strong>'.'</br>';
-        $barcode = new \Com\Tecnick\Barcode\Barcode();
-        $bobj1 = $barcode->getBarcodeObj('C128', $al['assetid'], -1, -17, 'black', array(0, 0, 0, 0));
-         $example .= '<strong>'.$al['model'].'</strong>'.'<br/>'.'<strong>'.$al['cpu'].'/'.$al['gen'].'</strong>'.'/'.'<strong>'.$al['speed'].'</strong>'.'/'.'<strong>'.$al['ram'].'</strong>'.'/'.'<strong>'.$al['hdd'].'</strong>'.'<br/>'.$bobj1->getSvgCode().'<br/>'.'A- '.$al['assetid'] .'</h5>'.'<br/>'; ?>
-        
-
-        <form >
-          <?php echo $example; ?>     
-        
-      </div>
-          
-      </form>
-   <?php endforeach; ?>
-      <?php
+            $example = '<h5>';
+            $barcode = new \Com\Tecnick\Barcode\Barcode();
+            $bobj1 = $barcode->getBarcodeObj('C128', $al['del'], -1, -17, 'black', array(0, 0, 0, 0));
+            $example .= '<strong>'.$al['brand'].' - '.$al['model'].'</strong>'.'<br/>'.'<strong>'.$al['cpu'].'/'.$al['gen'].'</strong>'.'/'.'<strong>'.$al['speed'].'</strong>'.'/'.'<strong>'.$al['ram'].'</strong>'.'/'.'<strong>'.$al['hdd'].'</strong>'.'<br/>'.$bobj1->getSvgCode().'<br/>'.'A- '.$al['assetid'] .'</h5>'.'<br/>'; ?>
+            <form >
+             <?php echo $example; ?>     
+         </div>
+         </form>
+      <?php endforeach; ?>
+         <?php
     }
 
     public function printbarcode2fo($l)
@@ -2524,22 +2522,16 @@ public function printbarcodwi($id)
         foreach($data as $l):
         endforeach;
         foreach($l as $al):
-         $examples = '<h3>'.'<strong>'.$al['model'].'</strong>'.'</h3>';
-        //  $example = '<h5>';
-         $example = '<h6>'.'<strong>'.$al['brand'].' - '.$al['model'].'</strong>'.'</br>';
-         $barcode = new \Com\Tecnick\Barcode\Barcode();
-         $bobj1 = $barcode->getBarcodeObj('C128', $al['assetid'], -1, -17, 'black', array(0, 0, 0, 0));
-         $example .= '<strong>'.$al['model'].'</strong>'.'<br/>'.'<strong>'.$al['cpu'].'/'.$al['gen'].'</strong>'.'/'.'<strong>'.$al['speed'].'</strong>'.'/'.'<strong>'.$al['ram'].'</strong>'.'/'.'<strong>'.$al['hdd'].'</strong>'.'<br/>'.$bobj1->getSvgCode().'<br/>'.'A- '.$al['assetid'] .'</h5>'.'<br/>'; ?>
-        
-
-        <form >
-          <?php echo $example; ?>     
-          
-      </div>
-          
-      </form>
-   <?php endforeach; ?>
-      <?php
+            $example = '<h5>';
+            $barcode = new \Com\Tecnick\Barcode\Barcode();
+            $bobj1 = $barcode->getBarcodeObj('C128', $al['del'], -1, -17, 'black', array(0, 0, 0, 0));
+            $example .= '<strong>'.$al['brand'].' - '.$al['model'].'</strong>'.'<br/>'.'<strong>'.$al['cpu'].'/'.$al['gen'].'</strong>'.'/'.'<strong>'.$al['speed'].'</strong>'.'/'.'<strong>'.$al['ram'].'</strong>'.'/'.'<strong>'.$al['hdd'].'</strong>'.'<br/>'.$bobj1->getSvgCode().'<br/>'.'A- '.$al['assetid'] .'</h5>'.'<br/>'; ?>
+            <form >
+             <?php echo $example; ?>     
+         </div>
+         </form>
+      <?php endforeach; ?>
+         <?php
     }
 
     public function printbarcode2s($l)
@@ -2555,21 +2547,16 @@ public function printbarcodwi($id)
         foreach($data as $l):
         endforeach;
         foreach($l as $al):
-         $examples = '<h3>'.'<strong>'.$al['model'].'</strong>'.'</h3>';
-        //  $example = '<h5>';
-         $example = '<h6>'.'<strong>'.$al['brand'].' - '.$al['model'].'</strong>'.'</br>';
-         $barcode = new \Com\Tecnick\Barcode\Barcode();
-         $bobj1 = $barcode->getBarcodeObj('C128', $al['assetid'], -1, -17, 'black', array(0, 0, 0, 0));
-         $example .= '<strong>'.$al['model'].'</strong>'.'<br/>'.'<strong>'.$al['cpu'].'/'.$al['gen'].'</strong>'.'/'.'<strong>'.$al['speed'].'</strong>'.'/'.'<strong>'.$al['ram'].'</strong>'.'/'.'<strong>'.$al['hdd'].'</strong>'.'<br/>'.$bobj1->getSvgCode().'<br/>'.'A- '.$al['assetid'] .'</h5>'.'<br/>'; ?>
-        
-        <form >
-          <?php echo $example; ?>     
-          
-      </div>
-          
-      </form>
-   <?php endforeach; ?>
-      <?php
+            $example = '<h5>';
+            $barcode = new \Com\Tecnick\Barcode\Barcode();
+            $bobj1 = $barcode->getBarcodeObj('C128', $al['assetid'], -1, -17, 'black', array(0, 0, 0, 0));
+            $example .= '<strong>'.$al['brand'].' - '.$al['model'].'</strong>'.'<br/>'.'<strong>'.$al['cpu'].'/'.$al['gen'].'</strong>'.'/'.'<strong>'.$al['speed'].'</strong>'.'/'.'<strong>'.$al['ram'].'</strong>'.'/'.'<strong>'.$al['hdd'].'</strong>'.'<br/>'.$bobj1->getSvgCode().'<br/>'.'A- '.$al['assetid'] .'</h5>'.'<br/>'; ?>
+            <form >
+             <?php echo $example; ?>     
+         </div>
+         </form>
+      <?php endforeach; ?>
+         <?php
     }
 
     public function printbarcode2ce($l)
@@ -2642,7 +2629,7 @@ public function printbarcodwi($id)
         
         $builder = $db->table("masterlist");
         $builder->select('masterlist.*');
-        $builder->where('del', $l);
+        $builder->where('assetid', $l);
         $data['items'] = $builder->get()->getResultArray();
         $date = date('Y/m/d- ');
         foreach($data as $l):

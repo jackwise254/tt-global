@@ -99,7 +99,7 @@
       <a class="nav-link text-dark" style="font-family: arial, arial, arial; font-size: 11px" href="<?php echo site_url('/fualty-stock') ?>">Faulty in</a>
       <a class="nav-link text-dark" style="font-family: arial, arial, arial; font-size: 11px" href="<?php echo site_url('/fualty-out') ?>">Faulty Out</a>
        <a class="nav-link text-dark" style="font-family: arial, arial, arial; font-size: 11px" href="<?php echo site_url('/reports') ?>">Reports</a>
-      <a class="nav-link text-dark " style="font-family: arial, arial, arial; font-size: 11px "  href="<?php echo site_url('/test') ?>">test</a>
+      <a class="nav-link text-dark d-none" style="font-family: arial, arial, arial; font-size: 11px "  href="<?php echo site_url('/test') ?>">test</a>
       <a class="nav-link d-none text-dark  " style="font-family: arial, arial, arial; font-size: 11px "  href="<?php echo base_url('Settings/backup') ?>">test</a>
         <a class="nav-link text-dark" style="font-family: arial, arial, arial; font-size: 11px" href="<?php echo site_url('/stock-view') ?>">Stock in</a>
         <a class="nav-link text-dark d-none" style="font-family: arial, arial, arial; font-size: 11px" href="<?php echo site_url('/duplicate') ?>">Duplicate</a>
