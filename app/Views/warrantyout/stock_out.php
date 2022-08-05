@@ -36,6 +36,7 @@ endif;
 
                             <th scope="col" class="col-3">Price</th>
                             <th scope="col" class="col-3">Date_Recieved</th>
+                            <th scope="col" class="col-3">Date_Delivered</th>
                             <th scope="col" class="col-3">Customer</th>
                             </tr>
                         </thead>
@@ -63,9 +64,9 @@ endif;
                             <td class="col-3"><?=  $l->odd; ?></td>
                             <td class="col-3"><?=  $l->comment; ?></td>
                             <td class="col-3"><?=  $user->problem; ?></td>
-
                             <td class="col-3"><?=  $l->price; ?></td>
                             <td cclass="col-3"><?=  $datereceived; ?></td>
+                            <td cclass="col-3"><?=  $datedelivered; ?></td>
                             <td class="col-3"><?=  $l->customer; ?></td>
                             </tr>
                             

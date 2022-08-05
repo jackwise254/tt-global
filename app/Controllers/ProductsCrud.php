@@ -1398,11 +1398,27 @@ class ProductsCrud extends Controller
             'total' => $qty,
 
         ];
-        for ($i=0; $i <$qty; $i++) { 
-           $assid = 'ST'.rand(100000, 999999);
-            $data['assetid'] = $assid;
-            $builder->insert($data);
-        }
+        $assid = 0;
+        $builder1 = $db->table('masterlist');
+        $builder1->selectMax('id');
+        $data1 = $builder1->get()->getResultArray();
+        foreach($data1 as $d1):
+         endforeach;
+            if($d1['id']){
+                $assid = 'ST'.$d1['id'] + 1;
+                for ($i=0; $i <$qty; $i++) { 
+                    $assid ++ ; 
+                    $data['assetid'] = $assid;
+                    $builder->insert($data);
+                }
+            }
+            else{
+                for ($i=0; $i <$qty; $i++) { 
+                    $assid = 'ST'.rand(1000000, 9999999);
+                    $data['assetid'] = $assid;
+                    $builder->insert($data);
+                  }
+                }
         return redirect()->to(base_url('ProductsCrud/load'))->with('status', $qty.' '.'Items Inserted succesfully');
 }
   
