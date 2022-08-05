@@ -44,6 +44,7 @@
                             <th scope="col" class="col-3">Problem</th>
                             <th scope="col" class="col-3">Price</th>
                             <th scope="col" class="col-3">Date_Recieved</th>
+                            <th scope="col" class="col-3">Date_Delivered</th>
                             <th scope="col" class="col-3">Customer</th>
                             </tr>
                         </thead>
@@ -78,9 +79,9 @@
                             <td class="col-3"><?=  $user->odd; ?></td>
                             <td class="col-3"><?=  $user->comment; ?></td>
                             <td class="col-3"><?=  $user->problem; ?></td>
-
                             <td class="col-3"><?=  $user->price; ?></td>
                             <td cclass="col-3"><?=  $datereceived; ?></td>
+                            <td cclass="col-3"><?=  $datedelivered; ?></td>
                             <td class="col-3"><?=  $user->customer; ?></td>
                             </tr>
                         </tbody>
