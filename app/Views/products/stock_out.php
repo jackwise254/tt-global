@@ -13,7 +13,7 @@ endif;
     $session = session();
     $names = $session->get('user_name');
     ?> 
-<div class="container ">
+<div class="container col-11 ">
 <h5 class="text-center mt-5 pt-4"><u>Stock out</u></h5>
   <a href="<?php echo site_url('stock-view') ?>" class="btn btn-outline-success btn-sm bi bi-chevron-left">back</a>
   <a href="<?php echo site_url('delivery-create') ?>" class="btn btn-outline-secondary btn-sm ">Delivery note</a>

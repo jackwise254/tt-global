@@ -11,7 +11,7 @@ endif;
 
 <!-- *******************************************************************************  -->
 
-<div class='container mt-5 pt-5'>
+<div class='container mt-5 pt-5 col-11'>
 <div class="">
 <h5 class="text-center"><u>Debit Notes</u></h5>
 <div class="d-flex justify-content-end">

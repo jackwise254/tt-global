@@ -22,8 +22,14 @@ endif;
 
 
       <form class="d-flex float-end">
-          <input class="form-control me-2" name="q" placeholder="Search" aria-label="Search">
-          <button class="btn btn-info" type="submit">Search </button>
+      <select class="form-select form-control w-75 me-2 d-inline rounded-pill"  name="customer" placeholder="customer" >
+                <option selected>Customer</option>
+                  <?php foreach($customer as $user): ?>
+                    <option value="<?php echo $user->username; ?>"><?php echo $user->username; ?></option>
+                 <?php endforeach; ?>
+          </select>
+          <input class="form-control rounded-pill me-2" name="q" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-info rounded-pill" type="submit">Search </button>
       </form>
       </div>
 

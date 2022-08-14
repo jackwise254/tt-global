@@ -13,9 +13,9 @@ endif;
          $names = $session->get('user_name');
          $desg = $session->get('designation');
          ?> 
-<div class="container mt-5 pt-4">
+<div class="container mt-5 pt-4 col-12">
 <h5 class="text-center"><u>Warranty Out</u></h5>
-<div class="container ">
+<div class="container col-11">
 <a href="<?php echo site_url('warranty') ?>" class="btn btn-outline-success btn-sm">Back</a>
 <?php if($desg == 'warranty'): ?>
 <a href="<?php echo site_url('warranty-create') ?>" class="btn d-none btn-outline-secondary btn-sm">warranty note</a>

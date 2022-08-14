@@ -13,9 +13,9 @@ endif;
          $names = $session->get('user_name');
          $desg = $session->get('designation');
          ?> 
-<div class="container mt-5 pt-4">
+<div class="container mt-5 pt-4 col-12">
 <h4 class="text-center"> <u>Warranty In </u> </h4>
-    <div class="container">
+    <div class="container col-11">
     <a href="<?php echo base_url('Warranty/wload') ?>" class="btn btn-outline-success btn-sm bi bi-upload">Add Item</a>
 <a href="<?php echo base_url('ProductsCrud/previousRCVDw') ?>" class="btn btn-outline-info btn-sm flex m-2">Previous Recieved</a>
 <a href="<?php echo site_url('warrantyout') ?>" class="btn btn-outline-secondary btn-sm ">Warranty out</a>

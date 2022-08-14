@@ -28,6 +28,7 @@ endif;
 		<table class="table table-bordered table-responsive-md table-striped text-center ">
         <thead>
           <tr>
+            <!-- <th class="text-center px-5">Assetid</th> -->
             <th class="text-center px-5">Condition</th>
             <th class="text-center px-5">List</th>
             <th class="text-center px-5">Brand</th>
@@ -53,8 +54,10 @@ endif;
     <tbody>
     	<tr>
       
-   				  <input type="text" class="form-control w-5 d-none" name="assetid" value="<?php echo $obj->assetid; ?>">
-   				 
+<!-- <td>  -->
+<input type="text" class="form-control w-5 d-none " name="assetid" value="<?php echo $obj->assetid; ?>">
+
+<!-- </td>  				  -->
 			
     		<td>
         <select class="form-select"  name="conditions" value="<?php echo $obj->conditions; ?>">

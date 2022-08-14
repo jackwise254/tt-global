@@ -17,11 +17,11 @@ endif;
 
 ?>
 
-<div class='container mt-5 pt-3'>
+<div class='container mt-5 pt-3 col-12'>
 
 <!-- *******************************************************************************  -->
 
-<div class='container  '>
+<div class='container col-11 '>
 <div class="d-flex justify-content-end">
   </div>
   <?php

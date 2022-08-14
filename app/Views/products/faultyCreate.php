@@ -9,10 +9,10 @@ endif;
 
 ?>
 
-<div class='container mt-5 pt-3'>
+<div class='container mt-5 pt-4 col-11'>
 
     <!-- *******************************************************************************  -->
-    <div class='container mt-5 '>
+    <div class='container col-11 '>
         <?php
     if(session()->getFlashdata('status')) {
         echo "<h5 class=' alert alert-success d-flex align-items-center bi flex-shrink-0 me-2' width='18' height='24' role='alert' style='font-family:'Airal', Arial, Arial; font-size:50%'>" . session()->getFlashdata('status') . "</h5>";

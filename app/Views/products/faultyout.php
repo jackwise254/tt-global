@@ -13,7 +13,7 @@ endif;
     $session = session();
     $names = $session->get('user_name');
     ?> 
-<div class="container mt-5 pt-4">
+<div class="container mt-5 pt-4 col-11">
 <h4 class="text-center"><u>Faulty Out</u></h4>
 <a href="<?php echo site_url('fualty-stock') ?>" class="btn btn-outline-dark btn-sm ">back</a>
 <a href="<?php echo site_url('faulty-create') ?>" class="btn btn-outline-warning btn-sm ">Faulty note</a>
