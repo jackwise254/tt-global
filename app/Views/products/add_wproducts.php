@@ -37,7 +37,7 @@ endif;
             <th class="text-center px-5">Comment</th>
             <th class="text-center px-5">Problem</th>
             <th class="text-center px-5">Price</th>
-           <th class="text-center px-5 d-none">Date_dlvd</th> 
+           <th class="text-center px-5 ">Date_Recieved</th> 
             <th class="text-center px-5">Customer</th>
             <th class="text-center px-5">Status</th>
             <th class="text-center px-5">Quantity</th>
@@ -173,8 +173,10 @@ endif;
     		<td>
     			<input type="number" class="form-control" name="price" >
     		</td>
-   				  <input type="date" class="form-control d-none" name="datedelivered" >
-    		<td>
+      <td>
+      <input type="date" class="form-control" name="daterecieved" >
+      </td>
+        <td>
         <select class="form-select"  name="customer" >
         <option selected></option>
             <?php foreach($customer as $user): ?>

@@ -17,6 +17,7 @@ endif;
 
       <a href="<?php echo site_url('faulty-load') ?>" class="btn btn-success btn-sm ">upload faulty</a>
       <form class="d-flex float-end">
+          
           <input class="form-control me-2" name="q" placeholder="Search" aria-label="Search">
           <button class="btn btn-info" type="submit">Search </button>
       </form>

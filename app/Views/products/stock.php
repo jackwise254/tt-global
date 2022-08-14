@@ -14,7 +14,7 @@ endif;
     $session = session();
     $names = $session->get('user_name');
     ?> 
-<div class="container ">
+<div class="container col-11 ">
 <h4 class="text-center mt-5 pt-4"> <u>Remaining Stock </u> </h4>
 <a href="<?php echo base_url('ProductsCrud/load') ?>" class="btn btn-outline-success btn-sm bi bi-upload">Recieve Goods</a>
 <a href="<?php echo base_url('ProductsCrud/previousRCVD') ?>" class="btn btn-outline-info btn-sm flex m-2">Previous Recieved</a>

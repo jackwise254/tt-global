@@ -13,7 +13,7 @@ endif;
     $session = session();
     $names = $session->get('user_name');
     ?> 
-<div class="container mt-5 pt-4">
+<div class="container mt-5 pt-4 col-11">
 <h4 class="text-center"><u>Faulty stock</u></h4>
       <a href="<?php echo site_url('tload') ?>" class="btn btn-outline-success bi bi-upload btn-sm ">upload faulty</a>
       <a href="<?php echo base_url('ProductsCrud/previousRCVDf') ?>" class="btn btn-outline-info btn-sm flex m-2">Previous Recieved</a>

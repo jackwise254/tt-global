@@ -10,15 +10,13 @@ endif;
 ?>
 
 <?php include('inc/db_connect.php'); ?>
-
-
 <?php echo $random = rand(1000000, 9999999); ?>
-
 <div class="row container col-12">
+   <div class="row col-12">
+     <div class='col-8'>
      <form name="test" class=" mt-4 pt-5" action="<?php echo  base_url('ProductsCrud/sverify'); ?>" method="POST">
-     <div class="col-10">
-        <input type="text" class="col-2 me-2 rounded-pill" id="serialno" name="serialno" placeholder="Multiple serial no." autofocus>
-        <select class="col-2 p-1 rounded-pill" id="sort-item" name='table' type="text" placeholder="serial no." required>
+        <input type="text" class="col-2 me-2 rounded-pill" id="serialno" name="serialno" placeholder="serial no." autofocus>
+        <select class="col-2 p-1 rounded-pill" id="sort-item" name='table' type="text" required>
            <option selected value='All'>All</option>
            <option  value='Stockin'>Stock in</option>
            <option value='stockout'>Stock out</option>
@@ -28,26 +26,38 @@ endif;
            <option value='warrantyout'>Warranty Out</option>
            <option value='credit'>Credit</option>
            <optionm value='debit'>Debit</option>
-        </select>
-        <?php if($ans > 0): ?>
-             <button type="button" class="btn btn-outline-success rounded-pill btn-sm position-relative">
-             scanned
-             <span class="position-absolute d-flex justify-content-end top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                 <?php echo $ans; ?>
-                 <span class="visually-hidden">Items</span>
-             </span>
-           <?php endif; ?>
-         </button>
-      </div>
-           <button type ="submit" class="d-none" id="myBtn" onchange="this.form.submit()">Submit</button>
-           <input class="form-control my-3 d-none" value="<?= $random; ?>" name="random">
-      <!-- <div class="d-flex justify-content-end">
-      </div> -->
+         </select>
+           <button type ="submit" class="d-none" id="myBtn" >Submit</button>
+           <input class="d-none" value="<?= $random; ?>" name="random">
        </form>
-       <div class='container float-end'>
+
+     </div>
+     <!-- <div class='col-4'> -->
+     <form name="test" class=" " action="<?php echo  base_url('ProductsCrud/sverify'); ?>" method="POST">
+           <!-- scanned icoin -->
+           <input class="d-none" value='true' name="ans">
+         <?php if($ans > 0): ?>
+         <button type="submit" class="btn btn-outline-success rounded-pill btn-sm position-relative">
+                           Scanned
+               <span class="position-absolute d-flex justify-content-end top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                   <?php echo $ans; ?>
+                   <span class="visually-hidden">Items</span>
+               </span>
+           <?php endif; ?>
+         <!-- //scanned icon -->
+         <input class="d-none" value="<?= $random; ?>" name="random">
+       </form>
+
+     <!-- </div> -->
+     
+   </div>
+    
+
        <form>
-         <div class="float-end d-flex justify-content-end float-right">
+         <div class=" float-end">
+           
              <?php if(!$count_verify): ?>
+                 <!-- filter design -->
              <div class="container">
                  <div class="row searchFilter" >
                    <div class="col-sm-12" >
@@ -60,7 +70,7 @@ endif;
                      <?php endforeach; ?>
                      </select>
                      <input type="text" class="col-2  rounded-pill" id="model" name="model" placeholder="model." autofocus>
-                     <input type="text" class="col-2  rounded-pill" id="serialno" name="find" placeholder="search." autofocus>
+                     <input type="text" class="col-2  rounded-pill" name="find" placeholder="search." autofocus>
                        <select class="col-2 p-1 rounded-pill" id="sort-item" name='table' type="text" placeholder="serial no." required>
                          <option  value='All'>All</option>
                          <option selected value='Stockin'>Stock in</option>
@@ -72,9 +82,9 @@ endif;
                          <option value='credit'>Credit</option>
                          <optionm value='debit'>Debit</option>
                        </select>
-                         <button type ="submit" class="btn btn-sm btn-outline-success rounded-pill bi bi-search px-3" id="myBtn" ></button>
+                         <button type ="submit" class="btn btn-sm btn-outline-success rounded-pill bi bi-search px-3" ></button>
                          <?php elseif($count_verify && $user_data == 'admin' ): ?>
-                           <input type="text" class="col-3 me-2 rounded-pill" id="serialno" name="replace" placeholder="Replace." autofocus>
+                           <input type="text" class="col-3 me-2 rounded-pill"  name="replace" placeholder="Replace." autofocus>
                            <select class="col-3 p-1 rounded-pill" id="sort-item" name='column' type="text" placeholder="." required>
                              <option value='Conditions'>Conditions</option>
                              <option value='Model'>Model</option>
@@ -94,7 +104,7 @@ endif;
                              <optionm value='Customer'>Customer</option>
                              <optionm value='Vendor'>Vendor</option>
                            </select>
-                           <button type ="submit" class="btn btn-sm btn-outline-primary rounded-pill" id="myBtn" >Replace</button>
+                           <button type ="submit" class="btn btn-sm btn-outline-primary rounded-pill"  >Replace</button>
                            <?php endif; ?>
                            <button type="button" class="btn btn-outline-secondary rounded-pill btn-sm position-relative">
                            items
@@ -128,7 +138,6 @@ endif;
               </select> -->
               
         </form>
-       </div>
       
    </div>
    
@@ -142,28 +151,22 @@ endif;
      $('#myBtn').click();
      }
  });
- $('#exampleFormControlSelect1').keyup(function(){
-     if(this.value.length >= 3){
-     $('#myBtn1').click();
-     }
- });
-
  window.onload = function() {
-   var selItem = sessionStorage.getItem("SelItem");  
-   $('#sort-item').val(selItem);
-   }
-   $('#sort-item').change(function() { 
-       var selVal = $(this).val();
-       sessionStorage.setItem("SelItem", selVal);
-   });
-
-</script>  
+    var selItem = sessionStorage.getItem("SelItem");  
+    $('#sort-item').val(selItem);
+    }
+    $('#sort-item').change(function() { 
+        var selVal = $(this).val();
+        sessionStorage.setItem("SelItem", selVal);
+    });
+</script> 
 
 <?php
    if(session()->getFlashdata('status')) {
        echo "<h6 class=' alert alert-success d-flex align-items-center bi flex-shrink-0 me-2' width='10' height='10' role='alert' style='font-family:'Airal', Arial, Arial; font-size:40%'>" . session()->getFlashdata('status') . "</h6>"; 
    }
 ?>
+
 <form method="post" id="invoice_create" name="invoice_create" action="<?php echo base_url('ProductsCrud/verified'); ?>">
 <div class="container-fluid">
        <div class=" form-row">
@@ -252,11 +255,8 @@ endif;
                            <td class="col-3"><?=  $user['price']; ?></td>
                            <td cclass="col-3"><?=  $datereceived; ?></td>
                            <td cclass="col-3"><?=  $datedelivered; ?></td>
-
                            <td class="col-3" ><?=  $user['customer']; ?></td>
                            <td class="col-3" ><?=  $user['vendor']; ?></td>
-
-
                            </tr>
                        </tbody>
                        </div>
@@ -271,27 +271,6 @@ endif;
            </div>
        </div>
    </div>
-
-   <script type='text/javascript'>
-     var ignoreClickOnMeElement = document.getElementById('someElementID');
-       document.addEventListener('click', function(event) {
-           var isClickInsideElement = ignoreClickOnMeElement.contains(event.target);
-           if (!isClickInsideElement) {
-               //Do something click is outside specified element
-               console.log('hello, you clicked outsid');
-           }
-       });
-
-       window.onload = function() {
-   var someElementID = sessionStorage.getItem("someElementID");  
-   $('#sort-item').val(someElementID);
-   }
-   $('#sort-item').change(function() { 
-       var selVal = $(this).val();
-       sessionStorage.setItem("someElementID", selVal);
-   });
-
-   </script>
 </body>
 
 <style type="text/css">
@@ -360,32 +339,8 @@ endif;
 
 
 
-   
-<script type="text/javascript">
 
-/// Onclick scrpt
-
-  var input = document.getElementById("serialno");
-         function selectText() {
-         const input = document.getElementById('serialno');
-         input.focus();
-         input.select();
-       }
-       input.addEventListener("keyup", function(event) {
-       if (event.keyCode === 13) {
-           event.preventDefault();
-           document.getElementById("myBtn").click();
-       }
-       });
-   
-   </script>
  
-   
-
-
-
-
-
 
 
 
