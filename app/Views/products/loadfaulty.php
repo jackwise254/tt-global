@@ -74,7 +74,6 @@ endif;
                             <th scope="col" class="col-2">Condition</th>
                             <th scope="col" class="col-2 px-5">Assetid</th>
                             <th scope="col" class="col-2">Batch</th>
-                            <th scope="col" class="col-2">Total</th>
                             <th scope="col" class="col-2">Type</th>
                             <th scope="col" class="col-2">Brand</th>
                             <th scope="col" class="col-2 px-5">Gen</th>
@@ -113,7 +112,6 @@ endif;
                             <td class="col-2"><?=  $l['conditions']; ?></td>
                             <td class="col-2"><?=  $l['assetid']; ?></td>
                             <td class="col-2"><?=  $l['del']; ?></td>
-                            <td class="col-2"><?=  $l['total']; ?></td>
                             <td class="col-2"><?=  $l['type']; ?></td>
                             <td class="col-2"><?=  $l['brand']; ?></td>
                             <td class="col-2 "><?=  $l['gen']; ?></td>

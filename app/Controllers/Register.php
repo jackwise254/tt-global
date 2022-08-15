@@ -84,7 +84,7 @@ class Register extends Controller
             // return view('user/user_view');
         }else{
             $data['validation'] = $this->validator;
-            echo view('user/add_user', $data);
+            echo view('user/edit_user', $data);
         }
           
     }
@@ -208,28 +208,28 @@ class Register extends Controller
         $builder1->where('warrantyout.conditions = "Refurb" AND type="desktop"' );
         if($this->request->getGet('q')) {
         $q=$this->request->getGet('q');
-       $builder->like('assetid', $q);
-       $builder->orLike('brand', $q);
-       $builder->orLike('conditions', $q);
-       $builder->orLike('model', $q);
-       $builder->orLike('modelid', $q);
-       $builder->orLike('gen', $q);
-       $builder->orLike('cpu', $q);
-       $builder->orLike('screen', $q);
-       $builder->orLike('price', $q);
-       $builder->orLike('customer', $q);
-       $builder->orLike('ram', $q);
-       $builder->orLike('odd', $q);
-       $builder->orLike('comment', $q);
-       $builder->orLike('type', $q);
+       $builder1->like('assetid', $q);
+       $builder1->orLike('brand', $q);
+       $builder1->orLike('conditions', $q);
+       $builder1->orLike('model', $q);
+       $builder1->orLike('modelid', $q);
+       $builder1->orLike('gen', $q);
+       $builder1->orLike('cpu', $q);
+       $builder1->orLike('screen', $q);
+       $builder1->orLike('price', $q);
+       $builder1->orLike('customer', $q);
+       $builder1->orLike('ram', $q);
+       $builder1->orLike('odd', $q);
+       $builder1->orLike('comment', $q);
+       $builder1->orLike('type', $q);
 
        $data['user_data'] = $session->get('designation');
-       $data['Rdesktop'] = $builder->get()->getResult();
+       $data['Rdesktop'] = $builder1->get()->getResult();
        return view('/warrantyout/Rdesktop', $data);
           
        } elseif(!$this->request->getGet('q')) {
         $data['user_data'] = $session->get('designation');
-        $data['Rdesktop'] = $builder->get()->getResult();
+        $data['Rdesktop'] = $builder1->get()->getResult();
         return view('/warrantyout/Rdesktop', $data);
        }
 
@@ -1037,6 +1037,11 @@ class Register extends Controller
         $session = \Config\Services::session();
 
         $db      = \Config\Database::connect();
+        $builder1 = $db->table('customer');
+        $builder1->select('customer.*');
+        $data['customer'] = $builder1->get()->getResult();
+
+        $db      = \Config\Database::connect();
     
         $builder1 = $db->table('users');
         $builder1->select('users.*');
@@ -1069,9 +1074,18 @@ class Register extends Controller
        $data['user_data'] = $session->get('designation');
        $data['printer'] = $builder->get()->getResult();
         return view('/warrantyout/warrantv', $data);
-
-          
-       } elseif(!$this->request->getGet('q')) {
+       } 
+       elseif($this->request->getGet('customer')) {
+        $customer = $this->request->getGet('customer');
+        $builder1 = $db->table('warrantyout');
+        $builder1->select('warrantyout.*');
+        $builder1->like('customer', $customer);       
+        $data['printer'] = $builder1->get()->getResult();
+        $data['user_data'] = $session->get('designation');
+        return view('/warrantyout/warrantv', $data);
+       }
+       
+       elseif(!$this->request->getGet('q')) {
         $data['user_data'] = $session->get('designation');
         $data['printer'] = $builder->get()->getResult();
         return view('/warrantyout/warrantv', $data);

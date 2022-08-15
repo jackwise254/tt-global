@@ -13,10 +13,10 @@ endif;
 <?php echo $random = rand(1000000, 9999999); ?>
 <div class="row container col-12">
    <div class="row col-12">
-     <div class='col-6'>
+     <div class='col-8'>
      <form name="test" class=" mt-4 pt-5" action="<?php echo  base_url('ProductsCrud/sverify'); ?>" method="POST">
-        <input type="text" class="col-3 me-2 rounded-pill" id="serialno" name="serialno" placeholder="serial no." autofocus>
-        <select class="col-3 p-1 rounded-pill" id="sort-item" name='table' type="text" required>
+        <input type="text" class="col-2 me-2 rounded-pill" id="serialno" name="serialno" placeholder="serial no." autofocus>
+        <select class="col-2 p-1 rounded-pill" id="sort-item" name='table' type="text" required>
            <option selected value='All'>All</option>
            <option  value='Stockin'>Stock in</option>
            <option value='stockout'>Stock out</option>
@@ -31,11 +31,9 @@ endif;
            <input class="d-none" value="<?= $random; ?>" name="random">
        </form>
 
-      
-
      </div>
-     <div class='col-2'>
-     <form name="test" class="mt-4 pt-5 " action="<?php echo  base_url('ProductsCrud/sverify'); ?>" method="POST">
+     <!-- <div class='col-4'> -->
+     <form name="test" class=" " action="<?php echo  base_url('ProductsCrud/sverify'); ?>" method="POST">
            <!-- scanned icoin -->
            <input class="d-none" value='true' name="ans">
          <?php if($ans > 0): ?>
@@ -49,7 +47,8 @@ endif;
          <!-- //scanned icon -->
          <input class="d-none" value="<?= $random; ?>" name="random">
        </form>
-     </div>
+
+     <!-- </div> -->
      
    </div>
     
@@ -87,24 +86,23 @@ endif;
                          <?php elseif($count_verify && $user_data == 'admin' ): ?>
                            <input type="text" class="col-3 me-2 rounded-pill"  name="replace" placeholder="Replace." autofocus>
                            <select class="col-3 p-1 rounded-pill" id="sort-item" name='column' type="text" placeholder="." required>
-                              <option value='Model'>Model</option>
-                              <option value='gen'>Generation</option>
-                              <option value='Brand'>Brand</option>
-                              <option value='Hdd'>Hdd</option>
-                              <option value='Cpu'>Cpu</option>
-                              <option value='Speed'>speed</option>
-                              <option value='Screen'>Screen</option>
-                              <option value='Price'>Price</option>
-                              <option value='Ram'>Ram</option>
-                              <option value='Odd'>Odd</option>
-                              <option value='Type'>Type</option>
-                              <option value='Problem'>Problem</option>
-                              <option value='Status'>Status</option>
-                              <option value='Part'>Part</option>
-                              <option value='Modelid'>Modelid</option>
-                              <option value='Comment'>Comment</option>
-                              <option value='Customer'>Customer</option>
-                              <option value='Vendor'>Vendor</option>
+                             <option value='Conditions'>Conditions</option>
+                             <option value='Model'>Model</option>
+                             <option value='gen'>Generation</option>
+                             <option value='Brand'>Brand</option>
+                             <option value='Hdd'>Hdd</option>
+                             <option value='Speed'>speed</option>
+                             <option value='Price'>Price</option>
+                             <option value='Ram'>Ram</option>
+                             <option value='Odd'>Odd</option>
+                             <option value='Type'>Type</option>
+                             <optionm value='Problem'>Problem</option>
+                             <optionm value='Part'>Part</option>
+                             <optionm value='Modelid'>Modelid</option>
+                             <optionm value='Screen'>Screen</option>
+                             <optionm value='Comment'>Comment</option>
+                             <optionm value='Customer'>Customer</option>
+                             <optionm value='Vendor'>Vendor</option>
                            </select>
                            <button type ="submit" class="btn btn-sm btn-outline-primary rounded-pill"  >Replace</button>
                            <?php endif; ?>
