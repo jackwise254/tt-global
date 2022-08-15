@@ -9690,8 +9690,12 @@ public function printbarcodwi($id)
         $data = [
             'username' => $this->request->getPost('username'),
             'random' => $this->request->getPost('random'),
-            'deliver' => $this->request->getPost('deliver'),
+            
 
+        ];
+        $data22 =[
+            'deliver' => $this->request->getPost('deliver'),
+            'terms' => session()->get('username'),
         ];
 
         $builder = $db->table("customer");
@@ -9710,14 +9714,12 @@ public function printbarcodwi($id)
           
         if($num < 1 ){
             $db->table('dcustomer')->insert($r);
-            $builder1->update(['deliver' => $data['deliver']]);
+            $builder1->update($data22);
 
         }
         elseif(!$data2){
             $db->table('dcustomer')->update($r);
-            $builder1->update(['deliver' => $data['deliver']]);
-
-                
+            $builder1->update($data22);
         }
 
         $builder1->update(['random' => $data['random']]);
@@ -10601,6 +10603,7 @@ public function printbarcodwi($id)
     {
         $session = \Config\Services::session();
         $db      = \Config\Database::connect();
+        $sess = session()->get('username');
         $builder1 = $db->table('users');
         $builder1->select('users.*');
         $builder1->where('users.designation = "admin" ' );
@@ -10617,6 +10620,7 @@ public function printbarcodwi($id)
         $db      = \Config\Database::connect();
         $builder = $db->table('tempinsert');
         $builder->select('tempinsert.*');
+        $builder->where('terms', $sess);
 
         $builder1 = $db->table('dcustomer');
         $builder1->select('dcustomer.*');
@@ -10701,6 +10705,12 @@ public function printbarcodwi($id)
         $data = [
             'serialno' => $this->request->getPost('serialno'),
             'random' => $this->request->getPost('random'),
+            // 'session' => session()->get('username'),
+        ];
+
+        $data22 = [
+            'random' => $this->request->getPost('random'),
+            'terms' => session()->get('username'),
         ];
 
         $builder = $db->table("masterlist");
@@ -10721,7 +10731,7 @@ public function printbarcodwi($id)
         else{
             $db->table('tempinsert')->insert($r);
         }
-        $builder1->update(['random' => $data['random']]);
+        $builder1->update($data22);
         }
         return redirect()->to('ProductsCrud/delv');
 
