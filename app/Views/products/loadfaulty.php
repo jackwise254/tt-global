@@ -74,7 +74,6 @@ endif;
                             <th scope="col" class="col-2">Condition</th>
                             <th scope="col" class="col-2 px-5">Assetid</th>
                             <th scope="col" class="col-2">Batch</th>
-                            <th scope="col" class="col-2">Total</th>
                             <th scope="col" class="col-2">Type</th>
                             <th scope="col" class="col-2">Brand</th>
                             <th scope="col" class="col-2 px-5">Gen</th>
@@ -92,6 +91,7 @@ endif;
                             <th scope="col" class="col-2">Price</th>
                             <th scope="col" class="col-2">Date_Recieved</th>
                             <th scope="col" class="col-2">Date_Delivered</th>
+
                             <th scope="col" class="col-2">Customer</th>
                             <th scope="col" class="col-2">Vendor</th>
 
@@ -105,13 +105,13 @@ endif;
                             <tr>
                             <td class="">  
                             <a href="<?= base_url('ProductsCrud/deletetf/'. $l['del']) ?>" class="btn btn-danger btn-sm">Delete</a> 
+                            
                             </div>
                             </td>
                             <td class="col-2"><?=  $l['list']; ?></td>
                             <td class="col-2"><?=  $l['conditions']; ?></td>
                             <td class="col-2"><?=  $l['assetid']; ?></td>
                             <td class="col-2"><?=  $l['del']; ?></td>
-                            <td class="col-2"><?=  $l['total']; ?></td>
                             <td class="col-2"><?=  $l['type']; ?></td>
                             <td class="col-2"><?=  $l['brand']; ?></td>
                             <td class="col-2 "><?=  $l['gen']; ?></td>
@@ -131,7 +131,9 @@ endif;
                             <td cclass="col-2"><?=  $datedelivered; ?></td>
                             <td class="col-2"><?=  $l['customer']; ?></td>
                             <td class="col-2"><?=  $l['vendor']; ?></td>
+
                             </tr>
+                            
                         </tbody>
                         <?php endforeach; ?>
                     </table>

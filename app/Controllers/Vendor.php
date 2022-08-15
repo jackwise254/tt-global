@@ -1147,20 +1147,14 @@ class Vendor extends Controller
       $data['user_data'] = $session->get('designation');
 
       $builder14 = $db->table('warrantyin');
-      $builder14->select('warrantyin.*');
+      $builder14->select('warrantyin.*')->orderBy('daterecieved', 'DESC');
       $nums = $builder14->countAll();
       $data['true'] = 0;
       $random = rand(10000, 99999);
       $customer = $this->request->getVar('customer');
-
-    //   echo '';
-    //   print_r($customer);
-    //   exit;
-
-
       
       $builder = $db->table('warrantyin');
-      $builder->select('warrantyin.*');
+      $builder->select('warrantyin.*')->orderBy('daterecieved' ,' DESC');
       if($this->request->getGet('q')) {
       $q=$this->request->getGet('q');
      $builder->like('assetid', $q);
@@ -1279,9 +1273,6 @@ class Vendor extends Controller
         $filename = "upload/".$customer.$rands.".xlsx";
         return redirect()->to(base_url($filename));
         }
-    // end
-
-
        elseif(!$this->request->getGet('q')) {
         $data['user_data'] = $session->get('designation');
         $data['printer'] = $builder->get()->getResult();
@@ -1379,16 +1370,6 @@ class Vendor extends Controller
     }
 
 
-
-
-
-
-
-
-
-
-
-
     public function spreadsheetgn($title){
 
         $delimiter = ' ';
@@ -1484,7 +1465,7 @@ class Vendor extends Controller
         $builder1->where('conditions', $condition);
 
 
-
+        
         if($this->request->getGet('q') && $this->request->getGet('model') ) {
             $q = $this->request->getVar('q');
             $model = $this->request->getVar('model');
@@ -1532,10 +1513,10 @@ class Vendor extends Controller
              $builder122->where('conditions' ,$condition);
              $builder122->like('model', $q);
              $data['test'] = $builder122->get()->getResult();
-
+            
              echo view('products/template/header.php');
              return view('test/warrantyin', $data);
-
+                
              }
 
 
@@ -1559,20 +1540,20 @@ class Vendor extends Controller
              $builder122->orLike('comment', $q);
              $builder122->orLike('type', $q);
              $data['test'] = $builder122->get()->getResult();
-
+            
              echo view('products/template/header.php');
              return view('test/warrantyin', $data);
-
+                
              } elseif(!$this->request->getGet('q')) {
             $data['test'] = $builder1->get()->getResult();
-
+    
             echo view('products/template/header.php');
             return view('test/warrantyin', $data);
              }
 
 
 
-
+        
     }
 
     public function generateFunctionwo($id){
@@ -1597,7 +1578,7 @@ class Vendor extends Controller
         $builder1->where('conditions', $condition);
 
 
-
+        
         if($this->request->getGet('q') && $this->request->getGet('model') ) {
             $q = $this->request->getVar('q');
             $model = $this->request->getVar('model');
@@ -1645,10 +1626,10 @@ class Vendor extends Controller
              $builder122->where('conditions' ,$condition);
              $builder122->like('model', $q);
              $data['test'] = $builder122->get()->getResult();
-
+            
              echo view('products/template/header.php');
              return view('test/warrantyout', $data);
-
+                
              }
 
 
@@ -1672,18 +1653,18 @@ class Vendor extends Controller
              $builder122->orLike('comment', $q);
              $builder122->orLike('type', $q);
              $data['test'] = $builder122->get()->getResult();
-
+            
              echo view('products/template/header.php');
              return view('test/warrantyout', $data);
-
+                
              } elseif(!$this->request->getGet('q')) {
             $data['test'] = $builder1->get()->getResult();
-
+    
             echo view('products/template/header.php');
             return view('test/warrantyout', $data);
              }
 
-
+        
     }
 
 
@@ -1755,10 +1736,10 @@ class Vendor extends Controller
              $builder122->where('conditions' ,$condition);
              $builder122->like('model', $q);
              $data['test'] = $builder122->get()->getResult();
-
+            
              echo view('products/template/header.php');
              return view('test/index', $data);
-
+                
              }
 
         if($this->request->getGet('q')) {
@@ -1781,20 +1762,20 @@ class Vendor extends Controller
              $builder122->orLike('comment', $q);
              $builder122->orLike('type', $q);
              $data['test'] = $builder122->get()->getResult();
-
+            
              echo view('products/template/header.php');
              return view('test/index', $data);
-
+                
              } elseif(!$this->request->getGet('q')) {
             $data['test'] = $builder1->get()->getResult();
-
+    
             echo view('products/template/header.php');
             return view('test/index', $data);
              }
-
+        
     }
 
-
+    
     public function generateFunctions($id){
         $db      = \Config\Database::connect();
         $session = \Config\Services::session();
@@ -1863,10 +1844,10 @@ class Vendor extends Controller
              $builder122->where('conditions' ,$condition);
              $builder122->like('model', $q);
              $data['test'] = $builder122->get()->getResult();
-
+            
              echo view('products/template/header.php');
              return view('test/stockout', $data);
-
+                
              }
 
 
@@ -1890,17 +1871,17 @@ class Vendor extends Controller
              $builder122->orLike('comment', $q);
              $builder122->orLike('type', $q);
              $data['test'] = $builder122->get()->getResult();
-
+            
              echo view('products/template/header.php');
              return view('test/stockout', $data);
-
+                
              } elseif(!$this->request->getGet('q')) {
             $data['test'] = $builder1->get()->getResult();
-
+    
             echo view('products/template/header.php');
             return view('test/stockout', $data);
              }
-
+        
     }
 
 
@@ -1974,12 +1955,12 @@ class Vendor extends Controller
              $builder122->where('conditions' ,$condition);
              $builder122->like('model', $q);
              $data['test'] = $builder122->get()->getResult();
-
+            
              echo view('products/template/header.php');
              return view('test/faultyout', $data);
-
+                
              }
-
+        
         if($this->request->getGet('q')) {
           $q=$this->request->getGet('q');
            $builder122 = $db->table('faultyout');
@@ -2000,10 +1981,10 @@ class Vendor extends Controller
            $builder122->orLike('comment', $q);
            $builder122->orLike('type', $q);
            $data['test'] = $builder122->get()->getResult();
-
+          
            echo view('products/template/header.php');
            return view('test/faultyout', $data);
-
+              
            } elseif(!$this->request->getGet('q')) {
         $data['test'] = $builder1->get()->getResult();
 
@@ -2084,12 +2065,12 @@ class Vendor extends Controller
              $builder122->where('conditions' ,$condition);
              $builder122->like('model', $q);
              $data['test'] = $builder122->get()->getResult();
-
+            
              echo view('products/template/header.php');
              return view('test/faulty', $data);
-
+                
              }
-
+        
         if($this->request->getGet('q')) {
           $q=$this->request->getGet('q');
            $builder122 = $db->table('faulty');
@@ -2110,10 +2091,10 @@ class Vendor extends Controller
            $builder122->orLike('comment', $q);
            $builder122->orLike('type', $q);
            $data['test'] = $builder122->get()->getResult();
-
+          
            echo view('products/template/header.php');
            return view('test/faulty', $data);
-
+              
            } elseif(!$this->request->getGet('q')) {
         $data['test'] = $builder1->get()->getResult();
 
@@ -2495,8 +2476,6 @@ class Vendor extends Controller
         return redirect()->to(base_url($filename));
 
     }
-
-
 
 
 }
