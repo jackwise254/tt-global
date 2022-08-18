@@ -3388,6 +3388,7 @@ public function printbarcodwi($id)
         $builder1->select('users.*');
         $builder1->where('users.designation = "admin" ' );
         $sdata['hello'] = $builder1->get()->getResultArray();
+        $sess = session()->get('user_name');
         $session->set($sdata);
 
         $builder222 =  $db->table('barcodes');
@@ -3404,24 +3405,28 @@ public function printbarcodwi($id)
         $random = rand(100000, 999999);
         $rands = [
             'random' =>$random,
+            'terms' => $sess,
             'tbl' =>$this->request->getvar('table'),
         ];
 
         session()->set($rands);
         $datam = [
             'random' => $random,
+            'terms' => $sess,
             'time' => date("h:i:sa"),
             'tbl' => 'Stockin',
         ];
 
         $dataso = [
             'random' => $random,
+            'terms' => $sess,
             'time' => date("h:i:sa"),
             'tbl' => 'Stockout'
         ];
 
         $dataf = [
             'random' => $random,
+            'terms' => $sess,
             'time' => date("h:i:sa"),
             'tbl' => 'faulty'
         ];
@@ -3429,30 +3434,35 @@ public function printbarcodwi($id)
 
         $datafo = [
             'random' => $random,
+            'terms' => $sess,
             'time' => date("h:i:sa"),
             'tbl' => 'faultyout'
         ];
 
         $dataw = [
             'random' => $random,
+            'terms' => $sess,
             'time' => date("h:i:sa"),
             'tbl' => 'warrantyin'
         ];
 
         $datawo = [
             'random' => $random,
+            'terms' => $sess,
             'time' => date("h:i:sa"),
             'tbl' => 'warranty out'
         ];
 
         $datac = [
             'random' => $random,
+            'terms' => $sess,
             'time' => date("h:i:sa"),
             'tbl' => 'credit'
         ];
 
         $datad = [
             'random' => $random,
+            'terms' => $sess,
             'time' => date("h:i:sa"),
             'tbl' => 'debit'
         ];
@@ -3462,7 +3472,6 @@ public function printbarcodwi($id)
             $j = $this->request->getVar('find');
             $i = $this->request->getVar('search');
             $model = $this->request->getVar('model');
-
             $builde = $db->table('verify');
             $builde->select('*');
             $builde->like('model', $model) &&
@@ -6684,6 +6693,7 @@ public function printbarcodwi($id)
                 $builder = $db->table('verify');
                 $builder->select('*');
                 $builder->where('random' , $s);
+                $builder->where('terms' , $sess);
                 $builder->update(['model' => $x]);
                 return redirect()->back()->with('status', 'replaced successfully');
 
@@ -6692,12 +6702,14 @@ public function printbarcodwi($id)
                 $builder = $db->table('verify');
                 $builder->select('*');
                 $builder->where('random' , $s);
+                $builder->where('terms' , $sess);
                 $builder->update(['brand' => $x]);
                 return redirect()->back()->with('status', 'replaced successfully');
              }      
             elseif($this->request->getVar('column') == 'Hdd'){
                 $builder = $db->table('verify');
                 $builder->select('*');
+                $builder->where('terms' , $sess);
                 $builder->where('random' , $s);
                 $builder->update(['hdd' => $x]);
                 return redirect()->back()->with('status', 'replaced successfully');
@@ -6706,6 +6718,7 @@ public function printbarcodwi($id)
             elseif($this->request->getVar('column') == 'Screen'){
                 $builder = $db->table('verify');
                 $builder->select('*');
+                $builder->where('terms' , $sess);
                 $builder->where('random' , $s);
                 $builder->update(['screen' => $x]);
                 return redirect()->back()->with('status', 'replaced successfully');
@@ -6714,6 +6727,7 @@ public function printbarcodwi($id)
             elseif($this->request->getVar('column') == 'Status'){
                 $builder = $db->table('verify');
                 $builder->select('*');
+                $builder->where('terms' , $sess);
                 $builder->where('random' , $s);
                 $builder->update(['status' => $x]);
                 return redirect()->back()->with('status', 'replaced successfully');
@@ -6723,6 +6737,7 @@ public function printbarcodwi($id)
             elseif($this->request->getVar('column') == 'Speed'){
                 $builder = $db->table('verify');
                 $builder->select('*');
+                $builder->where('terms' , $sess);
                 $builder->where('random' , $s);
                 
                 $builder->update(['speed' => $x]);
@@ -6732,6 +6747,7 @@ public function printbarcodwi($id)
             elseif($this->request->getVar('column') == 'Cpu'){
                 $builder = $db->table('verify');
                 $builder->select('*');
+                $builder->where('terms' , $sess);
                 $builder->where('random' , $s);
                 $builder->update(['cpu' => $x]);
                 return redirect()->back()->with('status', 'replaced successfully');
@@ -6740,6 +6756,7 @@ public function printbarcodwi($id)
             elseif($this->request->getVar('column') == 'Price'){
                 $builder = $db->table('verify');
                 $builder->select('*');
+                $builder->where('terms' , $sess);
                 $builder->where('random' , $s);
                 $builder->update(['price' => $x]);
                 return redirect()->back()->with('status', 'replaced successfully');
@@ -6748,6 +6765,7 @@ public function printbarcodwi($id)
             elseif($this->request->getVar('column') == 'Ram'){
                 $builder = $db->table('verify');
                 $builder->select('*');
+                $builder->where('terms' , $sess);
                 $builder->where('random' , $s);
                 $builder->update(['ram' => $x]);
                 return redirect()->back()->with('status', 'replaced successfully');
@@ -6756,6 +6774,7 @@ public function printbarcodwi($id)
             elseif($this->request->getVar('column') == 'Odd'){
                 $builder = $db->table('verify');
                 $builder->select('*');
+                $builder->where('terms' , $sess);
                 $builder->where('random' , $s);
                 $builder->update(['odd' => $x]);
                 return redirect()->back()->with('status', 'replaced successfully');
@@ -6764,6 +6783,7 @@ public function printbarcodwi($id)
             elseif($this->request->getVar('column') == 'Problem'){
                 $builder = $db->table('verify');
                 $builder->select('*');
+                $builder->where('terms' , $sess);
                 $builder->where('random' , $s);
                 $builder->update(['problem' => $x]);
                 return redirect()->back()->with('status', 'replaced successfully');
@@ -6772,6 +6792,7 @@ public function printbarcodwi($id)
             elseif($this->request->getVar('column') == 'Conditions'){
                 $builder = $db->table('verify');
                 $builder->select('*');
+                $builder->where('terms' , $sess);
                 $builder->where('random' , $s);
                 $builder->update(['conditions' => $x]);
                 return redirect()->back()->with('status', 'replaced successfully');
@@ -6780,6 +6801,7 @@ public function printbarcodwi($id)
             elseif($this->request->getVar('column') == 'Type'){
                 $builder = $db->table('verify');
                 $builder->select('*');
+                $builder->where('terms' , $sess);
                 $builder->where('random' , $s);
                 $builder->update(['type' => $x]);
                 return redirect()->back()->with('status', 'replaced successfully');
@@ -6788,6 +6810,7 @@ public function printbarcodwi($id)
             elseif($this->request->getVar('column') == 'gen'){
                 $builder = $db->table('verify');
                 $builder->select('*');
+                $builder->where('terms' , $sess);
                 $builder->where('random' , $s);
                 $builder->update(['gen' => $x]);
                 return redirect()->back()->with('status', 'replaced successfully');
@@ -6795,6 +6818,7 @@ public function printbarcodwi($id)
             elseif($this->request->getVar('column') == 'Part'){
                 $builder = $db->table('verify');
                 $builder->select('*');
+                $builder->where('terms' , $sess);
                 $builder->where('random' , $s);
                 $builder->update(['part' => $x]);
                 return redirect()->back()->with('status', 'replaced successfully');
@@ -6802,6 +6826,7 @@ public function printbarcodwi($id)
             elseif($this->request->getVar('column') == 'Modelid'){
                 $builder = $db->table('verify');
                 $builder->select('*');
+                $builder->where('terms' , $sess);
                 $builder->where('random' , $s);
                 $builder->update(['modelid' => $x]);
                 return redirect()->back()->with('status', 'replaced successfully');
@@ -6816,6 +6841,7 @@ public function printbarcodwi($id)
             elseif($this->request->getVar('column') == 'Vendor'){
                 $builder = $db->table('verify');
                 $builder->select('*');
+                $builder->where('terms' , $sess);
                 $builder->where('random' , $s);
                 $builder->update(['vendor' => $x]);
                 return redirect()->back()->with('status', 'replaced successfully');
@@ -6823,6 +6849,7 @@ public function printbarcodwi($id)
             elseif($this->request->getVar('column') == 'Screen'){
                 $builder = $db->table('verify');
                 $builder->select('*');
+                $builder->where('terms' , $sess);
                 $builder->where('random' , $s);
                 $builder->update(['screen' => $x]);
                 return redirect()->back()->with('status', 'replaced successfully');
@@ -6830,6 +6857,7 @@ public function printbarcodwi($id)
             elseif($this->request->getVar('column') == 'Comment'){
                 $builder = $db->table('verify');
                 $builder->select('*');
+                $builder->where('terms' , $sess);
                 $builder->where('random' , $s);
                 $builder->update(['comment' => $x]);
                 return redirect()->back()->with('status', 'replaced successfully');
@@ -6843,6 +6871,7 @@ public function printbarcodwi($id)
         helper(['form', 'url']);
         $builder = $db->table('verify');
         $builder->select('verify.*')->orderBy('time', 'DESC');
+        $builder->where('terms' , $sess);
         $data['items'] = $builder->get()->getResultArray();
         $data['user_data'] = $session->get('designation');
         $data['true'] = 0;
@@ -6865,9 +6894,11 @@ public function printbarcodwi($id)
     public function clear()
     {
         $db      = \Config\Database::connect();
+        $sess = session()->get('user_name');
         $builder1 = $db->table("verify");
         $builder1->select("verify.*");
-        $builder1->emptyTable();
+        $builder1->where('terms', $sess);
+        $builder1->delete();
         return redirect()->back()->with('status', 'cleared');
 
     }
@@ -6968,17 +6999,22 @@ public function printbarcodwi($id)
          $datam = [
              'random' => $this->request->getPost('random'),
              'time' => date("h:i:sa"),
-             'tbl' => 'Stockin'
+             'tbl' => 'Stockin',
+             'terms' => $sess,
+
          ];
  
          $dataso = [
              'random' => $this->request->getPost('random'),
              'time' => date("h:i:sa"),
+             'terms' => $sess,
+
              'tbl' => 'Stockout'
          ];
  
          $dataf = [
              'random' => $this->request->getPost('random'),
+             'terms' => $sess,
              'time' => date("h:i:sa"),
              'tbl' => 'faulty'
          ];
@@ -6986,30 +7022,35 @@ public function printbarcodwi($id)
          $datafo = [
              'random' => $this->request->getPost('random'),
              'time' => date("h:i:sa"),
+             'terms' => $sess,
              'tbl' => 'faultyout'
          ];
  
          $dataw = [
              'random' => $this->request->getPost('random'),
              'time' => date("h:i:sa"),
+             'terms' => $sess,
              'tbl' => 'warrantyin'
          ];
  
          $datawo = [
              'random' => $this->request->getPost('random'),
              'time' => date("h:i:sa"),
+             'terms' => $sess,
              'tbl' => 'warranty out'
          ];
  
          $datac = [
              'random' => $this->request->getPost('random'),
              'time' => date("h:i:sa"),
+             'terms' => $sess,
              'tbl' => 'credit'
          ];
  
          $datad = [
              'random' => $this->request->getPost('random'),
              'time' => date("h:i:sa"),
+             'terms' => $sess,
              'tbl' => 'debit'
          ];
  
@@ -10795,7 +10836,10 @@ public function printbarcodwi($id)
         else{
             $db->table('tempinsert')->insert($r);
         }
-        $builder1->update($data22);
+        $builder11 = $db->table("tempinsert");
+        $builder11->select('*');
+        $builder11->where('assetid', $data['serialno']);
+        $builder11->update($data22);
         }
         return redirect()->to('ProductsCrud/delv');
 
