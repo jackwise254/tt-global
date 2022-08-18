@@ -12,10 +12,11 @@ endif;
 <?php include('inc/db_connect.php'); ?>
 <?php echo $random = rand(1000000, 9999999); ?>
 <div class="row container col-12">
-   <div class="row col-12">
-     <div class='col-8'>
-     <form name="test" class=" mt-4 pt-5" action="<?php echo  base_url('ProductsCrud/sverify'); ?>" method="POST">
-        <input type="text" class="col-2 me-2 rounded-pill" id="serialno" name="serialno" placeholder="serial no." autofocus>
+   <div class="row">
+     <div class='col-12 mt-4 pt-5'>
+     <form name="test" class=" " action="<?php echo  base_url('ProductsCrud/sverify'); ?>" method="POST">
+
+        <input type="text" class="col-2 rounded-pill" id="serialno" name="serialno" placeholder="serial no." autofocus>
         <select class="col-2 p-1 rounded-pill" id="sort-item" name='table' type="text" required>
            <option selected value='All'>All</option>
            <option  value='Stockin'>Stock in</option>
@@ -29,15 +30,11 @@ endif;
          </select>
            <button type ="submit" class="d-none" id="myBtn" >Submit</button>
            <input class="d-none" value="<?= $random; ?>" name="random">
-       </form>
 
-     </div>
-     <!-- <div class='col-4'> -->
-     <form name="test" class=" " action="<?php echo  base_url('ProductsCrud/sverify'); ?>" method="POST">
            <!-- scanned icoin -->
            <input class="d-none" value='true' name="ans">
          <?php if($ans > 0): ?>
-         <button type="submit" class="btn btn-outline-success rounded-pill btn-sm position-relative">
+         <button type="submit" class="btn btn-outline-success rounded-pill btn-sm position-relative ">
                            Scanned
                <span class="position-absolute d-flex justify-content-end top-0 start-100 translate-middle badge rounded-pill bg-danger">
                    <?php echo $ans; ?>
@@ -45,10 +42,12 @@ endif;
                </span>
            <?php endif; ?>
          <!-- //scanned icon -->
-         <input class="d-none" value="<?= $random; ?>" name="random">
+
        </form>
 
-     <!-- </div> -->
+     </div>
+
+     
      
    </div>
     
