@@ -6974,6 +6974,8 @@ public function printbarcodwi($id)
      // verification table
      public function sverify()
      {
+        // echo 'true';
+        // exit;
          
          $db      = \Config\Database::connect();
          $session = \Config\Services::session();
@@ -6982,16 +6984,23 @@ public function printbarcodwi($id)
          if($this->request->getVar('serialno')){
              $data = [
                  'serialno' => $this->request->getVar('serialno'),
-                 'random' => $this->request->getVar('random'),
+                //  'random' => $this->request->getVar('random'),
                  'tbl' => $this->request->getVar('table'),
                  'session' => $sess,
              ];
-             $builder = $db->table('barcodes');
-             $builder->select('serialno');
-             $builder->where('serialno' , $data['serialno']);
-             $da = $builder->get()->getResultArray();
+            //  echo '<pre>';
+            //  print_r($data);
+            //  exit;
+             $builder14 = $db->table('barcodes');
+             $builder14->select('serialno');
+             $builder14->where('serialno' , $data['serialno']);
+             $da = $builder14->get()->getResultArray();
              if(!$da){
-                 $db->table('barcodes')->insert($data);
+                $builder14->insert($data);
+             }
+             else{
+                $builder14->update($data);
+
              }
              return redirect()->to(base_url('ProductsCrud/verify'));
          }
@@ -7059,6 +7068,7 @@ public function printbarcodwi($id)
             // exit;
              $bulders = $db->table('barcodes');
              $bulders->select('*');
+             $bulders->where('session' , $sess);
              $databs = $bulders->get()->getResultArray();
              foreach($databs as $dbs):
              endforeach;
@@ -7074,6 +7084,7 @@ public function printbarcodwi($id)
              if($table == 'Stockin'){
              $bulders = $db->table('barcodes');
              $bulders->select('*');
+             $bulders->where('session' ,$sess);
              $databs = $bulders->get()->getResultArray();
                  foreach($databs as $dsb){
                      $serialno = $dsb['serialno'];
@@ -7098,7 +7109,8 @@ public function printbarcodwi($id)
              if($table == 'stockout'){
                  $bulders = $db->table('barcodes');
                  $bulders->select('*');
-                 $databs = $bulders->get()->getResultArray();
+                 $bulders->where('session' ,$sess);
+             $databs = $bulders->get()->getResultArray();
                      foreach($databs as $dsb){
                          $serialno = $dsb['serialno'];
                          $builder1 = $db->table("stockout");
@@ -7122,7 +7134,8 @@ public function printbarcodwi($id)
                  if($table == 'warrantyin'){
                      $bulders = $db->table('barcodes');
                      $bulders->select('*');
-                     $databs = $bulders->get()->getResultArray();
+             $bulders->where('session' ,$sess);
+             $databs = $bulders->get()->getResultArray();
                          foreach($databs as $dsb){
                              $serialno = $dsb['serialno'];
                              $builder1 = $db->table("warrantyin");
@@ -7146,7 +7159,8 @@ public function printbarcodwi($id)
                  if($table == 'faulty'){
                      $bulders = $db->table('barcodes');
                      $bulders->select('*');
-                     $databs = $bulders->get()->getResultArray();
+             $bulders->where('session' ,$sess);
+             $databs = $bulders->get()->getResultArray();
                          foreach($databs as $dsb){
                              $serialno = $dsb['serialno'];
                              $builder1 = $db->table("faulty");
@@ -7170,7 +7184,8 @@ public function printbarcodwi($id)
                  if($table == 'faultyout'){
                      $bulders = $db->table('barcodes');
                      $bulders->select('*');
-                     $databs = $bulders->get()->getResultArray();
+             $bulders->where('session' ,$sess);
+             $databs = $bulders->get()->getResultArray();
                          foreach($databs as $dsb){
                              $serialno = $dsb['serialno'];
                              $builder1 = $db->table("faultyout");
@@ -7193,7 +7208,8 @@ public function printbarcodwi($id)
                  if($table == 'warrantyout'){
                      $bulders = $db->table('barcodes');
                      $bulders->select('*');
-                     $databs = $bulders->get()->getResultArray();
+             $bulders->where('session' ,$sess);
+             $databs = $bulders->get()->getResultArray();
                          foreach($databs as $dsb){
                              $serialno = $dsb['serialno'];
                              $builder1 = $db->table("warrantyout");
@@ -7216,7 +7232,8 @@ public function printbarcodwi($id)
                  if($table == 'credit'){
                      $bulders = $db->table('barcodes');
                      $bulders->select('*');
-                     $databs = $bulders->get()->getResultArray();
+             $bulders->where('session' ,$sess);
+             $databs = $bulders->get()->getResultArray();
                          foreach($databs as $dsb){
                              $serialno = $dsb['serialno'];
                              $builder1 = $db->table("credit");
@@ -7240,7 +7257,8 @@ public function printbarcodwi($id)
                  if($table == 'debit'){
                      $bulders = $db->table('barcodes');
                      $bulders->select('*');
-                     $databs = $bulders->get()->getResultArray();
+             $bulders->where('session' ,$sess);
+             $databs = $bulders->get()->getResultArray();
                          foreach($databs as $dsb){
                              $serialno = $dsb['serialno'];
                              $builder1 = $db->table("debit");
@@ -7264,7 +7282,8 @@ public function printbarcodwi($id)
           if($table == 'All'){
                 $bulders = $db->table('barcodes');
                  $bulders->select('*');
-                 $databs = $bulders->get()->getResultArray();
+             $bulders->where('session' ,$sess);
+             $databs = $bulders->get()->getResultArray();
                  foreach($databs as $dsb):
                   $serialno = $dsb['serialno'];
              
@@ -9746,6 +9765,13 @@ public function printbarcodwi($id)
             'deliver' => $this->request->getPost('deliver'),
 
         ];
+        $sess = session()->get('user_name');
+        $data2 = [
+            'random' => $this->request->getPost('random'),
+            'deliver' => $this->request->getPost('deliver'),
+            'vendor' => $sess
+
+        ];
 
         $builder = $db->table("customer");
         $builder->select('customer.*');
@@ -9763,17 +9789,17 @@ public function printbarcodwi($id)
           
         if($num < 1 ){
             $db->table('dcustomer')->insert($r);
-            $builder1->update(['deliver' => $data['deliver']]);
+            $builder1->update($data2);
 
         }
         elseif(!$data2){
             $db->table('dcustomer')->update($r);
-            $builder1->update(['deliver' => $data['deliver']]);
+            $builder1->update($data2);
 
                 
         }
 
-        $builder1->update(['random' => $data['random']]);
+        $builder1->update($data2);
         }
         return redirect()->to('ProductsCrud/manual'); 
 
@@ -10284,8 +10310,6 @@ public function printbarcodwi($id)
         $checks = $check->get()->getResultArray();
         if($checks){
 
-           
-
             $db      = \Config\Database::connect();
             $clear = $db->table("tmdelivery");
             $clear->select('tmdelivery.*');
@@ -10340,10 +10364,14 @@ public function printbarcodwi($id)
             $delete1->select('product2.*');
             $delete1->where('product2.ref', $id);
             $delete1->delete();
-    
-    
             return redirect()->to(base_url('/ProductsCrud/manual'));
         }
+
+        $sess = session()->get('user_name');
+        $updatem = [
+            'terms' => $sess,
+            'customer' => ''
+        ];
 
         $db      = \Config\Database::connect();
         $clear = $db->table("tempinsert");
@@ -10385,7 +10413,7 @@ public function printbarcodwi($id)
         $builder113->select('tempinsert.*');
         $builder113->where('tempinsert.random', $id);
         // $data113  = $builder113->get()->getResultArray();
-        $builder113->update(['customer'=> '']);
+        $builder113->update($updatem);
         // echo '<pre>';
         // print_r($data113);
         // exit;
@@ -10417,8 +10445,10 @@ public function printbarcodwi($id)
             $db->table('dcustomer')->insert($c);
             }
             else{
+
             $db->table('dcustomer')->update($c);
             }
+            $builder11->update(['vendor' => $sess]);
         }
 
 
