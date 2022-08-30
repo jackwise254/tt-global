@@ -66,6 +66,7 @@ endif;
                               <?php if($user_data == 'admin'): ?>
                               <a href="<?= base_url('ProductsCrud/deleteRCVDw/'. $l['del']) ?>" class="trigger-btn  mx-2" >[del]</a>
                                 <a href="<?= base_url('ProductsCrud/multipleRCVDw/'. $l['del']) ?>" class="mx-2 ">[edit]</a>
+                              <a href="<?= base_url('Settings/pspsreadsheetw/'.$l['del']) ?>" class="">[spreadsheet]</a> 
                                 <?php elseif($user_data == 'warranty' && $datereceived == date("Y-m-d")):?>
                                 <a href="<?= base_url('ProductsCrud/multipleRCVDw/'. $l['del']) ?>" class="mx-2 d-none">[edit]</a>
                               <?php endif; ?>

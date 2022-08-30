@@ -26,7 +26,7 @@ endif;
            <option value='warranty'>Warranty in</option>
            <option value='warrantyout'>Warranty Out</option>
            <option value='credit'>Credit</option>
-           <optionm value='debit'>Debit</option>
+           <option value='debit'>Debit</option>
          </select>
            <button type ="submit" class="d-none" id="myBtn" >Submit</button>
            <input class="d-none" value="<?= $random; ?>" name="random">
@@ -55,7 +55,7 @@ endif;
        <form>
          <div class=" float-end">
            
-             <?php if(!$count_verify): ?>
+             <?php if(!$count_verif): ?>
                  <!-- filter design -->
              <div class="container">
                  <div class="row searchFilter" >
@@ -82,7 +82,7 @@ endif;
                          <optionm value='debit'>Debit</option>
                        </select>
                          <button type ="submit" class="btn btn-sm btn-outline-success rounded-pill bi bi-search px-3" ></button>
-                         <?php elseif($count_verify && $user_data == 'admin' ): ?>
+                         <?php elseif($count_verif && $user_data == 'admin' ): ?>
                            <input type="text" class="col-3 me-2 rounded-pill"  name="replace" placeholder="Replace." autofocus>
                            <select class="col-3 p-1 rounded-pill" id="sort-item" name='column' type="text" placeholder="." required>
                              <option value='Conditions'>Conditions</option>
@@ -95,21 +95,21 @@ endif;
                              <option value='Ram'>Ram</option>
                              <option value='Odd'>Odd</option>
                              <option value='Type'>Type</option>
-                             <optionm value='Problem'>Problem</option>
-                             <optionm value='Part'>Part</option>
-                             <optionm value='Modelid'>Modelid</option>
-                             <optionm value='Screen'>Screen</option>
-                             <optionm value='Comment'>Comment</option>
-                             <optionm value='Customer'>Customer</option>
-                             <optionm value='Vendor'>Vendor</option>
+                             <option value='Problem'>Problem</option>
+                             <option value='Part'>Part</option>
+                             <option value='Modelid'>Modelid</option>
+                             <option value='Screen'>Screen</option>
+                             <option value='Comment'>Comment</option>
+                             <option value='Customer'>Customer</option>
+                             <option value='Vendor'>Vendor</option>
                            </select>
                            <button type ="submit" class="btn btn-sm btn-outline-primary rounded-pill"  >Replace</button>
                            <?php endif; ?>
                            <button type="button" class="btn btn-outline-secondary rounded-pill btn-sm position-relative">
                            items
-                           <?php if($count_verify): ?>
+                           <?php if($count_verif): ?>
                            <span class="position-absolute d-flex justify-content-end top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                               <?php echo $count_verify; ?>
+                               <?php echo $count_verif; ?>
                                <span class="visually-hidden">Items</span>
                            </span>
                                  <?php endif; ?>
@@ -145,11 +145,11 @@ endif;
 
 <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
 <script>
- $('#serialno').keyup(function(){
-     if(this.value.length >= 6){
-     $('#myBtn').click();
-     }
- });
+//  $('#serialno').keyup(function(){
+//      if(this.value.length >= 6){
+//      $('#myBtn').click();
+//      }
+//  });
  window.onload = function() {
     var selItem = sessionStorage.getItem("SelItem");  
     $('#sort-item').val(selItem);

@@ -2055,7 +2055,7 @@ class Settings extends BaseController
     
     public function importCsvToM()
     {
-      // try {
+      try {
         $del =rand(100000, 999999);
 
         $db      = \Config\Database::connect();
@@ -2073,14 +2073,32 @@ class Settings extends BaseController
                 $index = 0;
 
                 foreach ($csv_data as $filedata) {
-
+                  $qty = $index + 1;
                     if ($index > 0) {
                       if($filedata[3]){
                         $assetid1 =  $filedata[3];
                       }
                       else{
-                      $rand = rand(100000, 999999);
-                      $assetid1 = 'ST'.$rand; 
+                        $builder1 = $db->table('masterlist');
+                        $builder1->selectMax('id');
+                        $data1 = $builder1->get()->getResultArray();
+                        foreach($data1 as $d1):
+                        endforeach;
+                            if($d1['id']){
+                                $assid = 'ST'.$d1['id'] + 1;
+                                for ($i=0; $i <$qty; $i++) { 
+                                    $assid ++ ; 
+                                    $assetid1 = $assid;
+                                }
+                            }
+                            else{
+                                for ($i=0; $i <$qty; $i++) { 
+                                    $assetid1 = 'ST'.rand(1000000, 9999999);
+                                  }
+                                }
+
+                      // $rand = rand(100000, 999999);
+                      // $assetid1 = 'ST'.$rand; 
                       }
 
                         $stock[] = array(
@@ -2109,11 +2127,6 @@ class Settings extends BaseController
                     }
                     $index++;
                 }
-
-                // echo '<pre>';
-                // print_r($stock);
-                // exit;
-
                     
         $num = 0;
 
@@ -2146,7 +2159,6 @@ class Settings extends BaseController
         }
         if($num1 > 0){
           return redirect()->to(base_url('ProductsCrud/load'))->with('status', $num1.' '.'Items already exist in faulty stock including:'.' '.$d1['assetid']. '...');
-
       }
       $num3 = 0;
       foreach($stock as $s){
@@ -2166,22 +2178,19 @@ class Settings extends BaseController
           $builder1 = $db->table('templist');
           $builder1->insertBatch($stock);
           $session = session();
-
           $nums = $index-1;
-
           $build = $db->table('templist');
           $build->select('*');
           $build->where('del', $del);
           $build->update(['total' => $nums]);
 
-        // return redirect()->to(base_url('ProductsCrud/load'))->with('status', $nums.' '. ' Item(s) inserted successfully');
             }
             return redirect()->to(base_url('ProductsCrud/load'))->with('status', $nums.' '. ' Item(s) inserted successfully');
 
         }
-      // } catch (\Exception $e) {
-      //   return redirect()->back()->with('status', 'Kindly check your csv format');
-      // }
+      } catch (\Exception $e) {
+        return redirect()->back()->with('status', 'Kindly check your csv format');
+      }
         return redirect()->to(base_url('ProductsCrud/load'));
 
     }
@@ -5019,6 +5028,217 @@ public function ulcdw()
     return redirect()->to(base_url($filename));
 
   }
+
+  public function pspsreadsheet($del)
+  {
+    $db      = \Config\Database::connect();
+    $builder = $db->table('masterlist');   
+    $builder->where('del', $del );
+    $builder->select('*');
+    $users = $builder->get()->getResult();
+    $idd = rand(1000, 9999);
+    $fileName = 'batch'.$del. '.xlsx';
+
+    $spreadsheet = new Spreadsheet();
+    $sheet = $spreadsheet->getActiveSheet();
+    $sheet->setCellValue('A1', 'No.');
+    $sheet->setCellValue('B1', 'CONDTIONS');
+    $sheet->setCellValue('C1', 'Type');
+    $sheet->setCellValue('D1', 'ASSETID');
+    $sheet->setCellValue('E1', 'GEN');
+    $sheet->setCellValue('F1', 'BRAND');
+    $sheet->setCellValue('G1', 'SERIANO');
+    $sheet->setCellValue('H1', 'PART');
+    $sheet->setCellValue('I1', 'MODELID');
+    $sheet->setCellValue('J1', 'MODEL');
+    $sheet->setCellValue('K1', 'CPU');
+    $sheet->setCellValue('L1', 'SPEED');
+    $sheet->setCellValue('M1', 'RAM'); 
+    $sheet->setCellValue('N1', 'HDD');
+    $sheet->setCellValue('O1', 'ODD');
+    $sheet->setCellValue('P1', 'SCREEN');
+    $sheet->setCellValue('Q1', 'COMMENT');
+    $sheet->setCellValue('R1', 'PRICE'); 
+    $sheet->setCellValue('S1', 'CUSTOMER'); 
+    $sheet->setCellValue('T1', 'LIST');      
+    $sheet->setCellValue('U1', 'STATUS');      
+    $sheet->setCellValue('V1', 'DATERECIEVERD');
+    $sheet->setCellValue('W1', 'DATEDELIVERED');
+    $rows = 2;
+    $index = 0;
+    foreach ($users as $val){
+      $index ++;
+      $sheet->setCellValue('A' . $rows, $index);
+      $sheet->setCellValue('B' . $rows, $val->conditions);
+      $sheet->setCellValue('C' . $rows, $val->type);
+      $sheet->setCellValue('D' . $rows, $val->assetid);
+      $sheet->setCellValue('E' . $rows, $val->gen);
+      $sheet->setCellValue('F' . $rows, $val->brand);
+      $sheet->setCellValue('G' . $rows, $val->serialno);
+      $sheet->setCellValue('H' . $rows, $val->part);
+      $sheet->setCellValue('I' . $rows, $val->modelid);
+      $sheet->setCellValue('J' . $rows, $val->model);
+      $sheet->setCellValue('K' . $rows, $val->cpu);
+      $sheet->setCellValue('L' . $rows, $val->speed);
+      $sheet->setCellValue('M' . $rows, $val->ram);
+      $sheet->setCellValue('N' . $rows, $val->hdd);
+      $sheet->setCellValue('O' . $rows, $val->odd);
+      $sheet->setCellValue('P' . $rows, $val->screen);
+      $sheet->setCellValue('Q' . $rows, $val->comment);
+      $sheet->setCellValue('R' . $rows, $val->price);
+      $sheet->setCellValue('S' . $rows, $val->customer);
+      $sheet->setCellValue('T' . $rows, $val->list);
+      $sheet->setCellValue('U' . $rows, $val->status);
+      $sheet->setCellValue('V' . $rows, $val->daterecieved);
+      $sheet->setCellValue('W' . $rows, $val->datedelivered);
+      $rows++;
+    } 
+    $writer = new Xlsx($spreadsheet);
+    $writer->save("upload/".$fileName);
+    $filename = "upload/".'batch'.$del.".xlsx";
+    return redirect()->to(base_url($filename));
+  }
+
+
+  public function pspsreadsheetf($del)
+  {
+    $db      = \Config\Database::connect();
+    $builder = $db->table('faulty');   
+    $builder->where('del', $del );
+    $builder->select('*');
+    $users = $builder->get()->getResult();
+    $idd = rand(1000, 9999);
+    $fileName = 'batch'.$del. '.xlsx';
+    $spreadsheet = new Spreadsheet();
+    $sheet = $spreadsheet->getActiveSheet();
+    $sheet->setCellValue('A1', 'No.');
+    $sheet->setCellValue('B1', 'CONDTIONS');
+    $sheet->setCellValue('C1', 'Type');
+    $sheet->setCellValue('D1', 'ASSETID');
+    $sheet->setCellValue('E1', 'GEN');
+    $sheet->setCellValue('F1', 'BRAND');
+    $sheet->setCellValue('G1', 'SERIANO');
+    $sheet->setCellValue('H1', 'PART');
+    $sheet->setCellValue('I1', 'MODELID');
+    $sheet->setCellValue('J1', 'MODEL');
+    $sheet->setCellValue('K1', 'CPU');
+    $sheet->setCellValue('L1', 'SPEED');
+    $sheet->setCellValue('M1', 'RAM'); 
+    $sheet->setCellValue('N1', 'HDD');
+    $sheet->setCellValue('O1', 'ODD');
+    $sheet->setCellValue('P1', 'SCREEN');
+    $sheet->setCellValue('Q1', 'COMMENT');
+    $sheet->setCellValue('R1', 'PRICE'); 
+    $sheet->setCellValue('S1', 'CUSTOMER'); 
+    $sheet->setCellValue('T1', 'LIST');      
+    $sheet->setCellValue('U1', 'STATUS');      
+    $sheet->setCellValue('V1', 'DATERECIEVERD');
+    $sheet->setCellValue('W1', 'DATEDELIVERED');
+    $rows = 2;
+    $index = 0;
+    foreach ($users as $val){
+      $index ++;
+      $sheet->setCellValue('A' . $rows, $index);
+      $sheet->setCellValue('B' . $rows, $val->conditions);
+      $sheet->setCellValue('C' . $rows, $val->type);
+      $sheet->setCellValue('D' . $rows, $val->assetid);
+      $sheet->setCellValue('E' . $rows, $val->gen);
+      $sheet->setCellValue('F' . $rows, $val->brand);
+      $sheet->setCellValue('G' . $rows, $val->serialno);
+      $sheet->setCellValue('H' . $rows, $val->part);
+      $sheet->setCellValue('I' . $rows, $val->modelid);
+      $sheet->setCellValue('J' . $rows, $val->model);
+      $sheet->setCellValue('K' . $rows, $val->cpu);
+      $sheet->setCellValue('L' . $rows, $val->speed);
+      $sheet->setCellValue('M' . $rows, $val->ram);
+      $sheet->setCellValue('N' . $rows, $val->hdd);
+      $sheet->setCellValue('O' . $rows, $val->odd);
+      $sheet->setCellValue('P' . $rows, $val->screen);
+      $sheet->setCellValue('Q' . $rows, $val->comment);
+      $sheet->setCellValue('R' . $rows, $val->price);
+      $sheet->setCellValue('S' . $rows, $val->customer);
+      $sheet->setCellValue('T' . $rows, $val->list);
+      $sheet->setCellValue('U' . $rows, $val->status);
+      $sheet->setCellValue('V' . $rows, $val->daterecieved);
+      $sheet->setCellValue('W' . $rows, $val->datedelivered);
+      $rows++;
+    } 
+    $writer = new Xlsx($spreadsheet);
+    $writer->save("upload/".$fileName);
+    $filename = "upload/".'batch'.$del.".xlsx";
+    return redirect()->to(base_url($filename));
+  }
+
+
+  public function pspsreadsheetw($del)
+  {
+    $db      = \Config\Database::connect();
+    $builder = $db->table('warrantyin');   
+    $builder->where('del', $del );
+    $builder->select('*');
+    $users = $builder->get()->getResult();
+    $idd = rand(1000, 9999);
+    $fileName = 'batch'.$del. '.xlsx';
+    $spreadsheet = new Spreadsheet();
+    $sheet = $spreadsheet->getActiveSheet();
+    $sheet->setCellValue('A1', 'No.');
+    $sheet->setCellValue('B1', 'CONDTIONS');
+    $sheet->setCellValue('C1', 'Type');
+    $sheet->setCellValue('D1', 'ASSETID');
+    $sheet->setCellValue('E1', 'GEN');
+    $sheet->setCellValue('F1', 'BRAND');
+    $sheet->setCellValue('G1', 'SERIANO');
+    $sheet->setCellValue('H1', 'PART');
+    $sheet->setCellValue('I1', 'MODELID');
+    $sheet->setCellValue('J1', 'MODEL');
+    $sheet->setCellValue('K1', 'CPU');
+    $sheet->setCellValue('L1', 'SPEED');
+    $sheet->setCellValue('M1', 'RAM'); 
+    $sheet->setCellValue('N1', 'HDD');
+    $sheet->setCellValue('O1', 'ODD');
+    $sheet->setCellValue('P1', 'SCREEN');
+    $sheet->setCellValue('Q1', 'COMMENT');
+    $sheet->setCellValue('R1', 'PRICE'); 
+    $sheet->setCellValue('S1', 'CUSTOMER'); 
+    $sheet->setCellValue('T1', 'LIST');      
+    $sheet->setCellValue('U1', 'STATUS');      
+    $sheet->setCellValue('V1', 'DATERECIEVERD');
+    $sheet->setCellValue('W1', 'DATEDELIVERED');
+    $rows = 2;
+    $index = 0;
+    foreach ($users as $val){
+      $index ++;
+      $sheet->setCellValue('A' . $rows, $index);
+      $sheet->setCellValue('B' . $rows, $val->conditions);
+      $sheet->setCellValue('C' . $rows, $val->type);
+      $sheet->setCellValue('D' . $rows, $val->assetid);
+      $sheet->setCellValue('E' . $rows, $val->gen);
+      $sheet->setCellValue('F' . $rows, $val->brand);
+      $sheet->setCellValue('G' . $rows, $val->serialno);
+      $sheet->setCellValue('H' . $rows, $val->part);
+      $sheet->setCellValue('I' . $rows, $val->modelid);
+      $sheet->setCellValue('J' . $rows, $val->model);
+      $sheet->setCellValue('K' . $rows, $val->cpu);
+      $sheet->setCellValue('L' . $rows, $val->speed);
+      $sheet->setCellValue('M' . $rows, $val->ram);
+      $sheet->setCellValue('N' . $rows, $val->hdd);
+      $sheet->setCellValue('O' . $rows, $val->odd);
+      $sheet->setCellValue('P' . $rows, $val->screen);
+      $sheet->setCellValue('Q' . $rows, $val->comment);
+      $sheet->setCellValue('R' . $rows, $val->price);
+      $sheet->setCellValue('S' . $rows, $val->customer);
+      $sheet->setCellValue('T' . $rows, $val->list);
+      $sheet->setCellValue('U' . $rows, $val->status);
+      $sheet->setCellValue('V' . $rows, $val->daterecieved);
+      $sheet->setCellValue('W' . $rows, $val->datedelivered);
+      $rows++;
+    } 
+    $writer = new Xlsx($spreadsheet);
+    $writer->save("upload/".$fileName);
+    $filename = "upload/".'batch'.$del.".xlsx";
+    return redirect()->to(base_url($filename));
+  }
+  
 }
 
 
