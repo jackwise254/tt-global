@@ -65,7 +65,9 @@ endif;
                               <a href="<?= base_url('ProductsCrud/deleteRCVDf/'. $l['del']) ?>" class="mx-2">[del]</a>
                               <a href="<?= base_url('ProductsCrud/multipleRCVDf/'. $l['del']) ?>" class="mx-2 d-none">[edit]</a>
                               <a href="<?= base_url('ProductsCrud/printbarcodepfi/'.$l['del']) ?>" class="mx-2">[barcode]</a> 
-                              <a href="<?= base_url('ProductsCrud/printbarcode2pfi/'.$l['del']) ?>" class="">[barcode2]</a> 
+                              <a href="<?= base_url('ProductsCrud/printbarcode2pfi/'.$l['del']) ?>" class="mx-2">[barcode2]</a> 
+                              <a href="<?= base_url('Settings/pspsreadsheetf/'.$l['del']) ?>" class="">[spreadsheet]</a> 
+
 
                             </div>
                             </td>

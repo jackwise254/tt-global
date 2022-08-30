@@ -1142,7 +1142,7 @@ class Vendor extends Controller
 
       $db      = \Config\Database::connect();
       $builder1 = $db->table('customer');
-      $builder1->select('customer.*')->orderBy('username');
+      $builder1->select('customer.*');
       $data['customer'] = $builder1->get()->getResult();
       $data['user_data'] = $session->get('designation');
 
