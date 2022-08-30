@@ -42,9 +42,9 @@ endif;
             <input type="text" class="col-6 rounded-pill " id="serialno" name="serialno" placeholder='scan here' autofocus required>
             <button type="button" class="btn btn-outline-secondary rounded-pill btn-sm position-relative">
                 items
-                <?php if($count_produ): ?>
+                <?php if($num): ?>
                 <span class="position-absolute d-flex justify-content-end top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    <?php echo $count_produ; ?>
+                    <?php echo $num; ?>
                     <span class="visually-hidden">Items</span>
                 </span>
               <?php endif; ?>

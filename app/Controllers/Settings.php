@@ -431,15 +431,14 @@ class Settings extends BaseController
 
         public function spreadsheetv()
         {
+          $sess = session()->get('user_name');
             $db      = \Config\Database::connect();
             $builder = $db->table('verify');   
             $builder->select('verify.*');
-            
-          $users = $builder->get()->getResult();
-       
-          //   $users = $query->getResult();
-          $idd = rand(1000, 9999);
-          $fileName = 'verification'. '.xlsx';
+            $builder->where('terms', $sess);
+            $users = $builder->get()->getResult();
+            $idd = rand(1000, 9999);
+            $fileName = 'verification'. '.xlsx';
       
           $spreadsheet = new Spreadsheet();
           $sheet = $spreadsheet->getActiveSheet();
