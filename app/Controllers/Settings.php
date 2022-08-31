@@ -1840,7 +1840,13 @@ class Settings extends BaseController
     public function deliveryimport()
     {
       try {
-        $del =rand(100000, 999999);
+        $db      = \Config\Database::connect();
+        $builder111 = $db->table('stockout');
+        $builder111->selectMax('id');
+        $dels = $builder111->get()->getResultArray();
+        foreach($dels as $dls):
+          $del = $dls['id'] + 1;
+        endforeach;
         $update = ['random' => $del,
         'terms' => session()->get('user_name'),
       ];
@@ -1863,11 +1869,14 @@ class Settings extends BaseController
                 }
 
                 foreach($stock as $s){
+                  
                   $builder1 = $db->table('masterlist');
                   $builder1->select('*');
                   $builder1->where('assetid', $s['assetid']);
                   $datas = $builder1->get()->getResultArray();
                   foreach($datas as $d){
+                    // echo '<pre>';
+                    // print_r($s);
                     $builder11 = $db->table('tempinsert');
                     $builder11->select('*');
                     $builder11->where('assetid', $d['assetid']);
@@ -1875,10 +1884,14 @@ class Settings extends BaseController
                     if(!$data2){
                       $db->table('tempinsert')->insert($d);
                     }
+                    else{
+
+                      return redirect()->back()->with('status', 'items already exist');
+                    }
                   }
                   $builder111 = $db->table('tempinsert');
                   $builder111->select('*');
-                  $builder111->where('assetid', $d['assetid']);
+                  $builder111->where('assetid', $s['assetid']);
                   $builder111->update($update);
                 }
                 $total = $index-1;

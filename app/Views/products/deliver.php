@@ -10,7 +10,7 @@ endif;
 ?>
 <?php include('inc/db_connect.php'); ?>
 
-<?php  $random = rand(10000, 99999); ?>
+<?php  $random = rand(1000000000, 9999999999); ?>
 
 <br/>
 <br/>
@@ -48,7 +48,6 @@ endif;
               <?php endif; ?>
              </button>
             <a href="<?php echo  base_url('ProductsCrud/delvclear'); ?>" class=" btn btn-outline-danger px-2 rounded-pill bi bi-trash-fill btn-sm">Clear</a>
-            
             <button type ="submit" class="d-none" id="myBtn" onchange="this.form.submit()"></button>
             </form>
         </div>
@@ -65,12 +64,23 @@ endif;
       }
   });
 </script> 
-<?php
-    if(session()->getFlashdata('status')) {
-        echo "<h4 class=' alert alert-success d-flex align-items-center bi flex-shrink-0 me-2' width='24' height='24' role='alert' style='font-family:'Airal', Arial, Arial; font-size:60%'>" . session()->getFlashdata('status') . "</h4>"; 
-    }
-?>  
 
+<?php
+                if(session()->getFlashdata('status')): ?>
+                    <div id="alert" class="alert alert-success">
+                        <?php
+                            $status = session()->getFlashdata('status');
+                            $username = session()->get('user_name');
+                            echo $status.' '.$username.'!';
+                        ?>
+                    </div>
+
+            <?php endif; ?>
+            <script type="text/javascript">
+        setTimeout(function () {
+            $('#alert').alert('close');
+        }, 5000);
+</script>
 <hr/>
 
 <form method="post" id="invoice_create" name="invoice_create" action="<?php echo base_url('ProductsCrud/delvout'); ?>">
@@ -346,6 +356,9 @@ endif;
         });
     
     </script>
+
+
+           
   
     
 

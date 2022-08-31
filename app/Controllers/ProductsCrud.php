@@ -8417,8 +8417,6 @@ public function printbarcodwi($id)
             $db->table('product')->insert($c);
         }
 
-        
-
 
         $builder10 = $db->table('tempinsert');
         $builder10->select('tempinsert.*, dcustomer.*, sum(tempinsert.qty) as tqty ');
