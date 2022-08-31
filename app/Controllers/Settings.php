@@ -1837,46 +1837,59 @@ class Settings extends BaseController
 
     }
 
-    public function importusers()
+    public function deliveryimport()
     {
       try {
         $del =rand(100000, 999999);
-
+        $update = ['random' => $del,
+        'terms' => session()->get('user_name'),
+      ];
+        $sess = session()->get('user_name');
         $db      = \Config\Database::connect();
         if ($this->request->getMethod() == "post") {
-
             $file = $this->request->getFile("file");
-
             $file_name = $file->getTempName();
-
             $stock = array();
             $csv_data = array_map('str_getcsv', file($file_name));
-
             if (count($csv_data) > 0) {
-
                 $index = 0;
-
                 foreach ($csv_data as $filedata) {
-
                     if ($index > 0) {
-
                         $stock[] = array(
-                          'username' => $filedata[0],
-                          'phone' => $filedata[1],
-                          'fname' => $filedata[2],
-                          'id_no' => $filedata[3],
+                          'assetid' => $filedata[0],
                         );
                     }
                     $index++;
                 }
 
-                  $db      = \Config\Database::connect();
-                  $builder = $db->table('customer');
-                  $builder->insertBatch($stock);
-                  $session = session();
-                   $session->setFlashdata("success", "Data saved successfully");
+                foreach($stock as $s){
+                  $builder1 = $db->table('masterlist');
+                  $builder1->select('*');
+                  $builder1->where('assetid', $s['assetid']);
+                  $datas = $builder1->get()->getResultArray();
+                  foreach($datas as $d){
+                    $builder11 = $db->table('tempinsert');
+                    $builder11->select('*');
+                    $builder11->where('assetid', $d['assetid']);
+                    $data2 = $builder11->get()->getResultArray();
+                    if(!$data2){
+                      $db->table('tempinsert')->insert($d);
+                    }
+                  }
+                  $builder111 = $db->table('tempinsert');
+                  $builder111->select('*');
+                  $builder111->where('assetid', $d['assetid']);
+                  $builder111->update($update);
+                }
+                $total = $index-1;
+                // exit;
+                //   $db      = \Config\Database::connect();
+                //   $builder = $db->table('tempinsert');
+                //   $builder->insertBatch($stock);
+                //   $session = session();
+                //   $session->setFlashdata("success", "Data saved successfully");
 
-                return redirect()->to(base_url('Warranty/wload'));
+                return redirect()->to(base_url('ProductsCrud/delv'))->with('status', $total. ' items added' );
             }
 
         }
@@ -5237,7 +5250,579 @@ public function ulcdw()
     $filename = "upload/".'batch'.$del.".xlsx";
     return redirect()->to(base_url($filename));
   }
+
+  public function stockouts()
+  {
+    $db      = \Config\Database::connect();
+    $builder = $db->table('stockout');   
+    $builder->select('*, sum(qty) as tqty')->groupBy(['type','odd','comment', 'conditions','gen','model','cpu','speed', 'ram', 'hdd']);
+    $users = $builder->get()->getResult();
+    $idd = rand(1000, 9999);
+    $fileName = 'summary'.$idd. '.xlsx';
+    $spreadsheet = new Spreadsheet();
+    $sheet = $spreadsheet->getActiveSheet();
+    $sheet->setCellValue('A1', 'No.');
+    $sheet->setCellValue('B1', 'CONDTIONS');
+    $sheet->setCellValue('C1', 'Type');
+    $sheet->setCellValue('D1', 'BATCH');
+    $sheet->setCellValue('E1', 'GEN');
+    $sheet->setCellValue('F1', 'BRAND');
+    $sheet->setCellValue('G1', 'SERIANO');
+    $sheet->setCellValue('H1', 'PART');
+    $sheet->setCellValue('I1', 'MODELID');
+    $sheet->setCellValue('J1', 'MODEL');
+    $sheet->setCellValue('K1', 'CPU');
+    $sheet->setCellValue('L1', 'SPEED');
+    $sheet->setCellValue('M1', 'RAM'); 
+    $sheet->setCellValue('N1', 'HDD');
+    $sheet->setCellValue('O1', 'ODD');
+    $sheet->setCellValue('P1', 'SCREEN');
+    $sheet->setCellValue('Q1', 'COMMENT');
+    $sheet->setCellValue('R1', 'PRICE'); 
+    $sheet->setCellValue('S1', 'LIST');      
+    $sheet->setCellValue('T1', 'STATUS');      
+    $sheet->setCellValue('U1', 'CUSTOMER');      
+    $sheet->setCellValue('V1', 'DATERECIEVERD');
+    $sheet->setCellValue('W1', 'DATEDELIVERED');
+    $sheet->setCellValue('X1', 'QUANTITY');
+    $rows = 2;
+    $index = 0;
+    foreach ($users as $val){
+      $index ++;
+      $sheet->setCellValue('A' . $rows, $index);
+      $sheet->setCellValue('B' . $rows, $val->conditions);
+      $sheet->setCellValue('C' . $rows, $val->type);
+      $sheet->setCellValue('D' . $rows, $val->del);
+      $sheet->setCellValue('E' . $rows, $val->gen);
+      $sheet->setCellValue('F' . $rows, $val->brand);
+      $sheet->setCellValue('G' . $rows, $val->serialno);
+      $sheet->setCellValue('H' . $rows, $val->part);
+      $sheet->setCellValue('I' . $rows, $val->modelid);
+      $sheet->setCellValue('J' . $rows, $val->model);
+      $sheet->setCellValue('K' . $rows, $val->cpu);
+      $sheet->setCellValue('L' . $rows, $val->speed);
+      $sheet->setCellValue('M' . $rows, $val->ram);
+      $sheet->setCellValue('N' . $rows, $val->hdd);
+      $sheet->setCellValue('O' . $rows, $val->odd);
+      $sheet->setCellValue('P' . $rows, $val->screen);
+      $sheet->setCellValue('Q' . $rows, $val->comment);
+      $sheet->setCellValue('R' . $rows, $val->price);
+      $sheet->setCellValue('S' . $rows, $val->list);
+      $sheet->setCellValue('T' . $rows, $val->status);
+      $sheet->setCellValue('U' . $rows, $val->customer);
+      $sheet->setCellValue('V' . $rows, $val->daterecieved);
+      $sheet->setCellValue('W' . $rows, $val->datedelivered);
+      $sheet->setCellValue('X' . $rows, $val->tqty);
+      $rows++;
+    } 
+    $writer = new Xlsx($spreadsheet);
+    $writer->save("upload/".$fileName);
+    $filename = "upload/".'summary'.$idd.".xlsx";
+    return redirect()->to(base_url($filename));
+  }
+
+  public function masterlistsum()
+  {
+    $db      = \Config\Database::connect();
+    $builder = $db->table('masterlist');   
+    $builder->select('*, sum(qty) as tqty')->groupBy(['type','odd','comment', 'conditions','gen','model','cpu','speed', 'ram', 'hdd']);
+    $users = $builder->get()->getResult();
+    $idd = rand(1000, 9999);
+    $fileName = 'summary'.$idd. '.xlsx';
+    $spreadsheet = new Spreadsheet();
+    $sheet = $spreadsheet->getActiveSheet();
+    $sheet->setCellValue('A1', 'No.');
+    $sheet->setCellValue('B1', 'CONDTIONS');
+    $sheet->setCellValue('C1', 'Type');
+    $sheet->setCellValue('D1', 'BATCH');
+    $sheet->setCellValue('E1', 'GEN');
+    $sheet->setCellValue('F1', 'BRAND');
+    $sheet->setCellValue('G1', 'SERIANO');
+    $sheet->setCellValue('H1', 'PART');
+    $sheet->setCellValue('I1', 'MODELID');
+    $sheet->setCellValue('J1', 'MODEL');
+    $sheet->setCellValue('K1', 'CPU');
+    $sheet->setCellValue('L1', 'SPEED');
+    $sheet->setCellValue('M1', 'RAM'); 
+    $sheet->setCellValue('N1', 'HDD');
+    $sheet->setCellValue('O1', 'ODD');
+    $sheet->setCellValue('P1', 'SCREEN');
+    $sheet->setCellValue('Q1', 'COMMENT');
+    $sheet->setCellValue('R1', 'PRICE'); 
+    $sheet->setCellValue('S1', 'LIST');      
+    $sheet->setCellValue('T1', 'STATUS');      
+    $sheet->setCellValue('U1', 'DATERECIEVERD');
+    $sheet->setCellValue('V1', 'QUANTITY');
+    $rows = 2;
+    $index = 0;
+    foreach ($users as $val){
+      $index ++;
+      $sheet->setCellValue('A' . $rows, $index);
+      $sheet->setCellValue('B' . $rows, $val->conditions);
+      $sheet->setCellValue('C' . $rows, $val->type);
+      $sheet->setCellValue('D' . $rows, $val->del);
+      $sheet->setCellValue('E' . $rows, $val->gen);
+      $sheet->setCellValue('F' . $rows, $val->brand);
+      $sheet->setCellValue('G' . $rows, $val->serialno);
+      $sheet->setCellValue('H' . $rows, $val->part);
+      $sheet->setCellValue('I' . $rows, $val->modelid);
+      $sheet->setCellValue('J' . $rows, $val->model);
+      $sheet->setCellValue('K' . $rows, $val->cpu);
+      $sheet->setCellValue('L' . $rows, $val->speed);
+      $sheet->setCellValue('M' . $rows, $val->ram);
+      $sheet->setCellValue('N' . $rows, $val->hdd);
+      $sheet->setCellValue('O' . $rows, $val->odd);
+      $sheet->setCellValue('P' . $rows, $val->screen);
+      $sheet->setCellValue('Q' . $rows, $val->comment);
+      $sheet->setCellValue('R' . $rows, $val->price);
+      $sheet->setCellValue('S' . $rows, $val->list);
+      $sheet->setCellValue('T' . $rows, $val->status);
+      $sheet->setCellValue('U' . $rows, $val->daterecieved);
+      $sheet->setCellValue('V' . $rows, $val->tqty);
+      $rows++;
+    } 
+    $writer = new Xlsx($spreadsheet);
+    $writer->save("upload/".$fileName);
+    $filename = "upload/".'summary'.$idd.".xlsx";
+    return redirect()->to(base_url($filename));
+  }
+
+  public function masterlistsums($title)
+  {
+    $delimiter = ' ';
+    $words = explode($delimiter, $title);
+    $condition = $words[0];
+    $type = $words[1];
+
+    $db      = \Config\Database::connect();
+    $builder = $db->table('masterlist');   
+    $builder->select('*, sum(qty) as tqty')->groupBy(['type','odd','comment', 'conditions','gen','model','cpu','speed', 'ram', 'hdd']);
+    $builder->where('conditions', $condition);
+    $builder->where('type', $type);
+    $users = $builder->get()->getResult();
+    $idd = rand(1000, 9999);
+    $fileName = $title.$idd. '.xlsx';
+    $spreadsheet = new Spreadsheet();
+    $sheet = $spreadsheet->getActiveSheet();
+    $sheet->setCellValue('A1', 'No.');
+    $sheet->setCellValue('B1', 'CONDTIONS');
+    $sheet->setCellValue('C1', 'Type');
+    $sheet->setCellValue('D1', 'BATCH');
+    $sheet->setCellValue('E1', 'GEN');
+    $sheet->setCellValue('F1', 'BRAND');
+    $sheet->setCellValue('G1', 'SERIANO');
+    $sheet->setCellValue('H1', 'PART');
+    $sheet->setCellValue('I1', 'MODELID');
+    $sheet->setCellValue('J1', 'MODEL');
+    $sheet->setCellValue('K1', 'CPU');
+    $sheet->setCellValue('L1', 'SPEED');
+    $sheet->setCellValue('M1', 'RAM'); 
+    $sheet->setCellValue('N1', 'HDD');
+    $sheet->setCellValue('O1', 'ODD');
+    $sheet->setCellValue('P1', 'SCREEN');
+    $sheet->setCellValue('Q1', 'COMMENT');
+    $sheet->setCellValue('R1', 'PRICE'); 
+    $sheet->setCellValue('S1', 'LIST');      
+    $sheet->setCellValue('T1', 'STATUS');      
+    $sheet->setCellValue('U1', 'DATERECIEVERD');
+    $sheet->setCellValue('V1', 'QUANTITY');
+    $rows = 2;
+    $index = 0;
+    foreach ($users as $val){
+      $index ++;
+      $sheet->setCellValue('A' . $rows, $index);
+      $sheet->setCellValue('B' . $rows, $val->conditions);
+      $sheet->setCellValue('C' . $rows, $val->type);
+      $sheet->setCellValue('D' . $rows, $val->del);
+      $sheet->setCellValue('E' . $rows, $val->gen);
+      $sheet->setCellValue('F' . $rows, $val->brand);
+      $sheet->setCellValue('G' . $rows, $val->serialno);
+      $sheet->setCellValue('H' . $rows, $val->part);
+      $sheet->setCellValue('I' . $rows, $val->modelid);
+      $sheet->setCellValue('J' . $rows, $val->model);
+      $sheet->setCellValue('K' . $rows, $val->cpu);
+      $sheet->setCellValue('L' . $rows, $val->speed);
+      $sheet->setCellValue('M' . $rows, $val->ram);
+      $sheet->setCellValue('N' . $rows, $val->hdd);
+      $sheet->setCellValue('O' . $rows, $val->odd);
+      $sheet->setCellValue('P' . $rows, $val->screen);
+      $sheet->setCellValue('Q' . $rows, $val->comment);
+      $sheet->setCellValue('R' . $rows, $val->price);
+      $sheet->setCellValue('S' . $rows, $val->list);
+      $sheet->setCellValue('T' . $rows, $val->status);
+      $sheet->setCellValue('U' . $rows, $val->daterecieved);
+      $sheet->setCellValue('V' . $rows, $val->tqty);
+      $rows++;
+    } 
+    $writer = new Xlsx($spreadsheet);
+    $writer->save("upload/".$fileName);
+    $filename = "upload/".$title.$idd.".xlsx";
+    return redirect()->to(base_url($filename));
+  }
+
+  public function faultysum($title)
+  {
+    $delimiter = ' ';
+    $words = explode($delimiter, $title);
+    $condition = $words[0];
+    $type = $words[1];
+
+    $db      = \Config\Database::connect();
+    $builder = $db->table('faulty');   
+    $builder->select('*, sum(qty) as tqty')->groupBy(['type','odd','comment', 'conditions','gen','model','cpu','speed', 'ram', 'hdd']);
+    $builder->where('conditions', $condition);
+    $builder->where('type', $type);
+    $users = $builder->get()->getResult();
+    $idd = rand(1000, 9999);
+    $fileName = $title.$idd. '.xlsx';
+    $spreadsheet = new Spreadsheet();
+    $sheet = $spreadsheet->getActiveSheet();
+    $sheet->setCellValue('A1', 'No.');
+    $sheet->setCellValue('B1', 'CONDTIONS');
+    $sheet->setCellValue('C1', 'Type');
+    $sheet->setCellValue('D1', 'BATCH');
+    $sheet->setCellValue('E1', 'GEN');
+    $sheet->setCellValue('F1', 'BRAND');
+    $sheet->setCellValue('G1', 'SERIANO');
+    $sheet->setCellValue('H1', 'PART');
+    $sheet->setCellValue('I1', 'MODELID');
+    $sheet->setCellValue('J1', 'MODEL');
+    $sheet->setCellValue('K1', 'CPU');
+    $sheet->setCellValue('L1', 'SPEED');
+    $sheet->setCellValue('M1', 'RAM'); 
+    $sheet->setCellValue('N1', 'HDD');
+    $sheet->setCellValue('O1', 'ODD');
+    $sheet->setCellValue('P1', 'SCREEN');
+    $sheet->setCellValue('Q1', 'COMMENT');
+    $sheet->setCellValue('R1', 'PRICE'); 
+    $sheet->setCellValue('S1', 'LIST');      
+    $sheet->setCellValue('T1', 'STATUS');      
+    $sheet->setCellValue('U1', 'DATERECIEVERD');
+    $sheet->setCellValue('V1', 'QUANTITY');
+    $rows = 2;
+    $index = 0;
+    foreach ($users as $val){
+      $index ++;
+      $sheet->setCellValue('A' . $rows, $index);
+      $sheet->setCellValue('B' . $rows, $val->conditions);
+      $sheet->setCellValue('C' . $rows, $val->type);
+      $sheet->setCellValue('D' . $rows, $val->del);
+      $sheet->setCellValue('E' . $rows, $val->gen);
+      $sheet->setCellValue('F' . $rows, $val->brand);
+      $sheet->setCellValue('G' . $rows, $val->serialno);
+      $sheet->setCellValue('H' . $rows, $val->part);
+      $sheet->setCellValue('I' . $rows, $val->modelid);
+      $sheet->setCellValue('J' . $rows, $val->model);
+      $sheet->setCellValue('K' . $rows, $val->cpu);
+      $sheet->setCellValue('L' . $rows, $val->speed);
+      $sheet->setCellValue('M' . $rows, $val->ram);
+      $sheet->setCellValue('N' . $rows, $val->hdd);
+      $sheet->setCellValue('O' . $rows, $val->odd);
+      $sheet->setCellValue('P' . $rows, $val->screen);
+      $sheet->setCellValue('Q' . $rows, $val->comment);
+      $sheet->setCellValue('R' . $rows, $val->price);
+      $sheet->setCellValue('S' . $rows, $val->list);
+      $sheet->setCellValue('T' . $rows, $val->status);
+      $sheet->setCellValue('U' . $rows, $val->daterecieved);
+      $sheet->setCellValue('V' . $rows, $val->tqty);
+      $rows++;
+    } 
+    $writer = new Xlsx($spreadsheet);
+    $writer->save("upload/".$fileName);
+    $filename = "upload/".$title.$idd.".xlsx";
+    return redirect()->to(base_url($filename));
+  }
+
+  public function faultysumout($title)
+  {
+    $delimiter = ' ';
+    $words = explode($delimiter, $title);
+    $condition = $words[0];
+    $type = $words[1];
+
+    $db      = \Config\Database::connect();
+    $builder = $db->table('faultyout');   
+    $builder->select('*, sum(qty) as tqty')->groupBy(['type','odd','comment', 'conditions','gen','model','cpu','speed', 'ram', 'hdd']);
+    $builder->where('conditions', $condition);
+    $builder->where('type', $type);
+    $users = $builder->get()->getResult();
+    $idd = rand(1000, 9999);
+    $fileName = $title.$idd. '.xlsx';
+    $spreadsheet = new Spreadsheet();
+    $sheet = $spreadsheet->getActiveSheet();
+    $sheet->setCellValue('A1', 'No.');
+    $sheet->setCellValue('B1', 'CONDTIONS');
+    $sheet->setCellValue('C1', 'Type');
+    $sheet->setCellValue('D1', 'BATCH');
+    $sheet->setCellValue('E1', 'GEN');
+    $sheet->setCellValue('F1', 'BRAND');
+    $sheet->setCellValue('G1', 'SERIANO');
+    $sheet->setCellValue('H1', 'PART');
+    $sheet->setCellValue('I1', 'MODELID');
+    $sheet->setCellValue('J1', 'MODEL');
+    $sheet->setCellValue('K1', 'CPU');
+    $sheet->setCellValue('L1', 'SPEED');
+    $sheet->setCellValue('M1', 'RAM'); 
+    $sheet->setCellValue('N1', 'HDD');
+    $sheet->setCellValue('O1', 'ODD');
+    $sheet->setCellValue('P1', 'SCREEN');
+    $sheet->setCellValue('Q1', 'COMMENT');
+    $sheet->setCellValue('R1', 'PRICE'); 
+    $sheet->setCellValue('S1', 'LIST');      
+    $sheet->setCellValue('T1', 'STATUS');      
+    $sheet->setCellValue('U1', 'DATERECIEVERD');
+    $sheet->setCellValue('V1', 'QUANTITY');
+    $rows = 2;
+    $index = 0;
+    foreach ($users as $val){
+      $index ++;
+      $sheet->setCellValue('A' . $rows, $index);
+      $sheet->setCellValue('B' . $rows, $val->conditions);
+      $sheet->setCellValue('C' . $rows, $val->type);
+      $sheet->setCellValue('D' . $rows, $val->del);
+      $sheet->setCellValue('E' . $rows, $val->gen);
+      $sheet->setCellValue('F' . $rows, $val->brand);
+      $sheet->setCellValue('G' . $rows, $val->serialno);
+      $sheet->setCellValue('H' . $rows, $val->part);
+      $sheet->setCellValue('I' . $rows, $val->modelid);
+      $sheet->setCellValue('J' . $rows, $val->model);
+      $sheet->setCellValue('K' . $rows, $val->cpu);
+      $sheet->setCellValue('L' . $rows, $val->speed);
+      $sheet->setCellValue('M' . $rows, $val->ram);
+      $sheet->setCellValue('N' . $rows, $val->hdd);
+      $sheet->setCellValue('O' . $rows, $val->odd);
+      $sheet->setCellValue('P' . $rows, $val->screen);
+      $sheet->setCellValue('Q' . $rows, $val->comment);
+      $sheet->setCellValue('R' . $rows, $val->price);
+      $sheet->setCellValue('S' . $rows, $val->list);
+      $sheet->setCellValue('T' . $rows, $val->status);
+      $sheet->setCellValue('U' . $rows, $val->daterecieved);
+      $sheet->setCellValue('V' . $rows, $val->tqty);
+      $rows++;
+    } 
+    $writer = new Xlsx($spreadsheet);
+    $writer->save("upload/".$fileName);
+    $filename = "upload/".$title.$idd.".xlsx";
+    return redirect()->to(base_url($filename));
+  }
+
+  public function stockoutsum($title)
+  {
+    $delimiter = ' ';
+    $words = explode($delimiter, $title);
+    $condition = $words[0];
+    $type = $words[1];
+
+    $db      = \Config\Database::connect();
+    $builder = $db->table('stockout');   
+    $builder->select('*, sum(qty) as tqty')->groupBy(['type','odd','comment', 'conditions','gen','model','cpu','speed', 'ram', 'hdd']);
+    $builder->where('conditions', $condition);
+    $builder->where('type', $type);
+    $users = $builder->get()->getResult();
+    $idd = rand(1000, 9999);
+    $fileName = $title.$idd. '.xlsx';
+    $spreadsheet = new Spreadsheet();
+    $sheet = $spreadsheet->getActiveSheet();
+    $sheet->setCellValue('A1', 'No.');
+    $sheet->setCellValue('B1', 'CONDTIONS');
+    $sheet->setCellValue('C1', 'Type');
+    $sheet->setCellValue('D1', 'BATCH');
+    $sheet->setCellValue('E1', 'GEN');
+    $sheet->setCellValue('F1', 'BRAND');
+    $sheet->setCellValue('G1', 'SERIANO');
+    $sheet->setCellValue('H1', 'PART');
+    $sheet->setCellValue('I1', 'MODELID');
+    $sheet->setCellValue('J1', 'MODEL');
+    $sheet->setCellValue('K1', 'CPU');
+    $sheet->setCellValue('L1', 'SPEED');
+    $sheet->setCellValue('M1', 'RAM'); 
+    $sheet->setCellValue('N1', 'HDD');
+    $sheet->setCellValue('O1', 'ODD');
+    $sheet->setCellValue('P1', 'SCREEN');
+    $sheet->setCellValue('Q1', 'COMMENT');
+    $sheet->setCellValue('R1', 'PRICE'); 
+    $sheet->setCellValue('S1', 'LIST');      
+    $sheet->setCellValue('T1', 'STATUS');      
+    $sheet->setCellValue('U1', 'DATERECIEVERD');
+    $sheet->setCellValue('V1', 'QUANTITY');
+    $rows = 2;
+    $index = 0;
+    foreach ($users as $val){
+      $index ++;
+      $sheet->setCellValue('A' . $rows, $index);
+      $sheet->setCellValue('B' . $rows, $val->conditions);
+      $sheet->setCellValue('C' . $rows, $val->type);
+      $sheet->setCellValue('D' . $rows, $val->del);
+      $sheet->setCellValue('E' . $rows, $val->gen);
+      $sheet->setCellValue('F' . $rows, $val->brand);
+      $sheet->setCellValue('G' . $rows, $val->serialno);
+      $sheet->setCellValue('H' . $rows, $val->part);
+      $sheet->setCellValue('I' . $rows, $val->modelid);
+      $sheet->setCellValue('J' . $rows, $val->model);
+      $sheet->setCellValue('K' . $rows, $val->cpu);
+      $sheet->setCellValue('L' . $rows, $val->speed);
+      $sheet->setCellValue('M' . $rows, $val->ram);
+      $sheet->setCellValue('N' . $rows, $val->hdd);
+      $sheet->setCellValue('O' . $rows, $val->odd);
+      $sheet->setCellValue('P' . $rows, $val->screen);
+      $sheet->setCellValue('Q' . $rows, $val->comment);
+      $sheet->setCellValue('R' . $rows, $val->price);
+      $sheet->setCellValue('S' . $rows, $val->list);
+      $sheet->setCellValue('T' . $rows, $val->status);
+      $sheet->setCellValue('U' . $rows, $val->daterecieved);
+      $sheet->setCellValue('V' . $rows, $val->tqty);
+      $rows++;
+    } 
+    $writer = new Xlsx($spreadsheet);
+    $writer->save("upload/".$fileName);
+    $filename = "upload/".$title.$idd.".xlsx";
+    return redirect()->to(base_url($filename));
+  }
+  public function warrantyinsum($title)
+  {
+    $delimiter = ' ';
+    $words = explode($delimiter, $title);
+    $condition = $words[0];
+    $type = $words[1];
+
+    $db      = \Config\Database::connect();
+    $builder = $db->table('warrantyin');   
+    $builder->select('*, sum(qty) as tqty')->groupBy(['type','odd','comment', 'conditions','gen','model','cpu','speed', 'ram', 'hdd']);
+    $builder->where('conditions', $condition);
+    $builder->where('type', $type);
+    $users = $builder->get()->getResult();
+    $idd = rand(1000, 9999);
+    $fileName = $title.$idd. '.xlsx';
+    $spreadsheet = new Spreadsheet();
+    $sheet = $spreadsheet->getActiveSheet();
+    $sheet->setCellValue('A1', 'No.');
+    $sheet->setCellValue('B1', 'CONDTIONS');
+    $sheet->setCellValue('C1', 'Type');
+    $sheet->setCellValue('D1', 'BATCH');
+    $sheet->setCellValue('E1', 'GEN');
+    $sheet->setCellValue('F1', 'BRAND');
+    $sheet->setCellValue('G1', 'SERIANO');
+    $sheet->setCellValue('H1', 'PART');
+    $sheet->setCellValue('I1', 'MODELID');
+    $sheet->setCellValue('J1', 'MODEL');
+    $sheet->setCellValue('K1', 'CPU');
+    $sheet->setCellValue('L1', 'SPEED');
+    $sheet->setCellValue('M1', 'RAM'); 
+    $sheet->setCellValue('N1', 'HDD');
+    $sheet->setCellValue('O1', 'ODD');
+    $sheet->setCellValue('P1', 'SCREEN');
+    $sheet->setCellValue('Q1', 'COMMENT');
+    $sheet->setCellValue('R1', 'PRICE'); 
+    $sheet->setCellValue('S1', 'LIST');      
+    $sheet->setCellValue('T1', 'STATUS');      
+    $sheet->setCellValue('U1', 'DATERECIEVERD');
+    $sheet->setCellValue('V1', 'QUANTITY');
+    $rows = 2;
+    $index = 0;
+    foreach ($users as $val){
+      $index ++;
+      $sheet->setCellValue('A' . $rows, $index);
+      $sheet->setCellValue('B' . $rows, $val->conditions);
+      $sheet->setCellValue('C' . $rows, $val->type);
+      $sheet->setCellValue('D' . $rows, $val->del);
+      $sheet->setCellValue('E' . $rows, $val->gen);
+      $sheet->setCellValue('F' . $rows, $val->brand);
+      $sheet->setCellValue('G' . $rows, $val->serialno);
+      $sheet->setCellValue('H' . $rows, $val->part);
+      $sheet->setCellValue('I' . $rows, $val->modelid);
+      $sheet->setCellValue('J' . $rows, $val->model);
+      $sheet->setCellValue('K' . $rows, $val->cpu);
+      $sheet->setCellValue('L' . $rows, $val->speed);
+      $sheet->setCellValue('M' . $rows, $val->ram);
+      $sheet->setCellValue('N' . $rows, $val->hdd);
+      $sheet->setCellValue('O' . $rows, $val->odd);
+      $sheet->setCellValue('P' . $rows, $val->screen);
+      $sheet->setCellValue('Q' . $rows, $val->comment);
+      $sheet->setCellValue('R' . $rows, $val->price);
+      $sheet->setCellValue('S' . $rows, $val->list);
+      $sheet->setCellValue('T' . $rows, $val->status);
+      $sheet->setCellValue('U' . $rows, $val->daterecieved);
+      $sheet->setCellValue('V' . $rows, $val->tqty);
+      $rows++;
+    } 
+    $writer = new Xlsx($spreadsheet);
+    $writer->save("upload/".$fileName);
+    $filename = "upload/".$title.$idd.".xlsx";
+    return redirect()->to(base_url($filename));
+  }
   
+  public function warrantyoutsum($title)
+  {
+    $delimiter = ' ';
+    $words = explode($delimiter, $title);
+    $condition = $words[0];
+    $type = $words[1];
+
+    $db      = \Config\Database::connect();
+    $builder = $db->table('warrantyout');   
+    $builder->select('*, sum(qty) as tqty')->groupBy(['type','odd','comment', 'conditions','gen','model','cpu','speed', 'ram', 'hdd']);
+    $builder->where('conditions', $condition);
+    $builder->where('type', $type);
+    $users = $builder->get()->getResult();
+    $idd = rand(1000, 9999);
+    $fileName = $title.$idd. '.xlsx';
+    $spreadsheet = new Spreadsheet();
+    $sheet = $spreadsheet->getActiveSheet();
+    $sheet->setCellValue('A1', 'No.');
+    $sheet->setCellValue('B1', 'CONDTIONS');
+    $sheet->setCellValue('C1', 'Type');
+    $sheet->setCellValue('D1', 'BATCH');
+    $sheet->setCellValue('E1', 'GEN');
+    $sheet->setCellValue('F1', 'BRAND');
+    $sheet->setCellValue('G1', 'SERIANO');
+    $sheet->setCellValue('H1', 'PART');
+    $sheet->setCellValue('I1', 'MODELID');
+    $sheet->setCellValue('J1', 'MODEL');
+    $sheet->setCellValue('K1', 'CPU');
+    $sheet->setCellValue('L1', 'SPEED');
+    $sheet->setCellValue('M1', 'RAM'); 
+    $sheet->setCellValue('N1', 'HDD');
+    $sheet->setCellValue('O1', 'ODD');
+    $sheet->setCellValue('P1', 'SCREEN');
+    $sheet->setCellValue('Q1', 'COMMENT');
+    $sheet->setCellValue('R1', 'PRICE'); 
+    $sheet->setCellValue('S1', 'LIST');      
+    $sheet->setCellValue('T1', 'STATUS');      
+    $sheet->setCellValue('U1', 'DATERECIEVERD');
+    $sheet->setCellValue('V1', 'QUANTITY');
+    $rows = 2;
+    $index = 0;
+    foreach ($users as $val){
+      $index ++;
+      $sheet->setCellValue('A' . $rows, $index);
+      $sheet->setCellValue('B' . $rows, $val->conditions);
+      $sheet->setCellValue('C' . $rows, $val->type);
+      $sheet->setCellValue('D' . $rows, $val->del);
+      $sheet->setCellValue('E' . $rows, $val->gen);
+      $sheet->setCellValue('F' . $rows, $val->brand);
+      $sheet->setCellValue('G' . $rows, $val->serialno);
+      $sheet->setCellValue('H' . $rows, $val->part);
+      $sheet->setCellValue('I' . $rows, $val->modelid);
+      $sheet->setCellValue('J' . $rows, $val->model);
+      $sheet->setCellValue('K' . $rows, $val->cpu);
+      $sheet->setCellValue('L' . $rows, $val->speed);
+      $sheet->setCellValue('M' . $rows, $val->ram);
+      $sheet->setCellValue('N' . $rows, $val->hdd);
+      $sheet->setCellValue('O' . $rows, $val->odd);
+      $sheet->setCellValue('P' . $rows, $val->screen);
+      $sheet->setCellValue('Q' . $rows, $val->comment);
+      $sheet->setCellValue('R' . $rows, $val->price);
+      $sheet->setCellValue('S' . $rows, $val->list);
+      $sheet->setCellValue('T' . $rows, $val->status);
+      $sheet->setCellValue('U' . $rows, $val->daterecieved);
+      $sheet->setCellValue('V' . $rows, $val->tqty);
+      $rows++;
+    } 
+    $writer = new Xlsx($spreadsheet);
+    $writer->save("upload/".$fileName);
+    $filename = "upload/".$title.$idd.".xlsx";
+    return redirect()->to(base_url($filename));
+  }
 }
 
 

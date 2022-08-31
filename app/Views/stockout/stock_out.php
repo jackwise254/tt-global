@@ -18,7 +18,9 @@ endif;
         
 
             <div class="col-sm-12 mx-auto bg-light rounded shadow">
-        <a href="<?php echo site_url('spreadsheetsto') ?>" class="btn btn-info btn-sm bi bi-download ">spreadsheet</a>
+        <a href="<?php echo site_url('spreadsheetsto') ?>" class="btn btn-outline-info btn-sm bi bi-download ">spreadsheet</a>
+      <a href="<?php echo base_url('Settings/stockouts') ?>" class="btn btn-outline-success btn-sm bi  bi-download">Summary</a>
+
 
             <form class="d-flex float-end">
           <input class=" me-2 float-end" name="q" placeholder="Search" aria-label="Search">

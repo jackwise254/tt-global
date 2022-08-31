@@ -34,12 +34,10 @@ endif;
         </form>
         </div>
         <div class="col-md-6">
-        <form name="test" class="col-7 " action="<?php echo  base_url('ProductsCrud/delvsub'); ?>" method="POST">
-        <button type="button" class="btn btn-primary px-2 float-end btn-sm d-none" data-toggle="modal" data-target="#myModal">Manual</button>
-        <!-- <a href="<?php echo base_url('ProductsCrud/manual') ?>" class="btn btn-success btn-sm d-none float-end">Manual</a> -->
-        <a href="<?php echo  base_url('ProductsCrud/delvclear'); ?>" class=" btn btn-outline-danger px-2 rounded-pill bi bi-trash-fill float-end btn-sm">Clear</a>
-            <!-- <label class="label">Serial no.</label> -->
+        <form name="test" class="col-12 " action="<?php echo  base_url('ProductsCrud/delvsub'); ?>" method="POST">
             <input type="text" class="col-6 rounded-pill " id="serialno" name="serialno" placeholder='scan here' autofocus required>
+            <button type="button" class="btn btn-outline-success btn-sm rounded-pill" data-toggle="modal" data-target="#myModal">Upload</button>
+            <!-- <a href="<?php echo base_url('ProductsCrud/manual') ?>" class="btn btn-outline-success btn-sm float-end">Manual</a> -->
             <button type="button" class="btn btn-outline-secondary rounded-pill btn-sm position-relative">
                 items
                 <?php if($num): ?>
@@ -49,6 +47,8 @@ endif;
                 </span>
               <?php endif; ?>
              </button>
+            <a href="<?php echo  base_url('ProductsCrud/delvclear'); ?>" class=" btn btn-outline-danger px-2 rounded-pill bi bi-trash-fill btn-sm">Clear</a>
+            
             <button type ="submit" class="d-none" id="myBtn" onchange="this.form.submit()"></button>
             </form>
         </div>
@@ -286,30 +286,13 @@ endif;
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body center">
-      <form name="test" class="col-10 " action="<?php echo  base_url('ProductsCrud/dsubm'); ?>" method="POST">
-
-                  <div class="col-7">
-                  <label class="form-label" style="font-family: arial, arial, arial; font-size: 13px " >Description</label>
-                    <input type="text" class="form-control" style="font-family: arial, arial, arial; font-size: 13px " name="description" placeholder="Description" required>
-                  </div>
-                  <div class="col-7">
-
-                  <label class="form-label" style="font-family: arial, arial, arial; font-size: 13px ">Quantity</label>
-
-                    <input type="number" style="font-family: arial, arial, arial; font-size: 13px " class="form-control" name="qty" placeholder="" required>
-                  </div>
-                  
-                  <div class="col-7">
-
-                  <label class="form-label" style="font-family: arial, arial, arial; font-size: 13px " >Unit price</label>
-
-                    <input type="number"  style="font-family: arial, arial, arial; font-size: 13px " class="form-control" name="unitprice" placeholder="" required>
-                  </div>
-                  <div class="col-7">
-      </div>
+      <form class="form-group" action="<?= base_url('Settings/deliveryimport') ?>" method="post" name="frmCSVImport" id="frmCSVImport" enctype="multipart/form-data">
+        <div class="col-md-12">
+            <input class="form-control w-25 d-inline" required type="file" name="file"id="file" accept=".csv">
+        </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary px-2 btn-sm">Summary</button>
+        <button type="submit" class="btn btn-primary px-2 btn-sm">Upload</button>
       </div>
     </div>
 </form>
