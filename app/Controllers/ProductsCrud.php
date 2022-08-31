@@ -1106,57 +1106,20 @@ class ProductsCrud extends Controller
         $data['user_data'] = $session->get('designation');
         $date = date("Y/m/d");
 
-        // if(session()->get('designation') == 'manager'){
-
-        // $builder = $db->table('product2');
-        // $builder->select('date, DATEDIFF(now(), date) as vendor');
-        // $builder->HAVING('vendor = 0 ');
-        // $dats = $builder->get()->getResultArray();
-
-        // $builder = $db->table('product2');
-        // $builder->select('*');
-        // $builder->where('date , DATEDIFF(now, date) ');
-        // $dats = $builder->get()->getResultArray();
-
-        // $builder13 = $db->table('product2');
-        // $builder13->select('date, DATEDIFF(now(), date) as vendor');
-        // $builder13->HAVING('vendor >= 1 ');
-        // $dats13 = $builder13->get()->getResultArray();
-        // if($dats){
-        //     $datss = [
-        //         'datsss' => 1,
-        //     ];
-        // }
-        //  elseif($dats13){
-        //     $datss = [
-        //         'datsss' => 0,
-        //     ];
-        //  }
-        //  else{
-        //     $datss = [
-        //         'datsss' => 0,
-        //     ]; 
-        //  }   
-        // session()->set($datss);
-
-        // }
-    
-        // return view('products/deliveryCreate', $data);
-        // }
         $db      = \Config\Database::connect();
         $builder = $db->table('product2');
-        $builder->select('product2.*')->orderBy("delvnote", "DESC");
+        $builder->select('product2.*')->orderBy("date", "DESC");
         if($this->request->getGet('q')) {
-         $q=$this->request->getGet('q');
-        $builder1->select('product2.*');
-        $builder1->like('username', $q);
-        $builder1->orLike('delvnote', $q);
-        $builder1->orLike('user_name', $q);
-        $builder1->orLike('ref', $q);
-        $builder1->orLike('date', $q);
-        $builder1->orLike('document', $q);
-
-        $data['invoicecreate'] = $builder->get()->getResult();
+            $q=$this->request->getGet('q');
+            $builder1 = $db->table('product2');
+            $builder1->select('*')->orderBy("date", "DESC");;
+            $builder1->like('username', $q);
+            $builder1->orLike('delvnote', $q);
+            $builder1->orLike('user_name', $q);
+            $builder1->orLike('ref', $q);
+            $builder1->orLike('date', $q);
+            $builder1->orLike('document', $q);
+            $data['invoicecreate'] = $builder1->get()->getResult();
         return view('products/deliveryCreate', $data);
            
         } elseif(!$this->request->getGet('q')) {
@@ -4729,43 +4692,30 @@ public function printbarcodwi($id)
                 $builde = $db->table('verify');
                 $builde->select('*');
                 $builde->like('model', $model) &&
-                
                 $builde->like('cpu', $j);
                 $builde->orLike('model', $model) && 
-                
                 $builde->like('assetid', $j);
                 $builde->orLike('model', $model) &&
-                
                 $builde->like('brand', $j);
                 $builde->orLike('model', $model) &&
-                
                 $builde->like('conditions', $j);
                 $builde->orLike('model', $model) &&
-                
                 $builde->like('modelid', $j);
                 $builde->orLike('model', $model) &&
-                
                 $builde->like('gen', $j);
                 $builde->orLike('model', $model) &&
-                
                 $builde->like('screen', $j);
                 $builde->orLike('model', $model) &&
-                
                 $builde->like('price', $j);
                 $builde->orLike('model', $model) &&
-                
                 $builde->like('customer', $j);
                 $builde->orLike('model', $model) &&
-                
                 $builde->like('ram', $j);
                 $builde->orLike('model', $model) &&
-                
                 $builde->like('odd', $j);
                 $builde->orLike('model', $model) &&
-                
                 $builde->like('comment', $j);
                 $builde->orLike('model', $model) &&
-                
                 $builde->like('type', $j); 
                 $builde->update($datad);
             }elseif($m == 'faulty'){
@@ -4823,43 +4773,30 @@ public function printbarcodwi($id)
                 $builde = $db->table('verify');
                 $builde->select('*');
                 $builde->like('model', $model) &&
-                
                 $builde->like('cpu', $j);
                 $builde->orLike('model', $model) && 
-                
                 $builde->like('assetid', $j);
                 $builde->orLike('model', $model) &&
-                
                 $builde->like('brand', $j);
                 $builde->orLike('model', $model) &&
-                
                 $builde->like('conditions', $j);
                 $builde->orLike('model', $model) &&
-                
                 $builde->like('modelid', $j);
                 $builde->orLike('model', $model) &&
-                
                 $builde->like('gen', $j);
                 $builde->orLike('model', $model) &&
-                
                 $builde->like('screen', $j);
                 $builde->orLike('model', $model) &&
-                
                 $builde->like('price', $j);
                 $builde->orLike('model', $model) &&
-                
                 $builde->like('customer', $j);
                 $builde->orLike('model', $model) &&
-                
                 $builde->like('ram', $j);
                 $builde->orLike('model', $model) &&
-                
                 $builde->like('odd', $j);
                 $builde->orLike('model', $model) &&
-                
                 $builde->like('comment', $j);
                 $builde->orLike('model', $model) &&
-                
                 $builde->like('type', $j); 
                 $builde->update($dataf);
             }elseif($m == 'faultyout'){
@@ -4917,43 +4854,30 @@ public function printbarcodwi($id)
                 $builde = $db->table('verify');
                 $builde->select('*');
                 $builde->like('model', $model) &&
-                
                 $builde->like('cpu', $j);
                 $builde->orLike('model', $model) && 
-                
                 $builde->like('assetid', $j);
                 $builde->orLike('model', $model) &&
-                
                 $builde->like('brand', $j);
                 $builde->orLike('model', $model) &&
-                
                 $builde->like('conditions', $j);
                 $builde->orLike('model', $model) &&
-                
                 $builde->like('modelid', $j);
                 $builde->orLike('model', $model) &&
-                
                 $builde->like('gen', $j);
                 $builde->orLike('model', $model) &&
-                
                 $builde->like('screen', $j);
                 $builde->orLike('model', $model) &&
-                
                 $builde->like('price', $j);
                 $builde->orLike('model', $model) &&
-                
                 $builde->like('customer', $j);
                 $builde->orLike('model', $model) &&
-                
                 $builde->like('ram', $j);
                 $builde->orLike('model', $model) &&
-                
                 $builde->like('odd', $j);
                 $builde->orLike('model', $model) &&
-                
                 $builde->like('comment', $j);
                 $builde->orLike('model', $model) &&
-                
                 $builde->like('type', $j); 
                 $builde->update($datafo);
             }
@@ -6601,7 +6525,6 @@ public function printbarcodwi($id)
         if($this->request->getVar('replace')){
             $x = $this->request->getVar('replace');
             $s = session()->get('random');
-                
             $builder111 = $db->table('verify');
             $builder111->selectMax('id');
             $builder111->where('terms', $sess);
@@ -6666,7 +6589,6 @@ public function printbarcodwi($id)
                 $builder->select('*');
                 $builder->where('terms' , $sess);
                 $builder->where('random' , $s);
-                
                 $builder->update(['speed' => $x]);
                 return redirect()->back()->with('status', 'replaced successfully');
 
@@ -6788,7 +6710,15 @@ public function printbarcodwi($id)
                 $builder->where('random' , $s);
                 $builder->update(['comment' => $x]);
                 return redirect()->back()->with('status', 'replaced successfully');
-            }     
+            }
+            elseif($this->request->getVar('column') == 'Cpu'){
+                $builder = $db->table('verify');
+                $builder->select('*');
+                $builder->where('terms' , $sess);
+                $builder->where('random' , $s);
+                $builder->update(['cpu' => $x]);
+                return redirect()->back()->with('status', 'replaced successfully');
+            }      
             else{
                 return redirect()->back()->with('status', 'No result found!');
             }
@@ -6803,7 +6733,6 @@ public function printbarcodwi($id)
         $data['items'] = $builder->get()->getResultArray();
         $data['count_verif'] = count($data['items']);
         $data['user_data'] = $session->get('designation');
-
         $data['true'] = 0;
         return view('products/verify', $data);
     }
@@ -8897,20 +8826,32 @@ public function printbarcodwi($id)
         $builder->where('faulty.assetid', $id);
         $data1 = $builder->get()->getResultArray();
 
+        $update = [
+            'customer' => '',
+            'problem' => ''
+        ];
+
         $builder1 = $db->table("masterlist");
         $builder1->select('masterlist.*');
         $builder1->where('masterlist.assetid', $id);
         $data2 = $builder1->get()->getResultArray();
 
-        foreach($data1 as $r) { // loop over results
+        foreach($data1 as $r) { 
           
         if(!$data2){
             $db->table('masterlist')->insert($r);
         }
+
+
         
         $builder->where('faulty.assetid', $id);
         $builder->delete();
         }
+
+        $builder2 = $db->table('masterlist');
+        $builder2->select('*');
+        $builder2->where('assetid', $id);
+        $builder2->update($update);
         return redirect()->back()->with('status', 'Item pushed to master list');
     }
 

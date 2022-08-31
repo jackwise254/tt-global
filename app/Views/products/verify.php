@@ -93,6 +93,7 @@ endif;
                              <option value='Speed'>speed</option>
                              <option value='Price'>Price</option>
                              <option value='Ram'>Ram</option>
+                             <option value='Cpu'>Cpu</option>
                              <option value='Odd'>Odd</option>
                              <option value='Type'>Type</option>
                              <option value='Problem'>Problem</option>
