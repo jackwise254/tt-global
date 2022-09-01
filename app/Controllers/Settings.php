@@ -1874,20 +1874,25 @@ class Settings extends BaseController
                   $builder1->select('*');
                   $builder1->where('assetid', $s['assetid']);
                   $datas = $builder1->get()->getResultArray();
-                  foreach($datas as $d){
-                    // echo '<pre>';
-                    // print_r($s);
-                    $builder11 = $db->table('tempinsert');
-                    $builder11->select('*');
-                    $builder11->where('assetid', $d['assetid']);
-                    $data2 = $builder11->get()->getResultArray();
-                    if(!$data2){
-                      $db->table('tempinsert')->insert($d);
+                  if($datas){
+                    foreach($datas as $d){
+                      // echo '<pre>';
+                      // print_r($s);
+                      $builder11 = $db->table('tempinsert');
+                      $builder11->select('*');
+                      $builder11->where('assetid', $d['assetid']);
+                      $data2 = $builder11->get()->getResultArray();
+                      if(!$data2){
+                        $db->table('tempinsert')->insert($d);
+                      }
+                      else{
+  
+                        return redirect()->back()->with('status', 'items already exist');
+                      }
                     }
-                    else{
-
-                      return redirect()->back()->with('status', 'items already exist');
-                    }
+                  }{
+                    return redirect()->back()->with('status', 'items does not exist');
+                    
                   }
                   $builder111 = $db->table('tempinsert');
                   $builder111->select('*');

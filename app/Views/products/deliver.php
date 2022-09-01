@@ -10,7 +10,7 @@ endif;
 ?>
 <?php include('inc/db_connect.php'); ?>
 
-<?php  $random = rand(1000000000, 9999999999); ?>
+<?php  $random = rand(10000, 99999); ?>
 
 <br/>
 <br/>
@@ -34,10 +34,12 @@ endif;
         </form>
         </div>
         <div class="col-md-6">
-        <form name="test" class="col-12 " action="<?php echo  base_url('ProductsCrud/delvsub'); ?>" method="POST">
+        <form name="test" class="" action="<?php echo  base_url('ProductsCrud/delvsub'); ?>" method="POST">
+        <button type="button" class="btn btn-primary px-2 float-end btn-sm d-none" data-toggle="modal" data-target="#myModal">Manual</button>
+        <!-- <a href="<?php echo base_url('ProductsCrud/manual') ?>" class="btn btn-success btn-sm d-none float-end">Manual</a> -->
+            <!-- <label class="label">Serial no.</label> -->
             <input type="text" class="col-6 rounded-pill " id="serialno" name="serialno" placeholder='scan here' autofocus required>
             <button type="button" class="btn btn-outline-success btn-sm rounded-pill" data-toggle="modal" data-target="#myModal">Upload</button>
-            <!-- <a href="<?php echo base_url('ProductsCrud/manual') ?>" class="btn btn-outline-success btn-sm float-end">Manual</a> -->
             <button type="button" class="btn btn-outline-secondary rounded-pill btn-sm position-relative">
                 items
                 <?php if($num): ?>
@@ -47,8 +49,10 @@ endif;
                 </span>
               <?php endif; ?>
              </button>
-            <a href="<?php echo  base_url('ProductsCrud/delvclear'); ?>" class=" btn btn-outline-danger px-2 rounded-pill bi bi-trash-fill btn-sm">Clear</a>
+
             <button type ="submit" class="d-none" id="myBtn" onchange="this.form.submit()"></button>
+            <a href="<?php echo  base_url('ProductsCrud/delvclear'); ?>" class=" btn btn-outline-danger px-2 rounded-pill bi bi-trash-fill btn-sm">Clear</a>
+
             </form>
         </div>
     </div>
@@ -64,23 +68,12 @@ endif;
       }
   });
 </script> 
-
 <?php
-                if(session()->getFlashdata('status')): ?>
-                    <div id="alert" class="alert alert-success">
-                        <?php
-                            $status = session()->getFlashdata('status');
-                            $username = session()->get('user_name');
-                            echo $status.' '.$username.'!';
-                        ?>
-                    </div>
+    if(session()->getFlashdata('status')) {
+        echo "<h4 class=' alert alert-success d-flex align-items-center bi flex-shrink-0 me-2' width='24' height='24' role='alert' style='font-family:'Airal', Arial, Arial; font-size:60%'>" . session()->getFlashdata('status') . "</h4>"; 
+    }
+?>  
 
-            <?php endif; ?>
-            <script type="text/javascript">
-        setTimeout(function () {
-            $('#alert').alert('close');
-        }, 5000);
-</script>
 <hr/>
 
 <form method="post" id="invoice_create" name="invoice_create" action="<?php echo base_url('ProductsCrud/delvout'); ?>">
@@ -298,7 +291,7 @@ endif;
       <div class="modal-body center">
       <form class="form-group" action="<?= base_url('Settings/deliveryimport') ?>" method="post" name="frmCSVImport" id="frmCSVImport" enctype="multipart/form-data">
         <div class="col-md-12">
-            <input class="form-control w-25 d-inline" required type="file" name="file"id="file" accept=".csv">
+            <input class="form-control w-25 d-inline" required type="file" name="file"id="file" accept=".csv" required>
         </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -308,9 +301,6 @@ endif;
 </form>
   </div>
 </div>
-
-
-
     </div>
     </div>
 
@@ -356,9 +346,6 @@ endif;
         });
     
     </script>
-
-
-           
   
     
 
