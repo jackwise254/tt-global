@@ -10,57 +10,47 @@ endif;
 ?>
 <?php include('inc/db_connect.php'); ?>
 
-<?php  $random = rand(10000, 99999); ?>
+    
+<?php $randoms = rand(10000, 99999); ?>
 
 <br/>
+
 <br/>
     <div class="row mx-3 mt-5">
-  <h4 class="text-center mb-1"> <u>Delivery Note</u></h4>
+<!-- </h5 class="text-center mb-1"><u>Warranty note</u></h5> -->
+<h5 class="text-center mb-3"> <u>Replacement Note</u></h5>
     <div class="col-6">
-          <form name="test" class="col-10 " action="<?php echo  base_url('ProductsCrud/dsub'); ?>" method="POST">
-            <a href="<?php echo site_url('delivery-create') ?>" class="btn btn-outline-dark rounded-pill btn-sm bi bi-chevron-left">back</a>
+    <form name="test" class="col-10 " action="<?php echo  base_url('ProductsCrud/swappsub1'); ?>" method="POST">
+      <a href="<?php echo site_url('/warranty-create') ?>" class="btn btn-outline-dark btn-sm rounded-pill bi bi-chevron-left">back</a>
             <!-- <label >Customer</label> -->
-            <select class="p-1 rounded-pill col-3 "  name="username" >
+            <select class="form-select form-control d-inline w-25 rounded-pill btn-sm col-4"  name="username" placeholder='Customer' >
                 <option selected>Customer</option>
                     <?php foreach($customers as $user): ?>
                     <option value="<?php echo $user->username; ?>"><?php echo $user->username; ?></option>
                     <?php endforeach; ?>
                 </select>
-                <div class="w-25 d-inline">
+                <!-- <div class="w-25 d-inline">
             <label class=""></label>
-                <input type="text" class=" col-3 rounded-pill " name="deliver" placeholder="Invoice No:" required>
-            </div>
-            <button type ="submit" class="btn btn-outline-success btn-sm rounded-pill" id="myBtn1" onchange="this.form.submit()">Submit</button>
+                <input type="text" class=" w-25 d-inline " name="warranty" placeholder="warranty No:" required>
+            </div> -->
+            <button type ="submit" class="bi bi-search col-2 rounded-pill btn-outline-success" id="myBtn1" onchange="this.form.submit()"></button>
         </form>
         </div>
-        <div class="col-md-6">
-        <form name="test" class="" action="<?php echo  base_url('ProductsCrud/delvsub'); ?>" method="POST">
-        <button type="button" class="btn btn-primary px-2 float-end btn-sm d-none" data-toggle="modal" data-target="#myModal">Manual</button>
-        <!-- <a href="<?php echo base_url('ProductsCrud/manual') ?>" class="btn btn-success btn-sm d-none float-end">Manual</a> -->
-            <!-- <label class="label">Serial no.</label> -->
-            <input type="text" class="col-6 rounded-pill " id="serialno" name="serialno" placeholder='scan here' autofocus required>
-            <button type="button" class="btn btn-outline-success btn-sm rounded-pill" data-toggle="modal" data-target="#myModal">Upload</button>
-            <button type="button" class="btn btn-outline-secondary rounded-pill btn-sm position-relative">
-                items
-                <?php if($num): ?>
-                <span class="position-absolute d-flex justify-content-end top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    <?php echo $num; ?>
-                    <span class="visually-hidden">Items</span>
-                </span>
-              <?php endif; ?>
-             </button>
+        <div class="col-6 float-end">
 
-            <button type ="submit" class="d-none" id="myBtn" onchange="this.form.submit()"></button>
-            <a href="<?php echo  base_url('ProductsCrud/delvclear'); ?>" class=" btn btn-outline-danger px-2 rounded-pill bi bi-trash-fill btn-sm">Clear</a>
-
-            </form>
+        <form name="test" class="col-12" action="<?php echo  base_url('ProductsCrud/swappsub'); ?>" method="POST">
+            <a href="<?php echo  base_url('ProductsCrud/warrantyclear'); ?>" class=" btn btn-success d-none  btn-sm">Manual</a>
+            <a href="<?php echo  base_url('ProductsCrud/warrantyclear'); ?>" class=" btn btn-outline-danger rounded-pill col-2 bi bi-trash-fill float-end btn-sm">Clear</a>
+            <input type="text" class="col-4 form-control rounded-pill" id="serialno" name="serialno" placeholder='serial no.' autofocus required>
+            <button type ="submit" class="d-none" id="myBtn" onchange="this.form.submit()">Submit</button>
+        </form>
         </div>
+        
     </div>
 
 
-    
-
 <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+
 <script>
   $('#serialno').keyup(function(){
       if(this.value.length >= 6){
@@ -68,19 +58,24 @@ endif;
       }
   });
 </script> 
+
+<div class="px-5 " data-dismiss="alert">
 <?php
     if(session()->getFlashdata('status')) {
-        echo "<h4 class=' alert alert-success d-flex align-items-center bi flex-shrink-0 me-2' width='24' height='24' role='alert' style='font-family:'Airal', Arial, Arial; font-size:60%'>" . session()->getFlashdata('status') . "</h4>"; 
+        echo "<h5 class=' alert alert-success  alert-dismissible fade show d-flex align-items-center bi flex-shrink-0 me-2' width='18' height='15' role='alert' style='font-family:'Airal', Arial, Arial; font-size:50%'>" . session()->getFlashdata('status') . "</h4>"; 
     }
 ?>  
+</div>
 
 <hr/>
+<h5 class="d-flex justify-content-end" style='font-family:"Airal", Arial, Arial; font-size:60%'><?php echo $count_wnote; ?> Item(s) added </h5>
 
-<form method="post" id="invoice_create" name="invoice_create" action="<?php echo base_url('ProductsCrud/delvout'); ?>">
+<form method="post" id="invoice_create" name="invoice_create" action="<?php echo base_url('ProductsCrud/wout'); ?>">
 
 <div class="row">
 
 <div class="col-3">
+<!-- copy -->
 <div class="container">
         <div class=" form-row">
             <div class="col-sm-12 mx-auto bg-light rounded shadow">
@@ -131,7 +126,7 @@ endif;
                         
                         <div class="col">
                         <label  class="col-sm-2 col-form-label " style="font-family: arial, arial, arial; font-size: 13px ">Delivery_no:</label>
-                        <input type="text" class="form-control mb-4" style="font-family: arial, arial, arial; font-size: 13px " name="invoice" placeholder="<?=  $user->deliver; ?>" readonly>
+                        <input type="text" class="form-control mb-4" style="font-family: arial, arial, arial; font-size: 13px " name="invoice" placeholder="<?=  $user->warranty; ?>" readonly>
                         </div>
 
                         <div class="col">
@@ -147,21 +142,15 @@ endif;
     </div>
 </div>
 
+<!-- end -->
 <div class="col-9">
-
 <div class="container">
         <div class=" form-row">
-            <div class="col-sm-12 mx-auto bg-light rounded shadow">
+            <div class="col-sm-12 mx-auto bg-light rounded ">
                 <h4 class="text-center" style="font-family: arial, arial, arial; font-size: 14px ">Products details </h4>
-                
-                <?php $max = date("Y-m-d H:i:s");
-                    ?>
-
-                <input type="date" class=" col-sm-2  rounded-pill px-1" name="datedelivered" max='date(yyyy/mm/dd)' style="font-family: arial, rounded-pill arial, arial; font-size: 14px" >
+                <input type="date" class=" px-2  " name="datedelivered" style="font-family: arial, arial, arial; font-size: 14px" >
                 <div class="table-responsive">
-                <?php if($masterlist): 
-                    $max = date("Y-m-d H:i:s");
-                    ?>
+                <?php if($masterlist): ?>
                     <table class="table table-fixed table-striped " style='font-family:"Airal", Arial, Arial; font-size:60%'>
                         <thead >
                             <tr>
@@ -196,7 +185,7 @@ endif;
                             <tr>
                             <td class="">  
                             <div class="btn-group" role="group" aria-label="Basic example">
-                            <a href="<?php echo base_url('ProductsCrud/ddelete/'.$user->assetid);?>" class="pr-2">[del]</a>
+                            <a href="#myModal" class="trigger-btn" data-toggle="modal" class="pr-2">[del]</a>
                         </div>
                             <td class="col-5"><?=  $user->assetid; ?></td>
                             <td class="col-5"><?=  $user->type; ?></td>
@@ -218,94 +207,97 @@ endif;
                             <td class="col-5"><?=  $user->customer; ?></td>
                             <td class="col-5"><?=  $user->list; ?></td>
                             <td class="col-5"><?=  $user->status; ?></td>
+
                             </tr>
                         </tbody>
-                     
-                                
-                        <input class="form-control my-3 d-none" id="barcodeValue" value="<?=  $random; ?>" name="random">
+
+                        <!-- Modal HTML -->
+                            <div id="myModal" class="modal fade">
+                                    <div class="modal-dialog modal-confirm">
+                                        <div class="modal-content">
+                                            <div class="modal-header flex-column">
+                                                <div class="icon-box">
+                                                    <i class="material-icons">&#xE5CD;</i>
+                                                </div>
+                                                <h4 class="modal-title w-100">Are you sure?</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Do you really want to delete these records? This process cannot be undone.</p>
+                                            </div>
+                                            <div class="modal-footer justify-content-center">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                <a href="<?php echo base_url('ProductsCrud/deletew/'.$user->id);?> " class="btn btn-danger deletebtn" >Delete</a>
+                                                
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        <?php foreach($customer as $users): ?>
+
+                        <input type="text" class="d-none" name="lname" value="<?php echo  $users->lname; ?>">
+                        <?php endforeach; ?>
+
+                        <input class="form-control my-3 d-none" id="barcodeValue" value="<?=  $randoms; ?>" name="random">
 
                         <?php endforeach; ?>
                     </table>
                     <?php endif; ?>
-                </div>
 
-                <div class="row col-sm-12">
-                    <div class= "col-sm-6 p-1">
-                    <input type="text" class=" px-2 col-sm-5  rounded-pill" name="desc1" style="font-family: arial, arial, arial; font-size: 14px" placeholder="decription 1" >
-                    <input type="text" class=" px-2  col-sm-2 rounded-pill" name="qty1" style="font-family: arial, arial, arial; font-size: 14px" placeholder="Qty 1">
-                    </div>
-                    <div class= "col-sm-6 p-1">
-                    <input type="text" class=" px-2 col-sm-5 rounded-pill " name="desc2" style="font-family: arial, arial, arial; font-size: 14px" placeholder="decription 2" >
-                    <input type="text" class=" px-2  col-sm-2 rounded-pill" name="qty2" style="font-family: arial, arial, arial; font-size: 14px" placeholder="Qty 2">
-                    </div>
-                </div> 
-                <div class="row col-sm-12">
-                    <div class= "col-sm-6 p-1">
-                    <input type="text" class=" px-2 col-sm-5  rounded-pill" name="desc3" style="font-family: arial, arial, arial; font-size: 14px" placeholder="decription 3" >
-                    <input type="text" class=" px-2  col-sm-2 rounded-pill" name="qty3" style="font-family: arial, arial, arial; font-size: 14px" placeholder="Qty 3">
-                    </div>
-                    <div class= "col-sm-6 p-1">
-                    <input type="text" class=" px-2 col-sm-5 rounded-pill " name="desc4" style="font-family: arial, arial, arial; font-size: 14px" placeholder="decription 4" >
-                    <input type="text" class=" px-2  col-sm-2 rounded-pill" name="qty4" style="font-family: arial, arial, arial; font-size: 14px" placeholder="Qty 4">
-                    </div>
                 </div>
-                <div class="row col-sm-12">
-                    <div class= "col-sm-6 p-1">
-                    <input type="text" class=" px-2 col-sm-5  rounded-pill" name="desc5" style="font-family: arial, arial, arial; font-size: 14px" placeholder="decription 5" >
-                    <input type="text" class="   col-sm-2 rounded-pill" name="qty5" style="font-family: arial, arial, arial; font-size: 14px" placeholder="Qty 5">
-                    </div>
-                    <div class= "col-sm-6 p-1">
-                    <input type="text" class=" px-2 col-sm-5 rounded-pill " name="desc6" style="font-family: arial, arial, arial; font-size: 14px" placeholder="decription 6" >
-                    <input type="text" class=" px-2  col-sm-2 rounded-pill" name="qty6" style="font-family: arial, arial, arial; font-size: 14px" placeholder="Qty 6">
-                    </div>
-                </div>
+                
             </div>
         </div>
+        
     </div>
+    </div>
+
 </div>
 <div class="py-4 px-5">
 <button type="submit" class="btn btn-primary  col-12">Create</button>
-</div>
+ </div>
 
 </div>
-
  
 </div>
 </form>
 
-
-
-
-<!-- Trigger the modal with a button -->
-
-
-<!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-      <div class="modal-body center">
-      <form class="form-group" action="<?= base_url('Settings/deliveryimport') ?>" method="post" name="frmCSVImport" id="frmCSVImport" enctype="multipart/form-data">
-        <div class="col-md-12">
-            <input class="form-control w-25 d-inline" required type="file" name="file"id="file" accept=".csv" required>
-        </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary px-2 btn-sm">Upload</button>
-      </div>
-    </div>
-</form>
-  </div>
-</div>
     </div>
     </div>
 
     
+<!-- 
+ 
+ Extra form -->
+<!-- 
+<div class="container ">
+        <div class=" form-row">
+            <div class="col-sm-12 mx-auto bg-light p-4">
+                <form method="post" id="invoice_create" name="invoice_create" action="<?php echo base_url('ProductsCrud/warrantysub2'); ?>">
+                <div class="row">
+                  <div class="col-6">
+                  <label class="form-label" style="font-family: arial, arial, arial; font-size: 13px " >Description</label>
+                    <input type="text" class="form-control" style="font-family: arial, arial, arial; font-size: 13px " name="description" placeholder="Description" required>
+                  </div>
+                  <div class="col-2">
+                  <label class="form-label" style="font-family: arial, arial, arial; font-size: 13px ">Quantity</label>
 
+                    <input type="number" class="form-control" style="font-family: arial, arial, arial; font-size: 13px " name="qty" placeholder="" required>
+                  </div>
+                  
+                  <div class="col-2">
+                  <label class="form-label" style="font-family: arial, arial, arial; font-size: 13px " >Unit price</label>
+
+                    <input type="number"  style="font-family: arial, arial, arial; font-size: 13px " class="form-control" name="unitprice" placeholder="" required>
+                  </div>
+                  <div class="col">
+                  <label class="form-label d-none mt-5" style="font-family: arial, arial, arial; font-size: 13px "   >submit</label>
+                  <button type ="submit" class="btn btn-success">Submit</button>
+                  </div>
+                </div>
+              </form>
+              end of extra fomr  -->
 
 
     
@@ -350,9 +342,6 @@ endif;
     
 
 
-
-
- 
 
 
 

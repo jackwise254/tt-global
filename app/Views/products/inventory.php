@@ -19,7 +19,6 @@ endif;
       <a href="<?php echo site_url('stock-view') ?>" class="btn btn-outline-success btn-sm bi bi-chevron-left">back</a>
       <!-- spreadsheet -->
       <a href="<?php echo base_url('Settings/spreadsheet') ?>" class="btn btn-outline-info btn-sm bi bi-download">spreadsheet</a>
-      <a href="<?php echo base_url('Settings/masterlistsum') ?>" class="btn btn-outline-success btn-sm bi bi-download">Summary</a>
       <?php if($true == 1): ?>
         <form class="d-flex float-end">
           <input class="form-control me-2 d-none rounded-pill" name="true" placeholder="Search" aria-label="Search" value="true">
@@ -28,9 +27,9 @@ endif;
      <?php endif; ?>
 
       <a href="<?php echo base_url('Login/undo/');?>" class="btn btn-outline-warning d-none btn-sm bi bi-arrow-counterclockwise">undo</a>
-      <button type="button" class="btn btn-outline-secondary btn-sm position-relative">
+      <button type="button" class="btn btn-outline-secondary rounded-pill btn-sm position-relative">
           Items
-           <span class="position-absolute top-0 start-100 translate-middle badge circle bg-danger">
+           <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                <?php echo $num; ?>
                <span class="visually-hidden">Items</span>
            </span>

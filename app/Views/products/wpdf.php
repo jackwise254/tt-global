@@ -60,7 +60,7 @@ function Header()
     //$this->Image('dist/img/logo.jpeg',10,6,20);
     
     // Arial bold 15
-    $currentdate = substr($_SESSION['daterecieved'],0,10);
+    $currentdate = substr($_SESSION['datedelivered'],0,10);
     $number = 'W-'.$_SESSION['wnote'];
 
     $this->SetFont('Arial','',14);
