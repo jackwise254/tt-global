@@ -8,6 +8,7 @@ else:
 endif;
 
 ?>
+
 <script type="text/javascript">
             $(".chosen-select").chosen({});
           $(".chosen-container").bind('keyup',function(e) {
@@ -22,7 +23,19 @@ endif;
 <div class="container-fluid">
 <form class="form-group " method="post" id="add_create" name="add_create" action="<?= site_url('/submit-products') ?>">
 <h4 class="text-center position-fixed w-75"><u>Multiple Upload</u></h4>
+
 <div class="form-row p-5 mt-5">
+<?php
+                if(session()->getFlashdata('status')): ?>
+                    <div id="alert" class="alert alert-danger center">
+                        <?php
+                            $status = session()->getFlashdata('status');
+                            $username = session()->get('username');
+                            echo $status.' '.$username.'!';
+                        ?>
+                    </div>
+
+            <?php endif; ?>
   	<table class="table table-striped bg-light" style='font-family:"Airal", Arial, Arial; font-size:50% table-layout:fixed cellspacing=1 cellpadding=2 width="25%" border="1"' id="inventory-create mt-6">
 		<table class="table table-bordered table-responsive-md table-striped text-center ">
         <thead>
@@ -232,5 +245,12 @@ endif;
 }
 
 </style>
+<script type="text/javascript">
+        setTimeout(function () {
+  
+            // Closing the alert
+            $('#alert').alert('close');
+        }, 4000);
+</script>
 </body>
 </html>

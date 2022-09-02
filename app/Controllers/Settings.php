@@ -1863,6 +1863,7 @@ class Settings extends BaseController
                     if ($index > 0) {
                         $stock[] = array(
                           'assetid' => $filedata[0],
+                          'terms' => session()->get('user_name')
                         );
                     }
                     $index++;
@@ -1890,9 +1891,6 @@ class Settings extends BaseController
                         return redirect()->back()->with('status', 'items already exist');
                       }
                     }
-                  }{
-                    return redirect()->back()->with('status', 'items does not exist');
-                    
                   }
                   $builder111 = $db->table('tempinsert');
                   $builder111->select('*');
@@ -5841,6 +5839,107 @@ public function ulcdw()
     $filename = "upload/".$title.$idd.".xlsx";
     return redirect()->to(base_url($filename));
   }
+
+  public function swap()
+  {
+        $session = \Config\Services::session();
+        $db      = \Config\Database::connect();
+
+        $builder1 = $db->table('users');
+        $builder1->select('users.*');
+        $builder1->where('users.designation = "admin" ' );
+        $sdata['hello'] = $builder1->get()->getResultArray();
+        $session->set($sdata);
+        $data['user_data'] = $session->get('designation');
+        $date = date("Y/m/d");
+
+        $db      = \Config\Database::connect();
+         $builder1 = $db->table('customer4');
+         $builder1->select('customer4.*')->orderBy('wnote', 'DESC');
+        if($this->request->getGet('q')) {
+         $q=$this->request->getGet('q');
+        $builder1->select('customer4.*');
+        $builder1->like('fname', $q);
+        $builder1->orLike('lname', $q);
+        $builder1->orLike('location', $q);
+        $builder1->orLike('ref', $q);
+        $builder1->orLike('date', $q);
+        $builder1->orLike('document', $q);
+
+        $data['invoicecreate'] = $builder1->get()->getResult();
+        return view('products/swapadd', $data);
+           
+        } elseif(!$this->request->getGet('q')) {
+            $data['invoicecreate'] = $builder1->get()->getResult();
+            return view('products/swapadd', $data);
+        }
+
+
+    // if($this->request->getMethod()=='post'){
+    
+    // $faulty = $this->request->getVar('faulty');
+    // $replace = $this->request->getVar('replace');
+
+    // $db      = \Config\Database::connect();
+    // $builder = $db->table('warrantyin');   
+    // $builder->select('*');
+    // $builder->where('assetid', $faulty);
+    // $data_faulty = $builder->get()->getResult();
+    // $customer = $data_faulty[0]['customer'];
+
+
+    // $db      = \Config\Database::connect();
+    // $builder1 = $db->table('masterlist');   
+    // $builder1->select('*');
+    // $builder1->where('assetid', $replace);
+    // $data_replace = $builder1->get()->getResult();
+    // foreach($data_replace as $d ){
+    //   $builder2 = $db->table('warrantyout');
+    //   $builder2->select('*');
+    //   $builder2->where('assetid', $replace);
+    // }
+
+    // echo '<pre>';
+    // print_r($data_faulty);
+
+    // echo '<pre>';
+    // print_r($data_replace);
+    // exit;
+
+    // }
+  
+  }
+
+  public function swapcreat()
+    {
+        $session = \Config\Services::session();
+        $db      = \Config\Database::connect();
+        $builder1 = $db->table('users');
+        $builder1->select('users.*');
+        $builder1->where('users.designation = "admin" ' );
+        $sdata['hello'] = $builder1->get()->getResultArray();
+        $session->set($sdata);
+        $data['user_data'] = $session->get('designation');
+        helper(['form', 'url']);
+        
+
+        $db      = \Config\Database::connect();
+        $builder = $db->table('warrantyswap');
+        $builder->select('*');
+
+        $builder1 = $db->table('customer5');
+        $builder1->select('*');
+
+        $data['customer'] = $builder1->get()->getResult();
+        $data['masterlist'] = $builder->get()->getResult();
+
+        $db      = \Config\Database::connect();
+        $builder5 = $db->table('customer');
+        $builder5->select('customer.*')->orderBy('username', 'ASC');;
+        $data['customers'] = $builder5->get()->getResult();
+        return view('products/swapp', $data);
+    }
+
 }
 
 

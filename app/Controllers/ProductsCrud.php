@@ -1105,7 +1105,7 @@ class ProductsCrud extends Controller
 
         $db      = \Config\Database::connect();
         $builder = $db->table('product2');
-        $builder->select('product2.*')->orderBy("date", "DESC");
+        $builder->select('product2.*')->orderBy("date","DESC", "delvnote");
         if($this->request->getGet('q')) {
             $q=$this->request->getGet('q');
             $builder1 = $db->table('product2');
@@ -1352,27 +1352,34 @@ class ProductsCrud extends Controller
 
         ];
         $assid = 0;
-
         $builder1 = $db->table('masterlist');
         $builder1->selectMax('id');
         $data1 = $builder1->get()->getResultArray();
-        foreach($data1 as $d1):
-         endforeach;
+
+        $builder2 = $db->table('templist');
+        $builder2->select('*');
+        $data2 = $builder2->get()->getResultArray();
+        if($data2){
+            return redirect()->back()->with('status', 'Try again after pushing all items to masterlist');
+        }
+
+        foreach($data1 as $d1){
             if($d1['id']){
                 $assid = 'ST'.$d1['id'] + 1;
-                for ($i=0; $i <$qty; $i++) { 
+                for($j=0; $j < $qty; $j++){
                     $assid ++ ; 
                     $data['assetid'] = $assid;
                     $builder->insert($data);
                 }
             }
             else{
-                for ($i=0; $i <$qty; $i++) { 
+                for($j=0; $j < $qty; $j++){
                     $assid = 'ST'.rand(1000000, 9999999);
                     $data['assetid'] = $assid;
                     $builder->insert($data);
-                  }
                 }
+            }
+        } 
         return redirect()->to(base_url('ProductsCrud/load'))->with('status', $qty.' '.'Items Inserted succesfully');
 }
   
@@ -8308,42 +8315,32 @@ public function printbarcodwi($id)
             $db      = \Config\Database::connect();
             $increment = $db->table("product2");
             $increment->selectMax('product2.delvnote');
-            // $increment->where('vendor', $sess);
             $increment1 = $increment->get()->getResultArray();
             $inc = $increment1[0]['delvnote'];
-            if($x = $inc){
-                
-            $incc1 = $db->table("dcustomer");
-            $incc1->selectMax('dcustomer.delvnote');
-            $incc1->where('vendor', $sess);
-            $sss1 = $incc1->get()->getResultArray();
-            $nn = $sss1[0]['delvnote'];
-            if(!$nn){
-                $x = $inc;
-                for($i = 0; $i < 1; $i++) {
-                    $x++;
-                    $incs =[ $x, ];
-            $incc = $db->table("dcustomer");
-            $incc->select('dcustomer.*');
-            // $incc->where('dcustomer.delvnote');
-            $incc->where('vendor', $sess);
-            $sss = $incc->get()->getResultArray();
-            $incc->update(['delvnote' => $incs]);
-        }
-    }  
-        }else{
-         
-            for($i = 0; $i < 1; $i++) {
-            $x = $x++;
-            // echo '<pre>';
-            // print_r($x);
+            if($inc){
+                $incc1 = $db->table("dcustomer");
+                $incc1->selectMax('delvnote');
+                $incc1->where('vendor', $sess);
+                $sss1 = $incc1->get()->getResultArray();
+                $nn = $sss1[0]['delvnote'];
+                if(!$nn){
+                    $x = $inc;
+                    for($i = 0; $i < 1; $i++) {
+                        $x++;
+                        $incc = $db->table("dcustomer");
+                        $incc->selectMax('delvnote');
+                        $incc->where('vendor', $sess);
+                        $incc->update(['delvnote' => $x]);
+                    }
+                }
+                }
+            else{
             $incc = $db->table("dcustomer");
             $incc->select('dcustomer.*');
             $incc->where('vendor', $sess);
             $incc->where('dcustomer.delvnote');
             $incc->update(['delvnote' => $data['delvnote']]);
             $incc->update(['delvnote' => $data['delvnote']]);
-            }
         }
 
         $db      = \Config\Database::connect();
@@ -8351,7 +8348,6 @@ public function printbarcodwi($id)
         $builder44->select('dcustomer.username');
         $builder44->where('vendor', $sess);
         $data44 = $builder44->get()->getResultArray();
-        
 
         foreach($data44 as $dat44):
         $builder10000 = $db->table("tempinsert");
@@ -9703,10 +9699,84 @@ public function printbarcodwi($id)
 
         $data['customer'] = $builder1->get()->getResult();
         $data['masterlist'] = $builder->get()->getResult();
-
-
         return view('products/manual', $data);
 
+    }
+
+    public function swappsub1()
+    {
+        helper(['form', 'url']);
+        $db      = \Config\Database::connect();
+        $data1 = array();
+        $data = [
+            'username' => $this->request->getPost('username'),
+            'random' => $this->request->getPost('random'),
+            'warranty' => $this->request->getPost('warranty'),
+        ];
+
+        $builder9011 = $db->table("warrantyswap");
+        $builder9011->select('*');
+        $data9011 = $builder9011->get()->getResult();
+        $num9011 =$builder9011->countAll();
+
+        if($num9011 < 1){
+
+        $builder = $db->table("customer");
+        $builder->select('customer.*');
+        $builder->where('customer.username', $data['username']);
+        $data1 = $builder->get()->getResultArray();
+
+
+        $builder1 = $db->table("customer5");
+        $builder1->select('*');
+        $num = $builder1->countAll();
+        $builder1->where('username', $data['username']);
+        $data2 = $builder1->get()->getResultArray();
+
+        foreach($data1 as $r) { 
+        if($num < 1){
+        $db->table('customer5')->insert($r);
+        $builder1->update(['random' => $data['random']]);
+        $builder1->update(['warranty' => $data['warranty']]);
+        }
+        elseif(!$data2){
+            $db->table('customer5')->update($r);
+        }
+        $builder1->update(['random' => $data['random']]);
+        $builder1->update(['warranty' => $data['warranty']]);
+        }
+        return redirect()->to('Settings/swapcreat'); 
+    }
+
+    else{
+
+        $builderss1 = $db->table("customer5");
+        $builderss1->select('*');
+        $numss = $builderss1->countAll();
+        $builderss1->where('username', $data['username']);
+        $datass2 = $builderss1->get()->getResultArray();
+
+        $builder901 = $db->table("warrantyswap");
+        $builder901->select('customer');
+        $builder901->where('customer', $data['username']);
+        $data901 = $builder901->get()->getResult();
+        foreach($data901 as $da901){
+
+            if($data['username'] = $da901){
+                foreach($data1111 as $r1) { 
+                if($numss < 1){
+                    $db->table('customer5')->insert($r1);
+                }
+                elseif(!$datass2){
+                    $db->table('customer5')->update($r1);
+                }
+                $builderss1->update(['random' => $data['random']]);
+                }
+                return redirect()->to('Settings/swapcreat'); 
+                }
+        }
+            return redirect()->back()->with('status', 'Ensure correct customer is selectred and retry');
+    }
     }
 
     public function warrantysub1()
@@ -10125,73 +10195,11 @@ public function printbarcodwi($id)
     public function editdelivery($id)
     {
         $sess = session()->get('user_name');
-        $db      = \Config\Database::connect();
-        $check = $db->table("mdelivery");
-        $check->select('description');
-        $checks = $check->get()->getResultArray();
-        if($checks){
-
-            $db      = \Config\Database::connect();
-            $clear = $db->table("tmdelivery");
-            $clear->select('tmdelivery.*');
-            $clear->where('terms', $sess);
-            $clear->delete();
-    
-    
-            $builder = $db->table('mdelivery');
-            $builder->select('mdelivery.*');
-            $builder->where('mdelivery.random', $id);
-            $data3 = $builder->get()->getResultArray();
-    
-    
-            $builder13 = $db->table('tmdelivery');
-            $builder13->select('tmdelivery.*');
-            $builder13->where('tmdelivery.random', $id);
-            $data13 = $builder13->get()->getResultArray();
-    
-            foreach($data3 as $r) {
-                $db->table('tmdelivery')->insert($r);
-            }
-            
-    
-            $builder10 = $db->table('product');
-            $builder10->select('product.*');
-            $builder10->where('product.random', $id);
-            $data10 = $builder10->get()->getResultArray();
-    
-            $builder11 = $db->table("dcustomer");
-            $builder11->select('dcustomer.*');
-            $builder11->where('dcustomer.random', $id);
-            $data11 = $builder11->get()->getResultArray();
-           
-            foreach($data10 as $c) {
-                if(!$data11){
-                $db->table('dcustomer')->insert($c);
-                }
-                else{
-                $db->table('dcustomer')->update($c);
-                }
-            }
-    
-    
-            $delete1 = $db->table('product');
-            $delete1->select('product.*');
-            $delete1->where('product.random', $id);
-            $delete1->delete();
-    
-            $delete1 = $db->table('product2');
-            $delete1->select('product2.*');
-            $delete1->where('product2.ref', $id);
-            $delete1->delete();
-    
-    
-            return redirect()->to(base_url('/ProductsCrud/manual'));
-        }
 
         $db      = \Config\Database::connect();
         $clear = $db->table("tempinsert");
         $clear->select('tempinsert.*');
-        $clear->where('terms', $sess);
+        $clear->where('random', $id);
         $clear->delete();
 
         $deletew = $db->table('masterlist');
@@ -10204,18 +10212,14 @@ public function printbarcodwi($id)
         $builder->where('stockout.random', $id);
         $data3 = $builder->get()->getResultArray();
 
-        $builder14 = $db->table('stockout');
-        $builder14->select('stockout.*');
-        $builder14->where('stockout.random', $id);
-        $data14 = $builder14->get()->getResultArray();
-
         $builder13 = $db->table('masterlist');
         $builder13->select('masterlist.*');
         $builder13->where('masterlist.random', $id);
         $data13 = $builder13->get()->getResultArray();
 
         $builder33 = $db->table("tempinsert");
-        $builder33->select('tempinsert.*');
+        $builder33->select('*');
+        $builder33->where('random', $id);
         $data1 = $builder33->get()->getResultArray();
 
         foreach($data3 as $r) {
@@ -10224,32 +10228,29 @@ public function printbarcodwi($id)
             }
             
         }
-
         $update = [
             'customer' => '',
             'terms' => $sess
         ];
 
+        $update2 =[
+            'customer' => '',
+            'vendor' => $sess
+        ];
+
         $builder113 = $db->table('tempinsert');
         $builder113->select('tempinsert.*');
         $builder113->where('tempinsert.random', $id);
-        // $data113  = $builder113->get()->getResultArray();
         $builder113->update($update);
-        // echo '<pre>';
-        // print_r($data113);
-        // exit;
 
-        foreach($data14 as $s) {
+        foreach($data3 as $s) {
         if(!$data13){
         $db->table('masterlist')->insert($s);
         }
         else{
         $db->table('masterlist')->update($s);
-
         }
         }
-
-        
 
         $builder10 = $db->table('product');
         $builder10->select('product.*');
@@ -10268,8 +10269,10 @@ public function printbarcodwi($id)
             else{
             $db->table('dcustomer')->update($c);
             }
-            
-            $db->table('dcustomer')->update(['vendor' => $sess]);
+            $builder11 = $db->table("dcustomer");
+            $builder11->select('*');
+            $builder11->where('random', $id);
+            $builder11->update(['vendor' => $sess]);
         }
 
 
