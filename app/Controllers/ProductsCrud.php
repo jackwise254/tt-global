@@ -1105,7 +1105,7 @@ class ProductsCrud extends Controller
 
         $db      = \Config\Database::connect();
         $builder = $db->table('product2');
-        $builder->select('product2.*')->orderBy("date","DESC", "delvnote");
+        $builder->select('product2.*')->orderBy("delvnote","DESC", "date","DESC");
         if($this->request->getGet('q')) {
             $q=$this->request->getGet('q');
             $builder1 = $db->table('product2');
@@ -8320,7 +8320,7 @@ public function printbarcodwi($id)
             if($inc){
                 $incc1 = $db->table("dcustomer");
                 $incc1->selectMax('delvnote');
-                $incc1->where('vendor', $sess);
+                // $incc1->where('vendor', $sess);
                 $sss1 = $incc1->get()->getResultArray();
                 $nn = $sss1[0]['delvnote'];
                 if(!$nn){
@@ -8329,7 +8329,7 @@ public function printbarcodwi($id)
                         $x++;
                         $incc = $db->table("dcustomer");
                         $incc->selectMax('delvnote');
-                        $incc->where('vendor', $sess);
+                        // $incc->where('vendor', $sess);
                         $incc->update(['delvnote' => $x]);
                     }
                 }
@@ -8337,7 +8337,7 @@ public function printbarcodwi($id)
             else{
             $incc = $db->table("dcustomer");
             $incc->select('dcustomer.*');
-            $incc->where('vendor', $sess);
+            // $incc->where('vendor', $sess);
             $incc->where('dcustomer.delvnote');
             $incc->update(['delvnote' => $data['delvnote']]);
             $incc->update(['delvnote' => $data['delvnote']]);
@@ -8419,7 +8419,6 @@ public function printbarcodwi($id)
         $builder8->where('terms', $sess);
         $data1 = $builder8->get()->getResultArray();
 
-
         $builder1 = $db->table("stockout");
         $builder1->select('stockout.*');
         $data2['items'] = $builder1->get()->getResultArray();
@@ -8442,9 +8441,6 @@ public function printbarcodwi($id)
         foreach($data4 as $c) { 
             $db->table('product')->insert($c);
         }
-
-        
-
 
         $builder10 = $db->table('tempinsert');
         $builder10->select('tempinsert.*, dcustomer.*, sum(tempinsert.qty) as tqty ');

@@ -85,10 +85,6 @@ endif;
         <div class=" form-row">
             <div class="col-sm-12 mx-auto bg-light rounded shadow">
                 <h4 class="text-center" style="font-family: arial, arial, arial; font-size: 14px ">Customer details </h4>
-
-
-
-
                     <?php foreach($customer as $user): ?>
                     <div class="row px-3">
                     
@@ -140,8 +136,6 @@ endif;
                         </div>
                     </div>
                     <?php endforeach; ?>
-                          
-                        
             </div>
         </div>
     </div>
@@ -158,11 +152,11 @@ endif;
                     ?>
 
                 <input type="date" class=" col-sm-2  rounded-pill px-1" name="datedelivered" max='date(yyyy/mm/dd)' style="font-family: arial, rounded-pill arial, arial; font-size: 14px" >
-                <div class="table-responsive">
+                <div class="table-responsive " style='height: 50vh;'>
                 <?php if($masterlist): 
                     $max = date("Y-m-d H:i:s");
                     ?>
-                    <table class="table table-fixed table-striped " style='font-family:"Airal", Arial, Arial; font-size:60%'>
+                    <table class="table table-fixed table-striped " style='font-family:"Airal", Arial, Arial; font-size:50%, '>
                         <thead >
                             <tr>
                             <th scope="col" class="col-3"></th>
@@ -192,7 +186,7 @@ endif;
                             $datereceived = substr($user->daterecieved,0,10);
                             $datedelivered = substr($user->datedelivered,0,10);
                             ?>
-                        <tbody>
+                        <tbody style='height: 10vh;'>
                             <tr>
                             <td class="">  
                             <div class="btn-group" role="group" aria-label="Basic example">
@@ -227,7 +221,6 @@ endif;
                         <?php endforeach; ?>
                     </table>
                     <?php endif; ?>
-                </div>
 
                 <div class="row col-sm-12">
                     <div class= "col-sm-6 p-1">
@@ -261,6 +254,7 @@ endif;
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </div>
 <div class="py-4 px-5">

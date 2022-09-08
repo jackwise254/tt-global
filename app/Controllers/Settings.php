@@ -2097,6 +2097,12 @@ class Settings extends BaseController
             $csv_data = array_map('str_getcsv', file($file_name));
 
             if (count($csv_data) > 0) {
+              $builder2 = $db->table('templist');
+              $builder2->select('*');
+              $data2 = $builder2->get()->getResultArray();
+                if($data2){
+                    return redirect()->back()->with('status', 'Try again after pushing all items to masterlist');
+                }
 
                 $index = 0;
 
@@ -2107,26 +2113,25 @@ class Settings extends BaseController
                         $assetid1 =  $filedata[3];
                       }
                       else{
+
+                        $assid = 0;
                         $builder1 = $db->table('masterlist');
                         $builder1->selectMax('id');
                         $data1 = $builder1->get()->getResultArray();
-                        foreach($data1 as $d1):
-                        endforeach;
+                        foreach($data1 as $d1){
                             if($d1['id']){
                                 $assid = 'ST'.$d1['id'] + 1;
-                                for ($i=0; $i <$qty; $i++) { 
+                                for($j=0; $j < $qty; $j++){
                                     $assid ++ ; 
                                     $assetid1 = $assid;
                                 }
                             }
                             else{
-                                for ($i=0; $i <$qty; $i++) { 
-                                    $assetid1 = 'ST'.rand(1000000, 9999999);
-                                  }
+                                for($j=0; $j < $qty; $j++){
+                                  $assetid1 = 'ST'.rand(1000000, 9999999);
                                 }
-
-                      // $rand = rand(100000, 999999);
-                      // $assetid1 = 'ST'.$rand; 
+                            }
+                        } 
                       }
 
                         $stock[] = array(

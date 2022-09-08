@@ -15,7 +15,6 @@ endif;
    <div class="row">
      <div class='col-12 mt-4 pt-5'>
      <form name="test" class=" " action="<?php echo  base_url('ProductsCrud/sverify'); ?>" method="POST">
-
         <input type="text" class="col-2 rounded-pill" id="serialno" name="serialno" placeholder="serial no." autofocus>
         <select class="col-2 p-1 rounded-pill" id="sort-item" name='table' type="text" required>
            <option selected value='All'>All</option>
@@ -30,8 +29,6 @@ endif;
          </select>
            <button type ="submit" class="d-none" id="myBtn" >Submit</button>
            <input class="d-none" value="<?= $random; ?>" name="random">
-
-           <!-- scanned icoin -->
            <input class="d-none" value='true' name="ans">
          <?php if($ans > 0): ?>
          <button type="submit" class="btn btn-outline-success rounded-pill btn-sm position-relative ">
@@ -86,22 +83,22 @@ endif;
                            <input type="text" class="col-3 me-2 rounded-pill"  name="replace" placeholder="Replace." autofocus>
                            <select class="col-3 p-1 rounded-pill" id="sort-item" name='column' type="text" placeholder="." required>
                              <option value='Conditions'>Conditions</option>
-                             <option value='Model'>Model</option>
-                             <option value='gen'>Generation</option>
                              <option value='Brand'>Brand</option>
-                             <option value='Hdd'>Hdd</option>
-                             <option value='Speed'>speed</option>
-                             <option value='Price'>Price</option>
-                             <option value='Ram'>Ram</option>
-                             <option value='Cpu'>Cpu</option>
-                             <option value='Odd'>Odd</option>
-                             <option value='Type'>Type</option>
-                             <option value='Problem'>Problem</option>
-                             <option value='Part'>Part</option>
-                             <option value='Modelid'>Modelid</option>
-                             <option value='Screen'>Screen</option>
                              <option value='Comment'>Comment</option>
                              <option value='Customer'>Customer</option>
+                             <option value='Cpu'>Cpu</option>
+                             <option value='Model'>Model</option>
+                             <option value='gen'>Generation</option>
+                             <option value='Hdd'>Hdd</option>
+                             <option value='Modelid'>Modelid</option>
+                             <option value='Odd'>Odd</option>
+                             <option value='Part'>Part</option>
+                             <option value='Speed'>speed</option>
+                             <option value='Price'>Price</option>
+                             <option value='Problem'>Problem</option>
+                             <option value='Ram'>Ram</option>
+                             <option value='Type'>Type</option>
+                             <option value='Screen'>Screen</option>
                              <option value='Vendor'>Vendor</option>
                            </select>
                            <button type ="submit" class="btn btn-sm btn-outline-primary rounded-pill"  >Replace</button>
