@@ -11,14 +11,14 @@ endif;
 
 <?php include('inc/db_connect.php'); ?>
 <?php echo $random = rand(1000000, 9999999); ?>
-<div class="row container col-12">
+<div class="row container col-12 ">
    <div class="row">
-     <div class='col-12 mt-4 pt-5'>
-     <form name="test" class=" " action="<?php echo  base_url('ProductsCrud/sverify'); ?>" method="POST">
-        <input type="text" class="col-2 rounded-pill" id="serialno" name="serialno" placeholder="serial no." autofocus>
-        <select class="col-2 p-1 rounded-pill" id="sort-item" name='table' type="text" required>
-           <option selected value='All'>All</option>
-           <option  value='Stockin'>Stock in</option>
+    <div class="col-5 mt-4 pt-5">
+      <form name="test" class=" " action="<?php echo  base_url('Settings/sverify'); ?>" method="POST">
+        <input type="text" class="col-6 rounded-pill " id="serialno" name="serialno" placeholder="serial no." autofocus>
+        <select class="col-4 p-1 rounded-pill " id="sort-item" name='table' type="text" required>
+           <option value='All'>All</option>
+           <option selected value='Stockin'>Stock in</option>
            <option value='stockout'>Stock out</option>
            <option value='faulty'>Faulty in</option>
            <option value='faultyout'>Faulty Out</option>
@@ -41,30 +41,19 @@ endif;
          <!-- //scanned icon -->
 
        </form>
-
-     </div>
-
-     
-     
-   </div>
-    
-
-       <form>
-         <div class=" float-end ">
-           
-                 <!-- filter design -->
-             <div class="container float-end">
-                 <div class="row searchFilter" >
-                   <div class="col-sm-12" >
-                     <div class="input-group" >
-                     <div class="input-group-btn" >
-                     <select class="col-2 p-1 rounded-pill" id="sort-itemss" name='search' type="text"  placeholder='Category'>
-                     <?php foreach($type as $t): ?>
-                         <option></option>
-                         <option value='<?php echo $t->type; ?>'><?php echo $t->type; ?></option>
-                     <?php endforeach; ?>
-                     </select>
-                     <input type="text" class="col-2  rounded-pill" id="model" name="model" placeholder="model." autofocus>
+    </div>
+    <div class="col-7 mt-4 pt-5">
+      <form action="">
+      <?php if(!$count_verif): ?>
+        <div class="input-group">
+          <div class="input-group-btn">
+              <select class="col-2 p-1 rounded-pill" id="sort-itemss" name='search' type="text"  placeholder='Category'>
+                <?php foreach($type as $t): ?>
+                    <option></option>
+                    <option value='<?php echo $t->type; ?>'><?php echo $t->type; ?></option>
+                <?php endforeach; ?>
+              </select>
+              <input type="text" class="col-2  rounded-pill" id="model" name="model" placeholder="model." autofocus>
                      <input type="text" class="col-2  rounded-pill" name="find" placeholder="search." autofocus>
                        <select class="col-2 p-1 rounded-pill" id="sort-item" name='table' type="text" placeholder="serial no." required>
                          <option  value='All'>All</option>
@@ -78,7 +67,7 @@ endif;
                          <optionm value='debit'>Debit</option>
                        </select>
                          <button type ="submit" class="btn btn-sm btn-outline-success rounded-pill bi bi-search px-3" ></button>
-                         <?php if($count_verif && $user_data == 'adminss' ): ?>
+                         <?php elseif($count_verif && $user_data == 'admin' ): ?>
                            <input type="text" class="col-3 me-2 rounded-pill"  name="replace" placeholder="Replace." autofocus>
                            <select class="col-3 p-1 rounded-pill" id="sort-item" name='column' type="text" placeholder="." required>
                              <option value='Conditions'>Conditions</option>
@@ -111,32 +100,16 @@ endif;
                            </span>
                                  <?php endif; ?>
                            </button>
-                        <a href="<?php echo site_url('clear') ?>" class=" btn btn-outline-danger bi bi-trash-fill rounded-pill  btn-sm mt-1">Clear</a>
+                        <a href="<?php echo site_url('clears') ?>" class=" btn btn-outline-danger bi bi-trash-fill rounded-pill  btn-sm mt-1">Clear</a>
+          </div>
+        </div>
+      </form>
 
-                     </div>
+    </div>
 
-                       </div>
-                     </div>
-                   </div>
-                 </div>
-               </div>
-             <!-- end -->
-              
-               <!-- <select class="col-3 me-2 rounded-pill" id="sort-item" name='table' type="text" placeholder="" required>
-                 <option value='stockin'>Stock in</option>
-                 <option value='stockout'>Stock out</option>
-                 <option value='faulty'>Faulty in</option>
-                 <option value='faultyout'>Faulty Out</option>
-                 <option value='warranty'>Warranty in</option>
-                 <option value='warrantyout'>Warranty Out</option>
-                 <option value='credit'>Credit</option>
-                 <optionm value='debit'>Debit</option>
-              </select> -->
-              
-        </form>
+
       
    </div>
-   
 </div>
 </div>
 
@@ -301,14 +274,9 @@ endif;
    
    </div>
 <?php if($items): ?>
- <a href="<?php echo base_url('ProductsCrud/masterlistall'); ?>" class="btn btn-outline-success d-none   btn-sm mt-1">Masterlist</a>
- <a href="<?php echo base_url('ProductsCrud/faultyall'); ?>" class="btn btn-outline-warning d-none btn-sm mt-1">Faulty</a>
- <button type="button" class="btn btn-outline-primary px-2  btn-sm" data-toggle="modal" data-target="#myModal">Summary</button>
- <a href="<?php echo site_url('spreadsheetv') ?>" class="btn btn-outline-info btn-sm  mt-1">spreadsheet</a>
- <a href="<?= base_url('ProductsCrud/printbarcodver/') ?>" class="btn   btn-outline-secondary btn-sm mt-1">barcode</a> 
- <a href="<?= base_url('ProductsCrud/printbarcode2ver/' ) ?>" class="btn    btn-outline-success btn-sm mt-1">barcode2</a> 
- <a href="<?= site_url('/verify-create' ) ?>" class="btn  btn-outline-secondary  btn-sm mt-1">Previous Summary</a>
- <a href="<?php echo site_url('clear') ?>" class=" btn btn-outline-danger bi bi-trash-fill  btn-sm mt-1">Clear</a>
+ <a href="<?php echo base_url('ProductsCrud/masterlistall'); ?>" class="btn btn-outline-success   btn-sm mt-1">Masterlist</a>
+ <a href="<?php echo base_url('ProductsCrud/faultyall'); ?>" class="btn btn-outline-warning  btn-sm mt-1">Faulty</a>
+ <a href="<?php echo site_url('clears') ?>" class=" btn btn-outline-danger bi bi-trash-fill  btn-sm mt-1">Clear</a>
 <?php endif; ?>
 
 <div id="myModal" class="modal fade" role="dialog">

@@ -5945,6 +5945,4037 @@ public function ulcdw()
         return view('products/swapp', $data);
     }
 
+    public function adjustments(){
+      $session = \Config\Services::session();
+      $db      = \Config\Database::connect();
+      $builder1 = $db->table('users');
+      $builder1->select('users.*');
+      $builder1->where('users.designation = "admin" ' );
+      $sdata['hello'] = $builder1->get()->getResultArray();
+      $sess = session()->get('user_name');
+      $session->set($sdata);
+
+      $builder222 =  $db->table('barcodes');
+      $builder222->selectCount('serialno');
+      $datawww = $builder222->get()->getResultArray();
+      foreach($datawww as $dw):
+      endforeach;
+      $data['ans'] = $dw['serialno'];
+
+      $builder17 = $db->table('type');
+      $builder17->select('*');
+      $data['type'] = $builder17->get()->getresult();
+
+      $random = rand(100000, 999999);
+      $rands = [
+          'random' =>$random,
+          'terms' => $sess,
+          'tbl' =>$this->request->getvar('table'),
+      ];
+
+      session()->set($rands);
+      $datam = [
+          'random' => $random,
+          'terms' => $sess,
+          'time' => date("h:i:sa"),
+          'tbl' => 'Stockin',
+      ];
+
+      $dataso = [
+          'random' => $random,
+          'terms' => $sess,
+          'time' => date("h:i:sa"),
+          'tbl' => 'Stockout'
+      ];
+
+      $dataf = [
+          'random' => $random,
+          'terms' => $sess,
+          'time' => date("h:i:sa"),
+          'tbl' => 'faulty'
+      ];
+
+
+      $datafo = [
+          'random' => $random,
+          'terms' => $sess,
+          'time' => date("h:i:sa"),
+          'tbl' => 'faultyout'
+      ];
+
+      $dataw = [
+          'random' => $random,
+          'terms' => $sess,
+          'time' => date("h:i:sa"),
+          'tbl' => 'warrantyin'
+      ];
+
+      $datawo = [
+          'random' => $random,
+          'terms' => $sess,
+          'time' => date("h:i:sa"),
+          'tbl' => 'warranty out'
+      ];
+
+      $datac = [
+          'random' => $random,
+          'terms' => $sess,
+          'time' => date("h:i:sa"),
+          'tbl' => 'credit'
+      ];
+
+      $datad = [
+          'random' => $random,
+          'terms' => $sess,
+          'time' => date("h:i:sa"),
+          'tbl' => 'debit'
+      ];
+      if($this->request->getGet('find') && $this->request->getGet('model') && $this->request->getGet('search') ) {
+
+          $m = $this->request->getVar('table');
+          $j = $this->request->getVar('find');
+          $i = $this->request->getVar('search');
+          $model = $this->request->getVar('model');
+          $builde = $db->table('verify');
+          $builde->select('*');
+          $builde->like('model', $model) &&
+          $builde->like('type', $i) &&
+          
+          $builde->orLike('model', $model) && 
+          $builde->like('type', $i) &&
+          $builde->like('assetid', $j);
+          $builde->orLike('model', $model) &&
+          $builde->like('type', $i) &&
+          $builde->like('brand', $j);
+          $builde->orLike('model', $model) &&
+          $builde->like('type', $i) &&
+          $builde->like('conditions', $j);
+          $builde->orLike('model', $model) &&
+          $builde->like('type', $i) &&
+          $builde->like('modelid', $j);
+          $builde->orLike('model', $model) &&
+          $builde->like('type', $i) &&
+          $builde->like('gen', $j);
+          $builde->orLike('model', $model) &&
+          $builde->like('type', $i) &&
+          $builde->like('screen', $j);
+          $builde->orLike('model', $model) &&
+          $builde->like('type', $i) &&
+          $builde->like('price', $j);
+          $builde->orLike('model', $model) &&
+          $builde->like('type', $i) &&
+          $builde->like('customer', $j);
+          $builde->orLike('model', $model) &&
+          $builde->like('type', $i) &&
+          $builde->like('ram', $j);
+          $builde->orLike('model', $model) &&
+          $builde->like('type', $i) &&
+          $builde->like('odd', $j);
+          $builde->orLike('model', $model) &&
+          $builde->like('type', $i) &&
+          $builde->like('comment', $j);
+          $builde->orLike('model', $model) &&
+          $builde->like('type', $i) &&
+          $builde->like('type', $j);
+          $dataa = $builde->get()->getresultArray();
+
+          if($m == 'Stockin'){
+              $builder122 = $db->table('masterlist');
+              $builder122->select('masterlist.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('masterlist.*');
+              $builder122 = $db->table('masterlist');
+              $builder122->select('masterlist.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('masterlist.*');
+              $builder122->like('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('cpu', $j);
+              $builder122->orLike('model', $model) && 
+              $builder122->like('type', $i) &&
+              $builder122->like('assetid', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('brand', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('conditions', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('modelid', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('gen', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('screen', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('price', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('customer', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('ram', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('odd', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('comment', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('type', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('assetid', $j);
+              
+              $builde->orLike('model', $model) && 
+              $builde->like('type', $i) &&
+              $builde->like('assetid', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('brand', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('conditions', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('modelid', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('gen', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('screen', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('price', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('customer', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('ram', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('odd', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('comment', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('type', $j); 
+              $builde->update($datam);
+              return redirect()->to(site_url('/verify'));
+              }
+
+          elseif($m == 'stockout'){
+              $builder122 = $db->table('stockout');
+              $builder122->select('stockout.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('stockout.*');
+              $builder122 = $db->table('stockout');
+              $builder122->select('stockout.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('stockout.*');
+              $builder122->like('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('cpu', $j);
+              $builder122->orLike('model', $model) && 
+              $builder122->like('type', $i) &&
+              $builder122->like('assetid', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('brand', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('conditions', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('modelid', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('gen', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('screen', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('price', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('customer', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('ram', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('odd', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('comment', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('type', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('cpu', $j);
+              $builde->orLike('model', $model) && 
+              $builde->like('type', $i) &&
+              $builde->like('assetid', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('brand', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('conditions', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('modelid', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('gen', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('screen', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('price', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('customer', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('ram', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('odd', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('comment', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('type', $j); 
+              $builde->update($dataso);
+              return redirect()->to(site_url('/adjustments'));
+          }
+          elseif($m == 'warranty'){
+              $builder122 = $db->table('warrantyin');
+              $builder122->select('warrantyin.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('warrantyin.*');
+              $builder122 = $db->table('warrantyin');
+              $builder122->select('warrantyin.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('warrantyin.*');
+              $builder122->like('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('cpu', $j);
+              $builder122->orLike('model', $model) && 
+              $builder122->like('type', $i) &&
+              $builder122->like('assetid', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('brand', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('conditions', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('modelid', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('gen', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('screen', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('price', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('customer', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('ram', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('odd', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('comment', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('type', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('cpu', $j);
+              $builde->orLike('model', $model) && 
+              $builde->like('type', $i) &&
+              $builde->like('assetid', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('brand', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('conditions', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('modelid', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('gen', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('screen', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('price', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('customer', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('ram', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('odd', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('comment', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('type', $j); 
+              $builde->update($dataw);
+          }
+          elseif($m == 'warrantyout'){
+              $builder122 = $db->table('warrantyout');
+              $builder122->select('warrantyout.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('warrantyout.*');
+              $builder122 = $db->table('warrantyout');
+              $builder122->select('warrantyout.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('warrantyout.*');
+              $builder122->like('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('cpu', $j);
+              $builder122->orLike('model', $model) && 
+              $builder122->like('type', $i) &&
+              $builder122->like('assetid', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('brand', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('conditions', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('modelid', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('gen', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('screen', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('price', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('customer', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('ram', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('odd', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('comment', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('type', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('cpu', $j);
+              $builde->orLike('model', $model) && 
+              $builde->like('type', $i) &&
+              $builde->like('assetid', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('brand', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('conditions', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('modelid', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('gen', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('screen', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('price', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('customer', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('ram', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('odd', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('comment', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('type', $j); 
+              $builde->update($datawo);
+          }
+          elseif($m == 'credit'){
+              $builder122 = $db->table('credit');
+              $builder122->select('credit.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('credit.*');
+              $builder122 = $db->table('credit');
+              $builder122->select('credit.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('credit.*');
+              $builder122->like('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('cpu', $j);
+              $builder122->orLike('model', $model) && 
+              $builder122->like('type', $i) &&
+              $builder122->like('assetid', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('brand', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('conditions', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('modelid', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('gen', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('screen', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('price', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('customer', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('ram', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('odd', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('comment', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('type', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('cpu', $j);
+              $builde->orLike('model', $model) && 
+              $builde->like('type', $i) &&
+              $builde->like('assetid', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('brand', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('conditions', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('modelid', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('gen', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('screen', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('price', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('customer', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('ram', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('odd', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('comment', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('type', $j); 
+              $builde->update($datac);
+          }elseif($m == 'debit'){
+              $builder122 = $db->table('debit');
+              $builder122->select('debit.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('debit.*');
+              $builder122 = $db->table('debit');
+              $builder122->select('debit.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('debit.*');
+              $builder122->like('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('cpu', $j);
+              $builder122->orLike('model', $model) && 
+              $builder122->like('type', $i) &&
+              $builder122->like('assetid', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('brand', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('conditions', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('modelid', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('gen', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('screen', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('price', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('customer', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('ram', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('odd', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('comment', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('type', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('cpu', $j);
+              $builde->orLike('model', $model) && 
+              $builde->like('type', $i) &&
+              $builde->like('assetid', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('brand', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('conditions', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('modelid', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('gen', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('screen', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('price', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('customer', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('ram', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('odd', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('comment', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('type', $j); 
+              $builde->update($datad);
+          }elseif($m == 'faulty'){
+              $builder122 = $db->table('faulty');
+              $builder122->select('faulty.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('faulty.*');
+              $builder122 = $db->table('faulty');
+              $builder122->select('faulty.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('faulty.*');
+              $builder122->like('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('cpu', $j);
+              $builder122->orLike('model', $model) && 
+              $builder122->like('type', $i) &&
+              $builder122->like('assetid', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('brand', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('conditions', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('modelid', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('gen', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('screen', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('price', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('customer', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('ram', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('odd', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('comment', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('type', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('cpu', $j);
+              $builde->orLike('model', $model) && 
+              $builde->like('type', $i) &&
+              $builde->like('assetid', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('brand', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('conditions', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('modelid', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('gen', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('screen', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('price', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('customer', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('ram', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('odd', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('comment', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('type', $j); 
+              $builde->update($dataf);
+          }elseif($m == 'faultyout'){
+              $builder122 = $db->table('faultyout');
+              $builder122->select('faultyout.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('faultyout.*');
+              $builder122 = $db->table('faultyout');
+              $builder122->select('faultyout.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('faultyout.*');
+              $builder122->like('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('cpu', $j);
+              $builder122->orLike('model', $model) && 
+              $builder122->like('type', $i) &&
+              $builder122->like('assetid', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('brand', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('conditions', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('modelid', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('gen', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('screen', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('price', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('customer', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('ram', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('odd', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('comment', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('type', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('cpu', $j);
+              $builde->orLike('model', $model) && 
+              $builde->like('type', $i) &&
+              $builde->like('assetid', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('brand', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('conditions', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('modelid', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('gen', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('screen', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('price', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('customer', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('ram', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('odd', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('comment', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $i) &&
+              $builde->like('type', $j); 
+              $builde->update($datafo);
+          }
+          return redirect()->to(site_url('/adjustments'));
+
+      }
+      
+      // start 
+      elseif($this->request->getGet('find') && $this->request->getGet('model')){
+          $m = $this->request->getVar('table');
+          $j = $this->request->getVar('find');
+          $model = $this->request->getVar('model');
+
+          $builde = $db->table('verify');
+          $builde->select('*');
+          $builde->like('model', $model) &&
+          $builde->like('cpu', $j);
+          $builde->orLike('model', $model) && 
+          $builde->like('assetid', $j);
+          $builde->orLike('model', $model) &&
+          $builde->like('brand', $j);
+          $builde->orLike('model', $model) &&
+          $builde->like('conditions', $j);
+          $builde->orLike('model', $model) &&
+          $builde->like('modelid', $j);
+          $builde->orLike('model', $model) &&
+          $builde->like('gen', $j);
+          $builde->orLike('model', $model) &&
+          $builde->like('screen', $j);
+          $builde->orLike('model', $model) &&
+          $builde->like('price', $j);
+          $builde->orLike('model', $model) &&
+          $builde->like('customer', $j);
+          $builde->orLike('model', $model) &&
+          $builde->like('ram', $j);
+          $builde->orLike('model', $model) &&
+          $builde->like('odd', $j);
+          $builde->orLike('model', $model) &&
+          $builde->like('comment', $j);
+          $builde->orLike('model', $model) &&
+          $builde->like('type', $j);
+          $dataa = $builde->get()->getresultArray();
+
+          if($m == 'Stockin'){
+              $builder122 = $db->table('masterlist');
+              $builder122->select('masterlist.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('masterlist.*');
+              $builder122 = $db->table('masterlist');
+              $builder122->select('masterlist.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('masterlist.*');
+              $builder122->like('model', $model) &&
+              $builder122->like('cpu', $j);
+              $builder122->orLike('model', $model) && 
+              $builder122->like('assetid', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('brand', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('conditions', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('modelid', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('gen', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('screen', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('price', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('customer', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('ram', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('odd', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('comment', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('model', $model) &&
+              $builde->like('cpu', $j);
+              $builde->orLike('model', $model) && 
+              $builde->like('assetid', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('brand', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('conditions', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('modelid', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('gen', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('screen', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('price', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('customer', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('ram', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('odd', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('comment', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $j); 
+              $builde->update($datam);
+              return redirect()->to(site_url('/adjustments'));
+              }
+
+          elseif($m == 'stockout'){
+              $builder122 = $db->table('stockout');
+              $builder122->select('stockout.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('stockout.*');
+              $builder122 = $db->table('stockout');
+              $builder122->select('stockout.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('stockout.*');
+              $builder122->like('model', $model) &&
+              $builder122->like('cpu', $j);
+              $builder122->orLike('model', $model) && 
+              $builder122->like('assetid', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('brand', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('conditions', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('modelid', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('gen', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('screen', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('price', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('customer', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('ram', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('odd', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('comment', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('model', $model) &&
+              $builde->like('cpu', $j);
+              $builde->orLike('model', $model) && 
+              $builde->like('assetid', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('brand', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('conditions', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('modelid', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('gen', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('screen', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('price', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('customer', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('ram', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('odd', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('comment', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('type', $j); 
+              $builde->update($dataso);
+              return redirect()->to(site_url('/adjustments'));
+          }
+          elseif($m == 'warranty'){
+              $builder122 = $db->table('warrantyin');
+              $builder122->select('warrantyin.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('warrantyin.*');
+              $builder122 = $db->table('warrantyin');
+              $builder122->select('warrantyin.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('warrantyin.*');
+              $builder122->like('model', $model) &&
+              $builder122->like('cpu', $j);
+              $builder122->orLike('model', $model) && 
+              $builder122->like('assetid', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('brand', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('conditions', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('modelid', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('gen', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('screen', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('price', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('customer', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('ram', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('odd', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('comment', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('model', $model) &&
+              $builde->like('cpu', $j);
+              $builde->orLike('model', $model) && 
+              $builde->like('assetid', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('brand', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('conditions', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('modelid', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('gen', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('screen', $j);
+              $builde->orLike('model', $model) &&
+              $builde->like('price', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('customer', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('ram', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('odd', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('comment', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('type', $j); 
+              $builde->update($dataw);
+          }
+          elseif($m == 'warrantyout'){
+              $builder122 = $db->table('warrantyout');
+              $builder122->select('warrantyout.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('warrantyout.*');
+              $builder122 = $db->table('warrantyout');
+              $builder122->select('warrantyout.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('warrantyout.*');
+              $builder122->like('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('cpu', $j);
+              $builder122->orLike('model', $model) && 
+              $builder122->like('type', $i) &&
+              $builder122->like('assetid', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('brand', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('conditions', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('modelid', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('gen', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('screen', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('price', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('customer', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('ram', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('odd', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('comment', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('type', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('model', $model) &&
+              
+              $builde->like('cpu', $j);
+              $builde->orLike('model', $model) && 
+              
+              $builde->like('assetid', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('brand', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('conditions', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('modelid', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('gen', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('screen', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('price', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('customer', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('ram', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('odd', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('comment', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('type', $j); 
+              $builde->update($datawo);
+          }
+          elseif($m == 'credit'){
+              $builder122 = $db->table('credit');
+              $builder122->select('credit.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('credit.*');
+              $builder122 = $db->table('credit');
+              $builder122->select('credit.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('credit.*');
+              $builder122->like('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('cpu', $j);
+              $builder122->orLike('model', $model) && 
+              $builder122->like('type', $i) &&
+              $builder122->like('assetid', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('brand', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('conditions', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('modelid', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('gen', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('screen', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('price', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('customer', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('ram', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('odd', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('comment', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('type', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('model', $model) &&
+              
+              $builde->like('cpu', $j);
+              $builde->orLike('model', $model) && 
+              
+              $builde->like('assetid', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('brand', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('conditions', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('modelid', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('gen', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('screen', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('price', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('customer', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('ram', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('odd', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('comment', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('type', $j); 
+              $builde->update($datac);
+          }elseif($m == 'debit'){
+              $builder122 = $db->table('debit');
+              $builder122->select('debit.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('debit.*');
+              $builder122 = $db->table('debit');
+              $builder122->select('debit.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('debit.*');
+              $builder122->like('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('cpu', $j);
+              $builder122->orLike('model', $model) && 
+              $builder122->like('type', $i) &&
+              $builder122->like('assetid', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('brand', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('conditions', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('modelid', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('gen', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('screen', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('price', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('customer', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('ram', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('odd', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('comment', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('type', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('model', $model) &&
+              
+              $builde->like('cpu', $j);
+              $builde->orLike('model', $model) && 
+              
+              $builde->like('assetid', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('brand', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('conditions', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('modelid', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('gen', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('screen', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('price', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('customer', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('ram', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('odd', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('comment', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('type', $j); 
+              $builde->update($datad);
+          }elseif($m == 'faulty'){
+              $builder122 = $db->table('faulty');
+              $builder122->select('faulty.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('faulty.*');
+              $builder122 = $db->table('faulty');
+              $builder122->select('faulty.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('faulty.*');
+              $builder122->like('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('cpu', $j);
+              $builder122->orLike('model', $model) && 
+              $builder122->like('type', $i) &&
+              $builder122->like('assetid', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('brand', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('conditions', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('modelid', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('gen', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('screen', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('price', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('customer', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('ram', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('odd', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('comment', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('type', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('model', $model) &&
+              
+              $builde->like('cpu', $j);
+              $builde->orLike('model', $model) && 
+              
+              $builde->like('assetid', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('brand', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('conditions', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('modelid', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('gen', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('screen', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('price', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('customer', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('ram', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('odd', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('comment', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('type', $j); 
+              $builde->update($dataf);
+          }elseif($m == 'faultyout'){
+              $builder122 = $db->table('faultyout');
+              $builder122->select('faultyout.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('faultyout.*');
+              $builder122 = $db->table('faultyout');
+              $builder122->select('faultyout.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('faultyout.*');
+              $builder122->like('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('cpu', $j);
+              $builder122->orLike('model', $model) && 
+              $builder122->like('type', $i) &&
+              $builder122->like('assetid', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('brand', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('conditions', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('modelid', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('gen', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('screen', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('price', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('customer', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('ram', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('odd', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('comment', $j);
+              $builder122->orLike('model', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('type', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('model', $model) &&
+              
+              $builde->like('cpu', $j);
+              $builde->orLike('model', $model) && 
+              
+              $builde->like('assetid', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('brand', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('conditions', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('modelid', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('gen', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('screen', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('price', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('customer', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('ram', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('odd', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('comment', $j);
+              $builde->orLike('model', $model) &&
+              
+              $builde->like('type', $j); 
+              $builde->update($datafo);
+          }
+          return redirect()->to(site_url('/adjustments'));
+
+      }
+      // end
+      elseif($this->request->getGet('model') && $this->request->getGet('search')){
+          
+          $m = $this->request->getVar('table');
+          $i = $this->request->getVar('search');
+          $model = $this->request->getVar('model');
+
+          $builde = $db->table('verify');
+          $builde->select('*');
+          $builde->like('model', $model) &&
+          $builde->like('type', $i);
+          $dataa = $builde->get()->getresultArray();
+
+          if($m == 'Stockin'){
+              $builder122 = $db->table('masterlist');
+              $builder122->select('masterlist.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('masterlist.*');
+              $builder122 = $db->table('masterlist');
+              $builder122->select('masterlist.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('masterlist.*');
+              $builder122->like('model', $model) &&
+              $builder122->like('type', $i);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('model', $model) &&
+              $builde->like('type', $i);
+              $builde->update($datam);
+              return redirect()->to(site_url('/adjustments'));
+              }
+
+          elseif($m == 'stockout'){
+              $builder122 = $db->table('stockout');
+              $builder122->select('stockout.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('stockout.*');
+              $builder122 = $db->table('stockout');
+              $builder122->select('stockout.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('stockout.*');
+              $builder122->like('model', $model) &&
+              $builder122->like('type', $i);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('model', $model) &&
+              $builde->like('type', $i);
+              $builde->update($dataso);
+              return redirect()->to(site_url('/adjustments'));
+          }
+          elseif($m == 'warranty'){
+              $builder122 = $db->table('warrantyin');
+              $builder122->select('warrantyin.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('warrantyin.*');
+              $builder122 = $db->table('warrantyin');
+              $builder122->select('warrantyin.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('warrantyin.*');
+              $builder122->like('model', $model) &&
+              $builder122->like('type', $i);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('model', $model) &&
+              $builde->like('type', $i);
+              $builde->update($dataw);
+              return redirect()->to(site_url('/adjustments'));
+          }
+          elseif($m == 'warrantyout'){
+              $builder122 = $db->table('warrantyout');
+              $builder122->select('warrantyout.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('warrantyout.*');
+              $builder122 = $db->table('warrantyout');
+              $builder122->select('warrantyout.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('warrantyout.*');
+              $builder122->like('model', $model) &&
+              $builder122->like('type', $i);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('model', $model) &&
+              $builde->like('type', $i);
+              $builde->update($dataso);
+              return redirect()->to(site_url('/adjustments'));
+              $builde->update($datawo);
+          }
+          elseif($m == 'credit'){
+              $builder122 = $db->table('credit');
+              $builder122->select('credit.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('credit.*');
+              $builder122 = $db->table('credit');
+              $builder122->select('credit.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('credit.*');
+              $builder122->like('model', $model) &&
+              $builder122->like('type', $i);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('model', $model) &&
+              $builde->like('type', $i);
+              $builde->update($datac);
+              return redirect()->to(site_url('/adjustments'));
+          }elseif($m == 'debit'){
+              $builder122 = $db->table('debit');
+              $builder122->select('debit.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('debit.*');
+              $builder122->like('model', $model) &&
+              $builder122->like('type', $i);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('model', $model) &&
+              $builde->like('type', $i);
+              $builde->update($datad);
+              return redirect()->to(site_url('/adjustments'));
+          }elseif($m == 'faulty'){
+              $builder122 = $db->table('faulty');
+              $builder122->select('faulty.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('faulty.*');
+              $builder122->like('model', $model) &&
+              $builder122->like('type', $i);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('model', $model) &&
+              $builde->like('type', $i);
+              $builde->update($dataf);
+              return redirect()->to(site_url('/adjustments'));
+          }elseif($m == 'faultyout'){
+              $builder122 = $db->table('faultyout');
+              $builder122->select('faultyout.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('debit.*');
+              $builder122->like('model', $model) &&
+              $builder122->like('type', $i);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('model', $model) &&
+              $builde->like('type', $i);
+              $builde->update($datafo);
+              return redirect()->to(site_url('/adjustments'));
+          }
+          return redirect()->to(site_url('/adjustments'));
+
+      }
+      elseif($this->request->getGet('find') && $this->request->getGet('search')){
+          $m = $this->request->getVar('table');
+          $j = $this->request->getVar('find');
+          $model = $this->request->getVar('search');
+
+          $builde = $db->table('verify');
+          $builde->select('*');
+          $builde->like('type', $model) &&
+          $builde->like('cpu', $j);
+          $builde->orLike('type', $model) && 
+          $builde->like('assetid', $j);
+          $builde->orLike('type', $model) &&
+          $builde->like('brand', $j);
+          $builde->orLike('type', $model) &&
+          $builde->like('conditions', $j);
+          $builde->orLike('type', $model) &&
+          $builde->like('modelid', $j);
+          $builde->orLike('type', $model) &&
+          $builde->like('gen', $j);
+          $builde->orLike('type', $model) &&
+          $builde->like('screen', $j);
+          $builde->orLike('type', $model) &&
+          $builde->like('price', $j);
+          $builde->orLike('type', $model) &&
+          $builde->like('customer', $j);
+          $builde->orLike('type', $model) &&
+          $builde->like('ram', $j);
+          $builde->orLike('type', $model) &&
+          $builde->like('odd', $j);
+          $builde->orLike('type', $model) &&
+          $builde->like('comment', $j);
+          $builde->orLike('type', $model) &&
+          $builde->like('type', $j);
+          $dataa = $builde->get()->getresultArray();
+
+          if($m == 'Stockin'){
+              $builder122 = $db->table('masterlist');
+              $builder122->select('masterlist.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('masterlist.*');
+              $builder122 = $db->table('masterlist');
+              $builder122->select('masterlist.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('masterlist.*');
+              $builder122->like('type', $model) &&
+              $builder122->like('cpu', $j);
+              $builder122->orLike('type', $model) && 
+              $builder122->like('assetid', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('brand', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('conditions', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('modelid', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('gen', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('screen', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('price', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('customer', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('ram', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('odd', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('comment', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $j);
+              $data = $builder122->get()->getResultArray();
+              // echo '<pre>';
+              // print_r($data);
+              // exit;
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('type', $model) &&
+              $builde->like('cpu', $j);
+              $builde->orLike('type', $model) && 
+              $builde->like('assetid', $j);
+              $builde->orLike('type', $model) &&
+              $builde->like('brand', $j);
+              $builde->orLike('type', $model) &&
+              $builde->like('conditions', $j);
+              $builde->orLike('type', $model) &&
+              $builde->like('modelid', $j);
+              $builde->orLike('type', $model) &&
+              $builde->like('gen', $j);
+              $builde->orLike('type', $model) &&
+              $builde->like('screen', $j);
+              $builde->orLike('type', $model) &&
+              $builde->like('price', $j);
+              $builde->orLike('type', $model) &&
+              $builde->like('customer', $j);
+              $builde->orLike('type', $model) &&
+              $builde->like('ram', $j);
+              $builde->orLike('type', $model) &&
+              $builde->like('odd', $j);
+              $builde->orLike('type', $model) &&
+              $builde->like('comment', $j);
+              $builde->orLike('type', $model) &&
+              $builde->like('type', $j); 
+              $builde->update($datam);
+              return redirect()->to(site_url('/adjustments'));
+              }
+
+          elseif($m == 'stockout'){
+              $builder122 = $db->table('stockout');
+              $builder122->select('stockout.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('stockout.*');
+              $builder122 = $db->table('stockout');
+              $builder122->select('stockout.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('stockout.*');
+              $builder122->like('type', $model) &&
+              $builder122->like('cpu', $j);
+              $builder122->orLike('type', $model) && 
+              $builder122->like('assetid', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('brand', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('conditions', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('modelid', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('gen', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('screen', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('price', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('customer', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('ram', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('odd', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('comment', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('type', $model) &&
+              $builde->like('cpu', $j);
+              $builde->orLike('type', $model) && 
+              $builde->like('assetid', $j);
+              $builde->orLike('type', $model) &&
+              $builde->like('brand', $j);
+              $builde->orLike('type', $model) &&
+              $builde->like('conditions', $j);
+              $builde->orLike('type', $model) &&
+              $builde->like('modelid', $j);
+              $builde->orLike('type', $model) &&
+              $builde->like('gen', $j);
+              $builde->orLike('type', $model) &&
+              $builde->like('screen', $j);
+              $builde->orLike('type', $model) &&
+              $builde->like('price', $j);
+              $builde->orLike('type', $model) &&
+              $builde->like('customer', $j);
+              $builde->orLike('type', $model) &&
+              $builde->like('ram', $j);
+              $builde->orLike('type', $model) &&
+              $builde->like('odd', $j);
+              $builde->orLike('type', $model) &&
+              $builde->like('comment', $j);
+              $builde->orLike('type', $model) &&
+              $builde->like('type', $j); 
+              $builde->update($dataso);
+              return redirect()->to(site_url('/adjustments'));
+          }
+          elseif($m == 'warranty'){
+              $builder122 = $db->table('warrantyin');
+              $builder122->select('warrantyin.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('warrantyin.*');
+              $builder122 = $db->table('warrantyin');
+              $builder122->select('warrantyin.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('warrantyin.*');
+              $builder122->like('type', $model) &&
+              $builder122->like('cpu', $j);
+              $builder122->orLike('type', $model) && 
+              $builder122->like('assetid', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('brand', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('conditions', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('modelid', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('gen', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('screen', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('price', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('customer', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('ram', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('odd', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('comment', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('type', $model) &&
+              $builde->like('cpu', $j);
+              $builde->orLike('type', $model) && 
+              $builde->like('assetid', $j);
+              $builde->orLike('type', $model) &&
+              $builde->like('brand', $j);
+              $builde->orLike('type', $model) &&
+              $builde->like('conditions', $j);
+              $builde->orLike('type', $model) &&
+              $builde->like('modelid', $j);
+              $builde->orLike('type', $model) &&
+              $builde->like('gen', $j);
+              $builde->orLike('type', $model) &&
+              $builde->like('screen', $j);
+              $builde->orLike('type', $model) &&
+              $builde->like('price', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('customer', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('ram', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('odd', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('comment', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('type', $j); 
+              $builde->update($dataw);
+          }
+          elseif($m == 'warrantyout'){
+              $builder122 = $db->table('warrantyout');
+              $builder122->select('warrantyout.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('warrantyout.*');
+              $builder122 = $db->table('warrantyout');
+              $builder122->select('warrantyout.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('warrantyout.*');
+              $builder122->like('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('cpu', $j);
+              $builder122->orLike('type', $model) && 
+              $builder122->like('type', $i) &&
+              $builder122->like('assetid', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('brand', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('conditions', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('modelid', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('gen', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('screen', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('price', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('customer', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('ram', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('odd', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('comment', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('type', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('type', $model) &&
+              
+              $builde->like('cpu', $j);
+              $builde->orLike('type', $model) && 
+              
+              $builde->like('assetid', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('brand', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('conditions', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('modelid', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('gen', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('screen', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('price', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('customer', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('ram', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('odd', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('comment', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('type', $j); 
+              $builde->update($datawo);
+          }
+          elseif($m == 'credit'){
+              $builder122 = $db->table('credit');
+              $builder122->select('credit.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('credit.*');
+              $builder122 = $db->table('credit');
+              $builder122->select('credit.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('credit.*');
+              $builder122->like('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('cpu', $j);
+              $builder122->orLike('type', $model) && 
+              $builder122->like('type', $i) &&
+              $builder122->like('assetid', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('brand', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('conditions', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('modelid', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('gen', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('screen', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('price', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('customer', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('ram', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('odd', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('comment', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('type', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('type', $model) &&
+              
+              $builde->like('cpu', $j);
+              $builde->orLike('type', $model) && 
+              
+              $builde->like('assetid', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('brand', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('conditions', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('modelid', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('gen', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('screen', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('price', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('customer', $j);
+              $builde->orLike('type', $model) &&
+              $builde->like('ram', $j);
+              $builde->orLike('type', $model) &&
+              $builde->like('odd', $j);
+              $builde->orLike('type', $model) &&
+              $builde->like('comment', $j);
+              $builde->orLike('type', $model) &&
+              $builde->like('type', $j); 
+              $builde->update($datac);
+          }elseif($m == 'debit'){
+              $builder122 = $db->table('debit');
+              $builder122->select('debit.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('debit.*');
+              $builder122 = $db->table('debit');
+              $builder122->select('debit.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('debit.*');
+              $builder122->like('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('cpu', $j);
+              $builder122->orLike('type', $model) && 
+              $builder122->like('type', $i) &&
+              $builder122->like('assetid', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('brand', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('conditions', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('modelid', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('gen', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('screen', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('price', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('customer', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('ram', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('odd', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('comment', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('type', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('type', $model) &&
+              
+              $builde->like('cpu', $j);
+              $builde->orLike('type', $model) && 
+              
+              $builde->like('assetid', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('brand', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('conditions', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('modelid', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('gen', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('screen', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('price', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('customer', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('ram', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('odd', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('comment', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('type', $j); 
+              $builde->update($datad);
+          }elseif($m == 'faulty'){
+              $builder122 = $db->table('faulty');
+              $builder122->select('faulty.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('faulty.*');
+              $builder122 = $db->table('faulty');
+              $builder122->select('faulty.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('faulty.*');
+              $builder122->like('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('cpu', $j);
+              $builder122->orLike('type', $model) && 
+              $builder122->like('type', $i) &&
+              $builder122->like('assetid', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('brand', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('conditions', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('modelid', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('gen', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('screen', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('price', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('customer', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('ram', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('odd', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('comment', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('type', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('type', $model) &&
+              
+              $builde->like('cpu', $j);
+              $builde->orLike('type', $model) && 
+              
+              $builde->like('assetid', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('brand', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('conditions', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('modelid', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('gen', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('screen', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('price', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('customer', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('ram', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('odd', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('comment', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('type', $j); 
+              $builde->update($dataf);
+          }elseif($m == 'faultyout'){
+              $builder122 = $db->table('faultyout');
+              $builder122->select('faultyout.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('faultyout.*');
+              $builder122 = $db->table('faultyout');
+              $builder122->select('faultyout.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('faultyout.*');
+              $builder122->like('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('cpu', $j);
+              $builder122->orLike('type', $model) && 
+              $builder122->like('type', $i) &&
+              $builder122->like('assetid', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('brand', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('conditions', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('modelid', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('gen', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('screen', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('price', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('customer', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('ram', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('odd', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('comment', $j);
+              $builder122->orLike('type', $model) &&
+              $builder122->like('type', $i) &&
+              $builder122->like('type', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('type', $model) &&
+              
+              $builde->like('cpu', $j);
+              $builde->orLike('type', $model) && 
+              
+              $builde->like('assetid', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('brand', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('conditions', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('modelid', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('gen', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('screen', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('price', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('customer', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('ram', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('odd', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('comment', $j);
+              $builde->orLike('type', $model) &&
+              
+              $builde->like('type', $j); 
+              $builde->update($datafo);
+          }
+          return redirect()->to(site_url('/adjustments'));
+      }
+      elseif($this->request->getGet('find')){
+          $m = $this->request->getVar('table');
+          $j = $this->request->getVar('find');
+          $builde = $db->table('verify');
+          $builde->select('*');
+          $builde->like('cpu', $j);
+          $builde->orLike('assetid', $j);
+          $builde->orLike('brand', $j);
+          $builde->orLike('conditions', $j);
+          $builde->orLike('modelid', $j);
+          $builde->orLike('gen', $j);
+          $builde->orLike('screen', $j);
+          $builde->orLike('price', $j);
+          $builde->orLike('customer', $j);
+          $builde->orLike('ram', $j);
+          $builde->orLike('odd', $j);
+          $builde->orLike('comment', $j);
+          
+          $builde->orLike('type', $j);
+          $dataa = $builde->get()->getresultArray();
+
+          if($m == 'Stockin'){
+              $builder122 = $db->table('masterlist');
+              $builder122->select('masterlist.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('masterlist.*');
+              $builder122 = $db->table('masterlist');
+              $builder122->select('masterlist.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('masterlist.*');
+              $builder122->like('cpu', $j);
+              $builder122->orLike('assetid', $j);
+              $builder122->orLike('brand', $j);
+              $builder122->orLike('conditions', $j);
+              $builder122->orLike('modelid', $j);
+              $builder122->orLike('gen', $j);
+              $builder122->orLike('screen', $j);
+              $builder122->orLike('price', $j);
+              $builder122->orLike('customer', $j);
+              $builder122->orLike('ram', $j);
+              $builder122->orLike('odd', $j);
+              $builder122->orLike('comment', $j);
+              $builder122->orLike('type', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('cpu', $j);
+              $builde->orLike('assetid', $j);
+              $builde->orLike('brand', $j);
+              $builde->orLike('conditions', $j);
+              $builde->orLike('modelid', $j);
+              $builde->orLike('gen', $j);
+              $builde->orLike('screen', $j);
+              $builde->orLike('price', $j);
+              $builde->orLike('customer', $j);
+              $builde->orLike('ram', $j);
+              $builde->orLike('odd', $j);
+              $builde->orLike('comment', $j);
+              $builde->orLike('type', $j); 
+              $builde->update($datam);
+              return redirect()->to(site_url('/adjustments'));
+              }
+
+          elseif($m == 'stockout'){
+              $builder122 = $db->table('stockout');
+              $builder122->select('stockout.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('stockout.*');
+              $builder122->like('assetid', $j);
+              $builder122->orLike('brand', $j);
+              $builder122->orLike('conditions', $j);
+              $builder122->orLike('modelid', $j);
+              $builder122->orLike('gen', $j);
+              $builder122->orLike('screen', $j);
+              $builder122->orLike('price', $j);
+              $builder122->orLike('customer', $j);
+              $builder122->orLike('ram', $j);
+              $builder122->orLike('odd', $j);
+              $builder122->orLike('comment', $j);
+              $builder122->orLike('type', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('cpu', $j);
+              $builde->orLike('assetid', $j);
+              $builde->orLike('brand', $j);
+              $builde->orLike('conditions', $j);
+              $builde->orLike('modelid', $j);
+              $builde->orLike('gen', $j);
+              $builde->orLike('screen', $j);
+              $builde->orLike('price', $j);
+              $builde->orLike('customer', $j);
+              $builde->orLike('ram', $j);
+              $builde->orLike('odd', $j);
+              $builde->orLike('comment', $j);
+              $builde->orLike('type', $j); 
+              $builde->update($dataso);
+              return redirect()->to(site_url('/adjustments'));
+          }
+          elseif($m == 'warranty'){
+              $builder122 = $db->table('warrantyin');
+              $builder122->select('warrantyin.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('warrantyin.*');
+              $builder122->like('cpu', $j);
+              $builder122->orLike('assetid', $j);
+              $builder122->orLike('brand', $j);
+              $builder122->orLike('conditions', $j);
+              $builder122->orLike('modelid', $j);
+              $builder122->orLike('gen', $j);
+              $builder122->orLike('screen', $j);
+              $builder122->orLike('price', $j);
+              $builder122->orLike('customer', $j);
+              $builder122->orLike('ram', $j);
+              $builder122->orLike('odd', $j);
+              $builder122->orLike('comment', $j);
+              $builder122->orLike('type', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('cpu', $j);
+              $builde->orLike('assetid', $j);
+              $builde->orLike('brand', $j);
+              $builde->orLike('conditions', $j);
+              $builde->orLike('modelid', $j);
+              $builde->orLike('gen', $j);
+              $builde->orLike('screen', $j);
+              $builde->orLike('price', $j);
+              $builde->orLike('customer', $j);
+              $builde->orLike('ram', $j);
+              $builde->orLike('odd', $j);
+              $builde->orLike('comment', $j);
+              $builde->orLike('type', $j); 
+              $builde->update($dataw);
+          }
+          elseif($m == 'warrantyout'){
+              $builder122 = $db->table('warrantyout');
+              $builder122->select('warrantyout.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('warrantyout.*');
+              $builder122->like('cpu', $j);
+              $builder122->orLike('assetid', $j);
+              $builder122->orLike('brand', $j);
+              $builder122->orLike('conditions', $j);
+              $builder122->orLike('modelid', $j);
+              $builder122->orLike('gen', $j);
+              $builder122->orLike('screen', $j);
+              $builder122->orLike('price', $j);
+              $builder122->orLike('customer', $j);
+              $builder122->orLike('ram', $j);
+              $builder122->orLike('odd', $j);
+              $builder122->orLike('comment', $j);
+              $builder122->orLike('type', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->orLike('type', $model) &&
+              
+              $builde->orLike('cpu', $j);
+               
+              
+              $builde->orLike('assetid', $j);
+              
+              
+              $builde->orLike('brand', $j);
+              
+              
+              $builde->orLike('conditions', $j);
+              
+              
+              $builde->orLike('modelid', $j);
+              
+              
+              $builde->orLike('gen', $j);
+              
+              
+              $builde->orLike('screen', $j);
+              
+              
+              $builde->orLike('price', $j);
+              
+              
+              $builde->orLike('customer', $j);
+              
+              
+              $builde->orLike('ram', $j);
+              
+              
+              $builde->orLike('odd', $j);
+              
+              
+              $builde->orLike('comment', $j);
+              
+              
+              $builde->orLike('type', $j); 
+              $builde->update($datawo);
+          }
+          elseif($m == 'credit'){
+              $builder122 = $db->table('credit');
+              $builder122->select('credit.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('credit.*');
+              $builder122->like('cpu', $j);
+              $builder122->orLike('assetid', $j);
+              $builder122->orLike('brand', $j);
+              $builder122->orLike('conditions', $j);
+              $builder122->orLike('modelid', $j);
+              $builder122->orLike('gen', $j);
+              $builder122->orLike('screen', $j);
+              $builder122->orLike('price', $j);
+              $builder122->orLike('customer', $j);
+              $builder122->orLike('ram', $j);
+              $builder122->orLike('odd', $j);
+              $builder122->orLike('comment', $j);
+              $builder122->orLike('type', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->orLike('type', $model) &&
+              
+              $builde->orLike('cpu', $j);
+               
+              
+              $builde->orLike('assetid', $j);
+              
+              
+              $builde->orLike('brand', $j);
+              
+              
+              $builde->orLike('conditions', $j);
+              
+              
+              $builde->orLike('modelid', $j);
+              
+              
+              $builde->orLike('gen', $j);
+              
+              
+              $builde->orLike('screen', $j);
+              
+              
+              $builde->orLike('price', $j);
+              
+              
+              $builde->orLike('customer', $j);
+              
+              
+              $builde->orLike('ram', $j);
+              
+              
+              $builde->orLike('odd', $j);
+              
+              
+              $builde->orLike('comment', $j);
+              
+              
+              $builde->orLike('type', $j); 
+              $builde->update($datac);
+          }elseif($m == 'debit'){
+              $builder122 = $db->table('debit');
+              $builder122->select('debit.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('debit.*');
+              $builder122->like('cpu', $j);
+              $builder122->orLike('assetid', $j);
+              $builder122->orLike('brand', $j);
+              $builder122->orLike('conditions', $j);
+              $builder122->orLike('modelid', $j);
+              $builder122->orLike('gen', $j);
+              $builder122->orLike('screen', $j);
+              $builder122->orLike('price', $j);
+              $builder122->orLike('customer', $j);
+              $builder122->orLike('ram', $j);
+              $builder122->orLike('odd', $j);
+              $builder122->orLike('comment', $j);
+              $builder122->orLike('type', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->orLike('type', $model) &&
+              $builde->orLike('cpu', $j);
+              $builde->orLike('assetid', $j);
+              $builde->orLike('brand', $j);
+              $builde->orLike('conditions', $j);
+              $builde->orLike('modelid', $j);
+              $builde->orLike('gen', $j);
+              $builde->orLike('screen', $j);
+              $builde->orLike('price', $j);
+              $builde->orLike('customer', $j);
+              $builde->orLike('ram', $j);
+              $builde->orLike('odd', $j);
+              $builde->orLike('comment', $j);
+              $builde->orLike('type', $j); 
+              $builde->update($datad);
+          }elseif($m == 'faulty'){
+              $builder122 = $db->table('faulty');
+              $builder122->select('faulty.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('faulty.*');
+              $builder122->like('cpu', $j);
+              $builder122->orLike('assetid', $j);
+              $builder122->orLike('brand', $j);
+              $builder122->orLike('conditions', $j);
+              $builder122->orLike('modelid', $j);
+              $builder122->orLike('gen', $j);
+              $builder122->orLike('screen', $j);
+              $builder122->orLike('price', $j);
+              $builder122->orLike('customer', $j);
+              $builder122->orLike('ram', $j);
+              $builder122->orLike('odd', $j);
+              $builder122->orLike('comment', $j);
+              $builder122->orLike('type', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->orLike('type', $model) &&
+              
+              $builde->orLike('cpu', $j);
+               
+              
+              $builde->orLike('assetid', $j);
+              
+              
+              $builde->orLike('brand', $j);
+              
+              
+              $builde->orLike('conditions', $j);
+              
+              
+              $builde->orLike('modelid', $j);
+              
+              
+              $builde->orLike('gen', $j);
+              
+              
+              $builde->orLike('screen', $j);
+              
+              
+              $builde->orLike('price', $j);
+              
+              
+              $builde->orLike('customer', $j);
+              
+              
+              $builde->orLike('ram', $j);
+              
+              
+              $builde->orLike('odd', $j);
+              
+              
+              $builde->orLike('comment', $j);
+              
+              
+              $builde->orLike('type', $j); 
+              $builde->update($dataf);
+          }elseif($m == 'faultyout'){
+              $builder122 = $db->table('faultyout');
+              $builder122->select('faultyout.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('faultyout.*');
+              $builder122->like('cpu', $j);
+              $builder122->orLike('assetid', $j);
+              $builder122->orLike('brand', $j);
+              $builder122->orLike('conditions', $j);
+              $builder122->orLike('modelid', $j);
+              $builder122->orLike('gen', $j);
+              $builder122->orLike('screen', $j);
+              $builder122->orLike('price', $j);
+              $builder122->orLike('customer', $j);
+              $builder122->orLike('ram', $j);
+              $builder122->orLike('odd', $j);
+              $builder122->orLike('comment', $j);
+              $builder122->orLike('type', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->orLike('type', $model) &&
+              
+              $builde->orLike('cpu', $j);
+               
+              
+              $builde->orLike('assetid', $j);
+              
+              
+              $builde->orLike('brand', $j);
+              
+              
+              $builde->orLike('conditions', $j);
+              
+              
+              $builde->orLike('modelid', $j);
+              
+              
+              $builde->orLike('gen', $j);
+              
+              
+              $builde->orLike('screen', $j);
+              
+              
+              $builde->orLike('price', $j);
+              
+              
+              $builde->orLike('customer', $j);
+              
+              
+              $builde->orLike('ram', $j);
+              
+              
+              $builde->orLike('odd', $j);
+              
+              
+              $builde->orLike('comment', $j);
+              
+              
+              $builde->orLike('type', $j); 
+              $builde->update($datafo);
+          }
+          return redirect()->to(site_url('/adjustments'));
+      }
+      elseif($this->request->getGet('model')){
+          $m = $this->request->getVar('table');
+          $j = $this->request->getVar('model');
+          $builde = $db->table('verify');
+          $builde->select('*');
+          $builde->like('model', $j);
+          $dataa = $builde->get()->getresultArray();
+
+          if($m == 'Stockin'){
+              $builder122 = $db->table('masterlist');
+              $builder122->select('masterlist.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('masterlist.*');
+              $builder122->like('model', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('model', $j);
+              $builde->update($datam);
+              return redirect()->to(site_url('/adjustments'));
+              }
+
+          elseif($m == 'stockout'){
+              $builder122 = $db->table('stockout');
+              $builder122->select('stockout.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('stockout.*');
+              $builder122->like('model', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('model', $j);
+              $builde->update($dataso);
+              return redirect()->to(site_url('/adjustments'));
+          }
+          elseif($m == 'warranty'){
+              $builder122 = $db->table('warrantyin');
+              $builder122->select('warrantyin.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('warrantyin.*');
+              $builder122->like('model', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('model', $j);
+              $builde->update($dataw);
+          }
+          elseif($m == 'warrantyout'){
+              $builder122 = $db->table('warrantyout');
+              $builder122->select('warrantyout.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('warrantyout.*');
+              $builder122->like('model', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('model', $j);
+              $builde->update($datawo);
+          }
+          elseif($m == 'credit'){
+              $builder122 = $db->table('credit');
+              $builder122->select('credit.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('credit.*');
+              $builder122->like('model', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('model', $j);
+              $builde->update($datac);
+          }elseif($m == 'debit'){
+              $builder122 = $db->table('debit');
+              $builder122->select('debit.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('debit.*');
+              $builder122->like('model', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('model', $j);
+              $builde->update($datad);
+          }elseif($m == 'faulty'){
+              $builder122 = $db->table('faulty');
+              $builder122->select('faulty.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('faulty.*');
+              $builder122->like('model', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('model', $j);
+              $builde->update($dataf);
+          }elseif($m == 'faultyout'){
+              $builder122 = $db->table('faultyout');
+              $builder122->select('faultyout.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('faultyout.*');
+              $builder122->like('model', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('model', $j);
+              $builde->update($datafo);
+          }
+          return redirect()->to(site_url('/adjustments'));
+
+      }
+      elseif($this->request->getGet('search')){
+          $m = $this->request->getVar('table');
+          $j = $this->request->getVar('search');
+          $builde = $db->table('verify');
+          $builde->select('*');
+          $builde->like('model', $j);
+          $dataa = $builde->get()->getresultArray();
+
+          if($m == 'Stockin'){
+              $builder122 = $db->table('masterlist');
+              $builder122->select('masterlist.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('masterlist.*');
+              $builder122->like('type', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('type', $j);
+              $builde->update($datam);
+              return redirect()->to(site_url('/adjustments'));
+              }
+
+          elseif($m == 'stockout'){
+              $builder122 = $db->table('stockout');
+              $builder122->select('stockout.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('stockout.*');
+              $builder122->like('type', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('type', $j);
+              $builde->update($dataso);
+              return redirect()->to(site_url('/adjustments'));
+          }
+          elseif($m == 'warranty'){
+              $builder122 = $db->table('warrantyin');
+              $builder122->select('warrantyin.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('warrantyin.*');
+              $builder122->like('type', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('type', $j);
+              $builde->update($dataw);
+          }
+          elseif($m == 'warrantyout'){
+              $builder122 = $db->table('warrantyout');
+              $builder122->select('warrantyout.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('warrantyout.*');
+              $builder122->like('type', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('type', $j);
+              $builde->update($datawo);
+          }
+          elseif($m == 'credit'){
+              $builder122 = $db->table('credit');
+              $builder122->select('credit.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('credit.*');
+              $builder122->like('type', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('type', $j);
+              $builde->update($datac);
+          }elseif($m == 'debit'){
+              $builder122 = $db->table('debit');
+              $builder122->select('debit.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('debit.*');
+              $builder122->like('type', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('type', $j);
+              $builde->update($datad);
+          }elseif($m == 'faulty'){
+              $builder122 = $db->table('faulty');
+              $builder122->select('faulty.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('faulty.*');
+              $builder122->like('type', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('type', $j);
+              $builde->update($dataf);
+          }elseif($m == 'faultyout'){
+              $builder122 = $db->table('faultyout');
+              $builder122->select('faultyout.*')->orderBy('daterecieved', 'DESC');
+              $builder122->select('faultyout.*');
+              $builder122->like('type', $j);
+              $data = $builder122->get()->getResultArray();
+              foreach($data as $d){
+                  if(!$dataa){
+                      $builde->insert($d);
+                  }
+                  }
+              $builde = $db->table('verify');
+              $builde->select('*');
+              $builde->like('type', $j);
+              $builde->update($datafo);
+          }
+          return redirect()->to(site_url('/adjustments'));
+
+      }
+      else{
+          // return redirect()->back();
+
+      }
+
+      if($this->request->getVar('replace')){
+          $x = $this->request->getVar('replace');
+          $s = session()->get('random');
+              
+          $builder111 = $db->table('verify');
+          $builder111->selectMax('id');
+          $builder111->where('terms', $sess);
+          $datas = $builder111->get()->getResultArray();
+          foreach($datas as $ds):
+              endforeach;
+
+          $builde11 = $db->table('verify');
+          $builde11->select('random');
+          $builde11->where('terms', $sess);
+          $builde11->where('id', $ds['id']);
+          $dat11 = $builde11->get()->getResultArray();
+          $s = $dat11[0]['random'];
+          $column = $this->request->getVar('column');
+          if($this->request->getVar('column') == 'Model'){
+              $builder = $db->table('verify');
+              $builder->select('*');
+              $builder->where('random' , $s);
+              $builder->where('terms' , $sess);
+              $builder->update(['model' => $x]);
+              return redirect()->back()->with('status', 'replaced successfully');
+
+          }      
+          elseif($this->request->getVar('column') == 'Brand'){
+              $builder = $db->table('verify');
+              $builder->select('*');
+              $builder->where('random' , $s);
+              $builder->where('terms' , $sess);
+              $builder->update(['brand' => $x]);
+              return redirect()->back()->with('status', 'replaced successfully');
+           }      
+          elseif($this->request->getVar('column') == 'Hdd'){
+              $builder = $db->table('verify');
+              $builder->select('*');
+              $builder->where('terms' , $sess);
+              $builder->where('random' , $s);
+              $builder->update(['hdd' => $x]);
+              return redirect()->back()->with('status', 'replaced successfully');
+
+          } 
+          elseif($this->request->getVar('column') == 'Screen'){
+              $builder = $db->table('verify');
+              $builder->select('*');
+              $builder->where('terms' , $sess);
+              $builder->where('random' , $s);
+              $builder->update(['screen' => $x]);
+              return redirect()->back()->with('status', 'replaced successfully');
+
+          } 
+          elseif($this->request->getVar('column') == 'Status'){
+              $builder = $db->table('verify');
+              $builder->select('*');
+              $builder->where('terms' , $sess);
+              $builder->where('random' , $s);
+              $builder->update(['status' => $x]);
+              return redirect()->back()->with('status', 'replaced successfully');
+          }     
+          // Screen
+          
+          elseif($this->request->getVar('column') == 'Speed'){
+              $builder = $db->table('verify');
+              $builder->select('*');
+              $builder->where('terms' , $sess);
+              $builder->where('random' , $s);
+              
+              $builder->update(['speed' => $x]);
+              return redirect()->back()->with('status', 'replaced successfully');
+
+          } 
+          elseif($this->request->getVar('column') == 'Cpu'){
+              $builder = $db->table('verify');
+              $builder->select('*');
+              $builder->where('terms' , $sess);
+              $builder->where('random' , $s);
+              $builder->update(['cpu' => $x]);
+              return redirect()->back()->with('status', 'replaced successfully');
+
+          }      
+          elseif($this->request->getVar('column') == 'Price'){
+              $builder = $db->table('verify');
+              $builder->select('*');
+              $builder->where('terms' , $sess);
+              $builder->where('random' , $s);
+              $builder->update(['price' => $x]);
+              return redirect()->back()->with('status', 'replaced successfully');
+
+          }      
+          elseif($this->request->getVar('column') == 'Ram'){
+              $builder = $db->table('verify');
+              $builder->select('*');
+              $builder->where('terms' , $sess);
+              $builder->where('random' , $s);
+              $builder->update(['ram' => $x]);
+              return redirect()->back()->with('status', 'replaced successfully');
+
+          }      
+          elseif($this->request->getVar('column') == 'Odd'){
+              $builder = $db->table('verify');
+              $builder->select('*');
+              $builder->where('terms' , $sess);
+              $builder->where('random' , $s);
+              $builder->update(['odd' => $x]);
+              return redirect()->back()->with('status', 'replaced successfully');
+
+          }      
+          elseif($this->request->getVar('column') == 'Problem'){
+              $builder = $db->table('verify');
+              $builder->select('*');
+              $builder->where('terms' , $sess);
+              $builder->where('random' , $s);
+              $builder->update(['problem' => $x]);
+              return redirect()->back()->with('status', 'replaced successfully');
+
+          }      
+          elseif($this->request->getVar('column') == 'Conditions'){
+              $builder = $db->table('verify');
+              $builder->select('*');
+              $builder->where('terms' , $sess);
+              $builder->where('random' , $s);
+              $builder->update(['conditions' => $x]);
+              return redirect()->back()->with('status', 'replaced successfully');
+
+          }
+          elseif($this->request->getVar('column') == 'Type'){
+              $builder = $db->table('verify');
+              $builder->select('*');
+              $builder->where('terms' , $sess);
+              $builder->where('random' , $s);
+              $builder->update(['type' => $x]);
+              return redirect()->back()->with('status', 'replaced successfully');
+
+          }
+          elseif($this->request->getVar('column') == 'gen'){
+              $builder = $db->table('verify');
+              $builder->select('*');
+              $builder->where('terms' , $sess);
+              $builder->where('random' , $s);
+              $builder->update(['gen' => $x]);
+              return redirect()->back()->with('status', 'replaced successfully');
+          } 
+          elseif($this->request->getVar('column') == 'Part'){
+              $builder = $db->table('verify');
+              $builder->select('*');
+              $builder->where('terms' , $sess);
+              $builder->where('random' , $s);
+              $builder->update(['part' => $x]);
+              return redirect()->back()->with('status', 'replaced successfully');
+          }
+          elseif($this->request->getVar('column') == 'Modelid'){
+              $builder = $db->table('verify');
+              $builder->select('*');
+              $builder->where('terms' , $sess);
+              $builder->where('random' , $s);
+              $builder->update(['modelid' => $x]);
+              return redirect()->back()->with('status', 'replaced successfully');
+          }
+          elseif($this->request->getVar('column') == 'Customer'){
+              $builder = $db->table('verify');
+              $builder->select('*');
+              $builder->where('random' , $s);
+              $builder->update(['customer' => $x]);
+              return redirect()->back()->with('status', 'replaced successfully');
+          }
+          elseif($this->request->getVar('column') == 'Vendor'){
+              $builder = $db->table('verify');
+              $builder->select('*');
+              $builder->where('terms' , $sess);
+              $builder->where('random' , $s);
+              $builder->update(['vendor' => $x]);
+              return redirect()->back()->with('status', 'replaced successfully');
+          }
+          elseif($this->request->getVar('column') == 'Screen'){
+              $builder = $db->table('verify');
+              $builder->select('*');
+              $builder->where('terms' , $sess);
+              $builder->where('random' , $s);
+              $builder->update(['screen' => $x]);
+              return redirect()->back()->with('status', 'replaced successfully');
+          }
+          elseif($this->request->getVar('column') == 'Comment'){
+              $builder = $db->table('verify');
+              $builder->select('*');
+              $builder->where('terms' , $sess);
+              $builder->where('random' , $s);
+              $builder->update(['comment' => $x]);
+              return redirect()->back()->with('status', 'replaced successfully');
+          }     
+          else{
+              return redirect()->back()->with('status', 'No result found!');
+          }
+          return redirect()->back()->with('status', 'replaced successfully');
+       }
+
+      helper(['form', 'url']);
+
+      $builder = $db->table('verify');
+      $builder->select('verify.*')->orderBy('time', 'DESC');
+      $builder->where('terms' , $sess);
+      $data['items'] = $builder->get()->getResultArray();
+      $data['count_verif'] = count($data['items']);
+      $data['user_data'] = $session->get('designation');
+
+      $data['true'] = 0;
+      return view('products/adjustments', $data);
+  }
+
+  // verification table
+     public function sverify()
+     {
+         
+         $db      = \Config\Database::connect();
+         $session = \Config\Services::session();
+         $sess = $session->get('user_name');
+         // $seri alno = $this->request->getPost('serialno');
+        //  if($this->request->getVar('serialno')){
+             $data = [
+                 'serialno' => $this->request->getVar('serialno'),
+                 'random' => $this->request->getVar('random'),
+                 'tbl' => $this->request->getVar('table'),
+                 'session' => $sess,
+             ];
+
+
+            //  $builder = $db->table('barcodes');
+            //  $builder->select('serialno');
+            //  $builder->where('serialno' , $data['serialno']);
+            //  $da = $builder->get()->getResultArray();
+            //  if(!$da){
+            //      $db->table('barcodes')->insert($data);
+            //  }
+            //  return redirect()->to(base_url('Settings/adjustments'));
+        //  }
+ 
+         $datam = [
+             'random' => $this->request->getPost('random'),
+             'time' => date("h:i:sa"),
+             'tbl' => 'Stockin',
+             'terms' => $sess,
+
+         ];
+ 
+         $dataso = [
+             'random' => $this->request->getPost('random'),
+             'time' => date("h:i:sa"),
+             'terms' => $sess,
+             'tbl' => 'Stockout'
+         ];
+ 
+         $dataf = [
+             'random' => $this->request->getPost('random'),
+             'terms' => $sess,
+             'time' => date("h:i:sa"),
+             'tbl' => 'faulty'
+         ];
+ 
+         $datafo = [
+             'random' => $this->request->getPost('random'),
+             'time' => date("h:i:sa"),
+             'terms' => $sess,
+             'tbl' => 'faultyout'
+         ];
+ 
+         $dataw = [
+             'random' => $this->request->getPost('random'),
+             'time' => date("h:i:sa"),
+             'terms' => $sess,
+             'tbl' => 'warrantyin'
+         ];
+ 
+         $datawo = [
+             'random' => $this->request->getPost('random'),
+             'time' => date("h:i:sa"),
+             'terms' => $sess,
+             'tbl' => 'warranty out'
+         ];
+ 
+         $datac = [
+             'random' => $this->request->getPost('random'),
+             'time' => date("h:i:sa"),
+             'terms' => $sess,
+             'tbl' => 'credit'
+         ];
+ 
+         $datad = [
+             'random' => $this->request->getPost('random'),
+             'time' => date("h:i:sa"),
+             'terms' => $sess,
+             'tbl' => 'debit'
+         ];
+ 
+         if($this->request->getVar('serialno')){
+            // echo 'true';
+            // exit;
+            //  $bulders = $db->table('barcodes');
+            //  $bulders->select('*');
+            //  $databs = $bulders->get()->getResultArray();
+            //  foreach($databs as $dbs):
+            //  endforeach;
+             $table = $this->request->getVar('table');
+             $serialno = $this->request->getVar('serialno');
+             $date = date("h:i:sa");
+ 
+             $builder5 = $db->table("verify");
+             $builder5->select('verify.*')->orderBy('time', 'DESC');
+             $builder5->where('verify.assetid', $serialno);
+             $data5 = $builder5->get()->getResultArray();
+ 
+             if($table == 'Stockin'){
+                     $builder1 = $db->table("masterlist");
+                     $builder1->select('masterlist.*');
+                     $builder1->where('masterlist.assetid', $serialno);
+                     $data1 = $builder1->get()->getResultArray();
+                     foreach($data1 as $r) {
+                         if(!$data5){
+                             $builder5->insert($r);
+                         }
+                             $builder51 = $db->table('verify');
+                             $builder51->select('*');
+                             $builder51->where('verify.assetid', $serialno);
+                             $builder51->update($datam);
+                         }
+                //  $db->table('barcodes')->emptyTable();
+                 return redirect()->to('Settings/adjustments');
+             } 
+             
+             if($table == 'stockout'){
+                $builder1 = $db->table("stockout");
+                $builder1->select('stockout.*');
+                $builder1->where('stockout.assetid', $serialno);
+                $data1 = $builder1->get()->getResultArray();
+                foreach($data1 as $r) {
+                    if(!$data5){
+                        $builder5->insert($r);
+                    }
+                        $builder51 = $db->table('verify');
+                        $builder51->select('*');
+                        $builder51->where('verify.assetid', $serialno);
+                        $builder51->update($dataso);
+                    }
+                     return redirect()->to('Settings/adjustments');
+                 }
+ 
+                 if($table == 'warrantyin'){
+                    $builder1 = $db->table("warrantyin");
+                    $builder1->select('warrantyin.*');
+                    $builder1->where('warrantyin.assetid', $serialno);
+                    $data1 = $builder1->get()->getResultArray();
+                    foreach($data1 as $r) {
+                        if(!$data5){
+                            $builder5->insert($r);
+                        }
+                            $builder51 = $db->table('verify');
+                            $builder51->select('*');
+                            $builder51->where('verify.assetid', $serialno);
+                            $builder51->update($dataw);
+                        }
+                    return redirect()->to('Settings/adjustments');
+                 }
+ 
+                 if($table == 'faulty'){
+                    $builder1 = $db->table("faulty");
+                    $builder1->select('faulty.*');
+                    $builder1->where('faulty.assetid', $serialno);
+                    $data1 = $builder1->get()->getResultArray();
+                    foreach($data1 as $r) {
+                        if(!$data5){
+                            $builder5->insert($r);
+                        }
+                            $builder51 = $db->table('verify');
+                            $builder51->select('*');
+                            $builder51->where('verify.assetid', $serialno);
+                            $builder51->update($dataf);
+                        }
+                    return redirect()->to('Settings/adjustments');
+                 }
+ 
+                 if($table == 'faultyout'){
+                    $builder1 = $db->table("faultyout");
+                    $builder1->select('faultyout.*');
+                    $builder1->where('faultyout.assetid', $serialno);
+                    $data1 = $builder1->get()->getResultArray();
+                    foreach($data1 as $r) {
+                        if(!$data5){
+                            $builder5->insert($r);
+                        }
+                            $builder51 = $db->table('verify');
+                            $builder51->select('*');
+                            $builder51->where('verify.assetid', $serialno);
+                            $builder51->update($datafo);
+                        }
+                    return redirect()->to('Settings/adjustments');
+                 }
+                 if($table == 'warrantyout'){
+                    $builder1 = $db->table("warrantyout");
+                    $builder1->select('warrantyout.*');
+                    $builder1->where('warrantyout.assetid', $serialno);
+                    $data1 = $builder1->get()->getResultArray();
+                    foreach($data1 as $r) {
+                        if(!$data5){
+                            $builder5->insert($r);
+                        }
+                            $builder51 = $db->table('verify');
+                            $builder51->select('*');
+                            $builder51->where('verify.assetid', $serialno);
+                            $builder51->update($datawo);
+                        }
+                    return redirect()->to('Settings/adjustments');
+                 }
+                 if($table == 'credit'){
+                    $builder1 = $db->table("credit");
+                    $builder1->select('credit.*');
+                    $builder1->where('credit.assetid', $serialno);
+                    $data1 = $builder1->get()->getResultArray();
+                    foreach($data1 as $r) {
+                        if(!$data5){
+                            $builder5->insert($r);
+                        }
+                            $builder51 = $db->table('verify');
+                            $builder51->select('*');
+                            $builder51->where('verify.assetid', $serialno);
+                            $builder51->update($datac);
+                        }
+                return redirect()->to('Settings/adjustments');
+                 }
+ 
+                 if($table == 'debit'){
+                    $builder1 = $db->table("debit");
+                    $builder1->select('debit.*');
+                    $builder1->where('debit.assetid', $serialno);
+                    $data1 = $builder1->get()->getResultArray();
+                    foreach($data1 as $r) {
+                        if(!$data5){
+                            $builder5->insert($r);
+                        }
+                            $builder51 = $db->table('verify');
+                            $builder51->select('*');
+                            $builder51->where('verify.assetid', $serialno);
+                            $builder51->update($datad);
+                        }
+                    return redirect()->to('Settings/adjustments');
+                 }
+ 
+          if($table == 'All'){
+                 $builder1 = $db->table("masterlist");
+                 $builder1->select('masterlist.*');
+                 $builder1->where('masterlist.assetid', $serialno);
+                 $data1 = $builder1->get()->getResultArray();
+ 
+                 $builder2 = $db->table("stockout");
+                 $builder2->select('stockout.*');
+                 $builder2->where('stockout.assetid', $serialno);
+                 $data2 = $builder2->get()->getResultArray();
+ 
+                 $builder3 = $db->table("warrantyin");
+                 $builder3->select('warrantyin.*');
+                 $builder3->where('warrantyin.assetid', $serialno);
+                 $data3 = $builder3->get()->getResultArray();
+ 
+                 $builder4 = $db->table("faulty");
+                 $builder4->select('faulty.*');
+                 $builder4->where('faulty.assetid', $serialno);
+                 $data4 = $builder4->get()->getResultArray();
+ 
+                 $builder6 = $db->table("faultyout");
+                 $builder6->select('faultyout.*');
+                 $builder6->where('faultyout.assetid', $serialno);
+                 $data6 = $builder6->get()->getResultArray();
+ 
+                 $builder7 = $db->table("warrantyout");
+                 $builder7->select('warrantyout.*');
+                 $builder7->where('warrantyout.assetid', $serialno);
+                 $data7 = $builder7->get()->getResultArray();
+ 
+                 $builder8 = $db->table("debit");
+                 $builder8->select('debit.*');
+                 $builder8->where('debit.assetid', $serialno);
+                 $data8 = $builder8->get()->getResultArray();
+ 
+                 $builder9 = $db->table("credit");
+                 $builder9->select('credit.*');
+                 $builder9->where('credit.assetid', $serialno);
+                 $data9 = $builder9->get()->getResultArray();
+
+                 
+ 
+            //    checking masterlist
+                if($data1){
+                    foreach($data1 as $r) {
+                        if(!$data5){
+                            $builder5->insert($r);
+                        }
+                
+                        $builder51 = $db->table('verify');
+                        $builder51->select('*');
+                        $builder51->where('verify.assetid', $serialno);
+                        $builder51->update($datam);
+                        // $builder5->update(['time'=> $date]);                            
+                    }
+                //  return redirect()->to('Settings/adjustments');
+               } 
+ 
+            // checking stockout
+            elseif($data2){
+                foreach($data2 as $r) {
+                    if(!$data5){
+                        $builder5->insert($r);
+                    }
+                    $builder51 = $db->table('verify');
+                    $builder51->select('*');
+                    $builder51->where('verify.assetid', $serialno);
+                    $builder51->update($dataso);
+        
+                }
+                // return redirect()->to('Settings/adjustments');
+            }
+        
+            // checking warrantyin
+            elseif($data3){
+                foreach($data3 as $r) {
+            
+                    if(!$data5){
+                        $builder5->insert($r);
+                    }
+                    $builder51 = $db->table('verify');
+                    $builder51->select('*');
+                    $builder51->where('verify.assetid', $serialno);
+                    $builder51->update($dataw);
+                    // $builder5->update(['time'=> $date]);                            
+                }
+                // return redirect()->to('Settings/adjustments');
+            }
+ 
+            // checking faulty in
+            elseif($data4){
+                foreach($data4 as $r) {
+            
+                    if(!$data5){
+                        $builder5->insert($r);
+                    }
+                    $builder51 = $db->table('verify');
+                    $builder51->select('*');
+                    $builder51->where('verify.assetid', $serialno);
+                    $builder51->update($dataf);
+                    // $builder5->update(['time'=> $date]);                            
+                }
+                //  return redirect()->to('Settings/adjustments');
+            }        
+         
+            // checkin table  faultyout
+            elseif($data6){
+                foreach($data6 as $r) {
+                    if(!$data5){
+                        $builder5->insert($r);
+                    }
+                    $builder51 = $db->table('verify');
+                    $builder51->select('*');
+                    $builder51->where('verify.assetid', $serialno);
+                    $builder51->update($datafo);
+                    // $builder5->update(['time'=> $date]);                            
+                }
+                // return redirect()->to('Settings/adjustments');
+            }
+          
+            // checking table warrantyout
+            elseif($data7){
+                foreach($data7 as $r) {
+                    if(!$data5){
+                        $builder5->insert($r);
+                    }
+                    $builder51 = $db->table('verify');
+                    $builder51->select('*');
+                    $builder51->where('verify.assetid', $serialno);
+                    $builder51->update($datawo);
+                    // $builder5->update(['time'=> $date]);                            
+                }
+                //  return redirect()->to('Settings/adjustments');
+            }
+ 
+            // checkin in debit 
+            elseif($data8){
+                foreach($data8 as $r) {
+                    if(!$data5){
+                        $builder5->insert($r);
+                    }
+                    $builder51 = $db->table('verify');
+                    $builder51->select('*');
+                    $builder51->where('verify.assetid', $serialno);
+                    $builder51->update($datad);
+                    // $builder5->update(['time'=> $date]);                            
+                }
+                // return redirect()->to('Settings/adjustments');
+            }
+         
+            elseif($data9){
+                foreach($data9 as $r) {
+            
+                    if(!$data5){
+                        $db->table('verify')->insert($r);
+                    }
+                    $builder51 = $db->table('verify');
+                    $builder51->select('*');
+                    $builder51->where('verify.assetid', $serialno);
+                    $builder51->update($datac);
+                    // $builder5->update(['time'=> $date]);                            
+                }
+                // return redirect()->to('Settings/adjustments');
+            }
+
+         else{
+         return redirect()->to('Settings/adjustments'); 
+         
+
+         }
+         return redirect()->to('Settings/adjustments'); 
+        
+         // }
+       }
+         $db->table('barcodes')->emptyTable();
+         }
+         $db->table('barcodes')->emptyTable();
+         return redirect()->to('Settings/adjustments'); 
+     }
+
+
+     public function clears()
+    {
+        $db      = \Config\Database::connect();
+        $sess = session()->get('user_name');
+        $builder1 = $db->table("verify");
+        $builder1->select("verify.*");
+        $builder1->where('terms', $sess);
+        $builder1->delete();
+        return redirect()->back()->with('status', 'cleared');
+    }
+
+    public function delvs()
+    {
+      $db      = \Config\Database::connect();
+      $datedelivered = $this->request->getVar('datedelivered');
+      $sess = $session->get('user_name');
+      $data = [
+        'user_name' => $session->get('user_name'),
+        'random' => $this->request->getVar('random'),
+        'lname' => $this->request->getVar('lname'),
+        'datedelivered' =>  date("Y/m/d"),
+        $x = 'AA000',
+        'delvnote' => 'AA000',
+      ];
+      $x = 'AA000';
+
+      $increment = $db->table("product2");
+      $increment->selectMax('product2.delvnote');
+      $increment1 = $increment->get()->getResultArray();
+      $inc = $increment1[0]['delvnote'];
+      if($inc){
+        $incc1 = $db->table("dcustomer");
+        $incc1->select('delvnote');
+        $incc1->where('vendor', $sess);
+        $sss1 = $incc1->get()->getResultArray();
+        $nn = $sss1[0]['delvnote'];
+        if(!$nn){
+          $x = $inc;
+          for($i = 0; $i < 1; $i++) {
+              $x++;
+              $incc = $db->table("dcustomer");
+              $incc->select('delvnote');
+              $incc->where('vendor', $sess);
+              $incc->update(['delvnote' => $x]);
+          }
+        }
+
+      }
+      else{
+        $incc = $db->table("dcustomer");
+        $incc->select('dcustomer.*');
+        $incc->where('vendor', $sess);
+        $incc->where('dcustomer.delvnote');
+        $incc->update(['delvnote' => $data['delvnote']]);
+      }
+      // updating customer name in temporary table
+      $builder44 = $db->table("dcustomer");
+      $builder44->select('dcustomer.username');
+      $builder44->where('vendor', $sess);
+      $data44 = $builder44->get()->getResultArray();
+      if($dat44){
+        $dat44 = [
+          'customer' => $data44[0]['username'],
+          'datedelivered' => $session->get('datedelivered'),
+          'random' => $this->request->getVar('random'),
+        ];
+        $dat45 = [
+          'user_name' => $session->get('user_name'),
+          'random' => $this->request->getVar('random'),
+
+        ];
+        $builder90 = $db->table("dcustomer");
+        $builder90->select('dcustomer.*');
+        $builder90->where('vendor', $sess);
+        $builder90->update($dat45);
+
+        $builder10000 = $db->table("tempinsert");
+        $builder10000->select('tempinsert.*');
+        $builder10000->where('terms', $sess);
+        $data1000 = $builder10000->get()->getResultArray();
+          if($data1000){
+            $builder10000->update($dat44);
+          }
+          else{
+            return redirect()->with('status', 'Kindly scan items and retry');
+          }
+
+      }else{
+        return redirect()->with('status', 'Try again after providing customer details');
+      }
+      
+      $builder899 = $db->table("tempinsert");
+      $builder899->select('*');
+      $builder899->where('terms', $sess);
+      $data899 = $builder899->get()->getResultArray();
+
+      foreach($data899 as $mast):
+        $builder8991 = $db->table("stockout");
+        $builder8991->select('*');
+        $builder8991->where('assetid', $mast['assetid']);
+        $data8991 = $builder8991->get()->getResultArray();
+        if(!$data8991){
+          $builder8991->insert($mast);
+        }else{
+          $builder8991->update($mast);
+        }
+
+        $builder8999 = $db->table("masterlist");
+        $builder8999->select('');
+        $builder8999->where('masterlist.assetid', $mast['assetid']);
+        $builder8999->delete();
+      endforeach;
+
+      $builder4 = $db->table("dcustomer");
+      $builder4->select('dcustomer.*');
+      $builder4->where('vendor', $sess);
+      $data4 = $builder4->get()->getResultArray();
+      foreach($data4 as $c) { 
+        $db->table('product')->insert($c);
+      }
+
+      $builder10 = $db->table('tempinsert');
+      $builder10->select('tempinsert.*, dcustomer.*, sum(tempinsert.qty) as tqty ');
+      $builder10->join('dcustomer', ' tempinsert.random = dcustomer.random', "left");
+      $builder10->where('tempinsert.random', $data['random']);
+      $builder10->groupBy(['type','odd','comment', 'conditions','gen','model','cpu','speed', 'ram', 'hdd']);
+      $data5['items'] = $builder10->get()->getResult();
+
+      $builder1001 = $db->table("tempinsert");
+      $builder1001->select('tempinsert.*');
+      $builder1001->where('terms', $sess);
+      $builder1001->delete();
+
+      $builder404 = $db->table("dcustomer");
+      $builder404->select('dcustomer.*');
+      $builder404->where('vendor', $sess);
+      $builder404->delete();
+      return View('/products/deliverypdf', $data5);
+    }
+
 }
 
 

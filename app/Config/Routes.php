@@ -428,6 +428,8 @@ $routes->get('/Nallinones', 'Settings::Nallinone',['filter' => 'auth']);
 $routes->get('/smartphones', 'Settings::smartphones',['filter' => 'auth']);
 $routes->get('/tablets', 'Settings::tablets',['filter' => 'auth']);
 $routes->get('/otherss', 'Settings::otherss',['filter' => 'auth']);
+$routes->get('/adjustments', 'Settings::adjustments',['filter' => 'auth']);
+
 
 $routes->get('/Oallinones', 'Settings::Oallinone',['filter' => 'auth']);
 $routes->get('/Rallinones', 'Settings::Rallinone',['filter' => 'auth']);

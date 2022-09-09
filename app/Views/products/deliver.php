@@ -142,7 +142,6 @@ endif;
 </div>
 
 <div class="col-9">
-
 <div class="container">
         <div class=" form-row">
             <div class="col-sm-12 mx-auto bg-light rounded shadow">
@@ -151,8 +150,8 @@ endif;
                 <?php $max = date("Y-m-d H:i:s");
                     ?>
 
-                <input type="date" class=" col-sm-2  rounded-pill px-1" name="datedelivered" max='date(yyyy/mm/dd)' style="font-family: arial, rounded-pill arial, arial; font-size: 14px" >
-                <div class="table-responsive " style='height: 50vh;'>
+                <input type="date" class=" col-sm-2  rounded-pill px-1" name="datedelivered" max='date(yyyy/mm/dd)' style="font-family: arial, rounded-pill arial, arial; font-size: 14px" required>
+                <div class="table-responsive ">
                 <?php if($masterlist): 
                     $max = date("Y-m-d H:i:s");
                     ?>

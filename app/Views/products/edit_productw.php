@@ -51,43 +51,43 @@ endif;
     	<tr>
    				<input type="text" class="form-control w-5 d-none" name="assetid" value="<?php echo $user_obj[0]['assetid']; ?>">
     		<td>
-        <select class="form-select"  name="conditions" >
-        <option selected value="<?php echo $user_obj[0]['conditions']; ?>"> <?php echo $user_obj[0]['conditions']; ?></option>
+        <input class="form-control w-5" type='text'  name="conditions" value="<?php echo $user_obj[0]['conditions']; ?>">
+        <!-- <option selected value="<?php echo $user_obj[0]['conditions']; ?>"> <?php echo $user_obj[0]['conditions']; ?></option>
 
           <?php foreach($condition as $c):?>
           <option value="<?php echo $c->conditions; ?>"> <?php echo $c->conditions; ?></option>
           <?php endforeach;?>
-        </select>
+        </select>  -->
     		</td>
     		<td>
    				  <input type="text" class="form-control w-5" name="list" value="<?php echo $user_obj[0]['list']; ?>">
    				 
 			</td>
       <td>
-        <select class="form-select"  name="brand" >
-        <option selected value="<?php echo $user_obj[0]['brand']; ?>"> <?php echo $user_obj[0]['brand']; ?></option>
+        <input class="form-control w-5" type='text'  name="brand" value="<?php echo $user_obj[0]['brand']; ?>">
+        <!-- <option selected value="<?php echo $user_obj[0]['brand']; ?>"> <?php echo $user_obj[0]['brand']; ?></option>
 
           <?php foreach($brand as $b):?>
           <option value="<?php echo $b->brand; ?>"> <?php echo $b->brand; ?></option>
           <?php endforeach;?>
         </select>
-   				 
+   				  -->
 			</td>
     		<td>
-        <select class="form-select" name="type" >
-          <option selected value="<?php echo $user_obj[0]['type']; ?>"><?php echo $user_obj[0]['type']; ?></option>
+        <input class="form-control" name="type" value="<?php echo $user_obj[0]['type']; ?>">
+          <!-- <option selected value="<?php echo $user_obj[0]['type']; ?>"><?php echo $user_obj[0]['type']; ?></option>
           <?php foreach($type as $t):?>
           <option value="<?php echo $t->type; ?>"> <?php echo $t->type; ?></option>
           <?php endforeach;?>
-        </select>
+        </select> -->
     		</td>
     		<td>
-        <select class="form-select" name="gen" >
-          <option selected value="<?php echo $user_obj[0]['gen']; ?>"><?php echo $user_obj[0]['gen']; ?></option>
+        <input class="form-control" name="gen" type='text' value="<?php echo $user_obj[0]['gen']; ?>">
+          <!-- <option selected value="<?php echo $user_obj[0]['gen']; ?>"><?php echo $user_obj[0]['gen']; ?></option>
           <?php foreach($gen as $g):?>
           <option value="<?php echo $g->gen; ?>"> <?php echo $g->gen; ?></option>
           <?php endforeach;?>
-        </select>
+        </select> -->
     		</td>
         <td>
    				  <input type="text" class="form-control" name="part" value="<?php echo $user_obj[0]['part']; ?>">
@@ -104,54 +104,54 @@ endif;
     			<input type="text" class="form-control" name="model" value="<?php echo $user_obj[0]['model']; ?>">
     		</td>
     		<td>
-          <select class="form-select" name="cpu" >
-         <option selected value="<?php echo $user_obj[0]['cpu']; ?>"> <?php echo $user_obj[0]['cpu']; ?></option>
+          <input class="form-control" name="cpu" type='text' value="<?php echo $user_obj[0]['cpu']; ?>">
+         <!-- <option selected value="<?php echo $user_obj[0]['cpu']; ?>"> <?php echo $user_obj[0]['cpu']; ?></option>
 
           <?php foreach($cpu as $cp):?>
           <option value="<?php echo $cp->cpu; ?>"> <?php echo $cp->cpu; ?></option>
           <?php endforeach;?>
-        </select>
+        </select> -->
     		</td>
         <td>
-         <select class="form-select" name="speed">
-         <option selected value="<?php echo $user_obj[0]['speed']; ?>"> <?php echo $user_obj[0]['speed']; ?></option>
+         <input class="form-control" type='text' name="speed" value="<?php echo $user_obj[0]['speed']; ?>">
+         <!-- <option selected value="<?php echo $user_obj[0]['speed']; ?>"> <?php echo $user_obj[0]['speed']; ?></option>
           <?php foreach($speed as $s):?>
           <option value="<?php echo $s->speed; ?>"> <?php echo $s->speed; ?></option>
           <?php endforeach;?>
         </select>
-   				 
+   				  -->
 			</td>
     		<td>
-        <select class="form-select" name="ram">
-         <option selected value="<?php echo $user_obj[0]['ram']; ?>"> <?php echo $user_obj[0]['ram']; ?></option>
+        <input class="form-control" name="ram" value="<?php echo $user_obj[0]['ram']; ?>">
+         <!-- <option selected value="<?php echo $user_obj[0]['ram']; ?>"> <?php echo $user_obj[0]['ram']; ?></option>
           <?php foreach($ram as $r):?>
           <option value="<?php echo $r->ram; ?>"> <?php echo $r->ram; ?></option>
           <?php endforeach;?>
-        </select>
+        </select> -->
 
     		</td>
     		<td>
-        <select class="form-select" name="hdd">
-         <option selected value="<?php echo $user_obj[0]['hdd']; ?>"> <?php echo $user_obj[0]['hdd']; ?></option>
+        <input class="form-control" name="hdd" value="<?php echo $user_obj[0]['hdd']; ?>">
+         <!-- <option selected value="<?php echo $user_obj[0]['hdd']; ?>"> <?php echo $user_obj[0]['hdd']; ?></option>
           <?php foreach($hdd as $h):?>
           <option value="<?php echo $h->hdd; ?>"> <?php echo $h->hdd; ?></option>
           <?php endforeach;?>
-        </select>
+        </select> -->
 			</td>
     		<td>
-        <select class="form-select"  name="screen">
-          <option selected value="<?php echo $user_obj[0]['screen']; ?>"><?php echo $user_obj[0]['screen']; ?> </option>
+        <input class="form-control"  name="screen" type='text' value="<?php echo $user_obj[0]['screen']; ?>">
+          <!-- <option selected value="<?php echo $user_obj[0]['screen']; ?>"><?php echo $user_obj[0]['screen']; ?> </option>
           <?php foreach($screen as $sc):?>
           <option value="<?php echo $sc->screen; ?>"> <?php echo $sc->screen; ?></option>
           <?php endforeach;?>
-        </select>
+        </select> -->
     		</td>
     		<td>
-        <select class="form-select"  name="odd">
-          <option selected value="<?php echo $user_obj[0]['odd']; ?>"> <?php echo $user_obj[0]['odd']; ?> </option>
+        <input class="form-control"  name="odd" type='text' value="<?php echo $user_obj[0]['odd']; ?>">
+          <!-- <option selected value="<?php echo $user_obj[0]['odd']; ?>"> <?php echo $user_obj[0]['odd']; ?> </option>
           <option value="yes">No</option>
           <option value="no">Yes</option>
-        </select>
+        </select> -->
     		</td>
         <td>
    				  <input type="text" class="form-control" name="daterecieved" value="<?php echo $user_obj[0]['daterecieved']; ?>">
@@ -169,7 +169,7 @@ endif;
     		</td>
     	
     		<td>
-        <select class="form-select"  name="customer" >
+        <select class="form-control"  name="customer" >
           <option selected value="<?php echo $user_obj[0]['customer']; ?>"> <?php echo $user_obj[0]['customer']; ?> </option>
           <?php foreach($customer as $cu):?>
           <option value="<?php echo $cu->username; ?>"> <?php echo $cu->username; ?></option>
