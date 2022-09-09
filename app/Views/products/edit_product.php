@@ -56,12 +56,12 @@ endif;
 
         </td>
     		<td>
-        <select class="form-select"  name="conditions" value="<?php echo $user_obj['conditions']; ?>">
-          <option selected value="<?php echo $user_obj['conditions']; ?>"> <?php echo $user_obj['conditions']; ?></option>
+        <input class="form-control w-5"  name="conditions" value="<?php echo $user_obj['conditions']; ?>">
+          <!-- <option selected value="<?php echo $user_obj['conditions']; ?>"> <?php echo $user_obj['conditions']; ?></option>
           <option value="New">New</option>
           <option value="Used">Used</option>
           <option value="Refurb">Refurb</option>
-        </select>
+        </select> -->
     		</td>
     		<td>
    				  <input type="text" class="form-control w-5" name="list" value="<?php echo $user_obj['list']; ?>">
@@ -72,24 +72,24 @@ endif;
    				 
 			</td>
     		<td>
-        <select class="form-select" name="type" value="<?php echo $user_obj['type']; ?>">
-          <option selected value="<?php echo $user_obj['type']; ?>"><?php echo $user_obj['type']; ?></option>
+        <input class="form-control w-5" name="type" value="<?php echo $user_obj['type']; ?>">
+          <!-- <option selected value="<?php echo $user_obj['type']; ?>"><?php echo $user_obj['type']; ?></option>
           <option value="laptop">Laptop</option>
           <option value="desktop">Desktop</option>
           <option value="allinone">All in one</option>
           <option value="hdd">HDD</option>
           <option value="ssd">SSD</option>
           <option value="printer">Printer</option>
-        </select>
+        </select> -->
     		</td>
     		<td>
-        <select class="form-select" name="gen" value="<?php echo $user_obj['gen']; ?>">
-          <option selected value="<?php echo $user_obj['gen']; ?>"><?php echo $user_obj['gen']; ?></option>
+        <input class="form-control w-5" name="gen" value="<?php echo $user_obj['gen']; ?>">
+          <!-- <option selected value="<?php echo $user_obj['gen']; ?>"><?php echo $user_obj['gen']; ?></option>
           <option value="8th">8 th</option>
           <option value="9th">9 th</option>
           <option value="10th">10 th</option>
           <option value="11th">11 th</option>
-        </select>
+        </select> -->
     		</td>
         <td>
    				  <input type="text" class="form-control" name="part" value="<?php echo $user_obj['part']; ?>">
@@ -120,20 +120,20 @@ endif;
    				 
 			</td>
     		<td>
-        <select class="form-select"  name="screen" value="<?php echo $user_obj['screen']; ?>">
-          <option selected value="<?php echo $user_obj['screen']; ?>"><?php echo $user_obj['screen']; ?> </option>
+        <input class="form-control w-5"  name="screen" value="<?php echo $user_obj['screen']; ?>">
+          <!-- <option selected value="<?php echo $user_obj['screen']; ?>"><?php echo $user_obj['screen']; ?> </option>
           <option value="10">10'</option>
           <option value="11">11'</option>
           <option value="14">14'</option>
           <option value="15">15'</option>
-        </select>
+        </select> -->
     		</td>
     		<td>
-        <select class="form-select"  name="odd" value="<?php echo $user_obj['odd']; ?>">
-          <option selected value="<?php echo $user_obj['odd']; ?>"> <?php echo $user_obj['odd']; ?> </option>
+        <input class="form-control w-5"  name="odd" value="<?php echo $user_obj['odd']; ?>">
+          <!-- <option selected value="<?php echo $user_obj['odd']; ?>"> <?php echo $user_obj['odd']; ?> </option>
           <option value="yes">No</option>
           <option value="no">Yes</option>
-        </select>
+        </select> -->
     		</td>
         <td>
    				  <input type="text" class="form-control" name="comment" value="<?php echo $user_obj['comment']; ?>">

@@ -20,6 +20,8 @@ endif;
   <a href="<?php echo site_url('warranty') ?>" class="btn btn-outline-success btn-sm">Back</a>
   <?php if($desg == 'warranty'): ?>
      <a href="<?php echo site_url('warranty-create') ?>" class="btn d-none btn-outline-secondary btn-sm">warranty note</a>
+    <a href="<?php echo site_url('credit-create') ?>" class="btn btn-outline-success btn-sm ">credit note</a>
+
   <?php else: ?>
     <a href="<?php echo site_url('warranty-create') ?>" class="btn btn-outline-secondary btn-sm">warranty note</a>
     <a href="<?php echo site_url('credit-create') ?>" class="btn btn-outline-success btn-sm ">credit note</a>

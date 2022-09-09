@@ -55,46 +55,46 @@ endif;
     	<tr>
       
 <!-- <td>  -->
-<input type="text" class="form-control w-5 d-none " name="assetid" value="<?php echo $obj->assetid; ?>">
+<input type="text" class="form-control  d-none " name="assetid" value="<?php echo $obj->assetid; ?>">
 
 <!-- </td>  				  -->
 			
     		<td>
-        <select class="form-select"  name="conditions" value="<?php echo $obj->conditions; ?>">
-          <option selected value="<?php echo $obj->conditions; ?>"> <?php echo $obj->conditions; ?></option>
+        <input class="form-control "  name="conditions" value="<?php echo $obj->conditions; ?>">
+          <!-- <option selected value="<?php echo $obj->conditions; ?>"> <?php echo $obj->conditions; ?></option>
           <option value="New">New</option>
           <option value="Used">Used</option>
           <option value="Refurb">Refurb</option>
-        </select>
+        </select> -->
     		</td>
     		<td>
-   				  <input type="text" class="form-control w-5" name="list" value="<?php echo $obj->list; ?>">
+   				  <input type="text" class="form-control " name="list" value="<?php echo $obj->list; ?>">
    				 
 			</td>
       <td>
-        <select class="form-select"  name="brand" value="<?php echo $obj->brand; ?>">
-          <option selected value="<?php echo $obj->brand; ?>"> <?php echo $obj->brand; ?></option>
-        </select>
+        <input class="form-control "  name="brand" value="<?php echo $obj->brand; ?>">
+          <!-- <option selected value="<?php echo $obj->brand; ?>"> <?php echo $obj->brand; ?></option> -->
+        <!-- </select> -->
 			</td>
     		<td>
-        <select class="form-select" name="type" value="<?php echo $obj->type; ?>">
-          <option selected value="<?php echo $obj->type; ?>"><?php echo $obj->type; ?></option>
+        <input class="form-control " name="type" value="<?php echo $obj->type; ?>">
+          <!-- <option selected value="<?php echo $obj->type; ?>"><?php echo $obj->type; ?></option>
           <option value="laptop">Laptop</option>
           <option value="desktop">Desktop</option>
           <option value="allinone">All in one</option>
           <option value="hdd">HDD</option>
           <option value="ssd">SSD</option>
           <option value="printer">Printer</option>
-        </select>
+        </select> -->
     		</td>
     		<td>
-        <select class="form-select" name="gen" value="<?php echo $obj->gen; ?>">
-          <option selected value="<?php echo $obj->gen; ?>"><?php echo $obj->gen; ?></option>
+        <input class="form-control " name="gen" value="<?php echo $obj->gen; ?>">
+          <!-- <option selected value="<?php echo $obj->gen; ?>"><?php echo $obj->gen; ?></option>
           <option value="8th">8 th</option>
           <option value="9th">9 th</option>
           <option value="10th">10 th</option>
           <option value="11th">11 th</option>
-        </select>
+        </select> -->
     		</td>
         <td>
    				  <input type="text" class="form-control" name="part" value="<?php echo $obj->part; ?>">
@@ -124,20 +124,20 @@ endif;
    				 
 			</td>
     		<td>
-        <select class="form-select"  name="screen" value="<?php echo $obj->screen; ?>">
-          <option selected value="<?php echo $obj->screen; ?>"><?php echo $obj->screen; ?> </option>
+        <input class="form-control "  name="screen" value="<?php echo $obj->screen; ?>">
+          <!-- <option selected value="<?php echo $obj->screen; ?>"><?php echo $obj->screen; ?> </option>
           <option value="10">10'</option>
           <option value="11">11'</option>
           <option value="14">14'</option>
           <option value="15">15'</option>
-        </select>
+        </select> -->
     		</td>
     		<td>
-        <select class="form-select"  name="odd" value="<?php echo $obj->odd; ?>">
-          <option selected value="<?php echo $obj->odd; ?>"> <?php echo $obj->odd; ?> </option>
+        <input class="form-control "  name="odd" value="<?php echo $obj->odd; ?>">
+          <!-- <option selected value="<?php echo $obj->odd; ?>"> <?php echo $obj->odd; ?> </option>
           <option value="yes">No</option>
           <option value="no">Yes</option>
-        </select>
+        </select> -->
     		</td>
         <td>
    				  <input type="text" class="form-control" name="comment" value="<?php echo $obj->comment; ?>">

@@ -1114,6 +1114,7 @@ class ProductsCrud extends Controller
             $builder1->orLike('delvnote', $q);
             $builder1->orLike('user_name', $q);
             $builder1->orLike('ref', $q);
+            $builder1->orLike('vendor', $q);
             $builder1->orLike('date', $q);
             $builder1->orLike('document', $q);
             $data['invoicecreate'] = $builder1->get()->getResult();
@@ -8251,8 +8252,181 @@ public function printbarcodwi($id)
         $delete1->delete();
         return redirect()->to(base_url('/ProductsCrud/debitnote'));
     }
+
+    public function delvout()
+    {
+      $db      = \Config\Database::connect();
+      $datedelivered = $this->request->getVar('datedelivered');
+      $sess = session()->get('user_name');
+      $data = [
+        'user_name' => session()->get('user_name'),
+        'random' => $this->request->getVar('random'),
+        'lname' => $this->request->getVar('lname'),
+        'datedelivered' =>  $datedelivered,
+        $x = 'AA000',
+        'delvnote' => 'AA000',
+      ];
+      $x = 'AA000';
+      $qty1 = 0;
+        $qty2 = 0;
+        $qty3 = 0;
+        $qty4 = 0;
+        $qty5 = 0;
+        $qty6 = 0;
+        $desc1 = '';
+        $desc2 = '';
+        $desc3 = '';
+        $desc4 = '';
+        $desc5 = '';
+        $desc6 = '';
+        if($this->request->getVar('desc1')){$data5['desc1' ] =  $this->request->getVar('desc1');}else{
+            $data5['desc1' ] = 'null';
+        }
+        if($this->request->getVar('desc3')){$data5['desc3' ] =  $this->request->getVar('desc3');}else{
+            $data5['desc3' ] = 'null';
+        }
+        if($this->request->getVar('desc4')){$data5['desc4' ] =  $this->request->getVar('desc4');}else{
+            $data5['desc4' ] = 'null';
+        }
+        if($this->request->getVar('desc5')){$data5['desc5' ] =  $this->request->getVar('desc5');}else{
+            $data5['desc5' ] = 'null';
+        }
+        if($this->request->getVar('desc6')){$data5['desc6' ] =  $this->request->getVar('desc6');}else{
+            $data5['desc6' ] = 'null';
+        }
+        if($this->request->getVar('desc2')){$data5['desc2' ] =  $this->request->getVar('desc2');}else{
+            $data5['desc2' ] = 'null';
+        }
+        if($this->request->getVar('qty1')){$data5['qty1' ] =  $this->request->getVar('qty1');}else{
+            $data5['qty1' ] = 0; 
+        }
+        if($this->request->getVar('qty2')){ $data5['qty2' ] =  $this->request->getVar('qty2');}else{
+            $data5['qty2' ] = 0;
+        }
+        if($this->request->getVar('qty3')){ $data5['qty3' ] =  $this->request->getVar('qty3');}else{
+            $data5['qty3' ] = 0;
+        }if($this->request->getVar('qty4')){ $data5['qty4' ] =  $this->request->getVar('qty4');}else{
+            $data5['qty4' ] = 0;
+        }if($this->request->getVar('qty5')){ $data5['qty5' ] =  $this->request->getVar('qty5');}else{
+            $data5['qty5' ] = 0;
+        }if($this->request->getVar('qty6')){ $data5['qty6' ] =  $this->request->getVar('qty6');}else{
+            $data5['qty6' ] = 0;
+        }
+
+      $increment = $db->table("product2");
+      $increment->selectMax('product2.delvnote');
+      $increment1 = $increment->get()->getResultArray();
+      $inc = $increment1[0]['delvnote'];
+      if($inc){
+        $incc1 = $db->table("dcustomer");
+        $incc1->select('delvnote');
+        $incc1->where('vendor', $sess);
+        $sss1 = $incc1->get()->getResultArray();
+        $nn = $sss1[0]['delvnote'];
+        if(!$nn){
+          $x = $inc;
+          for($i = 0; $i < 1; $i++) {
+              $x++;
+              $incc = $db->table("dcustomer");
+              $incc->select('delvnote');
+              $incc->where('vendor', $sess);
+              $incc->update(['delvnote' => $x]);
+          }
+        }
+
+      }
+      else{
+        $incc = $db->table("dcustomer");
+        $incc->select('dcustomer.*');
+        $incc->where('vendor', $sess);
+        $incc->where('dcustomer.delvnote');
+        $incc->update(['delvnote' => $data['delvnote']]);
+      }
+      // updating customer name in temporary table
+      $builder44 = $db->table("dcustomer");
+      $builder44->select('dcustomer.username');
+      $builder44->where('vendor', $sess);
+      $data44 = $builder44->get()->getResultArray();
+      if($data44){
+        $dat44 = [
+          'customer' => $data44[0]['username'],
+          'datedelivered' => $this->request->getVar('datedelivered'),
+          'random' => $this->request->getVar('random'),
+        ];
+        $dat45 = [
+          'user_name' => session()->get('user_name'),
+          'random' => $this->request->getVar('random'),
+
+        ];
+        $builder90 = $db->table("dcustomer");
+        $builder90->select('dcustomer.*');
+        $builder90->where('vendor', $sess);
+        $builder90->update($dat45);
+
+      }else{
+        return redirect()->with('status', 'Try again after providing customer details');
+      }
+        $builder10000 = $db->table("tempinsert");
+        $builder10000->select('tempinsert.*');
+        $builder10000->where('terms', $sess);
+        $data1000 = $builder10000->get()->getResultArray();
+        if($data1000){
+            $builder10000->update($dat44);
+        }
+        else{
+        return redirect()->with('status', 'Kindly scan items and retry');
+        }
+      
+      $builder899 = $db->table("tempinsert");
+      $builder899->select('*');
+      $builder899->where('terms', $sess);
+      $data899 = $builder899->get()->getResultArray();
+
+      foreach($data899 as $mast):
+        $builder8991 = $db->table("stockout");
+        $builder8991->select('*');
+        $builder8991->where('assetid', $mast['assetid']);
+        $data8991 = $builder8991->get()->getResultArray();
+        if(!$data8991){
+          $builder8991->insert($mast);
+        }else{
+          $builder8991->update($mast);
+        }
+
+        $builder8999 = $db->table("masterlist");
+        $builder8999->select('');
+        $builder8999->where('masterlist.assetid', $mast['assetid']);
+        $builder8999->delete();
+      endforeach;
+
+      $builder4 = $db->table("dcustomer");
+      $builder4->select('dcustomer.*');
+      $builder4->where('vendor', $sess);
+      $data4 = $builder4->get()->getResultArray();
+      foreach($data4 as $c) { 
+        $db->table('product')->insert($c);
+      }
+
+      $builder10 = $db->table('tempinsert');
+      $builder10->select('tempinsert.*, dcustomer.*, sum(tempinsert.qty) as tqty ');
+      $builder10->join('dcustomer', ' tempinsert.random = dcustomer.random', "left");
+      $builder10->where('tempinsert.random', $data['random']);
+      $builder10->groupBy(['type','odd','comment', 'conditions','gen','model','cpu','speed', 'ram', 'hdd']);
+      $data5['items'] = $builder10->get()->getResult();
+
+      $builder1001 = $db->table("tempinsert");
+      $builder1001->select('tempinsert.*');
+      $builder1001->where('terms', $sess);
+      $builder1001->delete();
+
+      $builder404 = $db->table("dcustomer");
+      $builder404->select('dcustomer.*');
+      $builder404->where('vendor', $sess);
+      $builder404->delete();
+      return View('/products/deliverypdf', $data5);
+    }
  
-    public function delvout() {
+    public function delvouts() {
         $session = \Config\Services::session();
         $datedelivered = $this->request->getVar('datedelivered');
         $sess = $session->get('user_name');
@@ -8319,8 +8493,8 @@ public function printbarcodwi($id)
             $inc = $increment1[0]['delvnote'];
             if($inc){
                 $incc1 = $db->table("dcustomer");
-                $incc1->selectMax('delvnote');
-                // $incc1->where('vendor', $sess);
+                $incc1->select('delvnote');
+                $incc1->where('vendor', $sess);
                 $sss1 = $incc1->get()->getResultArray();
                 $nn = $sss1[0]['delvnote'];
                 if(!$nn){
@@ -8328,8 +8502,8 @@ public function printbarcodwi($id)
                     for($i = 0; $i < 1; $i++) {
                         $x++;
                         $incc = $db->table("dcustomer");
-                        $incc->selectMax('delvnote');
-                        // $incc->where('vendor', $sess);
+                        $incc->select('delvnote');
+                        $incc->where('vendor', $sess);
                         $incc->update(['delvnote' => $x]);
                     }
                 }
@@ -8337,10 +8511,10 @@ public function printbarcodwi($id)
             else{
             $incc = $db->table("dcustomer");
             $incc->select('dcustomer.*');
-            // $incc->where('vendor', $sess);
+            $incc->where('vendor', $sess);
             $incc->where('dcustomer.delvnote');
             $incc->update(['delvnote' => $data['delvnote']]);
-            $incc->update(['delvnote' => $data['delvnote']]);
+            // $incc->update(['delvnote' => $data['delvnote']]);
         }
 
         $db      = \Config\Database::connect();
@@ -8415,7 +8589,7 @@ public function printbarcodwi($id)
 
 
         $builder8 = $db->table("tempinsert");
-        $builder8->select('tempinsert.*');
+        $builder8->select('*');
         $builder8->where('terms', $sess);
         $data1 = $builder8->get()->getResultArray();
 
@@ -8467,7 +8641,6 @@ public function printbarcodwi($id)
         $builder404->where('vendor', $sess);
         $builder404->delete();
         return View('/products/deliverypdf', $data5);
-
     }
 
     public function ddeleted($id)
@@ -8507,6 +8680,10 @@ public function printbarcodwi($id)
         $builder1->select('masterlist.*');
         $builder1->where('masterlist.assetid', $id);
         $data1 = $builder1->get()->getResultArray();
+
+        // echo '<pre>';
+        // print_r($data1);
+        // exit;
 
         $builder2 = $db->table("stockout");
         $builder2->select('stockout.*');
@@ -8558,7 +8735,6 @@ public function printbarcodwi($id)
             $db->table('masterlist')->insert($r);
         }else{
             $db->table('masterlist')->update($r);
-
         }
         
         $builder->where('verify.assetid', $id);
@@ -8666,7 +8842,7 @@ public function printbarcodwi($id)
         $builder1 = $db->table("masterlist");
         $builder1->select('masterlist.*');
         $builder1->where('masterlist.assetid', $d1['assetid']);
-        $builder1->where('terms', $sess);
+        // $builder1->where('terms', $sess);
         $builder1->delete();
 
         $builder2 = $db->table("stockout");
@@ -8708,7 +8884,6 @@ public function printbarcodwi($id)
         $data = $builder->get()->getResultArray();
 
         $counts = 0;
-
         foreach($data as $r) { 
         $counts += 1;
 
