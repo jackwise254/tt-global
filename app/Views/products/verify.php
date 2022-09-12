@@ -27,6 +27,7 @@ endif;
            <option value='credit'>Credit</option>
            <option value='debit'>Debit</option>
          </select>
+         <button type="button" class="btn btn-outline-success btn-sm rounded-pill" data-toggle="modal" data-target="#myModals">Upload</button>
            <button type ="submit" class="d-none" id="myBtn" >Submit</button>
            <input class="d-none" value="<?= $random; ?>" name="random">
            <input class="d-none" value='true' name="ans">
@@ -38,8 +39,6 @@ endif;
                    <span class="visually-hidden">Items</span>
                </span>
            <?php endif; ?>
-         <!-- //scanned icon -->
-
        </form>
 
      </div>
@@ -59,8 +58,8 @@ endif;
                      <div class="input-group" >
                      <div class="input-group-btn" >
                      <select class="col-2 p-1 rounded-pill" id="sort-itemss" name='search' type="text"  placeholder='Category'>
+                      <option value="">Category</option>
                      <?php foreach($type as $t): ?>
-                         <option></option>
                          <option value='<?php echo $t->type; ?>'><?php echo $t->type; ?></option>
                      <?php endforeach; ?>
                      </select>
@@ -332,10 +331,28 @@ endif;
 </form>
  </div>
 </div>
+<!-- Modal -->
+<div id="myModals" class="modal fade" role="dialog">
+  <div class="modal-dialog">
 
-
-
-
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body center">
+      <form class="form-group" action="<?= base_url('Settings/adjustements_import') ?>" method="post" name="frmCSVImport" id="frmCSVImport" enctype="multipart/form-data">
+        <div class="col-md-12">
+            <input class="form-control w-75 rounded-pill d-inline" required type="file" name="file"id="file" accept=".csv" required>
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-outline-success px-3 btn-sm">Upload</button>
+      </div>
+    </div>
+</form>
+  </div>
+</div>
  
 
 

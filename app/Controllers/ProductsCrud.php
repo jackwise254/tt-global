@@ -1105,7 +1105,7 @@ class ProductsCrud extends Controller
 
         $db      = \Config\Database::connect();
         $builder = $db->table('product2');
-        $builder->select('product2.*')->orderBy("delvnote","DESC", "date","DESC");
+        $builder->select('product2.*')->orderBy("delvnote","DESC", "date");
         if($this->request->getGet('q')) {
             $q=$this->request->getGet('q');
             $builder1 = $db->table('product2');
@@ -1871,7 +1871,7 @@ public function printbarcodwi($id)
         $example = '<h6>'.'<strong>'.$al['brand'].' - '.$al['model'].'</strong>'.'</br>';
          $barcode = new \Com\Tecnick\Barcode\Barcode();
          $bobj1 = $barcode->getBarcodeObj('C128',  $al['assetid'], -1, -17, 'black', array(0, 0, 0, 0));
-         $example .= $bobj1->getSvgCode().'<br/>'.'&nbsp;'.'A- '.$al['assetid'].'<br/> <hr>'.'Batch #. <strong>'.$date.$al['del'].'</strong>'. '<br/> '.' Processor: <strong>'.$al['cpu'].'</strong>'. '<br/> '.' Generation: <strong>'.$al['gen'].'</strong>'. '<br/> '.'Processor Speed: <strong>'.$al['speed'].'</strong>'.'<br/> '.'Memory: <strong>'.$al['ram'].'</strong>'.'<br/> '.'Hard Drive: <strong>'.$al['hdd'].'</strong>'.'<br/> '.'ODD: <strong>'.$al['odd'].'</strong>'.'<br/> '.'Screen Size: <strong>'.$al['screen'].'</strong>'.'<br/> '.'Comment: <strong>'.$al['comment'].'</strong> '.'<br/> <br/> '.'</h6>'.'</div>'; ?>
+         $example .= $bobj1->getSvgCode().'<br/>'.'&nbsp;'.'A- '.$al['assetid'].'<br/> <hr>'.'Batch #. <strong>'.$date.$al['del'].'</strong>'. '<br/> '.' Processor: <strong>'.$al['cpu'].'</strong>'. '<br/> '.' Generation: <strong>'.$al['gen'].'</strong>'. '<br/> '.'Processor Speed: <strong>'.$al['speed'].'</strong>'.'<br/> '.'Memory: <strong>'.$al['ram'].'</strong>'.'<br/> '.'Hard Drive: <strong>'.$al['hdd'].'</strong>'.'<br/> '.'ODD: <strong>'.$al['odd'].'</strong>'.'<br/> '.'Screen Size: <strong>'.$al['screen'].'</strong>'.'<br/>'.'Problem: <strong>'.$al['problem'].'</strong> '.'<br/>'.'Comment: <strong>'.$al['comment'].'</strong>  <br/> '.'</h6>'.'</div>'; ?>
         
         <form class="mb-5">
        
@@ -1909,7 +1909,7 @@ public function printbarcodwi($id)
             $example = '<h6>'.'<strong>'.$al['brand'].' - '.$al['model'].'</strong>'.'</br>';
          $barcode = new \Com\Tecnick\Barcode\Barcode();
          $bobj1 = $barcode->getBarcodeObj('C128',  $al['assetid'], -1, -17, 'black', array(0, 0, 0, 0));
-         $example .= $bobj1->getSvgCode().'<br/>'.'&nbsp;'.'A- '.$al['assetid'].'<br/> <hr>'.'Batch #. <strong>'.$date.$al['del'].'</strong>'. '<br/> '.' Processor: <strong>'.$al['cpu'].'</strong>'. '<br/> '.' Generation: <strong>'.$al['gen'].'</strong>'. '<br/> '.'Processor Speed: <strong>'.$al['speed'].'</strong>'.'<br/> '.'Memory: <strong>'.$al['ram'].'</strong>'.'<br/> '.'Hard Drive: <strong>'.$al['hdd'].'</strong>'.'<br/> '.'ODD: <strong>'.$al['odd'].'</strong>'.'<br/> '.'Screen Size: <strong>'.$al['screen'].'</strong>'.'<br/> '.'Comment: <strong>'.$al['comment'].'</strong> '.'<br/> <br/> '.'</h6>'.'</div>'; ?>
+         $example .= $bobj1->getSvgCode().'<br/>'.'&nbsp;'.'A- '.$al['assetid'].'<br/> <hr>'.'Batch #. <strong>'.$date.$al['del'].'</strong>'. '<br/> '.' Processor: <strong>'.$al['cpu'].'</strong>'. '<br/> '.' Generation: <strong>'.$al['gen'].'</strong>'. '<br/> '.'Processor Speed: <strong>'.$al['speed'].'</strong>'.'<br/> '.'Memory: <strong>'.$al['ram'].'</strong>'.'<br/> '.'Hard Drive: <strong>'.$al['hdd'].'</strong>'.'<br/> '.'ODD: <strong>'.$al['odd'].'</strong>'.'<br/> '.'Screen Size: <strong>'.$al['screen'].'</strong>'.'<br/> '.'Problem: <strong>'.$al['problem'].'</strong>'.'<br/> '.'Comment: <strong>'.$al['comment'].'</strong> '.'<br/> <br/> '.'</h6>'.'</div>'; ?>
         
         <form class="mb-5">
        
@@ -2146,7 +2146,7 @@ public function printbarcodwi($id)
          $example = '<h6>'.'<strong>'.$al['brand'].' - '.$al['model'].'</strong>'.'</br>';
          $barcode = new \Com\Tecnick\Barcode\Barcode();
          $bobj1 = $barcode->getBarcodeObj('C128',  $al['assetid'], -1, -17, 'black', array(0, 0, 0, 0));
-         $example .= $bobj1->getSvgCode().'<br/>'.'&nbsp;'.'A- '.$al['assetid'].'<br/> <hr>'.'Batch #. <strong>'.$al['del'].$date.'</strong>'. '<br/> '.' Processor: <strong>'.$al['cpu'].'</strong>'. '<br/> '.' Generation: <strong>'.$al['gen'].'</strong>'. '<br/> '.'Processor Speed: <strong>'.$al['speed'].'</strong>'.'<br/> '.'Memory: <strong>'.$al['ram'].'</strong>'.'<br/> '.'Hard Drive: <strong>'.$al['hdd'].'</strong>'.'<br/> '.'ODD: <strong>'.$al['odd'].'</strong>'.'<br/> '.'Screen Size: <strong>'.$al['screen'].'</strong>'.'<br/> '.'Comment: <strong>'.$al['comment'].'</strong> '.'<br/> <br/> '.'</h6>'.'</div>'; ?>
+         $example .= $bobj1->getSvgCode().'<br/>'.'&nbsp;'.'A- '.$al['assetid'].'<br/> <hr>'.'Batch #. <strong>'.$al['del'].$date.'</strong>'. '<br/> '.' Processor: <strong>'.$al['cpu'].'</strong>'. '<br/> '.' Generation: <strong>'.$al['gen'].'</strong>'. '<br/> '.'Processor Speed: <strong>'.$al['speed'].'</strong>'.'<br/> '.'Memory: <strong>'.$al['ram'].'</strong>'.'<br/> '.'Hard Drive: <strong>'.$al['hdd'].'</strong>'.'<br/> '.'ODD: <strong>'.$al['odd'].'</strong>'.'<br/> '.'Screen Size: <strong>'.$al['screen'].'</strong>'.'<br/> '.'Problem: <strong>'.$al['problem'].'</strong>'.'<br/> '.'Comment: <strong>'.$al['comment'].'</strong> '.'<br/> <br/> '.'</h6>'.'</div>'; ?>
         <form >
           <?php echo $example; ?>
       </div>
@@ -5849,6 +5849,7 @@ public function printbarcodwi($id)
             $builde->orLike('ram', $j);
             $builde->orLike('odd', $j);
             $builde->orLike('comment', $j);
+            $builde->orLike('del', $j);
             
             $builde->orLike('type', $j);
             $dataa = $builde->get()->getresultArray();
@@ -5872,6 +5873,7 @@ public function printbarcodwi($id)
                 $builder122->orLike('ram', $j);
                 $builder122->orLike('odd', $j);
                 $builder122->orLike('comment', $j);
+                $builder122->orLike('del', $j);
                 $builder122->orLike('type', $j);
                 $data = $builder122->get()->getResultArray();
                 foreach($data as $d){
@@ -5893,6 +5895,7 @@ public function printbarcodwi($id)
                 $builde->orLike('ram', $j);
                 $builde->orLike('odd', $j);
                 $builde->orLike('comment', $j);
+                $builde->orLike('del', $j);
                 $builde->orLike('type', $j); 
                 $builde->update($datam);
                 return redirect()->to(site_url('/verify'));
@@ -5913,6 +5916,7 @@ public function printbarcodwi($id)
                 $builder122->orLike('ram', $j);
                 $builder122->orLike('odd', $j);
                 $builder122->orLike('comment', $j);
+                $builder122->orLike('del', $j);
                 $builder122->orLike('type', $j);
                 $data = $builder122->get()->getResultArray();
                 foreach($data as $d){
@@ -5934,6 +5938,7 @@ public function printbarcodwi($id)
                 $builde->orLike('ram', $j);
                 $builde->orLike('odd', $j);
                 $builde->orLike('comment', $j);
+                $builde->orLike('del', $j);
                 $builde->orLike('type', $j); 
                 $builde->update($dataso);
                 return redirect()->to(site_url('/verify'));
@@ -5954,6 +5959,7 @@ public function printbarcodwi($id)
                 $builder122->orLike('ram', $j);
                 $builder122->orLike('odd', $j);
                 $builder122->orLike('comment', $j);
+                $builder122->orLike('del', $j);
                 $builder122->orLike('type', $j);
                 $data = $builder122->get()->getResultArray();
                 foreach($data as $d){
@@ -5975,6 +5981,7 @@ public function printbarcodwi($id)
                 $builde->orLike('ram', $j);
                 $builde->orLike('odd', $j);
                 $builde->orLike('comment', $j);
+                $builde->orLike('del', $j);
                 $builde->orLike('type', $j); 
                 $builde->update($dataw);
             }
@@ -5994,6 +6001,7 @@ public function printbarcodwi($id)
                 $builder122->orLike('ram', $j);
                 $builder122->orLike('odd', $j);
                 $builder122->orLike('comment', $j);
+                $builder122->orLike('del', $j);
                 $builder122->orLike('type', $j);
                 $data = $builder122->get()->getResultArray();
                 foreach($data as $d){
@@ -6030,6 +6038,7 @@ public function printbarcodwi($id)
                 
                 
                 $builde->orLike('customer', $j);
+                $builde->orLike('del', $j);
                 
                 
                 $builde->orLike('ram', $j);
@@ -6060,6 +6069,7 @@ public function printbarcodwi($id)
                 $builder122->orLike('ram', $j);
                 $builder122->orLike('odd', $j);
                 $builder122->orLike('comment', $j);
+                $builder122->orLike('del', $j);
                 $builder122->orLike('type', $j);
                 $data = $builder122->get()->getResultArray();
                 foreach($data as $d){
@@ -6096,6 +6106,7 @@ public function printbarcodwi($id)
                 
                 
                 $builde->orLike('customer', $j);
+                $builde->orLike('del', $j);
                 
                 
                 $builde->orLike('ram', $j);
@@ -6125,6 +6136,7 @@ public function printbarcodwi($id)
                 $builder122->orLike('ram', $j);
                 $builder122->orLike('odd', $j);
                 $builder122->orLike('comment', $j);
+                $builder122->orLike('del', $j);
                 $builder122->orLike('type', $j);
                 $data = $builder122->get()->getResultArray();
                 foreach($data as $d){
@@ -6147,6 +6159,7 @@ public function printbarcodwi($id)
                 $builde->orLike('ram', $j);
                 $builde->orLike('odd', $j);
                 $builde->orLike('comment', $j);
+                $builde->orLike('del', $j);
                 $builde->orLike('type', $j); 
                 $builde->update($datad);
             }elseif($m == 'faulty'){
@@ -6165,6 +6178,7 @@ public function printbarcodwi($id)
                 $builder122->orLike('ram', $j);
                 $builder122->orLike('odd', $j);
                 $builder122->orLike('comment', $j);
+                $builder122->orLike('del', $j);
                 $builder122->orLike('type', $j);
                 $data = $builder122->get()->getResultArray();
                 foreach($data as $d){
@@ -6201,8 +6215,7 @@ public function printbarcodwi($id)
                 
                 
                 $builde->orLike('customer', $j);
-                
-                
+                $builde->orLike('del', $j);
                 $builde->orLike('ram', $j);
                 
                 
@@ -6230,6 +6243,7 @@ public function printbarcodwi($id)
                 $builder122->orLike('ram', $j);
                 $builder122->orLike('odd', $j);
                 $builder122->orLike('comment', $j);
+                $builder122->orLike('del', $j);
                 $builder122->orLike('type', $j);
                 $data = $builder122->get()->getResultArray();
                 foreach($data as $d){
@@ -6266,6 +6280,7 @@ public function printbarcodwi($id)
                 
                 
                 $builde->orLike('customer', $j);
+                $builde->orLike('del', $j);
                 
                 
                 $builde->orLike('ram', $j);
@@ -6566,6 +6581,8 @@ public function printbarcodwi($id)
         }
 
         if($this->request->getVar('replace')){
+            echo 'true';
+            exit;
             $x = $this->request->getVar('replace');
             $s = session()->get('random');
                 
@@ -6586,7 +6603,7 @@ public function printbarcodwi($id)
             if($this->request->getVar('column') == 'Model'){
                 $builder = $db->table('verify');
                 $builder->select('*');
-                $builder->where('random' , $s);
+                // $builder->where('random' , $s);
                 $builder->where('terms' , $sess);
                 $builder->update(['model' => $x]);
                 return redirect()->back()->with('status', 'replaced successfully');
@@ -6595,7 +6612,7 @@ public function printbarcodwi($id)
             elseif($this->request->getVar('column') == 'Brand'){
                 $builder = $db->table('verify');
                 $builder->select('*');
-                $builder->where('random' , $s);
+                // $builder->where('random' , $s);
                 $builder->where('terms' , $sess);
                 $builder->update(['brand' => $x]);
                 return redirect()->back()->with('status', 'replaced successfully');
@@ -6604,7 +6621,7 @@ public function printbarcodwi($id)
                 $builder = $db->table('verify');
                 $builder->select('*');
                 $builder->where('terms' , $sess);
-                $builder->where('random' , $s);
+                // $builder->where('random' , $s);
                 $builder->update(['hdd' => $x]);
                 return redirect()->back()->with('status', 'replaced successfully');
 
@@ -6613,7 +6630,7 @@ public function printbarcodwi($id)
                 $builder = $db->table('verify');
                 $builder->select('*');
                 $builder->where('terms' , $sess);
-                $builder->where('random' , $s);
+                // $builder->where('random' , $s);
                 $builder->update(['screen' => $x]);
                 return redirect()->back()->with('status', 'replaced successfully');
 
@@ -6622,7 +6639,7 @@ public function printbarcodwi($id)
                 $builder = $db->table('verify');
                 $builder->select('*');
                 $builder->where('terms' , $sess);
-                $builder->where('random' , $s);
+                // $builder->where('random' , $s);
                 $builder->update(['status' => $x]);
                 return redirect()->back()->with('status', 'replaced successfully');
             }     
@@ -6632,7 +6649,7 @@ public function printbarcodwi($id)
                 $builder = $db->table('verify');
                 $builder->select('*');
                 $builder->where('terms' , $sess);
-                $builder->where('random' , $s);
+                // $builder->where('random' , $s);
                 
                 $builder->update(['speed' => $x]);
                 return redirect()->back()->with('status', 'replaced successfully');
@@ -6642,7 +6659,7 @@ public function printbarcodwi($id)
                 $builder = $db->table('verify');
                 $builder->select('*');
                 $builder->where('terms' , $sess);
-                $builder->where('random' , $s);
+                // $builder->where('random' , $s);
                 $builder->update(['cpu' => $x]);
                 return redirect()->back()->with('status', 'replaced successfully');
 
@@ -6651,7 +6668,7 @@ public function printbarcodwi($id)
                 $builder = $db->table('verify');
                 $builder->select('*');
                 $builder->where('terms' , $sess);
-                $builder->where('random' , $s);
+                // $builder->where('random' , $s);
                 $builder->update(['price' => $x]);
                 return redirect()->back()->with('status', 'replaced successfully');
 
@@ -6660,7 +6677,7 @@ public function printbarcodwi($id)
                 $builder = $db->table('verify');
                 $builder->select('*');
                 $builder->where('terms' , $sess);
-                $builder->where('random' , $s);
+                // $builder->where('random' , $s);
                 $builder->update(['ram' => $x]);
                 return redirect()->back()->with('status', 'replaced successfully');
 
@@ -6669,7 +6686,7 @@ public function printbarcodwi($id)
                 $builder = $db->table('verify');
                 $builder->select('*');
                 $builder->where('terms' , $sess);
-                $builder->where('random' , $s);
+                // $builder->where('random' , $s);
                 $builder->update(['odd' => $x]);
                 return redirect()->back()->with('status', 'replaced successfully');
 
@@ -6678,7 +6695,7 @@ public function printbarcodwi($id)
                 $builder = $db->table('verify');
                 $builder->select('*');
                 $builder->where('terms' , $sess);
-                $builder->where('random' , $s);
+                // $builder->where('random' , $s);
                 $builder->update(['problem' => $x]);
                 return redirect()->back()->with('status', 'replaced successfully');
 
@@ -6687,7 +6704,7 @@ public function printbarcodwi($id)
                 $builder = $db->table('verify');
                 $builder->select('*');
                 $builder->where('terms' , $sess);
-                $builder->where('random' , $s);
+                // $builder->where('random' , $s);
                 $builder->update(['conditions' => $x]);
                 return redirect()->back()->with('status', 'replaced successfully');
 
@@ -6696,16 +6713,18 @@ public function printbarcodwi($id)
                 $builder = $db->table('verify');
                 $builder->select('*');
                 $builder->where('terms' , $sess);
-                $builder->where('random' , $s);
+                // $builder->where('random' , $s);
                 $builder->update(['type' => $x]);
                 return redirect()->back()->with('status', 'replaced successfully');
 
             }
             elseif($this->request->getVar('column') == 'gen'){
+                echo 'true';
+                exit;
                 $builder = $db->table('verify');
                 $builder->select('*');
                 $builder->where('terms' , $sess);
-                $builder->where('random' , $s);
+                // $builder->where('random' , $s);
                 $builder->update(['gen' => $x]);
                 return redirect()->back()->with('status', 'replaced successfully');
             } 
@@ -6713,7 +6732,7 @@ public function printbarcodwi($id)
                 $builder = $db->table('verify');
                 $builder->select('*');
                 $builder->where('terms' , $sess);
-                $builder->where('random' , $s);
+                // $builder->where('random' , $s);
                 $builder->update(['part' => $x]);
                 return redirect()->back()->with('status', 'replaced successfully');
             }
@@ -6721,14 +6740,15 @@ public function printbarcodwi($id)
                 $builder = $db->table('verify');
                 $builder->select('*');
                 $builder->where('terms' , $sess);
-                $builder->where('random' , $s);
+                // $builder->where('random' , $s);
                 $builder->update(['modelid' => $x]);
                 return redirect()->back()->with('status', 'replaced successfully');
             }
             elseif($this->request->getVar('column') == 'Customer'){
                 $builder = $db->table('verify');
                 $builder->select('*');
-                $builder->where('random' , $s);
+                $builder->where('terms' , $sess);
+                // $builder->where('random' , $s);
                 $builder->update(['customer' => $x]);
                 return redirect()->back()->with('status', 'replaced successfully');
             }
@@ -6736,7 +6756,7 @@ public function printbarcodwi($id)
                 $builder = $db->table('verify');
                 $builder->select('*');
                 $builder->where('terms' , $sess);
-                $builder->where('random' , $s);
+                // $builder->where('random' , $s);
                 $builder->update(['vendor' => $x]);
                 return redirect()->back()->with('status', 'replaced successfully');
             }
@@ -6744,7 +6764,7 @@ public function printbarcodwi($id)
                 $builder = $db->table('verify');
                 $builder->select('*');
                 $builder->where('terms' , $sess);
-                $builder->where('random' , $s);
+                // $builder->where('random' , $s);
                 $builder->update(['screen' => $x]);
                 return redirect()->back()->with('status', 'replaced successfully');
             }
@@ -6752,7 +6772,7 @@ public function printbarcodwi($id)
                 $builder = $db->table('verify');
                 $builder->select('*');
                 $builder->where('terms' , $sess);
-                $builder->where('random' , $s);
+                // $builder->where('random' , $s);
                 $builder->update(['comment' => $x]);
                 return redirect()->back()->with('status', 'replaced successfully');
             }     
@@ -6874,25 +6894,12 @@ public function printbarcodwi($id)
          $db      = \Config\Database::connect();
          $session = \Config\Services::session();
          $sess = $session->get('user_name');
-         // $seri alno = $this->request->getPost('serialno');
-        //  if($this->request->getVar('serialno')){
              $data = [
                  'serialno' => $this->request->getVar('serialno'),
                  'random' => $this->request->getVar('random'),
                  'tbl' => $this->request->getVar('table'),
                  'session' => $sess,
              ];
-
-
-            //  $builder = $db->table('barcodes');
-            //  $builder->select('serialno');
-            //  $builder->where('serialno' , $data['serialno']);
-            //  $da = $builder->get()->getResultArray();
-            //  if(!$da){
-            //      $db->table('barcodes')->insert($data);
-            //  }
-            //  return redirect()->to(base_url('ProductsCrud/verify'));
-        //  }
  
          $datam = [
              'random' => $this->request->getPost('random'),
@@ -6952,19 +6959,13 @@ public function printbarcodwi($id)
          ];
  
          if($this->request->getVar('serialno')){
-            // echo 'true';
-            // exit;
-            //  $bulders = $db->table('barcodes');
-            //  $bulders->select('*');
-            //  $databs = $bulders->get()->getResultArray();
-            //  foreach($databs as $dbs):
-            //  endforeach;
              $table = $this->request->getVar('table');
              $serialno = $this->request->getVar('serialno');
              $date = date("h:i:sa");
  
              $builder5 = $db->table("verify");
              $builder5->select('verify.*')->orderBy('time', 'DESC');
+            //  $builder5->where('terms', $sess);
              $builder5->where('verify.assetid', $serialno);
              $data5 = $builder5->get()->getResultArray();
  
@@ -7143,8 +7144,6 @@ public function printbarcodwi($id)
                  $builder9->select('credit.*');
                  $builder9->where('credit.assetid', $serialno);
                  $data9 = $builder9->get()->getResultArray();
-
-                 
  
             //    checking masterlist
                 if($data1){
@@ -7152,6 +7151,7 @@ public function printbarcodwi($id)
                         if(!$data5){
                             $builder5->insert($r);
                         }
+                        else{}
                 
                         $builder51 = $db->table('verify');
                         $builder51->select('*');
@@ -7168,6 +7168,8 @@ public function printbarcodwi($id)
                     if(!$data5){
                         $builder5->insert($r);
                     }
+                    else{}
+
                     $builder51 = $db->table('verify');
                     $builder51->select('*');
                     $builder51->where('verify.assetid', $serialno);
@@ -7184,6 +7186,8 @@ public function printbarcodwi($id)
                     if(!$data5){
                         $builder5->insert($r);
                     }
+                    else{}
+
                     $builder51 = $db->table('verify');
                     $builder51->select('*');
                     $builder51->where('verify.assetid', $serialno);
@@ -7200,12 +7204,15 @@ public function printbarcodwi($id)
                     if(!$data5){
                         $builder5->insert($r);
                     }
+                else{}
+
                     $builder51 = $db->table('verify');
                     $builder51->select('*');
                     $builder51->where('verify.assetid', $serialno);
                     $builder51->update($dataf);
                     // $builder5->update(['time'=> $date]);                            
                 }
+
                 //  return redirect()->to('ProductsCrud/verify');
             }        
          
@@ -7215,12 +7222,15 @@ public function printbarcodwi($id)
                     if(!$data5){
                         $builder5->insert($r);
                     }
+                else{}
+
                     $builder51 = $db->table('verify');
                     $builder51->select('*');
                     $builder51->where('verify.assetid', $serialno);
                     $builder51->update($datafo);
                     // $builder5->update(['time'=> $date]);                            
                 }
+
                 // return redirect()->to('ProductsCrud/verify');
             }
           
@@ -7230,12 +7240,15 @@ public function printbarcodwi($id)
                     if(!$data5){
                         $builder5->insert($r);
                     }
+                else{}
+
                     $builder51 = $db->table('verify');
                     $builder51->select('*');
                     $builder51->where('verify.assetid', $serialno);
                     $builder51->update($datawo);
                     // $builder5->update(['time'=> $date]);                            
                 }
+
                 //  return redirect()->to('ProductsCrud/verify');
             }
  
@@ -7245,12 +7258,15 @@ public function printbarcodwi($id)
                     if(!$data5){
                         $builder5->insert($r);
                     }
+                else{}
+
                     $builder51 = $db->table('verify');
                     $builder51->select('*');
                     $builder51->where('verify.assetid', $serialno);
                     $builder51->update($datad);
                     // $builder5->update(['time'=> $date]);                            
                 }
+
                 // return redirect()->to('ProductsCrud/verify');
             }
          
@@ -7260,12 +7276,15 @@ public function printbarcodwi($id)
                     if(!$data5){
                         $db->table('verify')->insert($r);
                     }
+                else{}
+
                     $builder51 = $db->table('verify');
                     $builder51->select('*');
                     $builder51->where('verify.assetid', $serialno);
                     $builder51->update($datac);
                     // $builder5->update(['time'=> $date]);                            
                 }
+
                 // return redirect()->to('ProductsCrud/verify');
             }
 
@@ -8389,8 +8408,7 @@ public function printbarcodwi($id)
         $data8991 = $builder8991->get()->getResultArray();
         if(!$data8991){
           $builder8991->insert($mast);
-        }else{
-          $builder8991->update($mast);
+        //   $db->table('stockout')->insert($mast);
         }
 
         $builder8999 = $db->table("masterlist");
@@ -8747,7 +8765,7 @@ public function printbarcodwi($id)
     public function faultyall()
     {
         $masterlis =['faulty'];
-        $sess = session->get('user_name');
+        $sess = session()->get('user_name');
         $db      = \Config\Database::connect();
         $builder999 = $db->table("verify");
         $builder999->select('verify.assetid');

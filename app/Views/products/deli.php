@@ -1,9 +1,13 @@
 <?php if($user_data == 'admin'): 
 
 include('template/header.php');
+
 else:
     include('template/head.php');
-endif; ?>
+
+endif;
+
+?>
 <?php include('inc/db_connect.php'); ?>
 
 <?php  $random = rand(10000, 99999); ?>
@@ -99,12 +103,13 @@ endif; ?>
                     <div class="row px-3 ">
                         
                         <div class="col">
-                            <label  class="col-sm-2 col-form-label " style="font-family: arial, arial, arial; font-size: 13px ">Delivery_no:</label>
-                            <input type="text" class="form-control mb-4" style="font-family: arial, arial, arial; font-size: 13px " name="invoice" placeholder="<?=  $user->deliver; ?>" readonly>
+                        <label  class="col-sm-2 col-form-label " style="font-family: arial, arial, arial; font-size: 13px ">Delivery_no:</label>
+                        <input type="text" class="form-control mb-4" style="font-family: arial, arial, arial; font-size: 13px " name="invoice" placeholder="<?=  $user->deliver; ?>" readonly>
                         </div>
+
                         <div class="col">
-                            <label  class="col-sm-7 col-form-label " style="font-family: arial, arial, arial; font-size: 13px ">ID_No.</label>
-                            <input type="text" class="form-control mb-4" style="font-family: arial, arial, arial; font-size: 13px " name="id_no" placeholder="<?=  $user->id_no; ?>" readonly>
+                        <label  class="col-sm-7 col-form-label " style="font-family: arial, arial, arial; font-size: 13px ">ID_No.</label>
+                        <input type="text" class="form-control mb-4" style="font-family: arial, arial, arial; font-size: 13px " name="id_no" placeholder="<?=  $user->id_no; ?>" readonly>
                         </div>
                     </div>
             <?php endforeach; ?>    
@@ -112,7 +117,7 @@ endif; ?>
     </div>
     <div class="col-9 container">
         <div class="form-row col-12 mx-auto bg-light rounded shadow">
-             <!-- <div class="col-sm-12 mx-auto bg-light rounded shadow"> -->
+             <div class="col-sm-12 mx-auto bg-light rounded shadow">
                 <h4 class="text-center" style="font-family: arial, arial, arial; font-size: 14px ">Products details </h4>
                 
                 <?php $max = date("Y-m-d H:i:s");
@@ -217,14 +222,46 @@ endif; ?>
                     </div>
                 </div>
             </div>
-            </div>
-            </div>
+
+                <div class="row col-sm-12">
+                    <div class= "col-sm-6 p-1">
+                    <input type="text" class=" px-3 col-sm-5  rounded-pill" name="desc1" style="font-family: arial, arial, arial; font-size: 14px" placeholder="decription 1" >
+                    <input type="text" class=" px-3  col-sm-2 rounded-pill" name="qty1" style="font-family: arial, arial, arial; font-size: 14px" placeholder="Qty 1">
+                    </div>
+                    <div class= "col-sm-6 p-1">
+                    <input type="text" class=" px-3 col-sm-5 rounded-pill " name="desc2" style="font-family: arial, arial, arial; font-size: 14px" placeholder="decription 2" >
+                    <input type="text" class=" px-3  col-sm-2 rounded-pill" name="qty2" style="font-family: arial, arial, arial; font-size: 14px" placeholder="Qty 2">
+                    </div>
+                </div> 
+                <div class="row col-sm-12">
+                    <div class= "col-sm-6 p-1">
+                    <input type="text" class=" px-3 col-sm-5  rounded-pill" name="desc3" style="font-family: arial, arial, arial; font-size: 14px" placeholder="decription 3" >
+                    <input type="text" class=" px-3  col-sm-2 rounded-pill" name="qty3" style="font-family: arial, arial, arial; font-size: 14px" placeholder="Qty 3">
+                    </div>
+                    <div class= "col-sm-6 p-1">
+                    <input type="text" class=" px-3 col-sm-5 rounded-pill " name="desc4" style="font-family: arial, arial, arial; font-size: 14px" placeholder="decription 4" >
+                    <input type="text" class=" px-3  col-sm-2 rounded-pill" name="qty4" style="font-family: arial, arial, arial; font-size: 14px" placeholder="Qty 4">
+                    </div>
+                </div>
+                <div class="row col-sm-12">
+                    <div class= "col-sm-6 p-1">
+                    <input type="text" class=" px-3 col-sm-5  rounded-pill" name="desc5" style="font-family: arial, arial, arial; font-size: 14px" placeholder="decription 5" >
+                    <input type="text" class="   col-sm-2 rounded-pill" name="qty5" style="font-family: arial, arial, arial; font-size: 14px" placeholder="Qty 5">
+                    </div>
+                    <div class= "col-sm-6 p-1">
+                    <input type="text" class=" px-3 col-sm-5 rounded-pill " name="desc6" style="font-family: arial, arial, arial; font-size: 14px" placeholder="decription 6" >
+                    <input type="text" class=" px-3  col-sm-2 rounded-pill" name="qty6" style="font-family: arial, arial, arial; font-size: 14px" placeholder="Qty 6">
+                    </div>
+                </div>
+                </div>
+        </div>
         <div class="py-4 px-3">
           <button type="submit" class="btn btn-primary  col-12">Create</button>
         </div>
     </div>
 </div>
 </form>
+
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">

@@ -1837,6 +1837,511 @@ class Settings extends BaseController
 
     }
 
+    // public function adjustements_import()
+    // {
+    //   try {
+    //     $db      = \Config\Database::connect();
+    //      $session = \Config\Services::session();
+    //      $sess = $session->get('user_name');
+    //          $data = [
+    //              'serialno' => $this->request->getVar('serialno'),
+    //              'random' => $this->request->getVar('random'),
+    //              'tbl' => $this->request->getVar('table'),
+    //              'session' => $sess,
+    //          ];
+ 
+    //      $datam = [
+    //          'random' => $this->request->getPost('random'),
+    //          'time' => date("h:i:sa"),
+    //          'tbl' => 'Stockin',
+    //          'terms' => $sess,
+
+    //      ];
+ 
+    //      $dataso = [
+    //          'random' => $this->request->getPost('random'),
+    //          'time' => date("h:i:sa"),
+    //          'terms' => $sess,
+    //          'tbl' => 'Stockout'
+    //      ];
+ 
+    //      $dataf = [
+    //          'random' => $this->request->getPost('random'),
+    //          'terms' => $sess,
+    //          'time' => date("h:i:sa"),
+    //          'tbl' => 'faulty'
+    //      ];
+ 
+    //      $datafo = [
+    //          'random' => $this->request->getPost('random'),
+    //          'time' => date("h:i:sa"),
+    //          'terms' => $sess,
+    //          'tbl' => 'faultyout'
+    //      ];
+ 
+    //      $dataw = [
+    //          'random' => $this->request->getPost('random'),
+    //          'time' => date("h:i:sa"),
+    //          'terms' => $sess,
+    //          'tbl' => 'warrantyin'
+    //      ];
+ 
+    //      $datawo = [
+    //          'random' => $this->request->getPost('random'),
+    //          'time' => date("h:i:sa"),
+    //          'terms' => $sess,
+    //          'tbl' => 'warranty out'
+    //      ];
+ 
+    //      $datac = [
+    //          'random' => $this->request->getPost('random'),
+    //          'time' => date("h:i:sa"),
+    //          'terms' => $sess,
+    //          'tbl' => 'credit'
+    //      ];
+ 
+    //      $datad = [
+    //          'random' => $this->request->getPost('random'),
+    //          'time' => date("h:i:sa"),
+    //          'terms' => $sess,
+    //          'tbl' => 'debit'
+    //      ];
+ 
+    //      if($this->request->getMethod() == "post"){
+    //         $file = $this->request->getFile("file");
+    //         $file_name = $file->getTempName();
+    //         $stock = array();
+    //         $csv_data = array_map('str_getcsv', file($file_name));
+    //         if (count($csv_data) > 0) {
+    //             $index = 0;
+    //             foreach ($csv_data as $filedata) {
+    //                 if ($index > 0) {
+    //                     $stock[] = array(
+    //                       'assetid' => $filedata[0],
+    //                       'terms' => session()->get('user_name')
+    //                     );
+    //                 }
+    //                 $index++;
+    //             }
+    //             foreach($stock as $s){
+    //               $table = $this->request->getVar('table');
+    //               $serialno = $s['assetid'];
+    //               $date = date("h:i:sa");
+
+    //               $builder5 = $db->table("verify");
+    //               $builder5->select('verify.*')->orderBy('time', 'DESC');
+    //               $builder5->where('verify.assetid', $serialno);
+    //               $data5 = $builder5->get()->getResultArray();
+
+    //               if($table == 'Stockin'){
+    //                 $builder1 = $db->table("masterlist");
+    //                 $builder1->select('masterlist.*');
+    //                 $builder1->where('masterlist.assetid', $serialno);
+    //                 $data1 = $builder1->get()->getResultArray();
+    //                 foreach($data1 as $r) {
+    //                     if(!$data5){
+    //                         $builder5->insert($r);
+    //                     }
+    //                         $builder51 = $db->table('verify');
+    //                         $builder51->select('*');
+    //                         $builder51->where('verify.assetid', $serialno);
+    //                         $builder51->update($datam);
+    //                     }
+    //            //  $db->table('barcodes')->emptyTable();
+    //             return redirect()->to('ProductsCrud/verify');
+    //         }    
+
+
+
+    //             }
+
+
+
+
+
+          
+
+
+          
+          
+    //       if($table == 'stockout'){
+    //          $builder1 = $db->table("stockout");
+    //          $builder1->select('stockout.*');
+    //          $builder1->where('stockout.assetid', $serialno);
+    //          $data1 = $builder1->get()->getResultArray();
+    //          foreach($data1 as $r) {
+    //              if(!$data5){
+    //                  $builder5->insert($r);
+    //              }
+    //                  $builder51 = $db->table('verify');
+    //                  $builder51->select('*');
+    //                  $builder51->where('verify.assetid', $serialno);
+    //                  $builder51->update($dataso);
+    //              }
+    //               return redirect()->to('ProductsCrud/verify');
+    //           }
+
+    //           if($table == 'warrantyin'){
+    //              $builder1 = $db->table("warrantyin");
+    //              $builder1->select('warrantyin.*');
+    //              $builder1->where('warrantyin.assetid', $serialno);
+    //              $data1 = $builder1->get()->getResultArray();
+    //              foreach($data1 as $r) {
+    //                  if(!$data5){
+    //                      $builder5->insert($r);
+    //                  }
+    //                      $builder51 = $db->table('verify');
+    //                      $builder51->select('*');
+    //                      $builder51->where('verify.assetid', $serialno);
+    //                      $builder51->update($dataw);
+    //                  }
+    //              return redirect()->to('ProductsCrud/verify');
+    //           }
+
+    //           if($table == 'faulty'){
+    //              $builder1 = $db->table("faulty");
+    //              $builder1->select('faulty.*');
+    //              $builder1->where('faulty.assetid', $serialno);
+    //              $data1 = $builder1->get()->getResultArray();
+    //              foreach($data1 as $r) {
+    //                  if(!$data5){
+    //                      $builder5->insert($r);
+    //                  }
+    //                      $builder51 = $db->table('verify');
+    //                      $builder51->select('*');
+    //                      $builder51->where('verify.assetid', $serialno);
+    //                      $builder51->update($dataf);
+    //                  }
+    //              return redirect()->to('ProductsCrud/verify');
+    //           }
+
+    //           if($table == 'faultyout'){
+    //              $builder1 = $db->table("faultyout");
+    //              $builder1->select('faultyout.*');
+    //              $builder1->where('faultyout.assetid', $serialno);
+    //              $data1 = $builder1->get()->getResultArray();
+    //              foreach($data1 as $r) {
+    //                  if(!$data5){
+    //                      $builder5->insert($r);
+    //                  }
+    //                      $builder51 = $db->table('verify');
+    //                      $builder51->select('*');
+    //                      $builder51->where('verify.assetid', $serialno);
+    //                      $builder51->update($datafo);
+    //                  }
+    //              return redirect()->to('ProductsCrud/verify');
+    //           }
+    //           if($table == 'warrantyout'){
+    //              $builder1 = $db->table("warrantyout");
+    //              $builder1->select('warrantyout.*');
+    //              $builder1->where('warrantyout.assetid', $serialno);
+    //              $data1 = $builder1->get()->getResultArray();
+    //              foreach($data1 as $r) {
+    //                  if(!$data5){
+    //                      $builder5->insert($r);
+    //                  }
+    //                      $builder51 = $db->table('verify');
+    //                      $builder51->select('*');
+    //                      $builder51->where('verify.assetid', $serialno);
+    //                      $builder51->update($datawo);
+    //                  }
+    //              return redirect()->to('ProductsCrud/verify');
+    //           }
+    //           if($table == 'credit'){
+    //              $builder1 = $db->table("credit");
+    //              $builder1->select('credit.*');
+    //              $builder1->where('credit.assetid', $serialno);
+    //              $data1 = $builder1->get()->getResultArray();
+    //              foreach($data1 as $r) {
+    //                  if(!$data5){
+    //                      $builder5->insert($r);
+    //                  }
+    //                      $builder51 = $db->table('verify');
+    //                      $builder51->select('*');
+    //                      $builder51->where('verify.assetid', $serialno);
+    //                      $builder51->update($datac);
+    //                  }
+    //          return redirect()->to('ProductsCrud/verify');
+    //           }
+
+    //           if($table == 'debit'){
+    //              $builder1 = $db->table("debit");
+    //              $builder1->select('debit.*');
+    //              $builder1->where('debit.assetid', $serialno);
+    //              $data1 = $builder1->get()->getResultArray();
+    //              foreach($data1 as $r) {
+    //                  if(!$data5){
+    //                      $builder5->insert($r);
+    //                  }
+    //                      $builder51 = $db->table('verify');
+    //                      $builder51->select('*');
+    //                      $builder51->where('verify.assetid', $serialno);
+    //                      $builder51->update($datad);
+    //                  }
+    //              return redirect()->to('ProductsCrud/verify');
+    //           }
+
+    //    if($table == 'All'){
+    //           $builder1 = $db->table("masterlist");
+    //           $builder1->select('masterlist.*');
+    //           $builder1->where('masterlist.assetid', $serialno);
+    //           $data1 = $builder1->get()->getResultArray();
+
+    //           $builder2 = $db->table("stockout");
+    //           $builder2->select('stockout.*');
+    //           $builder2->where('stockout.assetid', $serialno);
+    //           $data2 = $builder2->get()->getResultArray();
+
+    //           $builder3 = $db->table("warrantyin");
+    //           $builder3->select('warrantyin.*');
+    //           $builder3->where('warrantyin.assetid', $serialno);
+    //           $data3 = $builder3->get()->getResultArray();
+
+    //           $builder4 = $db->table("faulty");
+    //           $builder4->select('faulty.*');
+    //           $builder4->where('faulty.assetid', $serialno);
+    //           $data4 = $builder4->get()->getResultArray();
+
+    //           $builder6 = $db->table("faultyout");
+    //           $builder6->select('faultyout.*');
+    //           $builder6->where('faultyout.assetid', $serialno);
+    //           $data6 = $builder6->get()->getResultArray();
+
+    //           $builder7 = $db->table("warrantyout");
+    //           $builder7->select('warrantyout.*');
+    //           $builder7->where('warrantyout.assetid', $serialno);
+    //           $data7 = $builder7->get()->getResultArray();
+
+    //           $builder8 = $db->table("debit");
+    //           $builder8->select('debit.*');
+    //           $builder8->where('debit.assetid', $serialno);
+    //           $data8 = $builder8->get()->getResultArray();
+
+    //           $builder9 = $db->table("credit");
+    //           $builder9->select('credit.*');
+    //           $builder9->where('credit.assetid', $serialno);
+    //           $data9 = $builder9->get()->getResultArray();
+
+    //      //    checking masterlist
+    //          if($data1){
+    //              foreach($data1 as $r) {
+    //                  if(!$data5){
+    //                      $builder5->insert($r);
+    //                  }
+    //                  else{}
+             
+    //                  $builder51 = $db->table('verify');
+    //                  $builder51->select('*');
+    //                  $builder51->where('verify.assetid', $serialno);
+    //                  $builder51->update($datam);
+    //                  // $builder5->update(['time'=> $date]);                            
+    //              }
+    //          //  return redirect()->to('ProductsCrud/verify');
+    //         } 
+
+    //      // checking stockout
+    //      elseif($data2){
+    //          foreach($data2 as $r) {
+    //              if(!$data5){
+    //                  $builder5->insert($r);
+    //              }
+    //              else{}
+
+    //              $builder51 = $db->table('verify');
+    //              $builder51->select('*');
+    //              $builder51->where('verify.assetid', $serialno);
+    //              $builder51->update($dataso);
+     
+    //          }
+    //          // return redirect()->to('ProductsCrud/verify');
+    //      }
+     
+    //      // checking warrantyin
+    //      elseif($data3){
+    //          foreach($data3 as $r) {
+         
+    //              if(!$data5){
+    //                  $builder5->insert($r);
+    //              }
+    //              else{}
+
+    //              $builder51 = $db->table('verify');
+    //              $builder51->select('*');
+    //              $builder51->where('verify.assetid', $serialno);
+    //              $builder51->update($dataw);
+    //              // $builder5->update(['time'=> $date]);                            
+    //          }
+    //          // return redirect()->to('ProductsCrud/verify');
+    //      }
+
+    //      // checking faulty in
+    //      elseif($data4){
+    //          foreach($data4 as $r) {
+         
+    //              if(!$data5){
+    //                  $builder5->insert($r);
+    //              }
+    //          else{}
+
+    //              $builder51 = $db->table('verify');
+    //              $builder51->select('*');
+    //              $builder51->where('verify.assetid', $serialno);
+    //              $builder51->update($dataf);
+    //              // $builder5->update(['time'=> $date]);                            
+    //          }
+
+    //          //  return redirect()->to('ProductsCrud/verify');
+    //      }        
+      
+    //      // checkin table  faultyout
+    //      elseif($data6){
+    //          foreach($data6 as $r) {
+    //              if(!$data5){
+    //                  $builder5->insert($r);
+    //              }
+    //          else{}
+
+    //              $builder51 = $db->table('verify');
+    //              $builder51->select('*');
+    //              $builder51->where('verify.assetid', $serialno);
+    //              $builder51->update($datafo);
+    //              // $builder5->update(['time'=> $date]);                            
+    //          }
+
+    //          // return redirect()->to('ProductsCrud/verify');
+    //      }
+       
+    //      // checking table warrantyout
+    //      elseif($data7){
+    //          foreach($data7 as $r) {
+    //              if(!$data5){
+    //                  $builder5->insert($r);
+    //              }
+    //          else{}
+
+    //              $builder51 = $db->table('verify');
+    //              $builder51->select('*');
+    //              $builder51->where('verify.assetid', $serialno);
+    //              $builder51->update($datawo);
+    //              // $builder5->update(['time'=> $date]);                            
+    //          }
+
+    //          //  return redirect()->to('ProductsCrud/verify');
+    //      }
+
+    //      // checkin in debit 
+    //      elseif($data8){
+    //          foreach($data8 as $r) {
+    //              if(!$data5){
+    //                  $builder5->insert($r);
+    //              }
+    //          else{}
+
+    //              $builder51 = $db->table('verify');
+    //              $builder51->select('*');
+    //              $builder51->where('verify.assetid', $serialno);
+    //              $builder51->update($datad);
+    //              // $builder5->update(['time'=> $date]);                            
+    //          }
+
+    //          // return redirect()->to('ProductsCrud/verify');
+    //      }
+      
+    //      elseif($data9){
+    //          foreach($data9 as $r) {
+         
+    //              if(!$data5){
+    //                  $db->table('verify')->insert($r);
+    //              }
+    //          else{}
+
+    //              $builder51 = $db->table('verify');
+    //              $builder51->select('*');
+    //              $builder51->where('verify.assetid', $serialno);
+    //              $builder51->update($datac);
+    //              // $builder5->update(['time'=> $date]);                            
+    //          }
+
+    //          // return redirect()->to('ProductsCrud/verify');
+    //      }
+
+    //   else{
+    //   return redirect()->to('ProductsCrud/verify'); 
+      
+
+    //   }
+    //   return redirect()->to('ProductsCrud/verify'); 
+     
+    //   // }
+    // }
+    //   $db->table('barcodes')->emptyTable();
+    //   }
+    //   $db->table('barcodes')->emptyTable();
+    //   return redirect()->to('ProductsCrud/verify'); 
+
+    //      }
+
+
+    //     $db      = \Config\Database::connect();
+    //     $sess = session()->get('user_name');
+    //     $db      = \Config\Database::connect();
+    //     if ($this->request->getMethod() == "post") {
+    //         $file = $this->request->getFile("file");
+    //         $file_name = $file->getTempName();
+    //         $stock = array();
+    //         $csv_data = array_map('str_getcsv', file($file_name));
+    //         if (count($csv_data) > 0) {
+    //             $index = 0;
+    //             foreach ($csv_data as $filedata) {
+    //                 if ($index > 0) {
+    //                     $stock[] = array(
+    //                       'assetid' => $filedata[0],
+    //                       'terms' => session()->get('user_name')
+    //                     );
+    //                 }
+    //                 $index++;
+    //             }
+
+    //             foreach($stock as $s){
+                  
+    //               $builder1 = $db->table('masterlist');
+    //               $builder1->select('*');
+    //               $builder1->where('assetid', $s['assetid']);
+    //               $datas = $builder1->get()->getResultArray();
+    //               if($datas){
+    //                 foreach($datas as $d){
+    //                   // echo '<pre>';
+    //                   // print_r($s);
+    //                   $builder11 = $db->table('tempinsert');
+    //                   $builder11->select('*');
+    //                   $builder11->where('assetid', $d['assetid']);
+    //                   $data2 = $builder11->get()->getResultArray();
+    //                   if(!$data2){
+    //                     $db->table('tempinsert')->insert($d);
+    //                   }
+    //                   else{
+  
+    //                     return redirect()->back()->with('status', 'items already exist');
+    //                   }
+    //                 }
+    //               }
+    //               $builder111 = $db->table('tempinsert');
+    //               $builder111->select('*');
+    //               $builder111->where('assetid', $s['assetid']);
+    //               $builder111->update($update);
+    //             }
+    //             $total = $index-1;
+    //             return redirect()->to(base_url('ProductsCrud/delv'))->with('status', $total. ' items added' );
+    //         }
+
+    //     }
+    //   } catch (\Exception $e) {
+    //     return redirect()->back()->with('status', 'Kindly check your csv format');
+    //   }
+    //     return redirect()->to(base_url('Warranty/wload'));
+
+    // }
+
     public function deliveryimport()
     {
       try {
@@ -1912,7 +2417,7 @@ class Settings extends BaseController
       } catch (\Exception $e) {
         return redirect()->back()->with('status', 'Kindly check your csv format');
       }
-        return redirect()->to(base_url('Warranty/wload'));
+        return redirect()->to(base_url('ProductsCrud/delv'));
 
     }
 
@@ -3929,62 +4434,53 @@ public function ulcdw()
     $fileName = 'warranty in'.$idd. '.xlsx';
       $spreadsheet = new Spreadsheet();
       $sheet = $spreadsheet->getActiveSheet();
-      $sheet->setCellValue('A1', 'Id');
-      $sheet->setCellValue('B1', 'CONDTIONS');
-      $sheet->setCellValue('C1', 'Type');
-      $sheet->setCellValue('D1', 'ASSETID');
-      $sheet->setCellValue('E1', 'GEN');
-      $sheet->setCellValue('F1', 'BRAND');
-      $sheet->setCellValue('G1', 'SERIANO');
-      $sheet->setCellValue('H1', 'PART');
-      $sheet->setCellValue('I1', 'MODELID');
-      $sheet->setCellValue('J1', 'MODEL');
-      $sheet->setCellValue('K1', 'CPU');
-      $sheet->setCellValue('L1', 'SPEED');
-      $sheet->setCellValue('M1', 'RAM'); 
-      $sheet->setCellValue('N1', 'HDD');
-      $sheet->setCellValue('O1', 'ODD');
-      $sheet->setCellValue('P1', 'SCREEN');
-      $sheet->setCellValue('Q1', 'COMMENT');
-      $sheet->setCellValue('R1', 'PRICE'); 
-      $sheet->setCellValue('S1', 'CUSTOMER'); 
-      $sheet->setCellValue('T1', 'VENDOR'); 
-      $sheet->setCellValue('U1', 'LIST');      
-      $sheet->setCellValue('V1', 'STATUS');      
-      $sheet->setCellValue('W1', 'DATERECIEVERD');
-      $sheet->setCellValue('X1', 'DATEDELIVERED');
+      $sheet->setCellValue('A1', 'CONDTIONS');
+      $sheet->setCellValue('B1', 'Type');
+      $sheet->setCellValue('C1', 'ASSETID');
+      $sheet->setCellValue('D1', 'GEN');
+      $sheet->setCellValue('E1', 'BRAND');
+      $sheet->setCellValue('F1', 'MODEL');
+      $sheet->setCellValue('G1', 'CPU');
+      $sheet->setCellValue('H1', 'SPEED');
+      $sheet->setCellValue('I1', 'RAM'); 
+      $sheet->setCellValue('J1', 'HDD');
+      $sheet->setCellValue('K1', 'SCREEN');
+      $sheet->setCellValue('L1', 'COMMENT');
+      $sheet->setCellValue('M1', 'PROBLEM');
+      $sheet->setCellValue('N1', 'PRICE'); 
+      $sheet->setCellValue('O1', 'CUSTOMER'); 
+      $sheet->setCellValue('P1', 'VENDOR'); 
+      $sheet->setCellValue('Q1', 'LIST');      
+      $sheet->setCellValue('R1', 'STATUS');      
+      $sheet->setCellValue('S1', 'DATERECIEVERD');
+      $sheet->setCellValue('T1', 'DATEDELIVERED');
   
       $rows = 2;
   
       foreach ($users as $val){
-          $sheet->setCellValue('A' . $rows, $val->id);
-          $sheet->setCellValue('B' . $rows, $val->conditions);
-          $sheet->setCellValue('C' . $rows, $val->type);
-          $sheet->setCellValue('D' . $rows, $val->assetid);
-          $sheet->setCellValue('E' . $rows, $val->gen);
-          $sheet->setCellValue('F' . $rows, $val->brand);
-          $sheet->setCellValue('G' . $rows, $val->serialno);
-          $sheet->setCellValue('H' . $rows, $val->part);
-          $sheet->setCellValue('I' . $rows, $val->modelid);
-          $sheet->setCellValue('J' . $rows, $val->model);
-          $sheet->setCellValue('K' . $rows, $val->cpu);
-          $sheet->setCellValue('L' . $rows, $val->speed);
-          $sheet->setCellValue('M' . $rows, $val->ram);
-          $sheet->setCellValue('N' . $rows, $val->hdd);
-          $sheet->setCellValue('O' . $rows, $val->odd);
-          $sheet->setCellValue('P' . $rows, $val->screen);
-          $sheet->setCellValue('Q' . $rows, $val->comment);
-          $sheet->setCellValue('R' . $rows, $val->price);
-          $sheet->setCellValue('S' . $rows, $val->customer);
-          $sheet->setCellValue('T' . $rows, $val->vendor);
-          $sheet->setCellValue('U' . $rows, $val->list);
-          $sheet->setCellValue('V' . $rows, $val->status);
-          $sheet->setCellValue('W' . $rows, $val->daterecieved);
-          $sheet->setCellValue('X' . $rows, $val->datedelivered);
+          $sheet->setCellValue('A' . $rows, $val->conditions);
+          $sheet->setCellValue('B' . $rows, $val->type);
+          $sheet->setCellValue('C' . $rows, $val->assetid);
+          $sheet->setCellValue('D' . $rows, $val->gen);
+          $sheet->setCellValue('E' . $rows, $val->brand);
+          $sheet->setCellValue('F' . $rows, $val->model);
+          $sheet->setCellValue('G' . $rows, $val->cpu);
+          $sheet->setCellValue('H' . $rows, $val->speed);
+          $sheet->setCellValue('I' . $rows, $val->ram);
+          $sheet->setCellValue('J' . $rows, $val->hdd);
+          $sheet->setCellValue('K' . $rows, $val->screen);
+          $sheet->setCellValue('L' . $rows, $val->comment);
+          $sheet->setCellValue('M' . $rows, $val->problem);
+          $sheet->setCellValue('N' . $rows, $val->price);
+          $sheet->setCellValue('O' . $rows, $val->customer);
+          $sheet->setCellValue('P' . $rows, $val->vendor);
+          $sheet->setCellValue('Q' . $rows, $val->list);
+          $sheet->setCellValue('R' . $rows, $val->status);
+          $sheet->setCellValue('S' . $rows, $val->daterecieved);
+          $sheet->setCellValue('T' . $rows, $val->datedelivered);
   
           $rows++;
       } 
-  
         $data = [
             'ref' => $idd,
         ];
@@ -8492,6 +8988,8 @@ public function ulcdw()
           $builde->orLike('ram', $j);
           $builde->orLike('odd', $j);
           $builde->orLike('comment', $j);
+          $builde->orLike('del', $j);
+          $builde->orLike('del', $j);
           
           $builde->orLike('type', $j);
           $dataa = $builde->get()->getresultArray();
@@ -8515,6 +9013,7 @@ public function ulcdw()
               $builder122->orLike('ram', $j);
               $builder122->orLike('odd', $j);
               $builder122->orLike('comment', $j);
+              $builder122->orLike('del', $j);
               $builder122->orLike('type', $j);
               $data = $builder122->get()->getResultArray();
               foreach($data as $d){
@@ -8536,6 +9035,7 @@ public function ulcdw()
               $builde->orLike('ram', $j);
               $builde->orLike('odd', $j);
               $builde->orLike('comment', $j);
+              $builde->orLike('del', $j);
               $builde->orLike('type', $j); 
               $builde->update($datam);
               return redirect()->to(site_url('/adjustments'));
@@ -8556,6 +9056,7 @@ public function ulcdw()
               $builder122->orLike('ram', $j);
               $builder122->orLike('odd', $j);
               $builder122->orLike('comment', $j);
+              $builder122->orLike('del', $j);
               $builder122->orLike('type', $j);
               $data = $builder122->get()->getResultArray();
               foreach($data as $d){
@@ -8577,6 +9078,7 @@ public function ulcdw()
               $builde->orLike('ram', $j);
               $builde->orLike('odd', $j);
               $builde->orLike('comment', $j);
+              $builde->orLike('del', $j);
               $builde->orLike('type', $j); 
               $builde->update($dataso);
               return redirect()->to(site_url('/adjustments'));
@@ -8597,6 +9099,7 @@ public function ulcdw()
               $builder122->orLike('ram', $j);
               $builder122->orLike('odd', $j);
               $builder122->orLike('comment', $j);
+              $builder122->orLike('del', $j);
               $builder122->orLike('type', $j);
               $data = $builder122->get()->getResultArray();
               foreach($data as $d){
@@ -8618,6 +9121,7 @@ public function ulcdw()
               $builde->orLike('ram', $j);
               $builde->orLike('odd', $j);
               $builde->orLike('comment', $j);
+              $builde->orLike('del', $j);
               $builde->orLike('type', $j); 
               $builde->update($dataw);
           }
@@ -8637,6 +9141,7 @@ public function ulcdw()
               $builder122->orLike('ram', $j);
               $builder122->orLike('odd', $j);
               $builder122->orLike('comment', $j);
+              $builder122->orLike('del', $j);
               $builder122->orLike('type', $j);
               $data = $builder122->get()->getResultArray();
               foreach($data as $d){
@@ -8682,6 +9187,7 @@ public function ulcdw()
               
               
               $builde->orLike('comment', $j);
+              $builde->orLike('del', $j);
               
               
               $builde->orLike('type', $j); 
@@ -8703,6 +9209,7 @@ public function ulcdw()
               $builder122->orLike('ram', $j);
               $builder122->orLike('odd', $j);
               $builder122->orLike('comment', $j);
+              $builder122->orLike('del', $j);
               $builder122->orLike('type', $j);
               $data = $builder122->get()->getResultArray();
               foreach($data as $d){
@@ -8739,6 +9246,7 @@ public function ulcdw()
               
               
               $builde->orLike('customer', $j);
+              $builde->orLike('del', $j);
               
               
               $builde->orLike('ram', $j);
@@ -8768,6 +9276,7 @@ public function ulcdw()
               $builder122->orLike('ram', $j);
               $builder122->orLike('odd', $j);
               $builder122->orLike('comment', $j);
+              $builder122->orLike('del', $j);
               $builder122->orLike('type', $j);
               $data = $builder122->get()->getResultArray();
               foreach($data as $d){
@@ -8790,6 +9299,7 @@ public function ulcdw()
               $builde->orLike('ram', $j);
               $builde->orLike('odd', $j);
               $builde->orLike('comment', $j);
+              $builde->orLike('del', $j);
               $builde->orLike('type', $j); 
               $builde->update($datad);
           }elseif($m == 'faulty'){
@@ -8808,6 +9318,7 @@ public function ulcdw()
               $builder122->orLike('ram', $j);
               $builder122->orLike('odd', $j);
               $builder122->orLike('comment', $j);
+              $builder122->orLike('del', $j);
               $builder122->orLike('type', $j);
               $data = $builder122->get()->getResultArray();
               foreach($data as $d){
@@ -8844,6 +9355,7 @@ public function ulcdw()
               
               
               $builde->orLike('customer', $j);
+              $builde->orLike('del', $j);
               
               
               $builde->orLike('ram', $j);
@@ -8873,6 +9385,7 @@ public function ulcdw()
               $builder122->orLike('ram', $j);
               $builder122->orLike('odd', $j);
               $builder122->orLike('comment', $j);
+              $builder122->orLike('del', $j);
               $builder122->orLike('type', $j);
               $data = $builder122->get()->getResultArray();
               foreach($data as $d){
@@ -8909,6 +9422,7 @@ public function ulcdw()
               
               
               $builde->orLike('customer', $j);
+              $builde->orLike('del', $j);
               
               
               $builde->orLike('ram', $j);
@@ -9229,7 +9743,6 @@ public function ulcdw()
           if($this->request->getVar('column') == 'Model'){
               $builder = $db->table('verify');
               $builder->select('*');
-              $builder->where('random' , $s);
               $builder->where('terms' , $sess);
               $builder->update(['model' => $x]);
               return redirect()->back()->with('status', 'replaced successfully');
@@ -9238,7 +9751,6 @@ public function ulcdw()
           elseif($this->request->getVar('column') == 'Brand'){
               $builder = $db->table('verify');
               $builder->select('*');
-              $builder->where('random' , $s);
               $builder->where('terms' , $sess);
               $builder->update(['brand' => $x]);
               return redirect()->back()->with('status', 'replaced successfully');
@@ -9247,7 +9759,6 @@ public function ulcdw()
               $builder = $db->table('verify');
               $builder->select('*');
               $builder->where('terms' , $sess);
-              $builder->where('random' , $s);
               $builder->update(['hdd' => $x]);
               return redirect()->back()->with('status', 'replaced successfully');
 
@@ -9256,7 +9767,6 @@ public function ulcdw()
               $builder = $db->table('verify');
               $builder->select('*');
               $builder->where('terms' , $sess);
-              $builder->where('random' , $s);
               $builder->update(['screen' => $x]);
               return redirect()->back()->with('status', 'replaced successfully');
 
@@ -9265,7 +9775,6 @@ public function ulcdw()
               $builder = $db->table('verify');
               $builder->select('*');
               $builder->where('terms' , $sess);
-              $builder->where('random' , $s);
               $builder->update(['status' => $x]);
               return redirect()->back()->with('status', 'replaced successfully');
           }     
@@ -9275,8 +9784,6 @@ public function ulcdw()
               $builder = $db->table('verify');
               $builder->select('*');
               $builder->where('terms' , $sess);
-              $builder->where('random' , $s);
-              
               $builder->update(['speed' => $x]);
               return redirect()->back()->with('status', 'replaced successfully');
 
@@ -9285,7 +9792,6 @@ public function ulcdw()
               $builder = $db->table('verify');
               $builder->select('*');
               $builder->where('terms' , $sess);
-              $builder->where('random' , $s);
               $builder->update(['cpu' => $x]);
               return redirect()->back()->with('status', 'replaced successfully');
 
@@ -9294,7 +9800,6 @@ public function ulcdw()
               $builder = $db->table('verify');
               $builder->select('*');
               $builder->where('terms' , $sess);
-              $builder->where('random' , $s);
               $builder->update(['price' => $x]);
               return redirect()->back()->with('status', 'replaced successfully');
 
@@ -9303,7 +9808,6 @@ public function ulcdw()
               $builder = $db->table('verify');
               $builder->select('*');
               $builder->where('terms' , $sess);
-              $builder->where('random' , $s);
               $builder->update(['ram' => $x]);
               return redirect()->back()->with('status', 'replaced successfully');
 
@@ -9312,7 +9816,6 @@ public function ulcdw()
               $builder = $db->table('verify');
               $builder->select('*');
               $builder->where('terms' , $sess);
-              $builder->where('random' , $s);
               $builder->update(['odd' => $x]);
               return redirect()->back()->with('status', 'replaced successfully');
 
@@ -9321,7 +9824,6 @@ public function ulcdw()
               $builder = $db->table('verify');
               $builder->select('*');
               $builder->where('terms' , $sess);
-              $builder->where('random' , $s);
               $builder->update(['problem' => $x]);
               return redirect()->back()->with('status', 'replaced successfully');
 
@@ -9330,7 +9832,6 @@ public function ulcdw()
               $builder = $db->table('verify');
               $builder->select('*');
               $builder->where('terms' , $sess);
-              $builder->where('random' , $s);
               $builder->update(['conditions' => $x]);
               return redirect()->back()->with('status', 'replaced successfully');
 
@@ -9339,7 +9840,6 @@ public function ulcdw()
               $builder = $db->table('verify');
               $builder->select('*');
               $builder->where('terms' , $sess);
-              $builder->where('random' , $s);
               $builder->update(['type' => $x]);
               return redirect()->back()->with('status', 'replaced successfully');
 
@@ -9348,7 +9848,6 @@ public function ulcdw()
               $builder = $db->table('verify');
               $builder->select('*');
               $builder->where('terms' , $sess);
-              $builder->where('random' , $s);
               $builder->update(['gen' => $x]);
               return redirect()->back()->with('status', 'replaced successfully');
           } 
@@ -9356,7 +9855,6 @@ public function ulcdw()
               $builder = $db->table('verify');
               $builder->select('*');
               $builder->where('terms' , $sess);
-              $builder->where('random' , $s);
               $builder->update(['part' => $x]);
               return redirect()->back()->with('status', 'replaced successfully');
           }
@@ -9364,14 +9862,13 @@ public function ulcdw()
               $builder = $db->table('verify');
               $builder->select('*');
               $builder->where('terms' , $sess);
-              $builder->where('random' , $s);
               $builder->update(['modelid' => $x]);
               return redirect()->back()->with('status', 'replaced successfully');
           }
           elseif($this->request->getVar('column') == 'Customer'){
               $builder = $db->table('verify');
               $builder->select('*');
-              $builder->where('random' , $s);
+              $builder->where('terms' , $sess);
               $builder->update(['customer' => $x]);
               return redirect()->back()->with('status', 'replaced successfully');
           }
@@ -9379,7 +9876,6 @@ public function ulcdw()
               $builder = $db->table('verify');
               $builder->select('*');
               $builder->where('terms' , $sess);
-              $builder->where('random' , $s);
               $builder->update(['vendor' => $x]);
               return redirect()->back()->with('status', 'replaced successfully');
           }
@@ -9387,7 +9883,6 @@ public function ulcdw()
               $builder = $db->table('verify');
               $builder->select('*');
               $builder->where('terms' , $sess);
-              $builder->where('random' , $s);
               $builder->update(['screen' => $x]);
               return redirect()->back()->with('status', 'replaced successfully');
           }
@@ -9395,7 +9890,6 @@ public function ulcdw()
               $builder = $db->table('verify');
               $builder->select('*');
               $builder->where('terms' , $sess);
-              $builder->where('random' , $s);
               $builder->update(['comment' => $x]);
               return redirect()->back()->with('status', 'replaced successfully');
           }     
@@ -9433,17 +9927,6 @@ public function ulcdw()
                  'tbl' => $this->request->getVar('table'),
                  'session' => $sess,
              ];
-
-
-            //  $builder = $db->table('barcodes');
-            //  $builder->select('serialno');
-            //  $builder->where('serialno' , $data['serialno']);
-            //  $da = $builder->get()->getResultArray();
-            //  if(!$da){
-            //      $db->table('barcodes')->insert($data);
-            //  }
-            //  return redirect()->to(base_url('Settings/adjustments'));
-        //  }
  
          $datam = [
              'random' => $this->request->getPost('random'),
@@ -9974,6 +10457,81 @@ public function ulcdw()
       $builder404->where('vendor', $sess);
       $builder404->delete();
       return View('/products/deliverypdf', $data5);
+    }
+    public function delete_items()
+    {
+      # code...
+      $db      = \Config\Database::connect();
+      $sess = session()->get('user_name');
+      $builders = $db->table('verify');
+      $builders->select('*');
+      $builders->where('terms', $sess);
+      $tbl = $builders->get()->getResultArray();
+
+      foreach($tbl as $tb){
+        if($tb['tbl'] == 'Stockin'){
+          $builder1 = $db->table('masterlist');
+          $builder1->select('*');
+          $builder1->where('assetid', $tb['assetid']);
+          $builder1->delete();
+        }
+        elseif($tb['tbl'] == 'faulty'){
+          $builder1 = $db->table('faulty');
+          $builder1->select('*');
+          $builder1->where('assetid', $tb['assetid']);
+          $builder1->delete();
+        }
+        elseif($tb['tbl'] == 'Stockout'){
+          $builder1 = $db->table('stockout');
+          $builder1->select('*');
+          $builder1->where('assetid', $tb['assetid']);
+          $builder1->delete();
+        }
+        elseif($tb['tbl'] == 'warranty out'){
+          $builder1 = $db->table('warrantyout');
+          $builder1->select('*');
+          $builder1->where('assetid', $tb['assetid']);
+          $builder1->delete();
+        }
+        elseif($tb['tbl'] == 'warrantyin'){
+          $builder1 = $db->table('warrantyin');
+          $builder1->select('*');
+          $builder1->where('assetid', $tb['assetid']);
+          $builder1->delete();
+        }
+        elseif($tb['tbl'] == 'credit'){
+          $builder1 = $db->table('credit');
+          $builder1->select('*');
+          $builder1->where('assetid', $tb['assetid']);
+          $builder1->delete();
+        }
+        elseif($tb['tbl'] == 'faultyout'){
+          $builder1 = $db->table('faultyout');
+          $builder1->select('*');
+          $builder1->where('assetid', $tb['assetid']);
+          $builder1->delete();
+        }
+        elseif($tb['tbl'] == 'debit'){
+          $builder1 = $db->table('debit');
+          $builder1->select('*');
+          $builder1->where('assetid', $tb['assetid']);
+          $builder1->delete();
+        }
+        elseif($tb['tbl'] == 'stockout'){
+          $builder1 = $db->table('stockout');
+          $builder1->select('*');
+          $builder1->where('assetid', $tb['assetid']);
+          $builder1->delete();
+        }
+        else{
+        }
+          $db->table('recycle')->insert($tb);
+          $builder = $db->table('verify');
+          $builder->select('*');
+          $builder->where('terms', $sess);
+          $builder->delete();
+      }
+      return redirect()->to(base_url('Settings/adjustments'))->with('status', 'item deleted permanently');
     }
 
 }
