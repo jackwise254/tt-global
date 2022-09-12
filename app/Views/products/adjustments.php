@@ -48,8 +48,8 @@ endif;
         <div class="input-group">
           <div class="input-group-btn">
               <select class="col-2 p-1 rounded-pill" id="sort-itemss" name='search' type="text"  placeholder='Category'>
+                <option value="">Category</option>
                 <?php foreach($type as $t): ?>
-                    <option></option>
                     <option value='<?php echo $t->type; ?>'><?php echo $t->type; ?></option>
                 <?php endforeach; ?>
               </select>
@@ -100,7 +100,7 @@ endif;
                            </span>
                                  <?php endif; ?>
                            </button>
-                        <a href="<?php echo site_url('clears') ?>" class=" btn btn-outline-danger bi bi-trash-fill rounded-pill  btn-sm mt-1">Clear</a>
+                           <a href="<?php echo site_url('clears') ?>" class=" btn btn-outline-warning bi  rounded-pill  btn-sm mt-1">Clear</a>
           </div>
         </div>
       </form>
@@ -277,6 +277,8 @@ endif;
  <a href="<?php echo base_url('ProductsCrud/masterlistall'); ?>" class="btn btn-outline-success   btn-sm mt-1">Masterlist</a>
  <a href="<?php echo base_url('ProductsCrud/faultyall'); ?>" class="btn btn-outline-warning  btn-sm mt-1">Faulty</a>
  <a href="<?php echo site_url('clears') ?>" class=" btn btn-outline-danger bi bi-trash-fill  btn-sm mt-1">Clear</a>
+ <a href="<?php echo base_url('Settings/delete_items') ?>" class=" btn btn-outline-danger bi bi-trash-fill rounded-pill  btn-sm mt-1">Delete</a>
+
 <?php endif; ?>
 
 <div id="myModal" class="modal fade" role="dialog">

@@ -62,6 +62,7 @@ $routes->post('submit-invoice', 'ProductsCrud::storei',['filter' => 'auth']);
 $routes->post('submit-delivery', 'ProductsCrud::deliverr',['filter' => 'auth']);
 $routes->get('edit-products/(:num)', 'ProductsCrud::singleProduct/$1',['filter' => 'auth']);
 $routes->post('update-products', 'ProductsCrud::update',['filter' => 'auth']);
+$routes->post('update-productsw', 'ProductsCrud::updatew',['filter' => 'auth']);
 $routes->post('update-fproducts', 'ProductsCrud::updatef',['filter' => 'auth']);
 
 // 
@@ -340,9 +341,23 @@ $routes->get('/Uimacspfo', 'Warranty::Uimacspfo',['filter' => 'auth']);
 $routes->get('/Nimacspfo', 'Warranty::Nimacspfo',['filter' => 'auth']);
 
 
+// beggin here
+$routes->get('/Rmacbookspw', 'Warranty::Rmacbookspw',['filter' => 'auth']);
+$routes->get('/Umacbookspw', 'Warranty::Umacbookspw',['filter' => 'auth']);
+$routes->get('/Nmacbookspw', 'Warranty::Nmacbookspw',['filter' => 'auth']);
+$routes->get('/Rworkstationspw', 'Warranty::Rworkstationspw',['filter' => 'auth']);
+$routes->get('/Uworkstationspw', 'Warranty::Uworkstationspw',['filter' => 'auth']);
+$routes->get('/Nworkstationspw', 'Warranty::Nworkstationspw',['filter' => 'auth']);
+$routes->get('/Userverspw', 'Warranty::Userverspw',['filter' => 'auth']);
+$routes->get('/Nserverspw', 'Warranty::Nserverspw',['filter' => 'auth']);
+$routes->get('/Rserverspw', 'Warranty::Rserverspspw',['filter' => 'auth']);
+$routes->get('/Rimacspw', 'Warranty::Rimacspw',['filter' => 'auth']);
+$routes->get('/Uimacspw', 'Warranty::Uimacspw',['filter' => 'auth']);
+$routes->get('/Nimacspw', 'Warranty::Nimacspw',['filter' => 'auth']);
+
+
 $routes->get('/Ndesktopfo', 'Login::Ndesktop',['filter' => 'auth']);
 $routes->get('/test', 'Login::test',['filter' => 'auth']);
-$routes->get('/tests', 'Login::tests',['filter' => 'auth']);
 
 $routes->get('/Odesktopfo', 'Login::Odesktop',['filter' => 'auth']);
 $routes->get('/Rdesktopfo', 'Login::Rdesktop',['filter' => 'auth']);
@@ -428,8 +443,6 @@ $routes->get('/Nallinones', 'Settings::Nallinone',['filter' => 'auth']);
 $routes->get('/smartphones', 'Settings::smartphones',['filter' => 'auth']);
 $routes->get('/tablets', 'Settings::tablets',['filter' => 'auth']);
 $routes->get('/otherss', 'Settings::otherss',['filter' => 'auth']);
-$routes->get('/adjustments', 'Settings::adjustments',['filter' => 'auth']);
-
 
 $routes->get('/Oallinones', 'Settings::Oallinone',['filter' => 'auth']);
 $routes->get('/Rallinones', 'Settings::Rallinone',['filter' => 'auth']);
@@ -479,6 +492,9 @@ $routes->get('/stocktt-view', 'vendor::stockt',['filter' => 'auth']);
 $routes->get('/printer', 'Warranty::printer',['filter' => 'auth']);
 $routes->get('faulty-load', 'Settings::fload',['filter' => 'auth']);
 $routes->get('faulty-summary', 'Settings::fsummary',['filter' => 'auth']);
+$routes->get('adjustments', 'Settings::adjustments',['filter' => 'auth']);
+$routes->get('clears', 'Settings::clears',['filter' => 'auth']);
+
 
 
 /*

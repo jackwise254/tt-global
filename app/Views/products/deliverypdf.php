@@ -48,6 +48,9 @@ $deliver = $item->deliver;
 
 
 }
+// echo '<pre>';
+// print_r($deliver);
+// exit;
 
 class PDF extends FPDF
 {

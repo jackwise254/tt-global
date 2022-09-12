@@ -97,24 +97,25 @@ foreach($type as $t): ?>
 <?php endforeach; ?>
 <?php endforeach; ?>
 
-        <?php if($count_credit > 0): ?> 
+<?php if($count_products > 0): ?> 
+        <?php if($count_products > 0): ?> 
            <div class="col-md-3">
-              <a href="<?php echo site_url('/credits') ?>">
-                <?php if($count_credit <= 10): ?> 
+              <a href="<?php echo site_url('/warrantyoutv') ?>">
+                <?php if($count_products <= 10): ?> 
                   <div class="small-box bg-primary p-2">
-                    <?php elseif($count_credit  < 20): ?>
+                    <?php elseif($count_products  < 20): ?>
                        <div class="small-box bg-info p-2">
                          <?php else: ?>
                            <div class="small-box bg-light p-2">
                                <?php endif ?>
                                   <div class="inner">
-                                    <h3 ><?php echo $count_credit; ?></h3>
-                                       <p >Credit Notes</p>
+                                    <h3 ><?php echo $count_products; ?></h3>
+                                       <p >Total stock</p>
                                   </div>
                             <div class="icon">
                             <i class="ionicons ion-android-desktop"></i>
                        </div>
-                       <a href="<?php echo site_url('/credits') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
+                       <a href="<?php echo site_url('/warrantyoutv') ?>" class="small-box-footer"><i class="fa fa-arrow-circle-right"></i>Details</a>
                   </div>
                </a>
             </div>
